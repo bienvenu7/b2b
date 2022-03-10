@@ -103,9 +103,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "b2blgfront"
+  "defaultProject": "b2blgfront",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
