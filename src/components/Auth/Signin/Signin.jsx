@@ -1,6 +1,6 @@
 const SignIn = () =>{
     return(
-        <div>SignIn</div>
+        <div className="form__signin">SignIn</div>
     )
 }
 

@@ -1,0 +1,34 @@
+.auth{
+    &__menu{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1321px;
+        height: 54px;
+        margin: 0 auto;
+        padding: 0 25px ;
+        background-color: rgb(255, 255, 255);
+        border-radius: 8px;
+        &__logo{
+            display: flex;
+            .image{
+            }
+        }
+        &__buttons{
+            display: flex;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        &__elem{
+            &:hover{
+                font-weight: bold;
+                cursor: pointer;
+            }
+            &:after{
+                
+            }
+        }
+    }
+}
