@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInitialApp } from './redux/selectors/app-selectors';
