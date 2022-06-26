@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getAuthThunk, loginThunk, regThunk } from '../../../redux/thunks/auth-thunk';
@@ -8,98 +9,122 @@ const SignUp = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const [type, setType] = useState('text')
+    const [typeEmail, setTypeEmail] = useState('email')
+    const [switchBtn, setState] = useState('switch-btn')
+
+    const setSwitchState = (switchState) =>{
+        !switchState ? setState('switch-btn switch-on') : setState('switch-btn')
+    }
+
     const validate = values => {
         const errors = {};
         if (!values.company) {
-          errors.company = 'Please fill in your company';
-        } 
-      
+            errors.company = 'Please fill in your company';
+        }
+
         if (!values.password) {
-          errors.password = 'Please fill in your password';
+            errors.password = 'Please fill in your password';
         } else if (values.password.length < 6) {
-          errors.password = 'Must be 6 characters or more';
+            errors.password = 'Must be 6 characters or more';
         }
-      
+
         if (!values.email) {
-          errors.email = 'Please fill in your email';
+            errors.email = 'Please fill in your email';
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-          errors.email = 'Invalid email address';
+            errors.email = 'Invalid email address';
         }
-      
+
         return errors;
-      };
+    };
 
     const formik = useFormik({
         initialValues: {
-            email: '',
-            password: '',
-            company: '',
-            role: '',
-            number: '',
+            email: 'Email Address*',
+            password: 'Password*',
+            company: 'Company Name*',
+            role: 'Your role at the company',
+            number: 'Number of expected monthly authentications',
+            rememberMe: false,
         },
         validate,
         onSubmit: values => {
-            navigate('../auth/signin')
-        }            
+            //navigate('../auth/signin')
+            console.log(values)
+        }
     });
 
     return (
-
-        <div className="form__signup">
-            <form onSubmit={formik.handleSubmit}>
-                <label htmlFor="company">Company name</label>
+        <div className='auth__form'>
+            <form className="auth__form__signup" onSubmit={formik.handleSubmit}>
                 <input
+                    className='auth__form-elem'
                     id="company"
                     name="company"
                     type="text"
                     onChange={formik.handleChange}
+                    onBlur={()=>{formik.values.company == '' && formik.setFieldValue('company','Company Name*')}}
                     value={formik.values.company}
+                    onClick={()=>{formik.values.company =='Company Name*' && formik.setFieldValue('company','')}}
                 />
-                {formik.touched.company && formik.errors.company ? <div>{formik.errors.company}</div> : null}
-                <br/>
-                <label htmlFor="role">Your role at the company</label>
+                {formik.touched.company && formik.errors.company ? <div className='auth__form-errorMessage'>{formik.errors.company}</div> : null}
                 <input
+                    className='auth__form-elem'
                     id="role"
                     name="role"
                     type="text"
                     onChange={formik.handleChange}
+                    onBlur={()=>{formik.values.role == '' && formik.setFieldValue('role','Your role at the company')}}
                     value={formik.values.role}
-                /><br/>
-                <label htmlFor="number">Number of expected monthly authentications</label>
+                    onClick={()=>{formik.values.role =='Your role at the company' && formik.setFieldValue('role','')}}
+                />
                 <input
+                    className='auth__form-elem'
                     id="number"
                     name="number"
-                    type="number"
+                    type="text"
                     onChange={formik.handleChange}
+                    onBlur={()=>{formik.values.number == '' && formik.setFieldValue('number','Number of expected monthly authentications')}}
                     value={formik.values.number}
-                /><br/>
-                <label htmlFor="email">Email Address</label>
+                    onClick={()=>{formik.values.number =='Number of expected monthly authentications' && formik.setFieldValue('number','')}}
+                />
                 <input
-                    id="email"
+                    className='auth__form-elem'
+                    id={typeEmail}
                     name="email"
                     type="text"
                     onChange={formik.handleChange}
+                    onBlur={()=>{formik.values.email == '' && formik.setFieldValue('email','Email Address*')}}
                     value={formik.values.email}
+                    onClick={()=>{formik.values.email =='Email Address*' && formik.setFieldValue('email','')}}
                 />
-                {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
-                <br/>
-               
-                <label htmlFor="password">Password</label>
+                {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
                 <input
+                    className='auth__form-elem'
                     id="password"
                     name="password"
-                    type="password"
+                    type={type}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.password}
+                    onClick={() => { setType('password'); formik.setFieldValue('password', '') }}
                 />
-                {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
-                <br/>
+                {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
+                <div className='auth__form-elem-rememberMe'><input
+                id="rememberMe"
+                type='checkbox'
+                onChange={formik.handleChange}
+                value={formik.values.rememberMe}
+                onClick={()=>{setSwitchState(formik.values.rememberMe)}}/>
+                <label htmlFor='rememberMe' className={switchBtn}/><div className='switch-btn-label'>Remember Me</div></div>
 
 
-
-                <button type="submit">Submit</button>
+                <button className='auth__form-submit' type="submit">Sign Up</button>
             </form>
+            <div className='auth__form__bottom'>
+                <div className='auth__form__bottom-message'>Already have an account?&nbsp;</div>
+                <div className='auth__form__bottom-button'>Sign in</div>
+            </div>
         </div>
     )
 }
