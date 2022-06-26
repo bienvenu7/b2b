@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+@import '../../scss/vars';
 
 .auth {
     &__menu {
@@ -17,11 +18,12 @@
         background-color: rgb(255, 255, 255);
         border-radius: 8px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
-
+        @include for-phone-only{
+            display: none;
+        }
         &-logo {
             display: flex;
             align-items: center;
-
             .image {}
 
             .title {
@@ -72,6 +74,9 @@
             background-color: bisque;
             width: 100%;
             max-width: 50vw;
+            @include for-phone-only{
+                display: none;
+            }
         }
 
         &-right {
@@ -81,6 +86,10 @@
             justify-content: center;
             align-items: center;
             background-color: #E5E5E5;
+            @include for-phone-only{
+                max-width: 100vw;
+                background-color: #FFFFFF;
+            }
 
             &-wrapper {
                 display: flex;
@@ -93,7 +102,16 @@
                 flex-direction: column;
                 align-items: center;
                 margin-bottom: 49px;
-
+                @include for-phone-only{
+                    max-width: 300px;
+                }
+                .mobileLogo{
+                    display: none;
+                    @include for-phone-only{
+                        display: block;
+                        margin-bottom: 34px;
+                    }
+                }
                 .message-h1 {
                     font-family: 'Roboto';
                     font-style: normal;
@@ -101,6 +119,10 @@
                     font-size: 22px;
                     color: #020202;
                     margin-bottom: 13px;
+                    @include for-phone-only{
+                        font-size: 24px;
+                        text-align: center;
+                    }
                 }
 
                 .message-h2 {
@@ -110,6 +132,9 @@
                     font-size: 16px;
                     line-height: 140%;
                     color: #020202;
+                    @include for-phone-only{
+                        text-align: center;
+                    }
                 }
             }
 
@@ -137,7 +162,10 @@
                     border-radius: 8px;
                     height: 22px;
                     padding: 11px 0 11px 16px;
-
+                    @include for-phone-only{
+                        font-size: 16px;
+                    }
+                
                     &:not(:last-child) {
                         margin-bottom: 16px;
                     }
@@ -227,15 +255,19 @@
                     height: 40px;
                     margin-top: 42px;
                     cursor: pointer;
+                    @include for-phone-only{
+                        font-size: 18px;
+                        border-radius: 4px;
+                    }
                 }
 
-                &__signup {
+                &__signup, &__signin, &__forgot, &__reset {
                     display: flex;
                     flex-direction: column;
                     width: 100%;
                 }
 
-                &__bottom {
+                &__bottom, &__bottom-signin{
                     display: flex;
                     font-family: 'Roboto';
                     font-style: normal;
@@ -243,12 +275,31 @@
                     font-size: 14px;
                     line-height: 140%;
                     margin-top: 31px;
+                    .wrapper{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    @include for-phone-only{
+                        font-size: 16px;
+                    }
+                    &-message {
 
-                    &-message {}
+                    }
 
                     &-button {
                         color: #C8AC79;
                         cursor: pointer;
+                        .backIcon{
+                            height: 10px;
+                        }
+                    }
+                }
+                &__bottom-signin{
+                    flex-direction: column;
+                    align-items: center;
+                    .wrapper{
+                        display: flex;
                     }
                 }
             }

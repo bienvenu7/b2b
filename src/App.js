@@ -13,6 +13,8 @@ function App() {
         <Routes>
           <Route path='auth/signin' element={<Auth page='signin'/>} />
           <Route path='auth/signup' element={<Auth page='signup'/>} />
+          <Route path='auth/forgot' element={<Auth page='forgot'/>} />
+          <Route path='auth/reset' element={<Auth page='reset'/>} />
         </Routes>
       </BrowserRouter>
     </div>

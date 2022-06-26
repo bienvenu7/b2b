@@ -10,7 +10,6 @@ const SignUp = () => {
     const navigate = useNavigate()
 
     const [type, setType] = useState('text')
-    const [typeEmail, setTypeEmail] = useState('email')
     const [switchBtn, setState] = useState('switch-btn')
 
     const setSwitchState = (switchState) =>{
@@ -25,8 +24,8 @@ const SignUp = () => {
 
         if (!values.password) {
             errors.password = 'Please fill in your password';
-        } else if (values.password.length < 6) {
-            errors.password = 'Must be 6 characters or more';
+        } else if (values.password.length < 8) {
+            errors.password = 'Must be 8 characters or more';
         }
 
         if (!values.email) {
@@ -49,7 +48,6 @@ const SignUp = () => {
         },
         validate,
         onSubmit: values => {
-            //navigate('../auth/signin')
             console.log(values)
         }
     });
@@ -90,7 +88,7 @@ const SignUp = () => {
                 />
                 <input
                     className='auth__form-elem'
-                    id={typeEmail}
+                    id="email"
                     name="email"
                     type="text"
                     onChange={formik.handleChange}
@@ -123,7 +121,7 @@ const SignUp = () => {
             </form>
             <div className='auth__form__bottom'>
                 <div className='auth__form__bottom-message'>Already have an account?&nbsp;</div>
-                <div className='auth__form__bottom-button'>Sign in</div>
+                <div className='auth__form__bottom-button' onClick={()=>{navigate('../auth/signin')}}>Sign in</div>
             </div>
         </div>
     )
