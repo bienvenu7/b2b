@@ -1,13 +1,20 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getIsAuth } from '../../../redux/selectors/auth-selectors';
 import { getAuthThunk, loginThunk, regThunk } from '../../../redux/thunks/auth-thunk';
 
 const SignUp = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const isAuth = useSelector(getIsAuth)
+
+    useEffect(()=>{
+        isAuth && navigate('../main')
+    },[isAuth])
 
     const [type, setType] = useState('text')
     const [switchBtn, setState] = useState('switch-btn')
@@ -48,7 +55,7 @@ const SignUp = () => {
         },
         validate,
         onSubmit: values => {
-            console.log(values)
+            dispatch(regThunk(values))
         }
     });
 

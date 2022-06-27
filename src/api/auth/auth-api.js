@@ -14,7 +14,7 @@ export const register = (data) => {
 }
 
 export const login = (data) => {
-    return instance.post('auth/email/login')
+    return instance.post('auth/email/login', data)
 }
 
 export const getAuth = (data) => {

@@ -1,9 +1,19 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getIsAuth } from '../../../redux/selectors/auth-selectors';
+import { loginThunk } from '../../../redux/thunks/auth-thunk';
 
 const SignIn = () => {
+
+    const dispatch = useDispatch()
+
+    const isAuth = useSelector(getIsAuth)
+
+    useEffect(()=>{
+        isAuth && navigate('../main')
+    },[isAuth])
 
     const [switchBtn, setState] = useState('switch-btn')
 
@@ -41,9 +51,10 @@ const SignIn = () => {
         },
         validate,
         onSubmit: values => {
-            console.log(values)
+            dispatch(loginThunk(values))
         }
     });
+
 
     return (
         <div className='auth__form'>
@@ -79,7 +90,7 @@ const SignIn = () => {
                     <label htmlFor='rememberMe' className={switchBtn} /><div className='switch-btn-label'>Remember Me</div></div>
 
 
-                <button className='auth__form-submit' type="submit">Sign Up</button>
+                <button className='auth__form-submit' type="submit">Sign In</button>
             </form>
             <div className='auth__form__bottom-signin'>
                 <div className='wrapper'><div className='auth__form__bottom-message'>Dont't have an account?&nbsp;</div>
