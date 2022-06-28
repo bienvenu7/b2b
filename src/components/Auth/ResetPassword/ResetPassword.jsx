@@ -1,15 +1,21 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import SvgSelector from '../../../common/icons/SvgSelector';
+import { getStatusCode } from '../../../redux/selectors/app-selectors';
+import { forgotPasswordThunk } from '../../../redux/thunks/auth-thunk';
 
 const ResetPassword = () => {
 
     const [typeOfNew, setTypeNew] = useState('text')
     const [typeOfConfirm, setTypeConfirm] = useState('text')
 
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const params = useParams()
+
+    const statusCode = useSelector(getStatusCode)
 
     const validate = values => {
         const errors = {};
@@ -30,7 +36,11 @@ const ResetPassword = () => {
         },
         validate,
         onSubmit: values => {
-            console.log(values)
+            const data = {
+                password: values.password,
+                hash: params.hash
+            }
+            dispatch(forgotPasswordThunk(data))
         }
     });
 
@@ -63,7 +73,7 @@ const ResetPassword = () => {
                 <button className='auth__form-submit' type="submit">Reset</button>
             </form>
             <div className='auth__form__bottom-signin'>
-                <div className='wrapper'><div className='auth__form__bottom-message'></div>
+                <div className='wrapper'>{statusCode == 200 ? <div className='auth__form__bottom-message'>Your password has successfully been reset!</div> : null}
                 <div className='auth__form__bottom-button' onClick={()=>{navigate('../auth/signin')}}><SvgSelector id='backIcon'/>&nbsp;Back to login</div></div>
             </div>
         </div>

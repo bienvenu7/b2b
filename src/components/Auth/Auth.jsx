@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import './Auth.scss'
 import SignUp from './Signup/Signup'
 import SignIn from './Signin/Signin'
@@ -7,13 +7,25 @@ import logo from '../../common/icons/logo.png'
 import mobileLogo from '../../common/images/logo-for-mobile.png'
 import ForgotPassword from './ForgotPassword/ForgotPassword'
 import ResetPassword from './ResetPassword/ResetPassword'
+import { useSelector } from 'react-redux'
+import { getIsAuth } from '../../redux/selectors/auth-selectors'
+import { useEffect } from 'react'
+import background from '../../common/images/auth-background-left.png'
 
 const Auth = (props) => {
+
+    const isAuth = useSelector(getIsAuth)
+
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        isAuth && navigate('../main')
+    },[isAuth])
 
     let messageh1 = ''
     let messageh2 = ''
 
-    const switche = (param) => {
+    const messagesSwitch = (param) => {
         switch (param) {
             case 'signup':
                 messageh1 = 'Welcome to the LegitGrails Business Platform!'
@@ -36,7 +48,7 @@ const Auth = (props) => {
         }
     }
 
-    switche(props.page)
+   messagesSwitch(props.page)
 
     return (
         <div className="auth-container">
@@ -52,7 +64,7 @@ const Auth = (props) => {
                 </ul>
             </div>
             <div className='auth__content'>
-                <div className='auth__content-left'>
+                <div className='auth__content-left' style={{backgroundImage: `url(${background})`}}>
                 </div>
                 <div className='auth__content-right'>
                     <div className='auth__content-right-wrapper'>

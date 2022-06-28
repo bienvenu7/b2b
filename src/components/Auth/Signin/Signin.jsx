@@ -9,11 +9,6 @@ const SignIn = () => {
 
     const dispatch = useDispatch()
 
-    const isAuth = useSelector(getIsAuth)
-
-    useEffect(()=>{
-        isAuth && navigate('../main')
-    },[isAuth])
 
     const [switchBtn, setState] = useState('switch-btn')
 

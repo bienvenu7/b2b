@@ -2,10 +2,12 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { forgotEmailThunk } from '../../../redux/thunks/auth-thunk';
 
 const ForgotPassword = () =>{
  
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [send, setSendState] = useState(false)
 
@@ -27,7 +29,7 @@ const ForgotPassword = () =>{
         },
         validate,
         onSubmit: values => {
-            console.log(values)
+            dispatch(forgotEmailThunk(values))
             setSendState(true)
         }
     });

@@ -13,7 +13,6 @@ const initialState = {
         createdAt: null,
         role: null,
     },
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsInJvbGUiOnsiaWQiOjEsIm5hbWUiOiJhZG1pbiIsIl9fZW50aXR5IjoiUm9sZSJ9LCJpYXQiOjE2NTYwNzgxNzksImV4cCI6MTY1NjE2NDU3OX0.Q44cLKFhQKw0i0VoRn9gY02BF2T6_EjybYueMNtEFz8"
 }
 
 
@@ -21,16 +20,25 @@ const initialState = {
 const authReducer = createReducer(initialState, (builder) => {
     builder
         .addCase('SET_AUTH', (state = initialState, action) => {
-            state.isAuth = !state.isAuth
-            state.user.email = action.payload.user.email
-            state.user.id = action.payload.user.id
-            state.user.firstName = action.payload.user.firstName
-            state.user.lastName = action.payload.user.lastName
-            state.user.companyName = action.payload.user.companyName
-            state.user.createdAt = action.payload.user.createdAt
-            state.user.role = action.payload.user.role.name
-            
-            state.token = action.payload.token
+            if (action.payload != null) {
+                state.isAuth = true
+                state.user.email = action.payload.email
+                state.user.id = action.payload.id
+                state.user.firstName = action.payload.firstName
+                state.user.lastName = action.payload.lastName
+                state.user.companyName = action.payload.companyName
+                state.user.createdAt = action.payload.createdAt
+                state.user.role = action.payload.role.name
+            } else {
+                state.isAuth = false
+                state.user.email = null
+                state.user.id = null
+                state.user.firstName = null
+                state.user.lastName = null
+                state.user.companyName = null
+                state.user.createdAt = null
+                state.user.role = null
+            }
         })
 })
 

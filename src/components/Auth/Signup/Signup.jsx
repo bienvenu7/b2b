@@ -10,12 +10,6 @@ const SignUp = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const isAuth = useSelector(getIsAuth)
-
-    useEffect(()=>{
-        isAuth && navigate('../main')
-    },[isAuth])
-
     const [type, setType] = useState('text')
     const [switchBtn, setState] = useState('switch-btn')
 
