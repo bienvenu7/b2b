@@ -38,6 +38,7 @@ export const getAuthThunk = () => async (dispatch) => {
 
 export const logoutThunk = () => async (dispatch) => {
     Cookies.remove('jwt')
+    dispatch(setAuth(null))
 }
 
 export const forgotEmailThunk = (data) => async (dispatch) => {
@@ -46,7 +47,7 @@ export const forgotEmailThunk = (data) => async (dispatch) => {
 
 export const forgotPasswordThunk = (data) => async (dispatch) => {
     const response = await forgotPassword(data)
-    if (response.statusCode == 200){
+    if (response.status == 200){
         dispatch(setStatusCode(200))
     }
 }
