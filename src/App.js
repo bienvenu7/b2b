@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SignUp from './components/Auth/Signup/Signup';
-import SignIn from './components/Auth/Signin/Signin';
 import Auth from './components/Auth/Auth';
 import Main from './components/Main/Main';
 import { useDispatch } from 'react-redux';

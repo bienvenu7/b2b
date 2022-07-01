@@ -18,9 +18,9 @@ const Auth = (props) => {
 
     const navigate = useNavigate()
 
-    useEffect(()=>{
+    useEffect(() => {
         isAuth && navigate('../main')
-    },[isAuth])
+    }, [isAuth])
 
     let messageh1 = ''
     let messageh2 = ''
@@ -48,27 +48,30 @@ const Auth = (props) => {
         }
     }
 
-   messagesSwitch(props.page)
+    messagesSwitch(props.page)
 
     return (
         <div className="auth-container">
-            <div className='auth__menu'>
-                <div className='auth__menu-logo'>
-                    <img className='logoImage' src={logo} />
-                    <div className='title'>Business platform</div>
-                </div>
-                <ul className="auth__menu-buttons">
-                    <li className='auth__menu-elem'>Home page<SvgSelector id='arrowsDown' /></li>
-                    <li className='auth__menu-elem'>Real vs Fake Guides<SvgSelector id='arrowsDown' /></li>
-                    <li className='auth__menu-elem'>Reviews<SvgSelector id='arrowsDown' /></li>
-                </ul>
+            <div className='auth__background'>
+                <div className='auth__background-left' style={{ backgroundImage: `url(${background})` }}></div>
+                <div className='auth__background-right'></div>
             </div>
-            <div className='auth__content'>
-                <div className='auth__content-left' style={{backgroundImage: `url(${background})`}}>
+            <div className='auth__main-container'>
+                <div className='auth__menu'>
+                    <div className='auth__menu-logo'>
+                        <img className='logoImage' src={logo} />
+                        <div className='title'>Business platform</div>
+                    </div>
+                    <ul className="auth__menu-buttons">
+                        <li className='auth__menu-elem'>Home page</li>
+                        <li className='auth__menu-elem'>Real vs Fake Guides</li>
+                        <li className='auth__menu-elem'>Reviews</li>
+                    </ul>
                 </div>
-                <div className='auth__content-right'>
-                    <div className='auth__content-right-wrapper'>
-                        <div className='auth__content-right-messages'>
+                <div className='auth__content-wrapper'>
+                    <div className='auth__content-promo'>promo</div>
+                    <div className='auth__content-form'>
+                        <div className='auth__content-form-headers'>
                             <img className='mobileLogo' src={mobileLogo} />
                             { }
                             <div className='message-h1'>{messageh1}</div>
@@ -81,7 +84,6 @@ const Auth = (props) => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
