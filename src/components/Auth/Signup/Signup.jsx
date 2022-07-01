@@ -14,17 +14,17 @@ const SignUp = () => {
 
     const validate = values => {
         const errors = {};
-        if (!values.company) {
+        if (!values.company || values.company == 'Company Name*') {
             errors.company = 'Please fill in your company';
         }
 
-        if (!values.password) {
+        if (!values.password || values.password == 'Password*') {
             errors.password = 'Please fill in your password';
         } else if (values.password.length < 8) {
             errors.password = 'Must be 8 characters or more';
         }
 
-        if (!values.email) {
+        if (!values.email || values.email == 'Email Address*') {
             errors.email = 'Please fill in your email';
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
             errors.email = 'Invalid email address';
@@ -44,7 +44,12 @@ const SignUp = () => {
         },
         validate,
         onSubmit: values => {
-            dispatch(regThunk(values))
+            if (values.email == 'Email Address*'){
+                formik.errors.company = 'Please fill in your company';
+            } else if (values.company == 'Company Name*'){
+                console.log()
+            }
+            //dispatch(regThunk(values))
         }
     });
 

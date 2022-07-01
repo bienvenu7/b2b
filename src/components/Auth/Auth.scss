@@ -169,9 +169,9 @@
                 width: 100%;
 
                 &-errorMessage {
-                    margin-bottom: 16px;
                     color: red;
-                    text-align: center;
+                    font-size: 14px;
+                    padding-left: 3px;
                 }
 
                 &-elem {
@@ -190,13 +190,13 @@
                         font-size: 16px;
                     }
 
-                    &:not(:last-child) {
-                        margin-bottom: 16px;
+                    &:not(:first-child) {
+                        margin-top: 16px;
                     }
 
                     &-rememberMe {
                         display: flex;
-
+                        margin-top: 16px;
                         input {
                             display: none;
                         }
