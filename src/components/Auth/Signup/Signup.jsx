@@ -11,11 +11,6 @@ const SignUp = () => {
     const navigate = useNavigate()
 
     const [type, setType] = useState('text')
-    const [switchBtn, setState] = useState('switch-btn')
-
-    const setSwitchState = (switchState) =>{
-        !switchState ? setState('switch-btn switch-on') : setState('switch-btn')
-    }
 
     const validate = values => {
         const errors = {};
@@ -109,13 +104,6 @@ const SignUp = () => {
                     onClick={() => { setType('password'); formik.setFieldValue('password', '') }}
                 />
                 {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
-                <div className='auth__form-elem-rememberMe'><input
-                id="rememberMe"
-                type='checkbox'
-                onChange={formik.handleChange}
-                value={formik.values.rememberMe}
-                onClick={()=>{setSwitchState(formik.values.rememberMe)}}/>
-                <label htmlFor='rememberMe' className={switchBtn}/><div className='switch-btn-label'>Remember Me</div></div>
 
 
                 <button className='auth__form-submit' type="submit">Sign Up</button>
