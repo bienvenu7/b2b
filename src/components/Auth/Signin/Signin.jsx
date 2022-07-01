@@ -29,7 +29,7 @@ const SignIn = () => {
             errors.password = 'Must be 8 characters or more';
         }
 
-        if (!values.email) {
+        if (!values.email || values.email == 'Email') {
             errors.email = 'Please fill in your email';
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
             errors.email = 'Invalid email address';
@@ -55,7 +55,7 @@ const SignIn = () => {
         <div className='auth__form'>
             <form className="auth__form__signin" onSubmit={formik.handleSubmit}>
                 <input
-                    className='auth__form-elem'
+                    className={formik.touched.email && formik.errors.email ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="email"
                     name="email"
                     type="text"
@@ -66,7 +66,7 @@ const SignIn = () => {
                 />
                 {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
                 <input
-                    className='auth__form-elem'
+                    className={formik.touched.password && formik.errors.password ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="password"
                     name="password"
                     type={type}

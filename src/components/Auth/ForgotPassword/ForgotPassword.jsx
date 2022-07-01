@@ -38,7 +38,7 @@ const ForgotPassword = () =>{
         <div className='auth__form'>
             <form className="auth__form__signin" onSubmit={formik.handleSubmit}>
                 <input
-                    className='auth__form-elem'
+                    className={formik.touched.email && formik.errors.email ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="email"
                     name="email"
                     type="text"

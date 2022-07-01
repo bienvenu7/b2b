@@ -69,11 +69,24 @@ const Auth = (props) => {
                     </ul>
                 </div>
                 <div className='auth__content-wrapper'>
-                    <div className='auth__content-promo'>promo</div>
+                    {props.page == 'signup' ? 
+                    <div className='auth__content-promo'>
+                        <div className='auth__content-promo-elem'>
+                            <div className='promo-h1'><SvgSelector id='check' />Best Market Rates</div>
+                            <div className='promo-h2'>Access the most advanced authentication expertise at the lowest possible cost.</div>
+                        </div>
+                        <div className='auth__content-promo-elem'>
+                            <div className='promo-h1'><SvgSelector id='check' />Authentication Dashboard</div>
+                            <div className='promo-h2'>Automated authentication process, live dashboard and customisable reports for your business.</div>
+                        </div>
+                        <div className='auth__content-promo-elem'>
+                            <div className='promo-h1'><SvgSelector id='check' />24/7 Customer Support</div>
+                            <div className='promo-h2'>Priority support for your team to ensure the smoothest process execution.</div>
+                        </div>
+                    </div> : <div className='auth__content-promo'></div>}
                     <div className='auth__content-form'>
                         <div className='auth__content-form-headers'>
                             <img className='mobileLogo' src={mobileLogo} />
-                            { }
                             <div className='message-h1'>{messageh1}</div>
                             <div className='message-h2'>{messageh2}</div>
                         </div>

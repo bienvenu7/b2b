@@ -57,7 +57,7 @@ const SignUp = () => {
         <div className='auth__form'>
             <form className="auth__form__signup" onSubmit={formik.handleSubmit}>
                 <input
-                    className='auth__form-elem'
+                    className={formik.touched.company && formik.errors.company ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="company"
                     name="company"
                     type="text"
@@ -88,7 +88,7 @@ const SignUp = () => {
                     onClick={()=>{formik.values.number =='Number of expected monthly authentications' && formik.setFieldValue('number','')}}
                 />
                 <input
-                    className='auth__form-elem'
+                    className={formik.touched.email && formik.errors.email ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="email"
                     name="email"
                     type="text"
@@ -99,7 +99,7 @@ const SignUp = () => {
                 />
                 {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
                 <input
-                    className='auth__form-elem'
+                    className={formik.touched.password && formik.errors.password ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="password"
                     name="password"
                     type={type}

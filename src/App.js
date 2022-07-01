@@ -1,22 +1,31 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Auth from './components/Auth/Auth';
 import Main from './components/Main/Main';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAuthThunk } from './redux/thunks/auth-thunk';
+import { getIsAuth } from './redux/selectors/auth-selectors';
 
 function App() {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const isAuth = useSelector(getIsAuth)
+
+    useEffect(() => {
+        !isAuth && navigate('/auth/signin')
+    }, [isAuth])
 
   useEffect(()=>{
     dispatch(getAuthThunk())
   },[])
 
+
+
   return (
     <div className="App">
-      <BrowserRouter>
         <Routes>
           <Route path='main' element={<Main/>}/>
           <Route path='auth/signin' element={<Auth page='signin'/>} />
@@ -24,7 +33,6 @@ function App() {
           <Route path='auth/forgot' element={<Auth page='forgot'/>} />
           <Route path='password-change/:hash' element={<Auth page='reset'/>} />
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }
