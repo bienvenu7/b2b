@@ -6,6 +6,8 @@ import Main from './components/Main/Main';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthThunk } from './redux/thunks/auth-thunk';
 import { getIsAuth } from './redux/selectors/auth-selectors';
+import { initialApp } from './redux/thunks/app-thunk';
+import { getInitialApp } from './redux/selectors/app-selectors';
 
 function App() {
 
@@ -13,15 +15,20 @@ function App() {
   const navigate = useNavigate()
 
   const isAuth = useSelector(getIsAuth)
+  const appInit = useSelector(getInitialApp)
 
     useEffect(() => {
-        !isAuth && navigate('/auth/signin')
+        appInit && !isAuth && navigate('/auth/signin')
     }, [isAuth])
 
   useEffect(()=>{
-    dispatch(getAuthThunk())
+    dispatch(initialApp())
   },[])
 
+
+  if (!appInit){
+    return <div></div>
+  }
 
 
   return (
