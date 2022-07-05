@@ -13,3 +13,7 @@
   @mixin for-big-desktop-up {
     @media (min-width: 1800px) { @content; }
   }
+
+$c_g: #CBAD73;
+$c_b: #020202;
+  

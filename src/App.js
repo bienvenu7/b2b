@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIsAuth } from './redux/selectors/auth-selectors';
 import { initialApp } from './redux/thunks/app-thunk';
 import { getInitialApp } from './redux/selectors/app-selectors';
+import Payment from './components/Payment/Payment';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
   const appInit = useSelector(getInitialApp)
 
     useEffect(() => {
-        appInit && !isAuth && navigate('/auth/signin')
+        appInit && isAuth && navigate('/auth/signin')
     }, [isAuth])
 
   useEffect(()=>{
@@ -38,6 +39,7 @@ function App() {
           <Route path='auth/signup' element={<Auth page='signup'/>} />
           <Route path='auth/forgot' element={<Auth page='forgot'/>} />
           <Route path='password-change/:hash' element={<Auth page='reset'/>} />
+          <Route path='payment' element={<Payment/>}/>
         </Routes>
     </div>
   );
