@@ -49,7 +49,7 @@ const SignUp = () => {
             } else if (values.company == 'Company Name*'){
                 console.log()
             }
-            //dispatch(regThunk(values))
+            dispatch(regThunk(values))
         }
     });
 

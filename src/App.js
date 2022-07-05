@@ -4,7 +4,6 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Auth from './components/Auth/Auth';
 import Main from './components/Main/Main';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAuthThunk } from './redux/thunks/auth-thunk';
 import { getIsAuth } from './redux/selectors/auth-selectors';
 import { initialApp } from './redux/thunks/app-thunk';
 import { getInitialApp } from './redux/selectors/app-selectors';
