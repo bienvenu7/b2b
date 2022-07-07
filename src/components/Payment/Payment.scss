@@ -220,7 +220,7 @@
     }
 
     &__header {
-        &__tree {
+        &__nav {
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 700;
@@ -228,6 +228,8 @@
             line-height: 140%;
             color: $c_b;
             margin: 56px 0 0 32px;
+            display: flex;
+            cursor: pointer;
         }
 
         &__logo {

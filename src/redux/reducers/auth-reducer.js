@@ -22,13 +22,14 @@ const authReducer = createReducer(initialState, (builder) => {
         .addCase('SET_AUTH', (state = initialState, action) => {
             if (action.payload != null) {
                 state.isAuth = true
-                state.user.email = action.payload.email
+                /*state.user.email = action.payload.email
                 state.user.id = action.payload.id
                 state.user.firstName = action.payload.firstName
                 state.user.lastName = action.payload.lastName
                 state.user.companyName = action.payload.companyName
                 state.user.createdAt = action.payload.createdAt
-                state.user.role = action.payload.role.name
+                state.user.role = action.payload.role.name*/
+                state.user = action.payload
             } else {
                 state.isAuth = false
                 state.user.email = null

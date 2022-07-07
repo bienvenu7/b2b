@@ -18,7 +18,7 @@ function App() {
   const appInit = useSelector(getInitialApp)
 
     useEffect(() => {
-        appInit && isAuth && navigate('/auth/signin')
+        appInit && !isAuth && navigate('/auth/signin')
     }, [isAuth])
 
   useEffect(()=>{

@@ -11,7 +11,7 @@ const Payment = () => {
         <div className="payment-wrapper">
             <PaymentHeader />
             <div className="payment__content-container">
-                <PaymentForm submit={submit}/>
+                <PaymentForm />
                 <AuthBalance />
             </div>
             <div className="payment__footer">
@@ -21,7 +21,7 @@ const Payment = () => {
                         <div className="payment__footer-cost-count" id="count">200$</div>
                     </div>
                     <div className="payment__footer-btn_add">Add another category</div>
-                    <div className="payment__footer-btn_submit" onClick={()=>{setSubmit(true)}}>Proceed to payment</div>
+                    <div className="payment__footer-btn_submit" onClick={()=>{}}>Proceed to payment</div>
                 </div>
             </div>
         </div>
