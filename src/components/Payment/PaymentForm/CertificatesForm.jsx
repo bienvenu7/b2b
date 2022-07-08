@@ -25,14 +25,17 @@ const CertificatesForm = (props) => {
 
     const handlePost = (formik) => {
         let vol = volume
+        const data = {
+            paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
+            cancelUrl: "https://example.com", userTariffPackages: userTariffPackages 
+        }
         if (formik.values.certificates == 'include'){
             vol = 0
             userTariffPackages.map( e => vol += e.volume)
-            console.log(vol)
-        }
-        const data = {
-            paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
-            cancelUrl: "https://example.com", userTariffPackages: userTariffPackages, userCertificatePackage: { userId: userId, volume: vol, isGift: false }
+            data.userCertificatePackage = { userId: userId, volume: vol, isGift: false }
+            
+        } else if (formik.values.certificates == 'choose'){
+            data.userCertificatePackage = { userId: userId, volume: vol, isGift: false }
         }
         formik.values.certificates != '' && dispatch(postInvoiceThunk(data))
         formik.values.certificates = ''
@@ -51,15 +54,9 @@ const CertificatesForm = (props) => {
 
             }}
             onChange={() => {
-                console.log('hj')
+                
             }}
             onSubmit={(values, { setSubmitting }) => {
-                const data = {
-                    paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
-                    cancelUrl: "https://example.com", userTariffPackages: userTariffPackages, userCertificatePackage: { userId: userId, volume: volume, isGift: false }
-                }
-                //dispatch(postInvoiceThunk(data))
-                console.log(data)
                 setSubmitting(false);
             }}
         >

@@ -43,12 +43,8 @@ const CategoryForm = (props) => {
 
             }}
             change={() => {
-                console.log('hello')
             }}
             onSubmit={(values, { setSubmitting }) => {
-                const data = { productType: productType, answerTime: Number(values.hours), volume: volume, userId: userId, isGift: false }
-                dispatch(addCategory(data))
-                console.log(data)
                 setSubmitting(false);
             }}
         >
