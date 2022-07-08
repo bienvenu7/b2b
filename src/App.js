@@ -9,6 +9,7 @@ import { initialApp } from './redux/thunks/app-thunk';
 import { getInitialApp } from './redux/selectors/app-selectors';
 import Payment from './components/Payment/Payment';
 import SuccessPage from './components/Payment/SuccessPage/SuccessPage';
+import { getProductTypesThunk } from './redux/thunks/product-thunk';
 
 function App() {
 
@@ -20,10 +21,12 @@ function App() {
 
   useEffect(() => {
     appInit && !isAuth && navigate('/auth/signin')
+    
   }, [isAuth])
 
   useEffect(() => {
     dispatch(initialApp())
+    dispatch(getProductTypesThunk(1,1000))
   }, [])
 
 

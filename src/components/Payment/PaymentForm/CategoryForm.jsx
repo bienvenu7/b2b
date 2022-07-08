@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { addCategory } from "../../../redux/reducers/payment-reducer"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getProductType } from "../../../redux/selectors/payment-selectors"
+import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import FormObserver from "./FormObserver"
 
 const CategoryForm = (props) => {
@@ -14,7 +15,7 @@ const CategoryForm = (props) => {
     const dispatch = useDispatch()
     const userId = useSelector(getUserId)
     const productType = useSelector(getProductType)
-
+    const productTypes = useSelector(getTypesOfProduct)
 
     //temp info
 

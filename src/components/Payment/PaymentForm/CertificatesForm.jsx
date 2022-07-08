@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
 import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
+import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import React from "react"
+import Select , { getValue } from 'react-select'
 
 const CertificatesForm = (props) => {
 
@@ -15,26 +17,34 @@ const CertificatesForm = (props) => {
 
     const userId = useSelector(getUserId)
     const userTariffPackages = useSelector(getUserTariffPackages)
+    const productTypes = useSelector(getTypesOfProduct)
+
+    let but = props.but
 
     //temp info
 
+    const options = [
+        { value: productTypes[0], label: 'hype sneakers' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
 
     const cost = 2
 
-    let but = props.but
+
 
     const handlePost = (formik) => {
         let vol = volume
         const data = {
             paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
-            cancelUrl: "https://example.com", userTariffPackages: userTariffPackages 
+            cancelUrl: "https://example.com", userTariffPackages: userTariffPackages
         }
-        if (formik.values.certificates == 'include'){
+        if (formik.values.certificates == 'include') {
             vol = 0
-            userTariffPackages.map( e => vol += e.volume)
+            userTariffPackages.map(e => vol += e.volume)
             data.userCertificatePackage = { userId: userId, volume: vol, isGift: false }
-            
-        } else if (formik.values.certificates == 'choose'){
+
+        } else if (formik.values.certificates == 'choose') {
             data.userCertificatePackage = { userId: userId, volume: vol, isGift: false }
         }
         formik.values.certificates != '' && dispatch(postInvoiceThunk(data))
@@ -43,7 +53,7 @@ const CertificatesForm = (props) => {
     }
 
     useEffect(() => {
-        
+
     }, [props.but])
 
 
@@ -54,7 +64,7 @@ const CertificatesForm = (props) => {
 
             }}
             onChange={() => {
-                
+
             }}
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(false);
@@ -78,6 +88,7 @@ const CertificatesForm = (props) => {
                         <div className="payment__form-elem upload-btn">Upload logo</div>
                         <div className="payment__form-elem upload-info">This logo will be added to the certificates</div>
                     </div>
+                    <Select options={options} onChange={()=>{console.log(options)}}/>
                 </div>
                 {but && handlePost(props)}
             </Form>)}
