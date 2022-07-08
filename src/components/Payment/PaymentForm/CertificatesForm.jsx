@@ -23,8 +23,20 @@ const CertificatesForm = (props) => {
 
     let but = props.but
 
-    const handlePost = (data) => {
-        console.log({...data, volume: volume})
+    const handlePost = (formik) => {
+        let vol = volume
+        if (formik.values.certificates == 'include'){
+            vol = 0
+            userTariffPackages.map( e => vol += e.volume)
+            console.log(vol)
+        }
+        const data = {
+            paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
+            cancelUrl: "https://example.com", userTariffPackages: userTariffPackages, userCertificatePackage: { userId: userId, volume: vol, isGift: false }
+        }
+        formik.values.certificates != '' && dispatch(postInvoiceThunk(data))
+        formik.values.certificates = ''
+        setVolume(50)
     }
 
     useEffect(() => {
@@ -55,6 +67,7 @@ const CertificatesForm = (props) => {
                 <div className="payment__form-block-container second">
                     <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
                     <Field className="payment__form-elem selector" as="select" name="certificates" id="certificates">
+                        <option value="">Please select option</option>
                         <option value="notneeded">Not needed</option>
                         <option value="include">Include for each item</option>
                         <option value="choose">Choose other amount</option>
@@ -69,7 +82,7 @@ const CertificatesForm = (props) => {
                         <div className="payment__form-elem upload-info">This logo will be added to the certificates</div>
                     </div>
                 </div>
-                {but && handlePost(props.values)}
+                {but && handlePost(props)}
             </Form>)}
         </Formik>
     )
