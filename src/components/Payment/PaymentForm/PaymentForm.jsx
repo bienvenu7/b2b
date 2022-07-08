@@ -12,14 +12,13 @@ const PaymentForm = (props) => {
         setButState(true)
         setTimeout(()=>{
             setButState(false)
-        },1000)
+        },1)
     }
 
     return (
         <div className="payment__form-wrapper">
-            <CategoryForm />
-            <CertificatesForm but={but}/>
-            <button onClick={()=> set()}>Eto ya</button>
+            <CategoryForm but={props.btnAdd}/>
+            <CertificatesForm but={props.btnPay}/>
         </div>
 
 

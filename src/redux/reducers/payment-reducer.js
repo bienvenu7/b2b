@@ -4,7 +4,6 @@ export const addCategory = createAction('ADD_CATEGORY')
 
 const initialState = {
     userTariffPackages: [],
-    addCatClick: false,
     productType: {
         "id": "46dda122-4e1f-4724-a08b-9690995de0de",
         "name": "CLOTHING",

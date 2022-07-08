@@ -8,6 +8,7 @@ import { getIsAuth } from './redux/selectors/auth-selectors';
 import { initialApp } from './redux/thunks/app-thunk';
 import { getInitialApp } from './redux/selectors/app-selectors';
 import Payment from './components/Payment/Payment';
+import SuccessPage from './components/Payment/SuccessPage/SuccessPage';
 
 function App() {
 
@@ -17,30 +18,31 @@ function App() {
   const isAuth = useSelector(getIsAuth)
   const appInit = useSelector(getInitialApp)
 
-    useEffect(() => {
-        appInit && !isAuth && navigate('/auth/signin')
-    }, [isAuth])
+  useEffect(() => {
+    appInit && !isAuth && navigate('/auth/signin')
+  }, [isAuth])
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(initialApp())
-  },[])
+  }, [])
 
 
-  if (!appInit){
+  if (!appInit) {
     return <div></div>
   }
 
 
   return (
     <div className="App">
-        <Routes>
-          <Route path='main' element={<Main/>}/>
-          <Route path='auth/signin' element={<Auth page='signin'/>} />
-          <Route path='auth/signup' element={<Auth page='signup'/>} />
-          <Route path='auth/forgot' element={<Auth page='forgot'/>} />
-          <Route path='password-change/:hash' element={<Auth page='reset'/>} />
-          <Route path='payment' element={<Payment/>}/>
-        </Routes>
+      <Routes>
+        <Route path='main' element={<Main />} />
+        <Route path='auth/signin' element={<Auth page='signin' />} />
+        <Route path='auth/signup' element={<Auth page='signup' />} />
+        <Route path='auth/forgot' element={<Auth page='forgot' />} />
+        <Route path='password-change/:hash' element={<Auth page='reset' />} />
+        <Route path='payment' element={<Payment />} />
+        <Route path='success' element={<SuccessPage/>}/>
+      </Routes>
     </div>
   );
 }

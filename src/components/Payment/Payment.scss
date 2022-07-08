@@ -123,11 +123,15 @@
                 color: $c_o;
                 display: flex;
                 gap: 19px;
+
                 &-container {
                     display: flex;
                     gap: 50px;
                 }
-                input{transform: scale(2);}
+
+                input {
+                    transform: scale(2);
+                }
             }
         }
 
@@ -319,6 +323,74 @@
         &-btn_submit {
             color: $c_w;
             background: $c_g;
+        }
+    }
+
+    &__success {
+        &-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        &-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__message {
+            &-h1 {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 42.8475px;
+                line-height: 140%;
+                text-transform: uppercase;
+                margin-bottom: 57px;
+            }
+
+            &-h2 {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 34.278px;
+                line-height: 140%;
+                text-align: center;
+
+                &.last-child {
+                    max-width: 1000px;
+                    margin-top: 34px;
+                }
+            }
+        }
+
+        &__buttons {
+            &-wrapper {
+                margin-top: 112px;
+                gap: 31px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            &-elem {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 25px;
+                line-height: 140%;
+                background: $c_g;
+                text-align: center;
+                border-radius: 15.8px;
+                padding: 23px 50px;
+                color: $c_w;
+                cursor: pointer;
+
+                &:last-child {
+                    background: rgba(203, 173, 115, 0.71);
+                }
+            }
         }
     }
 }

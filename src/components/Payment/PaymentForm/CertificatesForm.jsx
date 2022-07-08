@@ -1,5 +1,5 @@
 import { useEffect, useState, useImperativeHandle, forwardRef } from "react"
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form, Field, useFormikContext } from 'formik'
 import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
@@ -7,7 +7,7 @@ import { getUserTariffPackages } from "../../../redux/selectors/payment-selector
 import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 
-const CertificatesForm = (props, ref) => {
+const CertificatesForm = (props) => {
 
     const [volume, setVolume] = useState(50)
 
@@ -18,14 +18,18 @@ const CertificatesForm = (props, ref) => {
 
     //temp info
 
+
     const cost = 2
 
-    const but = props.but
+    let but = props.but
 
-
-    const sayHi =() =>{
-        console.log('hello')
+    const handlePost = (data) => {
+        console.log({...data, volume: volume})
     }
+
+    useEffect(() => {
+        
+    }, [props.but])
 
 
     return (
@@ -34,19 +38,20 @@ const CertificatesForm = (props, ref) => {
             validate={values => {
 
             }}
-            change={() => {
-
+            onChange={() => {
+                console.log('hj')
             }}
             onSubmit={(values, { setSubmitting }) => {
                 const data = {
                     paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
                     cancelUrl: "https://example.com", userTariffPackages: userTariffPackages, userCertificatePackage: { userId: userId, volume: volume, isGift: false }
                 }
-                dispatch(postInvoiceThunk(data))
+                //dispatch(postInvoiceThunk(data))
+                console.log(data)
                 setSubmitting(false);
             }}
         >
-            {props => (<Form className="payment__form" onSubmit={props.handleSubmit}>
+            {props => (<Form className="payment__form" onChange={props.handleChange} onSubmit={props.handleSubmit}>
                 <div className="payment__form-block-container second">
                     <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
                     <Field className="payment__form-elem selector" as="select" name="certificates" id="certificates">
@@ -64,11 +69,10 @@ const CertificatesForm = (props, ref) => {
                         <div className="payment__form-elem upload-info">This logo will be added to the certificates</div>
                     </div>
                 </div>
-                {but && props.submitForm()}
-                <button type="submit">proceed</button>
+                {but && handlePost(props.values)}
             </Form>)}
         </Formik>
     )
 }
 
-export default forwardRef(CertificatesForm)
+export default CertificatesForm
