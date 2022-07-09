@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@100;400;700&display=swap');
+
+@font-face {
+    font-family: 'SF Pro Display Medium';
+    src: url('../../scss/fonts/sfProDisplayRegular/SFProDisplay-Medium.eot');
+    src: url('../../scss/fonts/sfProDisplayRegular/SFProDisplay-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../../scss/fonts/sfProDisplayRegular/SFProDisplay-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @import '../../scss/vars';
 
 .payment {
@@ -16,6 +26,10 @@
         .react-numeric-input {
             display: block !important;
             max-width: 219px !important;
+
+            @include for-phone-only {
+                width: 100%;
+            }
 
             b {
                 right: 27px !important;
@@ -39,15 +53,28 @@
         &-block-container {
             padding: 0 51px;
 
+            @include for-phone-only {
+                padding: 0 23px;
+            }
+
             &.first {
                 padding-top: 46px;
                 padding-bottom: 128px;
+
+                @include for-phone-only {
+                    padding-bottom: 24px;
+                    padding-top: 21px;
+                }
             }
 
             &.second {
                 border-top: 1px solid $c_beige;
                 padding-top: 38px;
                 margin-bottom: 95px;
+
+                @include for-phone-only {
+                    margin-bottom: 40px;
+                }
             }
         }
 
@@ -66,6 +93,16 @@
             cursor: pointer;
             margin-top: 29px;
             text-decoration: underline;
+
+            @include for-phone-only {
+                font-family: 'SF Pro Display Medium';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 17px;
+                color: $c_gray1;
+                margin-top: 10px;
+            }
         }
 
         &-label {
@@ -78,8 +115,22 @@
             color: $c_o;
             margin-bottom: 17px;
 
+            @include for-phone-only {
+                font-family: 'SF Pro Display Medium';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 21px;
+                color: $c_b;
+                margin-bottom: 21px;
+            }
+
             &:not(:first-child) {
                 margin-top: 46px;
+
+                @include for-phone-only {
+                    margin-top: 21px;
+                }
             }
         }
 
@@ -107,11 +158,22 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                @include for-phone-only {
+                    border-color: $c_g;
+                    border-radius: 4px;
+                    color: $c_g;
+                }
             }
 
             input[type=radio]:checked+label {
                 background: $c_o;
                 color: $c_w;
+
+                @include for-phone-only {
+                    background-color: $c_g;
+                    color: $c_w;
+                }
             }
 
             &_types {
@@ -139,10 +201,18 @@
             display: block;
             height: 67px;
 
+            @include for-phone-only {
+                height: 43px;
+            }
+
             &.hours {
                 display: flex;
                 justify-content: space-between;
                 gap: 51px;
+
+                @include for-phone-only {
+                    gap: 20px;
+                }
             }
 
             &.shoes-vars {
@@ -155,6 +225,10 @@
                 display: flex;
                 gap: 94px;
                 margin-top: 29px;
+
+                @include for-phone-only {
+                    display: none;
+                }
 
                 &-btn {
                     font-family: 'Roboto';
@@ -199,11 +273,20 @@
                 border-radius: 9.40351px !important;
                 width: 100%;
 
+                @include for-phone-only {
+                    border-radius: 4px !important;
+                    border-color: $c_g  !important;
+                }
+
                 &-wrapper {
                     display: flex;
                     gap: 96px;
                     align-items: baseline;
                     color: $c_o;
+
+                    @include for-phone-only {
+                        gap: 20px;
+                    }
 
                     &#cert_count {
                         margin-top: 29px;
@@ -219,11 +302,86 @@
                 font-size: 30px;
                 line-height: 140%;
                 color: $c_o;
+
+                @include for-phone-only {
+                    font-family: 'SF Pro Display Medium';
+                    font-weight: 400;
+                    color: $c_b;
+                    font-size: 16px;
+                    line-height: 19px;
+                    width: 100%;
+                }
             }
         }
     }
 
     &__header {
+        &__mobile {
+            display: none;
+
+            @include for-phone-only {
+                display: flex;
+                border-bottom: 1px solid #E1E1E1;
+                padding: 27px 0px 22px 17px;
+
+                &-pageName {
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+
+                .hamburger-menu {
+
+                    /* скрываем чекбокс */
+                    #menu__toggle {
+                        opacity: 0;
+                    }
+
+                    /* стилизуем кнопку */
+                    .menu__btn {
+                        display: flex;
+                        /* используем flex для центрирования содержимого */
+                        align-items: center;
+                        /* центрируем содержимое кнопки */
+                        position: fixed;
+                        top: 27px;
+                        left: 90%;
+                        width: 15px;
+                        height: 26px;
+                        cursor: pointer;
+                        z-index: 1;
+                    }
+
+                    /* добавляем "гамбургер" */
+                    .menu__btn>span,
+                    .menu__btn>span::before,
+                    .menu__btn>span::after {
+                        display: block;
+                        position: absolute;
+                        width: 100%;
+                        height: 2px;
+                        background-color: $c_b;
+                    }
+
+                    .menu__btn>span::before {
+                        content: '';
+                        top: -6px;
+                    }
+
+                    .menu__btn>span::after {
+                        content: '';
+                        top: 6px;
+                    }
+                }
+            }
+        }
+
+        @include for-phone-only {
+            display: none;
+        }
+
         &__nav {
             font-family: 'Roboto';
             font-style: normal;
@@ -265,12 +423,22 @@
         display: flex;
         justify-content: center;
 
+        @include for-phone-only {
+            background: $c_w;
+            border-top: 1px solid #E1E1E1;
+        }
+
         &-container {
             width: 520px;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 122px 0 173px 0;
+
+            @include for-phone-only {
+                max-width: 100vw;
+                padding: 0 26px;
+            }
         }
 
         &-cost {
@@ -280,12 +448,25 @@
             justify-content: space-between;
             width: 100%;
 
+            @include for-phone-only {
+                margin-top: 24px;
+            }
+
             &-label {
                 font-family: 'Roboto';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 40px;
                 line-height: 140%;
+
+                @include for-phone-only {
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 21px;
+                    color: $c_b;
+                }
             }
 
             &-count {
@@ -294,6 +475,15 @@
                 font-weight: 700;
                 font-size: 40px;
                 line-height: 140%;
+
+                @include for-phone-only {
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: $c_g;
+                }
             }
         }
 
@@ -313,6 +503,12 @@
             font-size: 25px;
             line-height: 140%;
             cursor: pointer;
+
+            @include for-phone-only {
+                border-radius: 4px;
+                font-size: 18px;
+                height: 43px;
+            }
         }
 
         &-btn_add {
@@ -404,6 +600,10 @@
         padding: 20px 16px 37px 16px;
         height: fit-content;
         margin-top: 100px;
+
+        @include for-phone-only {
+            display: none;
+        }
     }
 
     &__header {

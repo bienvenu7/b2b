@@ -7,7 +7,7 @@ import { getUserTariffPackages } from "../../../redux/selectors/payment-selector
 import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import React from "react"
-import Select , { getValue } from 'react-select'
+import Select, { getValue } from 'react-select'
 
 const CertificatesForm = (props) => {
 
@@ -17,19 +17,25 @@ const CertificatesForm = (props) => {
 
     const userId = useSelector(getUserId)
     const userTariffPackages = useSelector(getUserTariffPackages)
-    const productTypes = useSelector(getTypesOfProduct)
 
     let but = props.but
 
     //temp info
 
     const options = [
-        { value: productTypes[0], label: 'hype sneakers' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
+        { value: 'notneeded', label: 'Not needed' },
+        { value: 'include', label: 'Include for each item' },
+        { value: 'choose', label: 'Choose other amount' }
     ]
 
     const cost = 2
+
+    const [selectedValue, setSelectedValue] = useState(3);
+
+    // handle onChange event of the dropdown
+    const handleChange = e => {
+        setSelectedValue(e.value);
+    }
 
 
 
@@ -39,12 +45,12 @@ const CertificatesForm = (props) => {
             paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
             cancelUrl: "https://example.com", userTariffPackages: userTariffPackages
         }
-        if (formik.values.certificates == 'include') {
+        if (selectedValue == 'include') {
             vol = 0
             userTariffPackages.map(e => vol += e.volume)
             data.userCertificatePackage = { userId: userId, volume: vol, isGift: false }
 
-        } else if (formik.values.certificates == 'choose') {
+        } else if (selectedValue == 'choose') {
             data.userCertificatePackage = { userId: userId, volume: vol, isGift: false }
         }
         formik.values.certificates != '' && dispatch(postInvoiceThunk(data))
@@ -55,7 +61,6 @@ const CertificatesForm = (props) => {
     useEffect(() => {
 
     }, [props.but])
-
 
     return (
         <Formik
@@ -73,13 +78,8 @@ const CertificatesForm = (props) => {
             {props => (<Form className="payment__form" onChange={props.handleChange} onSubmit={props.handleSubmit}>
                 <div className="payment__form-block-container second">
                     <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
-                    <Field className="payment__form-elem selector" as="select" name="certificates" id="certificates">
-                        <option value="">Please select option</option>
-                        <option value="notneeded">Not needed</option>
-                        <option value="include">Include for each item</option>
-                        <option value="choose">Choose other amount</option>
-                    </Field>
-                    {props.values.certificates == 'choose' &&
+                    <Select placeholder='Please select option' options={options} onChange={handleChange} />
+                    {selectedValue == 'choose' &&
                         <div className="payment__form-elem number-wrapper" id="cert_count">
                             <NumericInput onChange={setVolume} className="payment__form-elem number" id="count" name="certCount" min="1" max="50" value={volume} />
                             <div className="payment__form-elem info">${cost}&nbsp;per certificate</div></div>}
@@ -88,7 +88,6 @@ const CertificatesForm = (props) => {
                         <div className="payment__form-elem upload-btn">Upload logo</div>
                         <div className="payment__form-elem upload-info">This logo will be added to the certificates</div>
                     </div>
-                    <Select options={options} onChange={()=>{console.log(options)}}/>
                 </div>
                 {but && handlePost(props)}
             </Form>)}

@@ -6,7 +6,7 @@ import { addCategory } from "../../../redux/reducers/payment-reducer"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getProductType } from "../../../redux/selectors/payment-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
-import FormObserver from "./FormObserver"
+import Select, { getValue } from 'react-select'
 
 const CategoryForm = (props) => {
 
@@ -16,6 +16,20 @@ const CategoryForm = (props) => {
     const userId = useSelector(getUserId)
     const productType = useSelector(getProductType)
     const productTypes = useSelector(getTypesOfProduct)
+
+    const options = [
+        { value: productTypes[1], label: "Bags / wallets" },
+        { value: productTypes[2], label: 'Hype shoes' },
+        { value: productTypes[0], label: 'Luxury shoes' },
+        { value: productTypes[3], label: 'Jewellery' },
+        { value: productTypes[4], label: 'Watches' },
+    ]
+
+    const [selectedValue, setSelectedValue] = useState(3);
+
+    const handleChange = e => {
+        setSelectedValue(e.value);
+    }
 
     //temp info
 
@@ -28,7 +42,7 @@ const CategoryForm = (props) => {
     let but = props.but
 
     const handlePost = (formik) => {
-        const data = { productType: productType, answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
+        const data = { productType: selectedValue, answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
         formik.values.hours != '' && dispatch(addCategory(data))
         formik.values.hours = ''
         formik.values.category = ''
@@ -36,6 +50,7 @@ const CategoryForm = (props) => {
         setVolume(50)
     }
 
+    console.log(selectedValue)
 
     return (
         <Formik
@@ -52,16 +67,9 @@ const CategoryForm = (props) => {
             {props => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
                 <div className="payment__form-block-container first">
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
-                    <Field className="payment__form-elem selector" as="select" name="category" id="category" onChange={props.handleChange}>
-                        <option value="">Please select the category</option>
-                        <option value="bagsWallets">Bags / wallets</option>
-                        <option value="hypeShoes">Hype shoes</option>
-                        <option value="luxuryShoes">Luxury shoes</option>
-                        <option value="jewellery">Jewellery</option>
-                        <option value="Watches">Watches</option>
-                    </Field>
+                    <Select placeholder='Please select the category' options={options} onChange={handleChange} />
 
-                    {(props.values.category == "hypeShoes" || props.values.category == "luxuryShoes") && <div className="payment__form-elem shoes-vars">
+                    {(selectedValue == 2 || selectedValue == "luxuryShoes") && <div className="payment__form-elem shoes-vars">
                         <label htmlFor="types" className="payment__form-label">Choose the category</label>
 
                         <div className="payment__form-radio_btn_types-container">
