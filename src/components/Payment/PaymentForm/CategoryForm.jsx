@@ -45,7 +45,6 @@ const CategoryForm = (props) => {
         const data = { productType: selectedValue, answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
         formik.values.hours != '' && dispatch(addCategory(data))
         formik.values.hours = ''
-        formik.values.category = ''
         formik.values.typeOfShoes = ''
         setVolume(50)
     }

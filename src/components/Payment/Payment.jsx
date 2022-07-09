@@ -1,5 +1,6 @@
 import { useState } from "react"
 import AuthBalance from "./AuthBalance/AuthBalance"
+import PackagesHistory from "./PackagesHistory/PackagesHistory"
 import PaymentForm from "./PaymentForm/PaymentForm"
 import PaymentHeader from "./PaymentHeader/PaymentHeader"
 
@@ -28,6 +29,7 @@ const Payment = () => {
         <div className="payment-wrapper">
             <PaymentHeader />
             <div className="payment__content-container">
+                <PackagesHistory/>
                 <PaymentForm btnAdd={addButState} btnPay={payButState}/>
                 <AuthBalance />
             </div>
