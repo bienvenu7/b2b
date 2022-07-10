@@ -7,6 +7,7 @@ import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getProductType } from "../../../redux/selectors/payment-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select, { getValue } from 'react-select'
+import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 
 const CategoryForm = (props) => {
 
@@ -49,8 +50,6 @@ const CategoryForm = (props) => {
         setVolume(50)
     }
 
-    console.log(selectedValue)
-
     return (
         <Formik
             initialValues={{}}
@@ -66,7 +65,7 @@ const CategoryForm = (props) => {
             {props => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
                 <div className="payment__form-block-container first">
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
-                    <Select placeholder='Please select the category' options={options} onChange={handleChange} />
+                    <Select components={{DropdownIndicator}} classNamePrefix='custom-select' placeholder='Please select the category' options={options} onChange={handleChange} />
 
                     {(selectedValue == 2 || selectedValue == "luxuryShoes") && <div className="payment__form-elem shoes-vars">
                         <label htmlFor="types" className="payment__form-label">Choose the category</label>

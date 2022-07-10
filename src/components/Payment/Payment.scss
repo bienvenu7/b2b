@@ -41,7 +41,8 @@
                         display: flex;
                         flex-direction: column;
                         gap: 10px;
-                        &:last-child{
+
+                        &:last-child {
                             padding-bottom: 35px;
                         }
                     }
@@ -69,7 +70,8 @@
                         color: #8E8E93
                     }
 
-                    &__category, &__hours{
+                    &__category,
+                    &__hours {
                         background: $c_gray2;
                         border-radius: 10px;
                         padding: 5px 10px;
@@ -89,7 +91,8 @@
             max-width: 219px !important;
 
             @include for-phone-only {
-                width: 100%;
+                width: 100% !important;
+                text-align: left !important;
             }
 
             b {
@@ -100,6 +103,10 @@
                 border-radius: 2px !important;
                 border: 0px !important;
                 box-shadow: none !important;
+                inset: 0 !important;
+                @include for-phone-only{
+                    left: 80%!important;
+                }
 
                 &:not(:last-child) {
                     top: auto !important;
@@ -333,6 +340,7 @@
                 border: 1.17544px solid $c_o  !important;
                 border-radius: 9.40351px !important;
                 width: 100%;
+                text-align: left !important;
 
                 @include for-phone-only {
                     border-radius: 4px !important;
@@ -710,4 +718,108 @@
     }
 
 
+}
+
+.custom-select {
+    &__control {
+        border: 1.17544px solid $c_o  !important;
+        border-radius: 9.40351px !important;
+        min-height: 67px !important;
+        font-family: 'Roboto' !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 20px !important;
+        line-height: 140% !important;
+        color: $c_o  !important;
+
+        @include for-phone-only {
+            font-family: 'SF Pro Display Medium' !important;
+            font-style: normal !important;
+            font-weight: 400 !important;
+            font-size: 16px !important;
+            line-height: 19px !important;
+box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1) !important;
+border-radius: 8px !important;
+border: 0px !important;
+min-height: 48px !important;
+        }
+    }
+
+    &__value {
+        &-container {
+            padding-left: 33px !important;
+            @include for-phone-only{
+                padding-left: 19px !important;
+            }
+        }
+    }
+
+    &__placeholder {
+        color: $c_o  !important;
+
+        @include for-phone-only {
+            color: #666666 !important;
+        }
+    }
+
+    &__indicator-separator {
+        display: none !important;
+    }
+
+    &__dropdown-indicator {
+        padding-right: 29px !important;
+        @include for-phone-only{
+            padding-right: 16px !important;
+        }
+        svg{
+            @include for-phone-only{
+                width: 13px !important;
+            }
+        }
+    }
+
+    &__menu {
+        border-radius: 10px !important;
+        border: 1.17544px solid $c_o  !important;
+        @include for-phone-only{
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1) !important;
+border-radius: 8px !important;
+border: 0px !important;
+        }
+        &-list {}
+    }
+
+    &__option {
+        font-family: 'Roboto' !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 20px !important;
+        line-height: 140% !important;
+        color: $c_o  !important;
+        background: $c_w  !important;
+        padding-left: 32px !important;
+
+        @include for-phone-only {
+            font-family: 'SF Pro Display Medium' !important;
+            font-style: normal !important;
+            font-weight: 400 !important;
+            font-size: 16px !important;
+            line-height: 19px !important;
+            color: $c_b;
+            padding-left: 19px !important;
+        }
+
+        &:not(:first-child) {
+            border-top: 1px solid #CED3DB !important;
+            @include for-phone-only{
+                border-top: 0px !important;
+            }
+        }
+
+        &--is-disabled {}
+
+        &--is-focused {}
+
+        &--is-selected {}
+    }
 }

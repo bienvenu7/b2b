@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useSelector } from "react-redux"
+import { getUserTariffPackages } from "../../redux/selectors/payment-selectors"
 import AuthBalance from "./AuthBalance/AuthBalance"
 import PackagesHistory from "./PackagesHistory/PackagesHistory"
 import PaymentForm from "./PaymentForm/PaymentForm"
@@ -7,6 +9,8 @@ import PaymentHeader from "./PaymentHeader/PaymentHeader"
 const Payment = () => {
 
     const [submit, setSubmit] = useState(false)
+
+    const packages = useSelector(getUserTariffPackages)
 
     const [addButState, setAddButState] = useState(false)
     const [payButState, setPayButState] = useState(false)
@@ -29,7 +33,7 @@ const Payment = () => {
         <div className="payment-wrapper">
             <PaymentHeader />
             <div className="payment__content-container">
-                <PackagesHistory/>
+                {packages.length > 0 && <PackagesHistory/>}
                 <PaymentForm btnAdd={addButState} btnPay={payButState}/>
                 <AuthBalance />
             </div>

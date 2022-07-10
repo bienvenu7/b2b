@@ -1,13 +1,13 @@
-import { useEffect, useState, useImperativeHandle, forwardRef } from "react"
-import { Formik, Form, Field, useFormikContext } from 'formik'
+import { useEffect, useState } from "react"
+import { Formik, Form } from 'formik'
 import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
 import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
-import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import React from "react"
-import Select, { getValue } from 'react-select'
+import Select from 'react-select'
+import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 
 const CertificatesForm = (props) => {
 
@@ -19,6 +19,15 @@ const CertificatesForm = (props) => {
     const userTariffPackages = useSelector(getUserTariffPackages)
 
     let but = props.but
+
+    /*const DropdownIndicator = props => {
+        return (
+          <components.DropdownIndicator {...props}>
+            <SvgSelector id='downArrow' />
+          </components.DropdownIndicator>
+        );
+      };*/
+
 
     //temp info
 
@@ -78,7 +87,7 @@ const CertificatesForm = (props) => {
             {props => (<Form className="payment__form" onChange={props.handleChange} onSubmit={props.handleSubmit}>
                 <div className="payment__form-block-container second">
                     <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
-                    <Select placeholder='Please select option' options={options} onChange={handleChange} />
+                    <Select components={{DropdownIndicator}} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} />
                     {selectedValue == 'choose' &&
                         <div className="payment__form-elem number-wrapper" id="cert_count">
                             <NumericInput onChange={setVolume} className="payment__form-elem number" id="count" name="certCount" min="1" max="50" value={volume} />
