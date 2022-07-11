@@ -1,10 +1,15 @@
 export const getUserTariffPackages = (state) =>{
-    return state.payment.userTariffPackages
+    return state.payment.cart.userTariffPackages
 }
 
+export const getCartTotal = (state) => {
+    return state.payment.cart.total
+}
 
-//temp
+export const getInvoiceLink = (state) => {
+    return state.payment.invoice.link
+}
 
-export const getProductType = (state) =>{
-    return state.payment.productType
+export const getCategoryError = (state) => {
+    return state.payment.form.errors.category
 }

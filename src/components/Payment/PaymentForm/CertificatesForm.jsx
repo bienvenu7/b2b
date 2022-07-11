@@ -8,10 +8,11 @@ import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
+import { setCategoryError } from "../../../redux/reducers/payment-reducer"
 
 const CertificatesForm = (props) => {
 
-    const [volume, setVolume] = useState(50)
+    const [volume, setVolume] = useState(1)
 
     const dispatch = useDispatch()
 
@@ -20,14 +21,7 @@ const CertificatesForm = (props) => {
 
     let but = props.but
 
-    /*const DropdownIndicator = props => {
-        return (
-          <components.DropdownIndicator {...props}>
-            <SvgSelector id='downArrow' />
-          </components.DropdownIndicator>
-        );
-      };*/
-
+    const [errorMessage, setErrorMessage] = useState(null)
 
     //temp info
 
@@ -49,6 +43,8 @@ const CertificatesForm = (props) => {
 
 
     const handlePost = (formik) => {
+        //console.log(formik)
+        console.log({selectedValue: selectedValue, userTariffPackages: userTariffPackages.length})
         let vol = volume
         const data = {
             paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
@@ -62,9 +58,13 @@ const CertificatesForm = (props) => {
         } else if (selectedValue == 'choose') {
             data.userCertificatePackage = { userId: userId, volume: vol, isGift: false }
         }
-        formik.values.certificates != '' && dispatch(postInvoiceThunk(data))
-        formik.values.certificates = ''
-        setVolume(50)
+        if (selectedValue == 'include' && userTariffPackages.length == 0){
+            dispatch(setCategoryError('Please choose the category'));
+            return
+        }
+        selectedValue != '' && dispatch(postInvoiceThunk(data))
+        setSelectedValue('')
+        setVolume(1)
     }
 
     useEffect(() => {
@@ -78,7 +78,7 @@ const CertificatesForm = (props) => {
 
             }}
             onChange={() => {
-
+                console.log('hello')
             }}
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(false);
@@ -90,7 +90,7 @@ const CertificatesForm = (props) => {
                     <Select components={{DropdownIndicator}} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} />
                     {selectedValue == 'choose' &&
                         <div className="payment__form-elem number-wrapper" id="cert_count">
-                            <NumericInput onChange={setVolume} className="payment__form-elem number" id="count" name="certCount" min="1" max="50" value={volume} />
+                            <NumericInput onChange={setVolume} className="payment__form-elem number" id="count" name="volume" min="1" max="50" />
                             <div className="payment__form-elem info">${cost}&nbsp;per certificate</div></div>}
 
                     <div className="payment__form-elem upload">

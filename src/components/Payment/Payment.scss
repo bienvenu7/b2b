@@ -86,6 +86,12 @@
     }
 
     &__form {
+
+        &-error {
+            color: red;
+            padding-left: 6px;
+        }
+
         .react-numeric-input {
             display: block !important;
             max-width: 219px !important;
@@ -96,20 +102,34 @@
             }
 
             b {
-                right: 27px !important;
+                //right: 27px !important;
                 width: 24px !important;
                 height: 16px !important;
                 background: $c_w  !important;
                 border-radius: 2px !important;
                 border: 0px !important;
                 box-shadow: none !important;
-                inset: 0 !important;
-                @include for-phone-only{
-                    left: 80%!important;
+                inset: 37px auto 2px 167px !important;
+
+                @include for-phone-only {
+                    inset: 24px auto 2px 167px !important;
+                }
+
+                //inset: 0 !important;
+                //top: 16px !important;
+
+                @include for-phone-only {
+                    left: 80% !important;
                 }
 
                 &:not(:last-child) {
-                    top: auto !important;
+                    //top: auto !important;
+                    //inset: 37px auto 2px 167px !important;
+                    top: 19px !important;
+
+                    @include for-phone-only {
+                        top: 7px !important;
+                    }
                 }
 
                 &:hover {
@@ -252,7 +272,16 @@
                 line-height: 140%;
                 color: $c_o;
                 display: flex;
-                gap: 19px;
+
+                @include for-phone-only {
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 19px;
+                }
+
+                //gap: 19px;
 
                 &-container {
                     display: flex;
@@ -284,8 +313,16 @@
             }
 
             &.shoes-vars {
+                @include for-phone-only {
+                    height: 62px;
+                }
+
                 .payment__form-label {
                     margin-top: 46px;
+
+                    @include for-phone-only {
+                        margin-top: 21px;
+                    }
                 }
             }
 
@@ -597,12 +634,29 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+
+            @include for-phone-only {
+                align-items: flex-start;
+            }
         }
 
         &-container {
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            @include for-phone-only {
+                padding: 0 23px;
+            }
+        }
+
+        &__logo {
+            display: none;
+
+            @include for-phone-only {
+                display: block;
+                padding: 100px 0 81px 0;
+            }
         }
 
         &__message {
@@ -614,6 +668,10 @@
                 line-height: 140%;
                 text-transform: uppercase;
                 margin-bottom: 57px;
+
+                @include for-phone-only {
+                    display: none;
+                }
             }
 
             &-h2 {
@@ -624,9 +682,37 @@
                 line-height: 140%;
                 text-align: center;
 
+                @include for-phone-only {
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 24px;
+                    line-height: 29px;
+                }
+
                 &.last-child {
                     max-width: 1000px;
                     margin-top: 34px;
+
+                    #target {
+                        display: contents;
+                        color: $c_b;
+                        font-weight: bold;
+                        cursor: pointer;
+
+                        @include for-phone-only {
+                            font-weight: normal;
+                            color: $c_g;
+                        }
+                    }
+
+                    @include for-phone-only {
+                        font-family: 'SF Pro Display Medium';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 25px;
+                    }
                 }
             }
         }
@@ -651,9 +737,21 @@
                 padding: 23px 50px;
                 color: $c_w;
                 cursor: pointer;
+                text-decoration: none;
+
+                @include for-phone-only {
+                    border-radius: 4px;
+                    max-height: 43px;
+                }
 
                 &:last-child {
                     background: rgba(203, 173, 115, 0.71);
+
+                    @include for-phone-only {
+                        background: $c_w;
+                        color: $c_g;
+                        border: 1px solid $c_g;
+                    }
                 }
             }
         }
@@ -738,17 +836,18 @@
             font-weight: 400 !important;
             font-size: 16px !important;
             line-height: 19px !important;
-box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1) !important;
-border-radius: 8px !important;
-border: 0px !important;
-min-height: 48px !important;
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1) !important;
+            border-radius: 8px !important;
+            border: 0px !important;
+            min-height: 48px !important;
         }
     }
 
     &__value {
         &-container {
             padding-left: 33px !important;
-            @include for-phone-only{
+
+            @include for-phone-only {
                 padding-left: 19px !important;
             }
         }
@@ -768,11 +867,13 @@ min-height: 48px !important;
 
     &__dropdown-indicator {
         padding-right: 29px !important;
-        @include for-phone-only{
+
+        @include for-phone-only {
             padding-right: 16px !important;
         }
-        svg{
-            @include for-phone-only{
+
+        svg {
+            @include for-phone-only {
                 width: 13px !important;
             }
         }
@@ -781,11 +882,13 @@ min-height: 48px !important;
     &__menu {
         border-radius: 10px !important;
         border: 1.17544px solid $c_o  !important;
-        @include for-phone-only{
+
+        @include for-phone-only {
             box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1) !important;
-border-radius: 8px !important;
-border: 0px !important;
+            border-radius: 8px !important;
+            border: 0px !important;
         }
+
         &-list {}
     }
 
@@ -811,7 +914,8 @@ border: 0px !important;
 
         &:not(:first-child) {
             border-top: 1px solid #CED3DB !important;
-            @include for-phone-only{
+
+            @include for-phone-only {
                 border-top: 0px !important;
             }
         }
@@ -822,4 +926,74 @@ border: 0px !important;
 
         &--is-selected {}
     }
+}
+
+.custom-radio {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-radio+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+/* создание в label псевдоэлемента  before со следующими стилями */
+.custom-radio+label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid $c_o;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+
+    @include for-phone-only {
+        border-color: $c_g;
+    }
+}
+
+/* стили при наведении курсора на радио */
+.custom-radio:not(:disabled):not(:checked)+label:hover::before {
+    border-color: #b3d7ff;
+}
+
+/* стили для активной радиокнопки (при нажатии на неё) */
+.custom-radio:not(:disabled):active+label::before {
+    background-color: $c_o;
+    border-color: $c_o;
+}
+
+/* стили для радиокнопки, находящейся в фокусе */
+.custom-radio:focus+label::before {
+    //box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
+.custom-radio:focus:not(:checked)+label::before {
+    border-color: #80bdff;
+}
+
+/* стили для радиокнопки, находящейся в состоянии checked */
+.custom-radio:checked+label::before {
+    border-color: $c_o;
+    background-color: $c_w;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='darkblue'/%3e%3c/svg%3e");
+
+    @include for-phone-only {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='orange'/%3e%3c/svg%3e");
+        border-color: $c_g;
+    }
+}
+
+/* стили для радиокнопки, находящейся в состоянии disabled */
+.custom-radio:disabled+label::before {
+    background-color: #e9ecef;
 }

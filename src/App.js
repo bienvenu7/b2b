@@ -10,6 +10,7 @@ import { getInitialApp } from './redux/selectors/app-selectors';
 import Payment from './components/Payment/Payment';
 import SuccessPage from './components/Payment/SuccessPage/SuccessPage';
 import { getProductTypesThunk } from './redux/thunks/product-thunk';
+import { getInvoiceLink } from './redux/selectors/payment-selectors';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
 
   const isAuth = useSelector(getIsAuth)
   const appInit = useSelector(getInitialApp)
+  const paymentLink = useSelector(getInvoiceLink)
 
   useEffect(() => {
     appInit && !isAuth && navigate('/auth/signin')

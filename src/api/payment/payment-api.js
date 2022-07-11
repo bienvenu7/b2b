@@ -14,3 +14,7 @@ export const postInvoices = (data) => {
     return instance.post('invoices', data, {headers: {'Authorization': 'Bearer ' + token}})
 }
 
+export const cartTotal = (data) => {
+    return instance.post('invoices/get-cart-total', data, {headers: {'Authorization': 'Bearer ' + token}})
+}
+
