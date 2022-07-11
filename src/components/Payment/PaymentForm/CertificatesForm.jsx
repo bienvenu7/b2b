@@ -4,7 +4,7 @@ import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
-import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
+import { getCartTotalThunk, postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
@@ -40,11 +40,16 @@ const CertificatesForm = (props) => {
         setSelectedValue(e.value);
     }
 
+    const handleChangeForNumeric = e => {
+        const data = {
+            userTariffPackages: userTariffPackages,
 
+        }
+        setVolume(e)
+        dispatch(getCartTotalThunk())
+    }
 
     const handlePost = (formik) => {
-        //console.log(formik)
-        console.log({selectedValue: selectedValue, userTariffPackages: userTariffPackages.length})
         let vol = volume
         const data = {
             paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
@@ -90,7 +95,7 @@ const CertificatesForm = (props) => {
                     <Select components={{DropdownIndicator}} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} />
                     {selectedValue == 'choose' &&
                         <div className="payment__form-elem number-wrapper" id="cert_count">
-                            <NumericInput onChange={setVolume} className="payment__form-elem number" id="count" name="volume" min="1" max="50" />
+                            <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="count" name="volume" min="1" max="50" />
                             <div className="payment__form-elem info">${cost}&nbsp;per certificate</div></div>}
 
                     <div className="payment__form-elem upload">
