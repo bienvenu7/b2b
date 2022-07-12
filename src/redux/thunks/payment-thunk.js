@@ -7,7 +7,6 @@ export const postInvoiceThunk = (data) => async (dispatch) => {
 }
 
 export const getCartTotalThunk = (data) => async (dispatch) => {
-    console.log(data)
     const response = await cartTotal(data)
     response.status == 201 && dispatch(setTotal(response.data.total))
 }

@@ -11,6 +11,7 @@ import Payment from './components/Payment/Payment';
 import SuccessPage from './components/Payment/SuccessPage/SuccessPage';
 import { getProductTypesThunk } from './redux/thunks/product-thunk';
 import { getInvoiceLink } from './redux/selectors/payment-selectors';
+import PaymentFirst from './components/Payment/PaymentFirst/PaymentFirst';
 
 function App() {
 
@@ -47,6 +48,8 @@ function App() {
         <Route path='password-change/:hash' element={<Auth page='reset' />} />
         <Route path='payment' element={<Payment />} />
         <Route path='success' element={<SuccessPage/>}/>
+        <Route path='invoice' component={() => { window.location.href = {paymentLink}; return null;} }/>
+        <Route path='payment-first' element={<PaymentFirst/>}/>
       </Routes>
     </div>
   );

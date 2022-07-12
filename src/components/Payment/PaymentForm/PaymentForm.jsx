@@ -17,8 +17,8 @@ const PaymentForm = (props) => {
 
     return (
         <div className="payment__form-wrapper">
-            <CategoryForm but={props.btnAdd}/>
-            <CertificatesForm but={props.btnPay}/>
+            <CategoryForm but={props.btnAdd} cartTotal={props.cartTotal}/>
+            <CertificatesForm but={props.btnPay} cartTotal={props.cartTotal}/>
         </div>
 
 

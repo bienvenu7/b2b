@@ -21,6 +21,7 @@ const Payment = () => {
 
     const [addButState, setAddButState] = useState(false)
     const [payButState, setPayButState] = useState(false)
+    const [timerCart, setTimerCart] = useState(false)
 
     useEffect(()=>{
         const data = {
@@ -44,13 +45,21 @@ const Payment = () => {
             setPayButState(false)
         }, 1)
     }
+    
+    const calcCartTotal = (data) =>{
+        clearTimeout(timerCart)
+        setTimerCart(setTimeout(()=>{
+            dispatch(getCartTotalThunk(data))
+        }, 1000))
+        
+    }
 
     return (
         <div className="payment-wrapper">
             <PaymentHeader />
             <div className="payment__content-container">
                 {packages.length > 0 && <PackagesHistory/>}
-                <PaymentForm btnAdd={addButState} btnPay={payButState}/>
+                <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal}/>
                 <AuthBalance />
             </div>
             <div className="payment__footer">

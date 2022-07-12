@@ -7,7 +7,7 @@ import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
-import { getCartTotalThunk, getPriceThunk } from "../../../redux/thunks/payment-thunk"
+import { getPriceThunk } from "../../../redux/thunks/payment-thunk"
 import { getCartTotal, getCategoryError, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
 
 const CategoryForm = (props) => {
@@ -84,7 +84,7 @@ const CategoryForm = (props) => {
         const data = {
             userTariffPackages: cart
         }
-        cart.length > 0 && dispatch(getCartTotalThunk(data))
+        cart.length > 0 && props.cartTotal(data)
     }, [cart])
 
     let but = props.but

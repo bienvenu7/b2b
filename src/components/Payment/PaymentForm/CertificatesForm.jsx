@@ -4,7 +4,7 @@ import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getCategoryError, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
-import { getCartTotalThunk, postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
+import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
@@ -52,7 +52,7 @@ const CertificatesForm = (props) => {
                 userId: userId
             }
         }
-        dispatch(getCartTotalThunk(data))
+        props.cartTotal(data)
     }
 
     const handlePost = (formik) => {
