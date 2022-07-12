@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik'
 import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
-import { getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
+import { getCategoryError, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
 import { getCartTotalThunk, postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 import Select from 'react-select'
@@ -18,6 +18,7 @@ const CertificatesForm = (props) => {
 
     const userId = useSelector(getUserId)
     const userTariffPackages = useSelector(getUserTariffPackages)
+    const categoryError = useSelector(getCategoryError)
 
     let but = props.but
 
@@ -35,18 +36,23 @@ const CertificatesForm = (props) => {
 
     const [selectedValue, setSelectedValue] = useState(3);
 
+    selectedValue == 'choose' &&  categoryError != null && dispatch(setCategoryError(null))
+
     // handle onChange event of the dropdown
     const handleChange = e => {
         setSelectedValue(e.value);
     }
 
     const handleChangeForNumeric = e => {
+        setVolume(e)
         const data = {
             userTariffPackages: userTariffPackages,
-
+            userCertificatePackage: {
+                volume: volume,
+                userId: userId
+            }
         }
-        setVolume(e)
-        dispatch(getCartTotalThunk())
+        dispatch(getCartTotalThunk(data))
     }
 
     const handlePost = (formik) => {
@@ -95,7 +101,7 @@ const CertificatesForm = (props) => {
                     <Select components={{DropdownIndicator}} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} />
                     {selectedValue == 'choose' &&
                         <div className="payment__form-elem number-wrapper" id="cert_count">
-                            <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="count" name="volume" min="1" max="50" />
+                            <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="count" name="volume" min={1} max={50} />
                             <div className="payment__form-elem info">${cost}&nbsp;per certificate</div></div>}
 
                     <div className="payment__form-elem upload">

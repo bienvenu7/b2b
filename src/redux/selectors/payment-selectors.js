@@ -13,3 +13,7 @@ export const getInvoiceLink = (state) => {
 export const getCategoryError = (state) => {
     return state.payment.form.errors.category
 }
+
+export const getPrice = (state) => {
+    return state.payment.cart.price
+}

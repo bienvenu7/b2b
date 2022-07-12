@@ -28,7 +28,7 @@ const Payment = () => {
         }
         packages.length > 0 && dispatch(getCartTotalThunk(data))
     }, [packages])
-    
+
     invoiceLink != null && window.open(invoiceLink)
 
     const btnAddToogleClick = () => {
@@ -57,7 +57,7 @@ const Payment = () => {
                 <div className="payment__footer-container">
                     <div className="payment__footer-cost">
                         <label className="payment__footer-cost-label">Subtotal</label>
-                        <div className="payment__footer-cost-count" id="count">${total}</div>
+                        <div className="payment__footer-cost-count" id="count">${total/100}</div>
                     </div>
                     <div className="payment__footer-btn_add" onClick={()=>btnAddToogleClick()}>Add another category</div>
                     <div className="payment__footer-btn_submit" onClick={()=>btnPayToogleClick()}>Proceed to payment</div>

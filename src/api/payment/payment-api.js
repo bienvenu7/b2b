@@ -18,3 +18,6 @@ export const cartTotal = (data) => {
     return instance.post('invoices/get-cart-total', data, {headers: {'Authorization': 'Bearer ' + token}})
 }
 
+export const getPrice = (data) => {
+    return instance.get(`tariff-packages/test?productTypeId=${data.id}&volume=${data.volume}&answerTime=${data.answerTime}`, {headers: {Authorization: 'Bearer ' + token}})
+}

@@ -4,11 +4,13 @@ export const addCategory = createAction('ADD_CATEGORY')
 export const setTotal = createAction('SET_TOTAL')
 export const setInvoiceLink = createAction('SET_INVOICE_LINK')
 export const setCategoryError = createAction('SET_ERROR_CATEGORY')
+export const setPrice = createAction('SET_PRICE')
 
 const initialState = {
   cart: {
     userTariffPackages: [],
     total: null,
+    price: null,
   },
   invoice: {
     link: null
@@ -36,6 +38,9 @@ const paymentReducer = createReducer(initialState, (builder) => {
         .addCase('SET_ERROR_CATEGORY', (state = initialState, action) => {
           state.form.errors.category = action.payload
         })
+        .addCase('SET_PRICE', (state = initialState, action) => {
+          state.cart.price = action.payload
+        })        
 })
 
 export default paymentReducer
