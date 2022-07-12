@@ -928,6 +928,252 @@
     }
 }
 
+.payment_first {
+    &-container {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    &__bundle {
+        &-wrapper {
+            width: 100%;
+            
+        }
+
+        &__vars{
+            &-wrapper{
+                margin: 87px 105px 0 52px;
+            }
+        }
+
+        &__billing {
+            &-wrapper {
+                border: 0.5px solid #9A9A9A;
+                border-radius: 13px;
+                padding: 0 36px;
+                margin: 0 105px 0 52px;
+            }
+
+            &-elem {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 22px;
+                line-height: 140%;
+                display: flex;
+                gap: 40px;
+                padding: 20px 0;
+
+                &:not(:last-child) {
+                    border-bottom: 0.5px solid #9A9A9A;
+                }
+            }
+
+            &-label {
+
+                color: #616161;
+            }
+
+            &-value {
+                color: #2C2C2C
+            }
+            &-button{
+                cursor: pointer;
+                margin-left: auto;
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 22px;
+line-height: 140%;
+color: $c_g;
+            }
+        }
+
+        &__vars {
+            &-wrapper {}
+
+            &-h1 {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 140%;
+            }
+
+            &-h2 {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 140%;
+            }
+
+            &-radio {
+                &-wrapper {}
+            }
+        }
+    }
+
+    &__order {
+        &-wrapper {
+            color: $c_o;
+            background-color: $c_lg;
+            padding: 100px 24px 0 24px;
+            width: 37vw
+        }
+
+
+
+        &-h1 {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 140%;
+            text-transform: uppercase;
+            margin-bottom: 61px;
+        }
+
+        &-packages {
+            &-wrapper {}
+
+            &-elem {
+                display: grid;
+                grid-template-areas: "photo label label"
+                    "photo hours cost";
+
+                .photo {
+                    grid-area: photo;
+                    box-shadow: 0px 3.66124px 10.9837px rgba(0, 0, 0, 0.25);
+                    border-radius: 21.9675px;
+                    max-width: 102px;
+                    max-height: 98px;
+                }
+
+                .info {}
+
+                .hours {
+                    grid-area: hours;
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 23.1155px;
+                    line-height: 140%;
+                    text-decoration: underline;
+                }
+
+                .cost {
+                    grid-area: cost;
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 23.1155px;
+                    line-height: 140%;
+                }
+
+                .label {
+                    grid-area: label;
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 23.1155px;
+                    line-height: 140%;
+                }
+            }
+        }
+
+        &__promocode {
+            &-wrapper {
+                border-bottom: 1px solid #E1E1E1;
+                border-top: 1px solid #E1E1E1;
+                display: flex;
+                justify-content: center;
+                padding: 41px 0;
+            }
+
+            &-elem {
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 23px;
+line-height: 140%;
+border: 1.975px solid #344767;
+border-radius: 15.8px;
+background-color: $c_lg;
+width: 100%;
+padding: 26px 0 26px 32px;
+            }
+        }
+
+        &__subtotal {
+            &-wrapper {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-size: 30px;
+                line-height: 140%;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #E1E1E1;
+                padding: 55px 0;
+            }
+
+            &-label {
+                font-weight: 400;
+            }
+
+            &-count {
+                font-weight: 700;
+            }
+        }
+
+        &__button {
+            &-wrapper {
+                .button {
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 25px;
+                    line-height: 140%;
+                    color: $c_w;
+                    background: $c_g;
+                    text-align: center;
+                    border-radius: 15.8px;
+                    padding: 23px 0;
+                }
+            }
+        }
+
+        &__error {
+            &-wrapper {
+                color: #4C4C4C;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-size: 25px;
+                line-height: 140%;
+                border: 0.5px solid $c_r;
+                border-radius: 8px;
+                background: rgba(181, 17, 17, 0.16);
+                margin-top: 67px;
+                padding: 17px 0 17px 0;
+            }
+
+            &-h1 {
+                font-weight: 700;
+            }
+
+            &-h2 {
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+
+
+
+
+
 .custom-radio {
     position: absolute;
     z-index: -1;

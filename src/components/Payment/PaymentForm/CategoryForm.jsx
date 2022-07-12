@@ -23,7 +23,6 @@ const CategoryForm = (props) => {
     const categoryError = useSelector(getCategoryError)
     const cost = useSelector(getPrice)
 
-    console.log(typeof(cost))
 
     const toDoll = (num) => {
         num = num
@@ -155,7 +154,7 @@ const CategoryForm = (props) => {
                     <label htmlFor="volume" className="payment__form-label">Choose the volume of authentications</label>
                     <div className="payment__form-elem number-wrapper">
                         <NumericInput onChange={setVolume} className="payment__form-elem number" id="volume" name="volume" min={1} max={50} value={volume} onBlur={() => { priceCheck(props) }} />
-                        {!cost != null && <div className="payment__form-elem info">${cost/100}&nbsp;per authentication</div>}
+                        {!cost != null && <div className="payment__form-elem info">${cost.package/100}&nbsp;per authentication</div>}
                     </div>
                     <div className="payment__form-href" onClick={() => { console.log('navto') }}>How does our pricing work?</div>
                 </div>

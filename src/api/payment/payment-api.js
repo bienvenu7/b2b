@@ -19,5 +19,8 @@ export const cartTotal = (data) => {
 }
 
 export const getPrice = (data) => {
-    return instance.get(`tariff-packages/test?productTypeId=${data.id}&volume=${data.volume}&answerTime=${data.answerTime}`, {headers: {Authorization: 'Bearer ' + token}})
+    if (data == null){
+        return instance.get(`tariff-packages/get-price`, {headers: {Authorization: 'Bearer ' + token}})
+    }
+    return instance.get(`tariff-packages/get-price?productTypeId=${data.id}&volume=${data.volume}&answerTime=${data.answerTime}`, {headers: {Authorization: 'Bearer ' + token}})
 }

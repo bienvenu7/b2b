@@ -10,7 +10,10 @@ const initialState = {
   cart: {
     userTariffPackages: [],
     total: null,
-    price: null,
+    price: {
+      package: null,
+      certificate: null
+    },
   },
   invoice: {
     link: null
@@ -39,7 +42,10 @@ const paymentReducer = createReducer(initialState, (builder) => {
           state.form.errors.category = action.payload
         })
         .addCase('SET_PRICE', (state = initialState, action) => {
-          state.cart.price = action.payload
+          if (action.payload.package != null){
+            state.cart.price.package = action.payload.package
+          } 
+          state.cart.price.certificate = action.payload.certificate
         })        
 })
 

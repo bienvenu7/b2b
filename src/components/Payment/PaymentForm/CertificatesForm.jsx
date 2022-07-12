@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik'
 import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
-import { getCategoryError, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
+import { getCategoryError, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
 import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 import Select from 'react-select'
@@ -19,6 +19,7 @@ const CertificatesForm = (props) => {
     const userId = useSelector(getUserId)
     const userTariffPackages = useSelector(getUserTariffPackages)
     const categoryError = useSelector(getCategoryError)
+    const cost = useSelector(getPrice)
 
     let but = props.but
 
@@ -32,7 +33,6 @@ const CertificatesForm = (props) => {
         { value: 'choose', label: 'Choose other amount' }
     ]
 
-    const cost = 2
 
     const [selectedValue, setSelectedValue] = useState(3);
 
@@ -102,7 +102,7 @@ const CertificatesForm = (props) => {
                     {selectedValue == 'choose' &&
                         <div className="payment__form-elem number-wrapper" id="cert_count">
                             <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="count" name="volume" min={1} max={50} />
-                            <div className="payment__form-elem info">${cost}&nbsp;per certificate</div></div>}
+                            <div className="payment__form-elem info">${cost.certificate/100}&nbsp;per certificate</div></div>}
 
                     <div className="payment__form-elem upload">
                         <div className="payment__form-elem upload-btn">Upload logo</div>
