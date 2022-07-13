@@ -8,6 +8,7 @@ export const setPrice = createAction('SET_PRICE')
 export const setPriceForCertificate = createAction('SET_PRICE_FOR_CERTIFICATE')
 export const setTotalPackage = createAction('SET_TOTAL_PACKAGE')
 export const pushTotal = createAction('PUSH_TOTAL')
+export const removePreviewPackage = createAction('REMOVE_PREVIEW_PACKAGE')
 
 const initialState = {
   cart: {
@@ -61,6 +62,9 @@ const paymentReducer = createReducer(initialState, (builder) => {
           } else{
           state.cart.costs.push(action.payload)
           }
+        })
+        .addCase('REMOVE_PREVIEW_PACKAGE', (state = initialState, action) => {
+         state.cart.userTariffPackages.splice(action.payload, 1) 
         })
 })
 

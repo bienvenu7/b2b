@@ -2,7 +2,7 @@ import { Formik, Field, Form } from "formik"
 import React, { useState, useEffect } from "react"
 import * as NumericInput from 'react-numeric-input'
 import { useDispatch, useSelector } from "react-redux"
-import { addCategory, pushTotal, setCategoryError, setPrice } from "../../../redux/reducers/payment-reducer"
+import { addCategory, pushTotal, removePreviewPackage, setCategoryError, setPrice } from "../../../redux/reducers/payment-reducer"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
@@ -24,9 +24,8 @@ const CategoryForm = (props) => {
     const cost = useSelector(getPrice)
 
 
-    const toDoll = (num) => {
-        num = num
-    }
+    
+
 
     const options = [
         { value: { name: 'bags', types: { single: productTypes[4] } }, label: "Bags" },
@@ -45,15 +44,21 @@ const CategoryForm = (props) => {
     }
 
     const priceCheck = (formik) => {
-        console.log({sel: selectedValue, hours: formik.values.hours, type: formik.values.typeOfShoes})
+        //console.log({sel: selectedValue, hours: formik.values.hours, type: formik.values.typeOfShoes})
         
+        if ( selectedValue !=3){
         let id = ''
+        let type = ''
+            
             if (formik.values.typeOfShoes == 'sneakers') {
                 id = selectedValue.types.sneakers.id
+                type = selectedValue.types.sneakers
             } else if (formik.values.typeOfShoes == 'other') {
                 id = selectedValue.types.other.id
+                type = selectedValue.types.other
             } else if (formik.values.typeOfShoes == '') {
                 id = selectedValue.types.single.id
+                type = selectedValue.types.single
             }
 
         //console.log(getId(selectedValue, formik))
@@ -64,9 +69,11 @@ const CategoryForm = (props) => {
         }
         if (selectedValue !== 3 && formik.values.hours !== '0') {
             dispatch(getPriceThunk(data))
-            
+            const previewPackage = { productType: type, answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
+            dispatch(addCategory(previewPackage))
+            props.cartTotal(cart)
         }
-        data = {}
+        }
     }
 
 
@@ -97,7 +104,7 @@ const CategoryForm = (props) => {
         }
         const data = { productType: type, answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
         //formik.values.hours != '12' || '24' ? setErrorForAnswerTime('Please choose') : dispatch(addCategory(data)) 
-        formik.values.hours != '0' && dispatch(addCategory(data)) && dispatch(pushTotal(cost))
+        formik.values.hours != '0' && dispatch(addCategory(data)) && dispatch(pushTotal(cost)) && dispatch(removePreviewPackage(cart.length-1))
         formik.values.hours = '0'
         formik.values.typeOfShoes = ''
         setSelectedValue(3)
