@@ -8,13 +8,15 @@ import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
-import { setCategoryError } from "../../../redux/reducers/payment-reducer"
+import { setCategoryError, setTotalPackage } from "../../../redux/reducers/payment-reducer"
+import { useNavigate } from "react-router-dom"
 
 const CertificatesForm = (props) => {
 
     const [volume, setVolume] = useState(1)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const userId = useSelector(getUserId)
     const userTariffPackages = useSelector(getUserTariffPackages)
@@ -41,6 +43,24 @@ const CertificatesForm = (props) => {
     // handle onChange event of the dropdown
     const handleChange = e => {
         setSelectedValue(e.value);
+        if (e.value == 'include'){
+            let vol = 0
+            userTariffPackages.map(e => vol += e.volume)
+            setVolume(vol)
+            const data = {
+                userTariffPackages: userTariffPackages,
+                userCertificatePackage: {
+                    volume: volume,
+                    userId: userId
+                }
+            }
+            props.cartTotal(data)
+        } else if(e.value == 'notneeded'){
+            const data = {
+                userTariffPackages: userTariffPackages,
+            }
+            props.cartTotal(data)
+        }
     }
 
     const handleChangeForNumeric = e => {
@@ -48,7 +68,7 @@ const CertificatesForm = (props) => {
         const data = {
             userTariffPackages: userTariffPackages,
             userCertificatePackage: {
-                volume: volume,
+                volume: e,
                 userId: userId
             }
         }
@@ -58,7 +78,9 @@ const CertificatesForm = (props) => {
     const handlePost = (formik) => {
         let vol = volume
         const data = {
-            paymentSystem: "paypal", savePaymentMethod: false, useSavedPaymentMethod: false, successUrl: "https://example.com",
+            //paymentSystem: "paypal", 
+            //savePaymentMethod: false, 
+            useSavedPaymentMethod: false, successUrl: "https://example.com",
             cancelUrl: "https://example.com", userTariffPackages: userTariffPackages
         }
         if (selectedValue == 'include') {
@@ -73,9 +95,11 @@ const CertificatesForm = (props) => {
             dispatch(setCategoryError('Please choose the category'));
             return
         }
-        selectedValue != '' && dispatch(postInvoiceThunk(data))
+        //selectedValue != '' && dispatch(postInvoiceThunk(data))
+        selectedValue != '' && dispatch(setTotalPackage(data)) && navigate('../payment-first')
         setSelectedValue('')
         setVolume(1)
+        
     }
 
     useEffect(() => {

@@ -17,3 +17,11 @@ export const getCategoryError = (state) => {
 export const getPrice = (state) => {
     return state.payment.cart.price
 }
+
+export const getTotalPackage = (state) =>{
+    return state.payment.cart.totalPackage
+}
+
+export const getCosts = (state) =>{
+    return state.payment.cart.costs
+}

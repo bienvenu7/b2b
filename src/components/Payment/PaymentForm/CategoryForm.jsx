@@ -1,8 +1,8 @@
 import { Formik, Field, Form } from "formik"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import * as NumericInput from 'react-numeric-input'
 import { useDispatch, useSelector } from "react-redux"
-import { addCategory, setCategoryError, setPrice } from "../../../redux/reducers/payment-reducer"
+import { addCategory, pushTotal, setCategoryError, setPrice } from "../../../redux/reducers/payment-reducer"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
@@ -97,7 +97,7 @@ const CategoryForm = (props) => {
         }
         const data = { productType: type, answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
         //formik.values.hours != '12' || '24' ? setErrorForAnswerTime('Please choose') : dispatch(addCategory(data)) 
-        formik.values.hours != '0' && dispatch(addCategory(data))
+        formik.values.hours != '0' && dispatch(addCategory(data)) && dispatch(pushTotal(cost))
         formik.values.hours = '0'
         formik.values.typeOfShoes = ''
         setSelectedValue(3)
@@ -165,4 +165,4 @@ const CategoryForm = (props) => {
     )
 }
 
-export default CategoryForm
+export default React.memo(CategoryForm)

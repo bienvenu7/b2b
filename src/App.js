@@ -46,10 +46,10 @@ function App() {
         <Route path='auth/signup' element={<Auth page='signup' />} />
         <Route path='auth/forgot' element={<Auth page='forgot' />} />
         <Route path='password-change/:hash' element={<Auth page='reset' />} />
-        <Route path='payment' element={<Payment />} />
+        <Route path='payment' element={<Payment page='notfirst'/>} />
         <Route path='success' element={<SuccessPage/>}/>
         <Route path='invoice' component={() => { window.location.href = {paymentLink}; return null;} }/>
-        <Route path='payment-first' element={<PaymentFirst/>}/>
+        <Route path='payment-first' element={<Payment page='first'/>}/>
       </Routes>
     </div>
   );

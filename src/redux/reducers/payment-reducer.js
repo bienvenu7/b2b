@@ -5,11 +5,16 @@ export const setTotal = createAction('SET_TOTAL')
 export const setInvoiceLink = createAction('SET_INVOICE_LINK')
 export const setCategoryError = createAction('SET_ERROR_CATEGORY')
 export const setPrice = createAction('SET_PRICE')
+export const setPriceForCertificate = createAction('SET_PRICE_FOR_CERTIFICATE')
+export const setTotalPackage = createAction('SET_TOTAL_PACKAGE')
+export const pushTotal = createAction('PUSH_TOTAL')
 
 const initialState = {
   cart: {
     userTariffPackages: [],
     total: null,
+    costs: [],
+    totalPackage: null,
     price: {
       package: null,
       certificate: null
@@ -42,11 +47,21 @@ const paymentReducer = createReducer(initialState, (builder) => {
           state.form.errors.category = action.payload
         })
         .addCase('SET_PRICE', (state = initialState, action) => {
-          if (action.payload.package != null){
-            state.cart.price.package = action.payload.package
-          } 
-          state.cart.price.certificate = action.payload.certificate
+            state.cart.price.package = action.payload
         })        
+        .addCase('SET_PRICE_FOR_CERTIFICATE', (state= initialState, action)=>{
+          state.cart.price.certificate = action.payload
+        })
+        .addCase('SET_TOTAL_PACKAGE', (state= initialState, action)=>{
+          state.cart.totalPackage = action.payload
+        })
+        .addCase('PUSH_TOTAL', (state=initialState, action)=>{
+          if (action.payload == null){
+            state.cart.costs = []
+          } else{
+          state.cart.costs.push(action.payload)
+          }
+        })
 })
 
 export default paymentReducer
