@@ -17,7 +17,7 @@ export const getPriceThunk = (data) => async (dispatch) => {
         response.status == 200 && dispatch(setPriceForCertificate(response.data.certificate))
     }
     else{
-    const response = await getPrice(data)
+    const response = await getPrice({id: data.productType.id, volume: data.volume, answerTime: data.answerTime})
     response.status == 200 && dispatch(setPrice(response.data.tariffPackage.price))
     }
 }

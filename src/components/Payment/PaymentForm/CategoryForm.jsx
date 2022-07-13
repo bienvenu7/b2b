@@ -2,7 +2,7 @@ import { Formik, Field, Form } from "formik"
 import React, { useState, useEffect } from "react"
 import * as NumericInput from 'react-numeric-input'
 import { useDispatch, useSelector } from "react-redux"
-import { addCategory, initPackage, pushTotal, removePreviewPackage, setCategoryError, setPrice, updateCurrentPackage, updateHoursPackage, updateTypePackage } from "../../../redux/reducers/payment-reducer"
+import { addCategory, initPackage, pushTotal, removePreviewPackage, setCategoryError, setPrice, updateCurrentPackage, updateHoursPackage, updateTypePackage, updateVolumePackage } from "../../../redux/reducers/payment-reducer"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
@@ -14,7 +14,7 @@ const CategoryForm = (props) => {
 
     const [volume, setVolume] = useState(1)
     const [errorsForAnswerTime, setErrorForAnswerTime] = useState(null)
-    const [packageEdit, setPackageEdit] = useState(0)
+    const [packageEditNumber, setPackageEdit] = useState(0)
 
     const dispatch = useDispatch()
     const userId = useSelector(getUserId)
@@ -24,6 +24,7 @@ const CategoryForm = (props) => {
     const categoryError = useSelector(getCategoryError)
     const cost = useSelector(getPrice)
 
+    const cartTotal = props.cartTotal
 
 
 
@@ -45,46 +46,12 @@ const CategoryForm = (props) => {
         updateType(e.value, formik)
     }
 
-    const priceCheck = (formik) => {
-        //console.log({sel: selectedValue, hours: formik.values.hours, type: formik.values.typeOfShoes})
-
-        if (selectedValue != 3) {
-            let id = ''
-            let type = ''
-
-            if (formik.values.typeOfShoes == 'sneakers') {
-                id = selectedValue.types.sneakers.id
-                type = selectedValue.types.sneakers
-            } else if (formik.values.typeOfShoes == 'other') {
-                id = selectedValue.types.other.id
-                type = selectedValue.types.other
-            } else if (formik.values.typeOfShoes == '') {
-                id = selectedValue.types.single.id
-                type = selectedValue.types.single
-            }
-
-            //console.log(getId(selectedValue, formik))
-            let data = {
-                id: id,
-                volume: volume,
-                answerTime: formik.values.hours
-            }
-            if (selectedValue !== 3 && formik.values.hours !== '0') {
-                dispatch(getPriceThunk(data))
-                const previewPackage = { productType: type, answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
-                //dispatch(addCategory(previewPackage))
-                props.cartTotal(cart)
-            }
-        }
-    }
-
     const handleChangeForNumeric = (e, formik) => {
         setVolume(e)
-        priceCheck(formik)
+        dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
     }
 
     const updateType = (e, typeOfShoes) => {
-        console.log(e)
         if (e != null){
             let type = e != 3 && e.types.single
             if (e.name == 'hypeShoes') {
@@ -92,22 +59,19 @@ const CategoryForm = (props) => {
             } else if (e.name == 'luxuryShoes') {
                 typeOfShoes == 'sneakers' ? type = e.types.sneakers : type = e.types.other
             }
-            e.value != 3 && dispatch(updateTypePackage({index: 0, type: type}))
+            e.value != 3 && dispatch(updateTypePackage({index: packageEditNumber, type: type}))
+            const data = {productType: type, volume: volume, answerTime: 12}
+            dispatch(getPriceThunk(data))
         }
         
     }
 
+    const updateHours = (value, data) =>{
+        dispatch(updateHoursPackage({index: packageEditNumber,hours:value}))
+        props.cartTotal(data)
+    }
 
-    //const thisPackage = { productType: selectedValue., answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
-    
-
-
-    //temp info
-    //const cost = 2
-
-    //if (selectedValue !=3 && )
-
-    cart.length < 1 && dispatch(initPackage())
+    cart.length < 1 && dispatch(initPackage(userId))
 
     useEffect(() => {
 
@@ -123,7 +87,7 @@ const CategoryForm = (props) => {
     let but = props.but
 
     const handlePost = (formik) => {
-        let type = selectedValue != 3 && selectedValue.types.single
+        /*let type = selectedValue != 3 && selectedValue.types.single
         if (selectedValue.name == 'hypeShoes') {
             formik.values.typeOfShoes == 'sneakers' ? type = selectedValue.types.sneakers : type = selectedValue.types.other
         } else if (selectedValue.name == 'luxuryShoes') {
@@ -137,7 +101,7 @@ const CategoryForm = (props) => {
         formik.values.typeOfShoes = ''
         setSelectedValue(3)
         setVolume(1)
-        dispatch(setPrice(null))
+        dispatch(setPrice(null))*/
     }
 
     return (<>
@@ -152,7 +116,7 @@ const CategoryForm = (props) => {
                 setSubmitting(false);
             }}
         >
-            {props => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
+            {(props) => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
                 <div className="payment__form-block-container first">
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={options} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
@@ -178,17 +142,17 @@ const CategoryForm = (props) => {
                     <div className="payment__form-elem hours">
                         <div className="payment__form-radio_btn">
                             <Field type="radio" name="hours" value="12" id="12h" />
-                            <label htmlFor="12h" onClick={(e)=>console.log(e.target.value)} value="12">12 hours</label>
+                            <label htmlFor="12h" onClick={()=>updateHours(12, cart)}>12 hours</label>
                         </div>
                         <div className="payment__form-radio_btn">
-                            <Field type="radio" name="hours" value="24" id="24h" />
-                            <label htmlFor="24h" value="24">24 hours</label>
+                            <Field type="radio" name="hours" value="24" id="24h"/>
+                            <label htmlFor="24h" onClick={()=>updateHours(24, cart)} value="24">24 hours</label>
                         </div>
                         {errorsForAnswerTime != null && <div className="payment__form-errors">{errorsForAnswerTime}</div>}
                     </div>
                     <label htmlFor="volume" className="payment__form-label">Choose the volume of authentications</label>
                     <div className="payment__form-elem number-wrapper">
-                        <NumericInput onChange={(e) => handleChangeForNumeric(e, props)} className="payment__form-elem number" id="volume" name="volume" min={1} max={50} onBlur={() => { priceCheck(props) }} />
+                        <NumericInput onChange={(e) => handleChangeForNumeric(e, props)} className="payment__form-elem number" id="volume" name="volume" min={1} max={50} value={volume}/>
                         {!cost != null && <div className="payment__form-elem info">${cost.package / 100}&nbsp;per authentication</div>}
                     </div>
                     <div className="payment__form-href" onClick={() => { console.log('navto') }}>How does our pricing work?</div>

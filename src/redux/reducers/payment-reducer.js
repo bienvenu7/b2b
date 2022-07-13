@@ -86,7 +86,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
       state.cart.userTariffPackages[action.payload.index].volume = action.payload.volume
     })
     .addCase('INIT_PACKAGE', (state = initialState, action)=>{
-      state.cart.userTariffPackages.push({productType: '', answerTime: '', volume: '', userId: '', isGift: ''})
+      state.cart.userTariffPackages.push({productType: '', answerTime: '', volume: 1, userId: action.payload, isGift: false})
     })
 })
 

@@ -27,6 +27,9 @@ const Payment = (props) => {
     
     const [saveBilling, setSaveBilling] = useState(false)
     const [method, setMethod] = useState()
+    
+    
+    useEffect(()=>{},[total])
 
 
     useEffect(() => {
@@ -57,7 +60,6 @@ const Payment = (props) => {
         setTimerCart(setTimeout(() => {
             dispatch(getCartTotalThunk(data))
         }, 1000))
-
     }
 
     const setPayMethod = (e) => {
