@@ -65,7 +65,7 @@ const Payment = (props) => {
     }
 
     const postInvoice = () => {
-        if (totalPackage != null) {
+        if (totalPackage != {}) {
             const data = { ...totalPackage, paymentSystem: method, savePaymentMethod: saveBilling }
             dispatch(postInvoiceThunk(data))
         }
