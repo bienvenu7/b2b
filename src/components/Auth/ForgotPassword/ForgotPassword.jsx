@@ -25,7 +25,7 @@ const ForgotPassword = () =>{
 
     const formik = useFormik({
         initialValues: {
-            email: 'Enter your email',
+            email: '',
         },
         validate,
         onSubmit: values => {
@@ -43,10 +43,9 @@ const ForgotPassword = () =>{
                     name="email"
                     type="text"
                     onChange={formik.handleChange}
-                    onBlur={() => { formik.values.email == '' && formik.setFieldValue('email', 'Enter your email') }}
-                    value={formik.values.email}
-                    onClick={() => { formik.values.email == 'Enter your email' && formik.setFieldValue('email', '') }}
-                />
+                    placeholder='Enter your email'
+                    value={formik.values.email} 
+                    />
                 {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
                 
 

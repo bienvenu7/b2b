@@ -10,8 +10,6 @@ const SignUp = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [type, setType] = useState('text')
-
     const validate = values => {
         const errors = {};
         if (!values.company || values.company == 'Company Name*') {
@@ -35,11 +33,11 @@ const SignUp = () => {
 
     const formik = useFormik({
         initialValues: {
-            email: 'Email Address*',
-            password: 'Password*',
-            company: 'Company Name*',
-            role: 'Your role at the company',
-            number: 'Number of expected monthly authentications',
+            email: '',
+            password: '',
+            company: '',
+            role: '',
+            number: '',
             rememberMe: false,
         },
         validate,
@@ -61,6 +59,7 @@ const SignUp = () => {
                     id="company"
                     name="company"
                     type="text"
+                    placeholder='Company Name*'
                     onChange={formik.handleChange}
                     onBlur={()=>{formik.values.company == '' && formik.setFieldValue('company','Company Name*')}}
                     value={formik.values.company}
@@ -72,10 +71,11 @@ const SignUp = () => {
                     id="role"
                     name="role"
                     type="text"
+                    placeholder='Your role at the company'
                     onChange={formik.handleChange}
-                    onBlur={()=>{formik.values.role == '' && formik.setFieldValue('role','Your role at the company')}}
+                    //onBlur={()=>{formik.values.role == '' && formik.setFieldValue('role','Your role at the company')}}
                     value={formik.values.role}
-                    onClick={()=>{formik.values.role =='Your role at the company' && formik.setFieldValue('role','')}}
+                    //onClick={()=>{formik.values.role =='Your role at the company' && formik.setFieldValue('role','')}}
                 />
                 <input
                     className='auth__form-elem'
@@ -83,30 +83,33 @@ const SignUp = () => {
                     name="number"
                     type="text"
                     onChange={formik.handleChange}
-                    onBlur={()=>{formik.values.number == '' && formik.setFieldValue('number','Number of expected monthly authentications')}}
+                    placeholder='Number of expected monthly authentications'
+                    //onBlur={()=>{formik.values.number == '' && formik.setFieldValue('number','Number of expected monthly authentications')}}
                     value={formik.values.number}
-                    onClick={()=>{formik.values.number =='Number of expected monthly authentications' && formik.setFieldValue('number','')}}
+                    //onClick={()=>{formik.values.number =='Number of expected monthly authentications' && formik.setFieldValue('number','')}}
                 />
                 <input
                     className={formik.touched.email && formik.errors.email ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="email"
                     name="email"
                     type="text"
+                    placeholder='Email Address*'
                     onChange={formik.handleChange}
-                    onBlur={()=>{formik.values.email == '' && formik.setFieldValue('email','Email Address*')}}
+                    //onBlur={()=>{formik.values.email == '' && formik.setFieldValue('email','Email Address*')}}
                     value={formik.values.email}
-                    onClick={()=>{formik.values.email =='Email Address*' && formik.setFieldValue('email','')}}
+                    //onClick={()=>{formik.values.email =='Email Address*' && formik.setFieldValue('email','')}}
                 />
                 {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
                 <input
                     className={formik.touched.password && formik.errors.password ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="password"
                     name="password"
-                    type={type}
+                    type='password'
+                    placeholder='Password*'
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
+                    //onBlur={formik.handleBlur}
                     value={formik.values.password}
-                    onClick={() => { setType('password'); formik.setFieldValue('password', '') }}
+                    //onClick={() => { setType('password'); formik.setFieldValue('password', '') }}
                 />
                 {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
 

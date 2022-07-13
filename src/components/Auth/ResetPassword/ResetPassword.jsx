@@ -8,8 +8,6 @@ import { forgotPasswordThunk } from '../../../redux/thunks/auth-thunk';
 
 const ResetPassword = () => {
 
-    const [typeOfNew, setTypeNew] = useState('text')
-    const [typeOfConfirm, setTypeConfirm] = useState('text')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -31,8 +29,8 @@ const ResetPassword = () => {
 
     const formik = useFormik({
         initialValues: {
-            password: 'New password',
-            confirm: 'Confirm password'
+            password: '',
+            confirm: ''
         },
         validate,
         onSubmit: values => {
@@ -51,23 +49,21 @@ const ResetPassword = () => {
                     className='auth__form-elem'
                     id="password"
                     name="password"
-                    type={typeOfNew}
+                    type='password'
                     onChange={formik.handleChange}
-                    onBlur={() => { formik.values.password == '' && formik.setFieldValue('password', 'New password') && setTypeNew('text') }}
+                    placeholder='New password'
                     value={formik.values.password}
-                    onClick={() => { if(typeOfNew == 'text'){setTypeNew('password'); formik.setFieldValue('password', '') }}}
-                />
+                    />
                 {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
                 <input
                     className='auth__form-elem'
                     id="confirm"
                     name="confirm"
-                    type={typeOfConfirm}
+                    placeholder='Confirm password'
+                    type='password'
                     onChange={formik.handleChange}
-                    onBlur={() => { formik.values.confirm == '' && formik.setFieldValue('confirm', 'Confirm password') && setTypeConfirm('text') }}
                     value={formik.values.confirm}
-                    onClick={() => { if(typeOfConfirm == 'text'){setTypeConfirm('password'); formik.setFieldValue('confirm', '') }}}
-                />
+                    />
                 {formik.touched.password && formik.touched.confirm && formik.values.password != formik.values.confirm ? <div className='auth__form-errorMessage'>The passwords do not match!</div> : null}
 
                 <button className='auth__form-submit' type="submit">Reset</button>

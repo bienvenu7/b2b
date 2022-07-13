@@ -16,8 +16,6 @@ const SignIn = () => {
         !switchState ? setState('switch-btn switch-on') : setState('switch-btn')
     }
 
-    const [type, setType] = useState('text')
-
     const navigate = useNavigate()
 
     const validate = values => {
@@ -40,8 +38,8 @@ const SignIn = () => {
 
     const formik = useFormik({
         initialValues: {
-            email: 'Email',
-            password: 'Current password',
+            email: '',
+            password: '',
             rememberMe: false,
         },
         validate,
@@ -59,22 +57,20 @@ const SignIn = () => {
                     id="email"
                     name="email"
                     type="text"
+                    placeholder='Email'
                     onChange={formik.handleChange}
-                    onBlur={() => { formik.values.email == '' && formik.setFieldValue('email', 'Email') }}
                     value={formik.values.email}
-                    onClick={() => { formik.values.email == 'Email' && formik.setFieldValue('email', '') }}
-                />
+                    />
                 {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
                 <input
                     className={formik.touched.password && formik.errors.password ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="password"
                     name="password"
-                    type={type}
+                    type="password"
+                    placeholder='Current password'
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
                     value={formik.values.password}
-                    onClick={() => { setType('password'); formik.setFieldValue('password', '') }}
-                />
+                    />
                 {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
                 <div className='auth__form-elem-rememberMe'><input
                     id="rememberMe"
