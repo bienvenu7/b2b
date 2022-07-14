@@ -24,8 +24,6 @@ const CategoryForm = (props) => {
     const categoryError = useSelector(getCategoryError)
     const cost = useSelector(getPrice)
 
-    console.log(cart.length)
-
     const cartTotal = props.cartTotal
 
     const [timerCart, setTimerCart] = useState(false)
@@ -113,6 +111,7 @@ const CategoryForm = (props) => {
             setPackageEdit(packageEditNumber+1)
             dispatch(initPackage(userId))
             dispatch(pushTotal(cost.package))
+            setVolume(1)
         }
         formik.values.hours = '0'
         //console.log(cart.length)

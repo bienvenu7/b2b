@@ -2,9 +2,8 @@ import { cartTotal, getPrice, postInvoices } from "../../api/payment/payment-api
 import { setInvoiceLink, setPrice, setPriceForCertificate, setTotal } from "../reducers/payment-reducer"
 
 export const postInvoiceThunk = (data) => async (dispatch) => {
-    console.log(data)
-    //const response = await postInvoices(data)
-    //response.status == 201 && dispatch(setInvoiceLink(response.data))
+    const response = await postInvoices(data)
+    response.status == 201 && dispatch(setInvoiceLink(response.data))
 }
 
 export const getCartTotalThunk = (data) => async (dispatch) => {
@@ -13,12 +12,12 @@ export const getCartTotalThunk = (data) => async (dispatch) => {
 }
 
 export const getPriceThunk = (data) => async (dispatch) => {
-    if (data == null){
+    if (data == null) {
         const response = await getPrice(data)
         response.status == 200 && dispatch(setPriceForCertificate(response.data.certificate))
     }
-    else{
-    const response = await getPrice({id: data.productType.id, volume: data.volume, answerTime: data.answerTime})
-    response.status == 200 && dispatch(setPrice(response.data.tariffPackage.price))
+    else {
+        const response = await getPrice({ id: data.productType.id, volume: data.volume, answerTime: data.answerTime })
+        response.status == 200 && dispatch(setPrice(response.data.tariffPackage.price))
     }
 }

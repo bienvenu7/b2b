@@ -3,12 +3,12 @@ import { Formik, Form } from 'formik'
 import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
-import { getCategoryError, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
+import { getCategoryError, getCosts, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
 import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
-import { removePreviewPackage, setCategoryError, setTotalPackage } from "../../../redux/reducers/payment-reducer"
+import { pushTotal, removePreviewPackage, setCategoryError, setTotalPackage } from "../../../redux/reducers/payment-reducer"
 import { useNavigate } from "react-router-dom"
 
 const CertificatesForm = (props) => {
@@ -22,6 +22,7 @@ const CertificatesForm = (props) => {
     const userTariffPackages = useSelector(getUserTariffPackages)
     const categoryError = useSelector(getCategoryError)
     const cost = useSelector(getPrice)
+    const costs = useSelector(getCosts)
 
     let but = props.but
 
@@ -77,6 +78,13 @@ const CertificatesForm = (props) => {
 
     const handlePost = (formik) => {
         let vol = volume
+        if (userTariffPackages.length != costs.length && selectedValue != ''){
+            dispatch(pushTotal(cost.package))
+        }
+        const lastPack = userTariffPackages[userTariffPackages.length-1] 
+        if (lastPack.productType == '' && lastPack.answerTime == ''){
+            dispatch(removePreviewPackage(userTariffPackages.length-1))
+        }
         const data = {
             //paymentSystem: "paypal", 
             //savePaymentMethod: false, 
@@ -96,11 +104,8 @@ const CertificatesForm = (props) => {
             return
         }
         //selectedValue != '' && dispatch(postInvoiceThunk(data))
-        const lastPack = userTariffPackages[userTariffPackages.length-1] 
-        if (lastPack.productType == '' && lastPack.answerTime == ''){
-            dispatch(removePreviewPackage(userTariffPackages.length-1))
-        }
-        selectedValue != '' && dispatch(setTotalPackage(data)) && navigate('../payment-first')
+        
+        selectedValue != '' && lastPack.productType != '' && dispatch(setTotalPackage(data)) && navigate('../payment-first')
         
         
         setSelectedValue('')
