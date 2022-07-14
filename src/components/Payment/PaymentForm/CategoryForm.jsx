@@ -1,14 +1,14 @@
 import { Formik, Field, Form } from "formik"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import * as NumericInput from 'react-numeric-input'
 import { useDispatch, useSelector } from "react-redux"
-import { addCategory, initPackage, pushTotal, removePreviewPackage, setCategoryError, setPrice, updateCurrentPackage, updateHoursPackage, updateTypePackage, updateVolumePackage } from "../../../redux/reducers/payment-reducer"
+import { initPackage, pushTotal, removePreviewPackage, setCategoryError, setPrice, updateCurrentPackage, updateHoursPackage, updateTypePackage, updateVolumePackage } from "../../../redux/reducers/payment-reducer"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 import { getPriceThunk } from "../../../redux/thunks/payment-thunk"
-import { getCartTotal, getCategoryError, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
+import { getCategoryError, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
 
 const CategoryForm = (props) => {
 
@@ -19,15 +19,9 @@ const CategoryForm = (props) => {
     const dispatch = useDispatch()
     const userId = useSelector(getUserId)
     const productTypes = useSelector(getTypesOfProduct)
-    const total = useSelector(getCartTotal)
     const cart = useSelector(getUserTariffPackages)
     const categoryError = useSelector(getCategoryError)
     const cost = useSelector(getPrice)
-
-    const cartTotal = props.cartTotal
-
-    const [timerCart, setTimerCart] = useState(false)
-
 
 
 
@@ -40,7 +34,7 @@ const CategoryForm = (props) => {
         { value: { name: 'watches', types: { single: productTypes[8] } }, label: 'Watches' },
     ]
 
-    const [selectedValue, setSelectedValue] = useState(3);
+    const [selectedValue, setSelectedValue] = useState('');
 
     const handleChange = (e, formik) => {
         setSelectedValue(e.value);
@@ -89,24 +83,6 @@ const CategoryForm = (props) => {
     let but = props.but
 
     const handlePost = (formik) => {
-        /*let type = selectedValue != 3 && selectedValue.types.single
-        if (selectedValue.name == 'hypeShoes') {
-            formik.values.typeOfShoes == 'sneakers' ? type = selectedValue.types.sneakers : type = selectedValue.types.other
-        } else if (selectedValue.name == 'luxuryShoes') {
-            formik.values.typeOfShoes == 'sneakers' ? type = selectedValue.types.sneakers : type = selectedValue.types.other
-        }
-        const data = { productType: type, answerTime: Number(formik.values.hours), volume: volume, userId: userId, isGift: false }
-        //formik.values.hours != '12' || '24' ? setErrorForAnswerTime('Please choose') : dispatch(addCategory(data)) 
-        formik.values.hours != '0' && selectedValue != 3 && dispatch(addCategory({index: 0, package: data})) && dispatch(pushTotal(cost))
-        //&& dispatch(removePreviewPackage(cart.length-1))
-        formik.values.hours = '0'
-        formik.values.typeOfShoes = ''
-        setSelectedValue(3)
-        setVolume(1)
-        dispatch(setPrice(null))*/
-        
-        //console.log(cart.length+1)
-        console.log(packageEditNumber)
         if (formik.values.hours != '0'){
             setPackageEdit(packageEditNumber+1)
             dispatch(initPackage(userId))
@@ -114,8 +90,7 @@ const CategoryForm = (props) => {
             setVolume(1)
         }
         formik.values.hours = '0'
-        //console.log(cart.length)
-        
+
     }
 
     return (<>
@@ -133,7 +108,7 @@ const CategoryForm = (props) => {
             {(props) => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
                 <div className="payment__form-block-container first">
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
-                    <Select components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={options} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
+                    <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={options} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
 
                     {(selectedValue.name == 'hypeShoes' || selectedValue.name == "luxuryShoes") && <div className="payment__form-elem shoes-vars">
                         <label htmlFor="types" className="payment__form-label">Choose the category</label>
