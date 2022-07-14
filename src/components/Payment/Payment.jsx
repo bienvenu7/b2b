@@ -7,7 +7,6 @@ import PaymentForm from "./PaymentForm/PaymentForm"
 import PaymentHeader from "./PaymentHeader/PaymentHeader"
 import { getCartTotalThunk, postInvoiceThunk } from "../../redux/thunks/payment-thunk"
 import { useNavigate } from "react-router-dom"
-import { removePreviewPackage } from "../../redux/reducers/payment-reducer"
 
 const Payment = (props) => {
 

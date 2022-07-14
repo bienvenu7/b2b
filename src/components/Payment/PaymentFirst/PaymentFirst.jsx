@@ -35,7 +35,6 @@ const PaymentFirst = (props) => {
     invoiceLink != null && window.open(invoiceLink)
 
     useEffect(()=>{
-        
         if(Object.keys(totalPackage).length < 1){
             navigate('../payment')
         }

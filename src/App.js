@@ -12,6 +12,7 @@ import SuccessPage from './components/Payment/SuccessPage/SuccessPage';
 import { getProductTypesThunk } from './redux/thunks/product-thunk';
 import { getInvoiceLink } from './redux/selectors/payment-selectors';
 import PaymentFirst from './components/Payment/PaymentFirst/PaymentFirst';
+import AuthenticationRequest from './components/AuthenticationRequest/AuthenticationRequest';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
         <Route path='success' element={<SuccessPage/>}/>
         <Route path='invoice' component={() => { window.location.href = {paymentLink}; return null;} }/>
         <Route path='payment-first' element={<PaymentFirst/>}/>
+        <Route path='authentication-request' element={<AuthenticationRequest/>}/>
       </Routes>
     </div>
   );
