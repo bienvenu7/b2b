@@ -39,6 +39,10 @@ const Payment = (props) => {
         packages.length > 0 && dispatch(getCartTotalThunk(data))
     }, [packages])
 
+    useEffect(() => {
+
+    },[packages.length])
+
     invoiceLink != null && window.open(invoiceLink)
 
     const btnAddToogleClick = () => {
@@ -142,13 +146,13 @@ const Payment = (props) => {
                     <div className="payment_first__order-wrapper">
                         <div className="payment_first__order-h1">Order summary</div>
                         <div className="payment_first__order-packages-wrapper">
-                            {totalPackage != null && totalPackage.userTariffPackages.map((e, index) => <div className="payment_first__order-packages-elem">
+                            {totalPackage != null && totalPackage.userTariffPackages.map((e, index) => e.productType != '' && e.answerTime != '' && <div className="payment_first__order-packages-elem">
                                 <div className="photo">
                                     img
                                 </div>
                                 <div className="label">{e.productType.publicName}</div>
                                 <div className="hours">{e.answerTime} hours</div>
-                                <div className="cost">{e.volume} * {costs[index].package / 100}</div>
+                                <div className="cost">{e.volume} * {costs[index]/ 100}</div>
                             </div>)}
                         </div>
                         <div className="payment_first__order__promocode-wrapper">

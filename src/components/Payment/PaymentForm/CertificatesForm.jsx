@@ -8,7 +8,7 @@ import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import React from "react"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
-import { setCategoryError, setTotalPackage } from "../../../redux/reducers/payment-reducer"
+import { removePreviewPackage, setCategoryError, setTotalPackage } from "../../../redux/reducers/payment-reducer"
 import { useNavigate } from "react-router-dom"
 
 const CertificatesForm = (props) => {
@@ -96,7 +96,13 @@ const CertificatesForm = (props) => {
             return
         }
         //selectedValue != '' && dispatch(postInvoiceThunk(data))
+        const lastPack = userTariffPackages[userTariffPackages.length-1] 
+        if (lastPack.productType == '' && lastPack.answerTime == ''){
+            dispatch(removePreviewPackage(userTariffPackages.length-1))
+        }
         selectedValue != '' && dispatch(setTotalPackage(data)) && navigate('../payment-first')
+        
+        
         setSelectedValue('')
         setVolume(1)
         

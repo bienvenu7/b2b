@@ -24,7 +24,11 @@ const CategoryForm = (props) => {
     const categoryError = useSelector(getCategoryError)
     const cost = useSelector(getPrice)
 
+    console.log(cart.length)
+
     const cartTotal = props.cartTotal
+
+    const [timerCart, setTimerCart] = useState(false)
 
 
 
@@ -102,6 +106,17 @@ const CategoryForm = (props) => {
         setSelectedValue(3)
         setVolume(1)
         dispatch(setPrice(null))*/
+        
+        //console.log(cart.length+1)
+        console.log(packageEditNumber)
+        if (formik.values.hours != '0'){
+            setPackageEdit(packageEditNumber+1)
+            dispatch(initPackage(userId))
+            dispatch(pushTotal(cost.package))
+        }
+        formik.values.hours = '0'
+        //console.log(cart.length)
+        
     }
 
     return (<>
