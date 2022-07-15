@@ -23,7 +23,7 @@ export const regThunk = (data) => async (dispatch) => {
 
 export const loginThunk = (data) => async (dispatch) => {
         //const response = await login(data)
-        Cookies.set('jwt', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQzNjI1NzQxLThjYWEtNGI2Yy1iMTgyLWY0NTcwM2RiMDU2MyIsInJvbGUiOnsiaWQiOiI5YTJkZDExMy01OGMyLTRlMTctODg0OS05ZWE2ZmZlMWU0ZTAiLCJuYW1lIjoiYWRtaW4iLCJfX2VudGl0eSI6IlJvbGUifSwiaWF0IjoxNjU3Nzc5MzQyLCJleHAiOjE2NTc4NjU3NDJ9.SnX5FPjmALZa71tOZpDbOc26MGH2vtVfyJxtCV4ahLY")
+        Cookies.set('jwt', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQzNjI1NzQxLThjYWEtNGI2Yy1iMTgyLWY0NTcwM2RiMDU2MyIsInJvbGUiOnsiaWQiOiI5YTJkZDExMy01OGMyLTRlMTctODg0OS05ZWE2ZmZlMWU0ZTAiLCJuYW1lIjoiYWRtaW4iLCJfX2VudGl0eSI6IlJvbGUifSwiaWF0IjoxNjU3ODY3NTgxLCJleHAiOjE2NTc5NTM5ODF9.SL7yWHOladOwuJaemAuTlOpuGoiWXJGGJ4P6R1AWrH8")
         //dispatch(setAuth(response.data.user))
 }
 

@@ -88,7 +88,7 @@ const Payment = (props) => {
                 <div className="payment__content-container">
                     {packages.length > 0 && <PackagesHistory />}
                     <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal} />
-                    <AuthBalance />
+                    <AuthBalance mt={100}/>
                 </div>
                 <div className="payment__footer">
                     <div className="payment__footer-container">

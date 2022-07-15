@@ -1,5 +1,6 @@
 @import '../../scss/vars';
 @import '../../scss/custom-select.scss';
+@import '../../scss/custom-checkbox.scss';
 
 .auth_request {
     &__wrapper {
@@ -10,7 +11,8 @@
         padding: 54px 31px 0 31px;
         display: flex;
         justify-content: space-between;
-        &-bell{
+
+        &-bell {
             cursor: pointer;
         }
     }
@@ -67,7 +69,7 @@
                 }
 
                 &.second {
-                    margin-top: 89px;
+                    margin-top: 174px;
                 }
             }
         }
@@ -106,6 +108,7 @@
             &-group {
                 display: flex;
                 gap: 41px;
+                margin-top: 42px;
             }
 
             &-button {
@@ -209,6 +212,61 @@
                     cursor: pointer;
                 }
             }
+        }
+    }
+}
+
+.auth__balance {
+    &-wrapper {
+        padding-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    &__header {}
+
+    &__elem {
+        &-cat {}
+
+        &-count {}
+
+        &-hours {
+            font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 140%;
+border-radius: 4px;
+background: $c_g;
+color: $c_w;
+padding: 0 8px;
+        }
+
+        &-button {
+            border-radius: 4px;
+            border: 1px solid $c_g;
+            text-align: center;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 140%;
+            margin: 0 -13px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: $c_w;
+            background: $c_g;
+            &:not(:last-child){
+                color: $c_g;
+                background: $c_w;
+            }
+        }
+
+        &:last-child {
+            flex-direction: column;
+            gap: 10px;
         }
     }
 }
