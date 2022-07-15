@@ -5,6 +5,7 @@ import PaymentHeader from '../PaymentHeader/PaymentHeader'
 import { getCartTotalThunk, postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
 import { Navigate, useNavigate } from "react-router-dom"
 import { isEmptyArray } from "formik"
+import MobileHeader from "../../Mobile/MobileHeader/MobileHeader"
 
 const PaymentFirst = (props) => {
 
@@ -47,9 +48,11 @@ const PaymentFirst = (props) => {
 
     return(
         <>
+        <MobileHeader/>
         <div className="payment_first-container">
                     <div className="payment_first__bundle-wrapper">
                         <PaymentHeader />
+                        <div className="payment_first__bundle__billing-header">Billing information</div>
                         <div className="payment_first__bundle__billing-wrapper">
                             <div className="payment_first__bundle__billing-elem">
                                 <div className="payment_first__bundle__billing-label">Business name</div>
@@ -100,6 +103,8 @@ const PaymentFirst = (props) => {
                                 <div className="label">{e.productType.publicName}</div>
                                 <div className="hours">{e.answerTime} hours</div>
                                 <div className="cost">{e.volume} * {costs[index]/ 100}</div>
+                                <div className="total">$ {e.volume * (costs[index]/100)}</div>
+                                <div className="volume">{e.volume} authentications</div>
                             </div>)}
                         </div>
                         <div className="payment_first__order__promocode-wrapper">
@@ -108,6 +113,9 @@ const PaymentFirst = (props) => {
                         <div className="payment_first__order__subtotal-wrapper">
                             <label className="payment_first__order__subtotal-label">Subtotal</label>
                             <div className="payment_first__order__subtotal-count" id="count">${total / 100}</div>
+                        </div>
+                        <div className="payment_first__order__error-label">
+                        Payment unsuccessful! Please try again.
                         </div>
                         <div className="payment_first__order__button-wrapper">
                             <div className="button" onClick={postInvoice}>Pay now</div>

@@ -5,7 +5,7 @@ import SvgSelector from '../../../common/icons/SvgSelector'
 const PaymentHeader = () => {
     return (
         <>
-            <div className="payment__header__mobile">
+            {/*<div className="payment__header__mobile">
                 <div className='payment__header__mobile-pageName'>
                     Authentication bundle</div>
                 <div className='hamburger-menu'>
@@ -14,7 +14,7 @@ const PaymentHeader = () => {
                         <span></span>
                     </label>
                 </div>
-            </div>
+    </div>*/}
             <div className="payment__header">
                 <div className="payment__header__nav">
                     <div className='payment__header__nav__home'><SvgSelector id="home" /></div>

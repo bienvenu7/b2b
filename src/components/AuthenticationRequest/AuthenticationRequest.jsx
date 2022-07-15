@@ -7,7 +7,7 @@ import AuthBalance from '../Payment/AuthBalance/AuthBalance'
 import PaymentHeader from '../Payment/PaymentHeader/PaymentHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTypesOfProduct } from '../../redux/selectors/product-selectors'
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { createOrderThunk, createProductThunk, getBrandsThunk } from '../../redux/thunks/authRequest-thunk'
 import { takeBrands, takeOrder } from '../../redux/selectors/authRequest-selectors'
 
@@ -42,7 +42,7 @@ const AuthenticationRequest = () => {
 
     
     order == null && dispatch(createOrderThunk())
-    
+
     productTypes.map(el => options.push({ value: el.id, type: el, label: el.publicName }))
     brands.map(el=> optionsBrands.push({value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
 
