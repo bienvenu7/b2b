@@ -62,6 +62,7 @@ const CertificatesForm = (props) => {
             }
             props.cartTotal(data)
         }
+        
     }
 
     const handleChangeForNumeric = e => {
@@ -105,7 +106,13 @@ const CertificatesForm = (props) => {
         }
         //selectedValue != '' && dispatch(postInvoiceThunk(data))
         
-        selectedValue != '' && lastPack.productType != '' && dispatch(setTotalPackage(data)) && navigate('../payment-first')
+        if(selectedValue !=''){
+            if(lastPack.productType != ''){
+                dispatch(setTotalPackage(data))
+                navigate('../payment-first')
+            }
+        }
+       // selectedValue != '' && lastPack.productType != '' && dispatch(setTotalPackage(data)) && navigate('../payment-first')
         
         
         setSelectedValue('')

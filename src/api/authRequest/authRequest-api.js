@@ -21,3 +21,7 @@ export const orderCreate = () => {
 export const createProduct = (data) =>{
     return instance.post(`products`, data, {headers: {'Authorization': 'Bearer ' + token}})
 }
+
+export const getBalance = () =>{
+    return instance.get('user-tariff-packages/get-balance', {headers: {'Authorization': 'Bearer ' + token}})
+}

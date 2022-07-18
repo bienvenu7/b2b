@@ -34,6 +34,7 @@ const AuthenticationRequest = () => {
     const handleChangeCategory = (e) =>{
         dispatch(getBrandsThunk(e.value))
         setProductTypeValue(e.type)
+        dispatch(createOrderThunk())
     }
     
     function handleChangeBrand(e){
@@ -41,7 +42,7 @@ const AuthenticationRequest = () => {
     }
 
     
-    order == null && dispatch(createOrderThunk())
+    
 
     productTypes.map(el => options.push({ value: el.id, type: el, label: el.publicName }))
     brands.map(el=> optionsBrands.push({value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
@@ -125,7 +126,7 @@ const AuthenticationRequest = () => {
                                     </div>
                                     <div className='auth_request__form__footer__info__h2'>
                                         <div className='auth_request__form__footer__info__h2-label'>Answer time</div>
-                                        <div className='auth_request__form__footer__info__h2-value'>24 hours</div>
+                                        <div className='auth_request__form__footer__info__h2-value'>12 hours</div>
                                     </div>
                                 </div>
                                 <div className='auth_request__form__footer__button-wrapper'>

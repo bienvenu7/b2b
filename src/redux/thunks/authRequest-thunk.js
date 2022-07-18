@@ -1,5 +1,5 @@
-import { createProduct, getBrands, orderCreate } from "../../api/authRequest/authRequest-api"
-import { initOrder, setBrands } from "../reducers/authRequest-reducer"
+import { createProduct, getBalance, getBrands, orderCreate } from "../../api/authRequest/authRequest-api"
+import { initOrder, setBalance, setBrands } from "../reducers/authRequest-reducer"
 
 export const getBrandsThunk = (id) => async (dispatch) => {
     const response = await getBrands(id)
@@ -20,5 +20,14 @@ export const createProductThunk = (data) => async (dispatch) => {
         const response = await createProduct(data)
     } catch (error) {
         
+    }
+}
+
+export const getBalanceThunk = () => async (dispatch) => {
+    try {
+        const response = await getBalance()
+        response.status === 200 && dispatch(setBalance(response.data))
+    } catch (error) {
+        console.log(error)
     }
 }

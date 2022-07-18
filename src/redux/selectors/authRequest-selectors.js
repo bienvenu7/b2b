@@ -5,3 +5,7 @@ export const takeBrands = ( state ) => {
 export const takeOrder = (state) => {
     return state.authRequest.order
 }
+
+export const takeBalance = (state) => {
+    return state.authRequest.balance
+}

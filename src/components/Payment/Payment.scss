@@ -15,7 +15,11 @@
 @import '../../scss/custom-checkbox.scss';
 
 .payment {
-    &-wrapper {}
+    &-wrapper {
+        @include for-phone-only{
+            margin-top: 74px;
+        }
+    }
 
     &__content {
         &-container {

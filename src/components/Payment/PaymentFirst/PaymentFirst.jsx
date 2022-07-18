@@ -96,7 +96,7 @@ const PaymentFirst = (props) => {
                     <div className="payment_first__order-wrapper">
                         <div className="payment_first__order-h1">Order summary</div>
                         <div className="payment_first__order-packages-wrapper">
-                            {totalPackage != null && totalPackage.userTariffPackages.map((e, index) => e.productType != '' && e.answerTime != '' && <div className="payment_first__order-packages-elem">
+                            {totalPackage != null && totalPackage.userTariffPackages.map((e, index) => e.productType != '' && e.answerTime != '' && <div key={index} className="payment_first__order-packages-elem">
                                 <div className="photo">
                                     img
                                 </div>

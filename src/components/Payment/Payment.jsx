@@ -7,6 +7,7 @@ import PaymentForm from "./PaymentForm/PaymentForm"
 import PaymentHeader from "./PaymentHeader/PaymentHeader"
 import { getCartTotalThunk, postInvoiceThunk } from "../../redux/thunks/payment-thunk"
 import { useNavigate } from "react-router-dom"
+import MobileHeader from '../Mobile/MobileHeader/MobileHeader';
 
 const Payment = (props) => {
 
@@ -32,12 +33,12 @@ const Payment = (props) => {
     useEffect(() => { }, [total])
 
 
-    useEffect(() => {
+    /*useEffect(() => {
         const data = {
             userTariffPackages: packages
         }
         packages.length > 0 && dispatch(getCartTotalThunk(data))
-    }, [packages])
+    }, [packages])*/
 
     useEffect(() => {
 
@@ -62,7 +63,14 @@ const Payment = (props) => {
     const calcCartTotal = (data) => {
         clearTimeout(timerCart)
         setTimerCart(setTimeout(() => {
-            dispatch(getCartTotalThunk(data))
+            if (data.userTariffPackages.length == 1){
+                if (data.userTariffPackages[0].productType !== ''){
+                    dispatch(getCartTotalThunk(data))
+                }
+            }
+            else if (data.userTariffPackages.length !== 0){
+                dispatch(getCartTotalThunk(data))
+            }
         }, 1000))
     }
 
@@ -70,19 +78,9 @@ const Payment = (props) => {
         setMethod(e.target.value)
     }
 
-    const postInvoice = () => {
-        //const lastPack = packages[packages.length-1] 
-        //if (lastPack.productType == '' && lastPack.answerTime == ''){
-        //  dispatch(removePreviewPackage(packages.length-1))
-        //}
-        if (totalPackage != {}) {
-            const data = { ...totalPackage, paymentSystem: method, savePaymentMethod: saveBilling }
-            dispatch(postInvoiceThunk(data))
-        }
-    }
-
     return (
         <>
+        <MobileHeader label='Authentication bundle'/>
             <div className="payment-wrapper">
                 <PaymentHeader />
                 <div className="payment__content-container">
