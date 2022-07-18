@@ -26,6 +26,29 @@
     }
 
     &__form {
+        
+        &__photo{
+            &-container{
+                display: flex;
+                gap: 71px;
+                flex-wrap: wrap;
+                padding: 32px 0 43px 0;
+            }
+            &-elem{
+                max-width: 164px;
+                width: 100%;
+            }
+            &-name{
+                font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 21px;
+text-align: center;
+padding-top: 16px;
+            }
+        }
+
         &-heading {
             font-family: 'Roboto';
             font-style: normal;
@@ -269,4 +292,44 @@ padding: 0 8px;
             gap: 10px;
         }
     }
+}
+
+
+.previewImg{
+    max-width: 164px;
+    /* max-height: 125px; */
+    height: 125px;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position-x: center !important;
+    display: block;
+}
+
+.photolabel{
+    max-width: 164px;
+    height: 125px;
+    background-color: $c_w;
+    display: block;
+    width: 100%;
+    box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.04);
+border-radius: 6px;
+font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 21px;
+    &::before{
+        display: flex;
+    content: "*Icon*";
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    }
+    &.required{
+        border: 1px solid #CBAD73;
+    }
+}
+
+.fileInput{
+    display: none;
 }

@@ -1,5 +1,5 @@
 import './AuthenticationRequest.scss'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Select from 'react-select'
 import logo from '../../common/images/logo-for-mobile.png'
 import SvgSelector from '../../common/icons/SvgSelector'
@@ -8,8 +8,8 @@ import PaymentHeader from '../Payment/PaymentHeader/PaymentHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTypesOfProduct } from '../../redux/selectors/product-selectors'
 import { useState } from 'react'
-import { createOrderThunk, createProductThunk, getBrandsThunk } from '../../redux/thunks/authRequest-thunk'
-import { takeBrands, takeOrder } from '../../redux/selectors/authRequest-selectors'
+import { createOrderThunk, createProductThunk, getProductTypePropThunk } from '../../redux/thunks/authRequest-thunk'
+import { takeBrands, takeOrder, takeAngles } from '../../redux/selectors/authRequest-selectors'
 
 const AuthenticationRequest = () => {
 
@@ -18,6 +18,7 @@ const AuthenticationRequest = () => {
     const productTypes = useSelector(getTypesOfProduct)
     const brands = useSelector(takeBrands)
     const order = useSelector(takeOrder)
+    const angles = useSelector(takeAngles)
 
     const [certCheck, setCertCheck] = useState(false)
     
@@ -26,20 +27,35 @@ const AuthenticationRequest = () => {
     const [answerTime, setAnswerTime] = useState(12)
     const [productTypeValue, setProductTypeValue] = useState()
     const [brandValue, setBrandValue] = useState()
+    const [photoUrl, setPhotoUrl] = useState({
+        file: null,
+        imagePreviewUrl: null
+      })
+
+    const [photoFiles, setPhotoFiles] = useState([])
 
     const options = []
+
+    const files = []
 
     const optionsBrands = []
 
     const handleChangeCategory = (e) =>{
-        dispatch(getBrandsThunk(e.value))
+        dispatch(getProductTypePropThunk(e.value))
         setProductTypeValue(e.type)
-        dispatch(createOrderThunk())
+        setPhotoFiles([])
     }
     
     function handleChangeBrand(e){
         setBrandValue(e.brand)
     }
+
+    useEffect(()=>{
+        photoFiles.length === 0 && angles.map((el, index)=> photoFiles.push({key: index, file: '', imagePreviewUrl: '', }))
+    },[angles])
+
+
+    
 
     
     
@@ -60,6 +76,91 @@ const AuthenticationRequest = () => {
         dispatch(createProductThunk(data))
     }
     
+    function handleImageChange(e) {
+        e.preventDefault();
+    
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        let index = e.target.classList[1]
+        //console.log(e.target.classList[1])
+
+        let list = photoFiles
+    
+        reader.onloadend = () => {
+          list[index] = {
+              ...list[index],
+            file: file,
+            imagePreviewUrl: reader.result
+          };
+        }
+    
+        //setPhotoFiles(...photoFiles)
+        setPhotoFiles(...list)
+        console.log(list)
+        reader.readAsDataURL(file)
+      }
+
+    function handleImageChange2(e) {
+        e.preventDefault();
+    
+        let reader = new FileReader();
+        const fileIndex = e.target.id.split('-')[1];
+        
+
+        
+        //console.log(e.target.classList[1])
+        let list = photoFiles
+
+        let findFile = list.find(item=> item.key == fileIndex)
+        let findIndex = list.indexOf(findFile)
+
+        console.log(findFile)
+
+        reader.onloadend = () => {
+
+        let file = {
+            key: parseInt(findFile),
+            file: e.target.files[0],
+            imagePreviewUrl: reader.result
+        }
+
+        console.log(file)
+
+        if (findFile){
+            list[findIndex] = file 
+        }else{
+            list.push(file)
+        }
+
+        console.log(list)
+    
+        /*reader.onloadend = () => {
+          photoFiles[index] = {
+            file: file,
+            imagePreviewUrl: reader.result
+          };
+        }*/
+
+        setPhotoFiles(list)
+        console.log(photoFiles)
+    }
+    
+        reader.readAsDataURL(e.target.files[0])
+
+        
+    }
+
+      let imagePreview = null
+
+      if (photoUrl.imagePreviewUrl){
+        //imagePreview = (<img className='preview-image' src={photoUrl.imagePreviewUrl} />);
+        imagePreview = (<div className="previewImg" style={{background: `url(${photoUrl.imagePreviewUrl})`}}></div>);
+      } else {
+        imagePreview = (<label htmlFor='photo' className='photolabel'><input className="fileInput" 
+        type="file" 
+        onChange={(e)=>handleImageChange(e)} id='photo'/></label>);
+      }
 
     return (
         <>
@@ -114,6 +215,20 @@ const AuthenticationRequest = () => {
                             <div className='auth_request__form-container second'>
                                 <div className='auth_request__form__elem-label'>Upload photos</div>
                                 <div className='auth_request__form-desc'>Necessary fields are outlined, please fill them up if details are available</div>
+                                
+                                <div className='auth_request__form__photo-container'>
+                                {angles.map((el, index)=>
+                                <div key={index} className={`auth_request__form__photo-elem ${index}`}>
+                                    {photoFiles.length > 0 && photoFiles.find({key: index}) != {key: index} ? 
+                                    <label htmlFor={`photo-${index}`} className='previewImg' style={{background: `url(${photoFiles[index].imagePreviewUrl})`}}>
+                                        <input className={`fileInput ${index}`} type="file" onChange={handleImageChange} id={`photo-${index}`}/>
+                                    </label>
+                                    : <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'photolabel required' : 'photolabel'}>
+                                    <input className={`fileInput ${index}`} type="file" onChange={handleImageChange} id={`photo-${index}`}/>
+                                </label>}
+                                    <div className='auth_request__form__photo-name'>{el.angle.publicName}</div>
+                                </div>)}
+                                </div>
                             </div>
                         </div>
                         <div className="auth_request__form__footer">

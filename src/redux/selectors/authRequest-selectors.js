@@ -9,3 +9,7 @@ export const takeOrder = (state) => {
 export const takeBalance = (state) => {
     return state.authRequest.balance
 }
+
+export const takeAngles = (state) => {
+    return state.authRequest.angles
+}

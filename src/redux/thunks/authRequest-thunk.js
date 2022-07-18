@@ -1,9 +1,10 @@
 import { createProduct, getBalance, getBrands, orderCreate } from "../../api/authRequest/authRequest-api"
-import { initOrder, setBalance, setBrands } from "../reducers/authRequest-reducer"
+import { initOrder, setAngles, setBalance, setBrands } from "../reducers/authRequest-reducer"
 
-export const getBrandsThunk = (id) => async (dispatch) => {
+export const getProductTypePropThunk = (id) => async (dispatch) => {
     const response = await getBrands(id)
     dispatch(setBrands(response.data.productTypeBrands))
+    dispatch(setAngles(response.data.productTypeAngles))
 }
 
 export const createOrderThunk = () => async (dispatch) => {
