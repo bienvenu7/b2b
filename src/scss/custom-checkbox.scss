@@ -29,6 +29,14 @@ font-size: 32px;
 line-height: 140%;
 color: $c_o;
 margin: 50px 0 0 0;
+@include for-phone-only{
+  font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+color: $c_b;
+}
 }
   }
   .custom-checkbox+label::after {

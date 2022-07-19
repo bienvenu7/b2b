@@ -5,6 +5,9 @@
 .auth_request {
     &__wrapper {
         color: $c_o;
+        @include for-phone-only{
+            color: $c_b;
+        }
     }
 
     &__nav {
@@ -15,6 +18,14 @@
         &-bell {
             cursor: pointer;
         }
+
+        &-label {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 140%;
+        }
     }
 
     &__container {}
@@ -23,6 +34,9 @@
         display: flex;
         justify-content: center;
         margin: 15px 0 60px 0;
+        @include for-phone-only{
+            display: none;
+        }
     }
 
     &__form {
@@ -100,6 +114,9 @@
             line-height: 140%;
             color: $c_g;
             text-transform: uppercase;
+            @include for-phone-only{
+                display: none;
+            }
         }
 
         &-wrapper {
@@ -132,10 +149,16 @@
                 &.first {
                     width: 100%;
                     max-width: 722px;
+                    @include for-phone-only{
+                        padding: 0 21px;
+                    }
                 }
 
                 &.second {
                     margin-top: 174px;
+                    @include for-phone-only{
+                        display: none;
+                    }
                 }
             }
         }
@@ -149,6 +172,16 @@
                 line-height: 140%;
                 margin-bottom: 37px;
                 margin-top: 52px;
+                @include for-phone-only{
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+&:first-child{
+    margin: 21px 0 7px 0;
+}
+                }
             }
 
             &-input {
@@ -161,11 +194,25 @@
                 line-height: 140%;
                 color: $c_o;
                 padding: 20px 0 20px 30px;
+                @include for-phone-only{
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+background: #FFFFFF;
+box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+border: 0;
+                }
 
                 &-wrapper {
                     display: flex;
                     flex-direction: column;
                     gap: 31px;
+                    @include for-phone-only{
+                        gap: 11px;
+                    }
                 }
             }
         }
@@ -213,6 +260,7 @@
                 //gap: 142px;
                 max-width: 1136px;
                 width: 100%;
+                flex-direction: column;
             }
 
             &__info {

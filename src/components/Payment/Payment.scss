@@ -1381,30 +1381,6 @@ display: flex;
 }
 
 
-.previewImg{
-    max-width: 164px;
-    /* max-height: 125px; */
-    height: 125px;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-}
 
-.photolabel{
-    max-width: 164px;
-    height: 125px;
-    background-color: #80bdff;
-    display: block;
-    &::before{
-        display: flex;
-    content: "icon";
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    }
-}
-
-#photo{
-    display: none;
-}
 
 

@@ -9,7 +9,7 @@ const initialState = {
     brands: [],
     order: null,
     balance: [],
-    angles: []
+    angles: [],
 }
 
 const authRequestReducer = createReducer(initialState, (builder) => {
