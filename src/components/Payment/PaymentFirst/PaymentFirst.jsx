@@ -33,7 +33,9 @@ const PaymentFirst = (props) => {
         }
     }
 
-    invoiceLink != null && window.open(invoiceLink)
+    if (invoiceLink != null){
+        method === 'stripe' ? window.open(invoiceLink, '_self') : window.open(invoiceLink, '_blank')
+    }
 
     useEffect(()=>{
         if(Object.keys(totalPackage).length < 1){
