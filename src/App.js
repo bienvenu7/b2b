@@ -13,6 +13,7 @@ import { getProductTypesThunk } from './redux/thunks/product-thunk';
 import { getInvoiceLink } from './redux/selectors/payment-selectors';
 import PaymentFirst from './components/Payment/PaymentFirst/PaymentFirst';
 import AuthenticationRequest from './components/AuthenticationRequest/AuthenticationRequest';
+import SuccessPageOrder from './components/Payment/SuccessPage/SuccessPageOrder';
 
 function App() {
 
@@ -25,12 +26,12 @@ function App() {
 
   useEffect(() => {
     appInit && !isAuth && navigate('/auth/signin')
-    
+
   }, [isAuth])
 
   useEffect(() => {
     dispatch(initialApp())
-    dispatch(getProductTypesThunk(1,1000))
+    dispatch(getProductTypesThunk(1, 1000))
   }, [])
 
 
@@ -47,11 +48,12 @@ function App() {
         <Route path='auth/signup' element={<Auth page='signup' />} />
         <Route path='auth/forgot' element={<Auth page='forgot' />} />
         <Route path='password-change/:hash' element={<Auth page='reset' />} />
-        <Route path='payment' element={<Payment/>} />
-        <Route path='success' element={<SuccessPage/>}/>
-        <Route path='invoice' component={() => { window.location.href = {paymentLink}; return null;} }/>
-        <Route path='payment-first' element={<PaymentFirst/>}/>
-        <Route path='authentication-request' element={<AuthenticationRequest/>}/>
+        <Route path='payment' element={<Payment />} />
+        <Route path='success' element={<SuccessPage />} />
+        <Route path='success-order' element={<SuccessPageOrder/>} />
+        <Route path='invoice' component={() => { window.location.href = { paymentLink }; return null; }} />
+        <Route path='payment-first' element={<PaymentFirst />} />
+        <Route path='authentication-request' element={<AuthenticationRequest />} />
       </Routes>
     </div>
   );

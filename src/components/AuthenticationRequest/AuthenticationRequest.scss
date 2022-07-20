@@ -94,6 +94,7 @@
                 background-size: contain !important;
                 background-repeat: no-repeat !important;
                 background-position-x: center !important;
+                background-position-y: center !important;
                 display: block;
             }
 
@@ -220,6 +221,12 @@
                         margin: 21px 0 7px 0;
                     }
                 }
+            }
+
+            &-error{
+                color: $c_r;
+                padding-left: 10px;
+                padding-top: 5px;
             }
 
             &-input {

@@ -1,4 +1,5 @@
 import { createProduct, getBalance, getBrands, orderCreate, uploadPhotoForProduct } from "../../api/authRequest/authRequest-api"
+import { setStatusCode } from "../reducers/app-reducer"
 import { initOrder, setAngles, setBalance, setBrands } from "../reducers/authRequest-reducer"
 
 export const getProductTypePropThunk = (id) => async (dispatch) => {
@@ -35,13 +36,16 @@ export const getBalanceThunk = () => async (dispatch) => {
     }
 }
 
-export const uploadPhotoForProductThunk = (data) => async (dispatch) => {
+export const uploadPhotoForProductThunk = (data, count, idx) => async (dispatch) => {
     try {
         let formData = new FormData()
         formData.append('productId', data.productId)
         formData.append('angleId', data.angleId)
         formData.append('photo', data.file)
         const response = await uploadPhotoForProduct(formData)
+        if (idx+1 == count){
+            dispatch(setStatusCode(response.status))
+        }
     } catch (error) {
         console.log(error)
     }

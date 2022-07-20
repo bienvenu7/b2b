@@ -12,11 +12,14 @@ import { takeBrands, takeOrder, takeAngles } from '../../redux/selectors/authReq
 import Navigation from '../Navigation/Navigation'
 import DropdownIndicator from '../../common/react-select/DropdownIndicator'
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader'
-import { initErrorKeyForAngles } from '../../redux/reducers/authRequest-reducer'
+import { getStatusCode } from '../../redux/selectors/app-selectors'
+import { useNavigate } from 'react-router-dom'
+import { setStatusCode } from '../../redux/reducers/app-reducer'
 
 const AuthenticationRequest = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const productTypes = useSelector(getTypesOfProduct)
     const brands = useSelector(takeBrands)
@@ -32,6 +35,9 @@ const AuthenticationRequest = () => {
     const [answerTime, setAnswerTime] = useState(12)
     const [productTypeValue, setProductTypeValue] = useState(null)
     const [brandValue, setBrandValue] = useState()
+    const [brandSelectorKey, setBrandSelectorKey ] = useState(0)
+    const status = useSelector(getStatusCode)
+    const [errors, setErrors] = useState({category: null, brand: null, typeModel: null})
 
     //errors
 
@@ -52,16 +58,23 @@ const AuthenticationRequest = () => {
         setProductTypeValue(e.type)
         setSelectedCategory(e.key)
         setPhotoFiles([])
-        dispatch(initErrorKeyForAngles())
+        setBrandSelectorKey(brandSelectorKey+1)
+        errors.category && setErrors({...errors, category: null})
     }
 
     function handleChangeBrand(e) {
         setBrandValue(e.brand)
         setSelectedBrand(e.key)
+        errors.brand && setErrors({...errors, brand: null})
+    }
+
+    function handleChangeModelType(e){
+        setModelTypeValue(e.target.value)
+        errors.typeModel && setErrors({...errors, typeModel: null})
     }
 
     useEffect(() => {
-        photoFiles.length === 0 && angles.map((el, index) => photoFiles.push({ key: index, file: '', imagePreviewUrl: '', angleId: el.angle.id, necessity: el.necessity, error: false}))
+        setPhotoFiles(angles.map((el, index) => photoFiles.length == 0 && { key: index, file: '', imagePreviewUrl: '', angleId: el.angle.id, necessity: el.necessity, error: false, angleName: el.angle.publicName, format: null}))
     }, [angles])
 
 
@@ -75,6 +88,23 @@ const AuthenticationRequest = () => {
 
     const handlePost = async () => {
         let onlineOrder = {}
+        if (!brandValue){
+            !productTypeValue ? setErrors( {...errors, category: 'Please select', brand: 'Please select'})
+            : setErrors( {...errors, brand: 'Please select'})
+        }
+        if (modelTypeValue == ''){
+            if (!brandValue){
+                !productTypeValue ? setErrors( {...errors, category: 'Please select', brand: 'Please select', typeModel: 'Please fill'})
+                : setErrors( {...errors, brand: 'Please select', typeModel: 'Please fill'})
+            } else{
+                setErrors({...errors, typeModel: 'Please fill'})
+            }
+            return
+        } else{
+            if (!brandValue){
+                return
+            }
+        }   
         if(photoFiles.find(el=> el.file == '' && el.necessity == 1)){
             setPhotoFiles(
                 photoFiles.map((el,index)=> el.file == '' && el.necessity == 1 ? {...el, error: true} : el)
@@ -95,10 +125,11 @@ const AuthenticationRequest = () => {
             certificateNeeded: certCheck,
             answerTime: answerTime,
         }
-        //console.log(photoFiles[1].file)
-        //setSelectedCategory('')
+        const photosCount = photoFiles.filter(el=>el.file!=='').length
+
         const response = await dispatch(createProductThunk(data))
-        photoFiles.map((el,index)=> el.file !== '' && dispatch(uploadPhotoForProductThunk({productId: response.data.id, file: el.file, angleId: el.angleId})))
+        photoFiles.map((el,index)=> el.file !== '' && dispatch(uploadPhotoForProductThunk({productId: response.data.id, file: el.file, angleId: el.angleId}, photosCount, index)))
+        
         setModelTypeValue('') 
         setSupplierTypeValue('')
         setCertCheck(false)
@@ -116,16 +147,26 @@ const AuthenticationRequest = () => {
 
         let index = e.target.id.split('-')[1]
 
-        file.name.match(/\.(jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/) && console.log('norm')
-
+        if (!file.name.match(/\.(jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/)){
+            setPhotoFiles(
+                photoFiles.map(item =>
+                    item.key == index ? { ...item, format: false } : item)
+            )
+            return
+        }
         reader.onloadend = () => {
             setPhotoFiles(
                 photoFiles.map(item =>
-                    item.key == index ? { ...item, file: file, imagePreviewUrl: reader.result, error: false } : item)
+                    item.key == index ? { ...item, file: file, imagePreviewUrl: reader.result, error: false, format: true } : item)
             )
         }
         reader.readAsDataURL(file)
         checkNecessity()
+    }
+
+    if(status == 201){
+        navigate('../success-order')
+        dispatch(setStatusCode(null))
     }
 
     return (
@@ -153,10 +194,12 @@ const AuthenticationRequest = () => {
                                     <div className='auth_request__form__elem'>
                                         <div className='auth_request__form__elem-label'>Choose the category</div>
                                         <Select key={productEditNumber} components={{ DropdownIndicator }} options={options} classNamePrefix="custom-select" placeholder='Please select the category' onChange={handleChangeCategory} />
+                                        {errors.category && <div className='auth_request__form__elem-error'>{errors.category}</div>}
                                     </div>
                                     <div className='auth_request__form-elem'>
                                         <div className='auth_request__form__elem-label'>Choose the brand</div>
-                                        <Select key={productEditNumber} components={{ DropdownIndicator }} options={optionsBrands} classNamePrefix='custom-select' placeholder='Please select the brand' onChange={handleChangeBrand} />
+                                        <Select key={brandSelectorKey} components={{ DropdownIndicator }} options={optionsBrands} classNamePrefix='custom-select' placeholder='Please select the brand' onChange={handleChangeBrand} />
+                                        {errors.brand && <div className='auth_request__form__elem-error'>{errors.brand}</div>}
                                     </div>
                                     <div className='auth_request__form__elem'>
                                         <input type="checkbox" className="custom-checkbox" id="certificate" name="certificate" checked={certCheck} onChange={() => setCertCheck(!certCheck)} />
@@ -171,7 +214,8 @@ const AuthenticationRequest = () => {
                                     <div className='auth_request__form__elem'>
                                         <div className='auth_request__form__elem-label'>Additional details</div>
                                         <div className='auth_request__form__elem-input-wrapper'>
-                                            <input className='auth_request__form__elem-input' placeholder='Type model name here' value={modelTypeValue} onChange={(e) => setModelTypeValue(e.target.value)} />
+                                            <input className='auth_request__form__elem-input' placeholder='Type model name here' value={modelTypeValue} onChange={handleChangeModelType} />
+                                            {errors.typeModel && <div className='auth_request__form__elem-error'>{errors.typeModel}</div>}
                                             <input className='auth_request__form__elem-input' placeholder='Type supplier name here (optional)' value={supplierTypeValue} onChange={(e) => setSupplierTypeValue(e.target.value)} />
                                         </div>
                                     </div>
@@ -185,17 +229,17 @@ const AuthenticationRequest = () => {
                                 {photoError && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
 
                                 <div className='auth_request__form__photo-container'>
-                                    {productTypeValue && angles.length > 0 && angles.map((el, index) =>
+                                    {productTypeValue &&  photoFiles.map((el, index) =>
                                         <div key={index} className={`auth_request__form__photo-elem ${index}`}>
-                                            {photoFiles.length > 0 && photoFiles[index].imagePreviewUrl !== '' ?
-                                                <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${photoFiles[index].imagePreviewUrl})` }}>
+                                            {el.imagePreviewUrl !== '' ?
+                                                <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${el.imagePreviewUrl})` }}>
                                                     <input className={`auth_request__form__photo-fileInput ${index}`} accept=".heic,.png,.heif,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                                 </label>
                                                 : <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'auth_request__form__photo-photolabel required' : 'auth_request__form__photo-photolabel'}>
                                                     <input className={`auth_request__form__photo-fileInput ${index}`} accept=".heic,.png,.heif,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                                 </label>}
-                                            <div className='auth_request__form__photo-name'>{el.angle.publicName}</div>
-                                            {el.necessity == 1 && <div className='auth_request__form__photo-error'>Uncaught format</div>}
+                                            <div className='auth_request__form__photo-name'>{el.angleName}</div>
+                                            {el.format !== null && el.format !== true && <div className='auth_request__form__photo-error'>Format is not available</div>}
                                         </div>)}
                                 </div>
                             </div>

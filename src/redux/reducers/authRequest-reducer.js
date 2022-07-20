@@ -4,7 +4,6 @@ export const setBrands = createAction('SET_BRANDS')
 export const initOrder = createAction('INIT_ORDER')
 export const setBalance = createAction('SET_BALANCE')
 export const setAngles = createAction('SET_ANGLES')
-export const initErrorKeyForAngles = createAction('INIT_ANGLES_ERROR')
 
 const initialState = {
     brands: [],
@@ -26,9 +25,6 @@ const authRequestReducer = createReducer(initialState, (builder) => {
         })
         .addCase('SET_ANGLES', (state = initialState, action) => {
             state.angles = action.payload
-        })
-        .addCase('INIT_ANGLES_ERROR', (state= initialState, action)=>{
-            state.angles = state.angles.map(el=> el && {...el, errors: null})
         })
 })
 
