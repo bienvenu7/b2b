@@ -5,9 +5,10 @@
 .auth_request {
     &__wrapper {
         color: $c_o;
-
+        
         @include for-phone-only {
             color: $c_b;
+            margin-top: 73px;
         }
     }
 
@@ -15,6 +16,10 @@
         padding: 54px 31px 0 31px;
         display: flex;
         justify-content: space-between;
+
+        @include for-phone-only {
+            display: none;
+        }
 
         &-bell {
             cursor: pointer;
@@ -49,6 +54,13 @@
                 gap: 71px;
                 flex-wrap: wrap;
                 padding: 32px 0 43px 0;
+
+                @include for-phone-only {
+                    padding: 15px 0 53px 0;
+                    column-gap: 16px;
+    row-gap: 25px;
+                    justify-content: center;
+                }
             }
 
             &-elem {
@@ -64,6 +76,15 @@
                 line-height: 21px;
                 text-align: center;
                 padding-top: 16px;
+            }
+
+            &-error{
+                font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    text-align: center;
             }
 
             &-previewImg {
@@ -104,6 +125,10 @@
 
                 &.required {
                     border: 1px solid #CBAD73;
+                }
+
+                @include for-phone-only {
+                    max-width: 153px;
                 }
             }
         }
@@ -178,6 +203,12 @@
                 margin-bottom: 37px;
                 margin-top: 52px;
 
+                &#photo_block_label {
+                    @include for-phone-only {
+                        margin-left: 21px;
+                    }
+                }
+
                 @include for-phone-only {
                     font-family: 'SF Pro Display Medium';
                     font-style: normal;
@@ -231,6 +262,9 @@
                 display: flex;
                 gap: 41px;
                 margin-top: 42px;
+                @include for-phone-only{
+                    display: none;
+                }
             }
 
             &-button {
@@ -255,6 +289,16 @@
             font-weight: 400;
             font-size: 20px;
             line-height: 140%;
+
+            @include for-phone-only {
+                font-family: 'SF Pro Display Medium';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                color: #666666;
+                margin-left: 21px;
+            }
         }
 
         &__footer {
@@ -262,6 +306,9 @@
             justify-content: center;
             background-color: #F6F6F7;
             padding: 62px 0 100px 0;
+            @include for-phone-only{
+                padding: 22px 21px 86px 21px;
+            }
 
             &-wrapper {
                 display: flex;
@@ -287,11 +334,21 @@
                     line-height: 140%;
                     text-transform: uppercase;
                     margin-bottom: 53px;
+                    @include for-phone-only{
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+text-transform: none;
+margin-bottom: 11px;
+                    }
                 }
 
                 &__h2 {
                     display: flex;
                     gap: 50px;
+                    color: #666666;
 
                     &-label {
                         font-family: 'Roboto';
@@ -302,6 +359,14 @@
                         max-width: 320px;
                         width: 100%;
                         white-space: nowrap;
+                        @include for-phone-only{
+                            font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+max-width: 168px;
+                        }
                     }
 
                     &-value {
@@ -310,6 +375,13 @@
                         font-weight: 700;
                         font-size: 30px;
                         line-height: 140%;
+                        @include for-phone-only{
+                            font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+                        }
                     }
                 }
             }
@@ -336,6 +408,12 @@
                     font-size: 25px;
                     line-height: 140%;
                     cursor: pointer;
+                    @include for-phone-only{
+                        margin-top: 32px;
+                        border-radius: 4px;
+font-size: 18px;
+padding: 12px 0;
+                    }
                 }
             }
         }

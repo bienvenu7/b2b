@@ -7,9 +7,10 @@
     height: 73px;
     top: 0;
     background: $c_w;
-    width: 100%;
+    width: 100vw;
     align-items: center;
     border-bottom: 0.25px solid #656565;
+    z-index: 100;
     @include for-phone-only{
         display: flex;
     }
@@ -19,6 +20,11 @@
     }
     &-label{
         padding-left: 17px;
+        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
     }
 }
 
@@ -39,7 +45,7 @@
         /* центрируем содержимое кнопки */
         position: fixed;
         top: 27px;
-        left: 90%;
+        left: 90vw;
         width: 15px;
         height: 26px;
         cursor: pointer;

@@ -12,6 +12,7 @@ import { takeBrands, takeOrder, takeAngles } from '../../redux/selectors/authReq
 import Navigation from '../Navigation/Navigation'
 import DropdownIndicator from '../../common/react-select/DropdownIndicator'
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader'
+import { initErrorKeyForAngles } from '../../redux/reducers/authRequest-reducer'
 
 const AuthenticationRequest = () => {
 
@@ -29,7 +30,7 @@ const AuthenticationRequest = () => {
     const [modelTypeValue, setModelTypeValue] = useState('')
     const [supplierTypeValue, setSupplierTypeValue] = useState('')
     const [answerTime, setAnswerTime] = useState(12)
-    const [productTypeValue, setProductTypeValue] = useState()
+    const [productTypeValue, setProductTypeValue] = useState(null)
     const [brandValue, setBrandValue] = useState()
 
     //errors
@@ -51,7 +52,7 @@ const AuthenticationRequest = () => {
         setProductTypeValue(e.type)
         setSelectedCategory(e.key)
         setPhotoFiles([])
-        console.log(e)
+        dispatch(initErrorKeyForAngles())
     }
 
     function handleChangeBrand(e) {
@@ -70,12 +71,10 @@ const AuthenticationRequest = () => {
     function checkNecessity(){
         setPhotoFiles(photoFiles.map((el, index) => el.necessity == 1 && el.file !== '' ? {...el, error: false} : {...el, error: true}))
         !photoFiles.find(el=> el.error === true) && setPhotoError(false)
-        console.log(photoFiles)
     }
 
     const handlePost = async () => {
         let onlineOrder = {}
-        const photo = [{file: '', error: false},{file: 'fds', error: true},{file: 'fd', error: false}]
         if(photoFiles.find(el=> el.file == '' && el.necessity == 1)){
             setPhotoFiles(
                 photoFiles.map((el,index)=> el.file == '' && el.necessity == 1 ? {...el, error: true} : el)
@@ -103,6 +102,7 @@ const AuthenticationRequest = () => {
         setModelTypeValue('') 
         setSupplierTypeValue('')
         setCertCheck(false)
+        setProductTypeValue(null)
         setProductEditNumber(productEditNumber+1)
     }
 
@@ -116,6 +116,8 @@ const AuthenticationRequest = () => {
 
         let index = e.target.id.split('-')[1]
 
+        file.name.match(/\.(jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/) && console.log('norm')
+
         reader.onloadend = () => {
             setPhotoFiles(
                 photoFiles.map(item =>
@@ -128,7 +130,7 @@ const AuthenticationRequest = () => {
 
     return (
         <>
-        <MobileHeader/>
+        <MobileHeader label='Authentication request'/>
             <div className="auth_request__wrapper">
                 <div className="auth_request__nav">
                     <div className='auth_request__nav-bar'>
@@ -179,20 +181,21 @@ const AuthenticationRequest = () => {
                                 </div>
                             </div>
                             <div className='auth_request__form-container second'>
-                                <div className='auth_request__form__elem-label'>Upload photos</div>
+                                <div className='auth_request__form__elem-label' id='photo_block_label'>Upload photos</div>
                                 {photoError && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
 
                                 <div className='auth_request__form__photo-container'>
-                                    {angles.map((el, index) =>
+                                    {productTypeValue && angles.length > 0 && angles.map((el, index) =>
                                         <div key={index} className={`auth_request__form__photo-elem ${index}`}>
                                             {photoFiles.length > 0 && photoFiles[index].imagePreviewUrl !== '' ?
                                                 <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${photoFiles[index].imagePreviewUrl})` }}>
-                                                    <input className={`auth_request__form__photo-fileInput ${index}`} type="file" onChange={handleImageChange} id={`photo-${index}`} />
+                                                    <input className={`auth_request__form__photo-fileInput ${index}`} accept=".heic,.png,.heif,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                                 </label>
                                                 : <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'auth_request__form__photo-photolabel required' : 'auth_request__form__photo-photolabel'}>
-                                                    <input className={`auth_request__form__photo-fileInput ${index}`} type="file" onChange={handleImageChange} id={`photo-${index}`} />
+                                                    <input className={`auth_request__form__photo-fileInput ${index}`} accept=".heic,.png,.heif,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                                 </label>}
                                             <div className='auth_request__form__photo-name'>{el.angle.publicName}</div>
+                                            {el.necessity == 1 && <div className='auth_request__form__photo-error'>Uncaught format</div>}
                                         </div>)}
                                 </div>
                             </div>
