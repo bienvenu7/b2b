@@ -38,6 +38,7 @@ const CategoryForm = (props) => {
 
     const handleChange = (e, formik) => {
         setSelectedValue(e.value);
+        console.log(e)
         dispatch(setCategoryError(null))
         updateType(e.value, formik)
     }

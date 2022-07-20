@@ -51,6 +51,7 @@ const AuthenticationRequest = () => {
         setProductTypeValue(e.type)
         setSelectedCategory(e.key)
         setPhotoFiles([])
+        console.log(e)
     }
 
     function handleChangeBrand(e) {
@@ -149,11 +150,11 @@ const AuthenticationRequest = () => {
                                     <div className='auth_request__form-heading'>Authentication request</div>
                                     <div className='auth_request__form__elem'>
                                         <div className='auth_request__form__elem-label'>Choose the category</div>
-                                        <Select key={productEditNumber} components={{ DropdownIndicator }} options={options} value={options[selectedCategory]} classNamePrefix="custom-select" placeholder='Please select the category' onChange={handleChangeCategory} />
+                                        <Select key={productEditNumber} components={{ DropdownIndicator }} options={options} classNamePrefix="custom-select" placeholder='Please select the category' onChange={handleChangeCategory} />
                                     </div>
                                     <div className='auth_request__form-elem'>
                                         <div className='auth_request__form__elem-label'>Choose the brand</div>
-                                        <Select key={productEditNumber} components={{ DropdownIndicator }} options={optionsBrands} value={optionsBrands[selectedBrand]} classNamePrefix='custom-select' placeholder='Please select the brand' onChange={handleChangeBrand} />
+                                        <Select key={productEditNumber} components={{ DropdownIndicator }} options={optionsBrands} classNamePrefix='custom-select' placeholder='Please select the brand' onChange={handleChangeBrand} />
                                     </div>
                                     <div className='auth_request__form__elem'>
                                         <input type="checkbox" className="custom-checkbox" id="certificate" name="certificate" checked={certCheck} onChange={() => setCertCheck(!certCheck)} />
