@@ -1,0 +1,22 @@
+.notFoundPage{
+    &-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    &-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    &__title{
+        text-align: center;
+    }
+    &__button{
+        border: 1px solid;
+        border-radius: 6px;
+        padding: 10px;
+        cursor: pointer;
+    }
+}

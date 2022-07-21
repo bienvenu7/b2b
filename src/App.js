@@ -14,6 +14,7 @@ import { getInvoiceLink } from './redux/selectors/payment-selectors';
 import PaymentFirst from './components/Payment/PaymentFirst/PaymentFirst';
 import AuthenticationRequest from './components/AuthenticationRequest/AuthenticationRequest';
 import SuccessPageOrder from './components/Payment/SuccessPage/SuccessPageOrder';
+import NotFoundPage from './components/NotFoundPage/NotFound';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
         <Route path='invoice' component={() => { window.location.href = { paymentLink }; return null; }} />
         <Route path='payment-first' element={<PaymentFirst />} />
         <Route path='authentication-request' element={<AuthenticationRequest />} />
+        <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
     </div>
   );
