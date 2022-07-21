@@ -50,7 +50,7 @@ const PaymentFirst = (props) => {
 
     return(
         <>
-        <MobileHeader/>
+        <MobileHeader label='Authentication payment'/>
         <div className="payment_first-container">
                     <div className="payment_first__bundle-wrapper">
                         <PaymentHeader />

@@ -22,6 +22,8 @@ const CategoryForm = (props) => {
     const cart = useSelector(getUserTariffPackages)
     const categoryError = useSelector(getCategoryError)
     const cost = useSelector(getPrice)
+    const [answerTime, setAnswerTime]=useState(12)
+    const [productType, setProductType] = useState(null)
 
 
 
@@ -38,12 +40,11 @@ const CategoryForm = (props) => {
 
     const handleChange = (e, formik) => {
         setSelectedValue(e.value);
-        console.log(e)
         dispatch(setCategoryError(null))
         updateType(e.value, formik)
     }
 
-    const handleChangeForNumeric = (e, formik) => {
+    const handleChangeForNumeric = (e) => {
         setVolume(e)
         dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
     }
@@ -57,14 +58,18 @@ const CategoryForm = (props) => {
                 typeOfShoes == 'sneakers' ? type = e.types.sneakers : type = e.types.other
             }
             e.value != 3 && dispatch(updateTypePackage({index: packageEditNumber, type: type}))
-            const data = {productType: type, volume: volume, answerTime: 12}
+            setProductType(type)
+            const data = {productType: type, volume: volume, answerTime: answerTime}
             dispatch(getPriceThunk(data))
         }
         
     }
 
     const updateHours = (value, data) =>{
+        const pack = {productType: productType, volume: volume, answerTime: value}
+        setAnswerTime(value)
         dispatch(updateHoursPackage({index: packageEditNumber,hours:value}))
+        dispatch(getPriceThunk(pack))
         props.cartTotal(data)
     }
 
@@ -109,7 +114,7 @@ const CategoryForm = (props) => {
             {(props) => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
                 <div className="payment__form-block-container first">
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
-                    <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={options} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
+                    <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
 
                     {(selectedValue.name == 'hypeShoes' || selectedValue.name == "luxuryShoes") && <div className="payment__form-elem shoes-vars">
                         <label htmlFor="types" className="payment__form-label">Choose the category</label>
@@ -142,7 +147,7 @@ const CategoryForm = (props) => {
                     </div>
                     <label htmlFor="volume" className="payment__form-label">Choose the volume of authentications</label>
                     <div className="payment__form-elem number-wrapper">
-                        <NumericInput onChange={(e) => handleChangeForNumeric(e, props)} className="payment__form-elem number" id="volume" name="volume" min={1} max={50} value={volume}/>
+                        <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
                         {!cost != null && <div className="payment__form-elem info">${cost.package / 100}&nbsp;per authentication</div>}
                     </div>
                     <div className="payment__form-href" onClick={() => { console.log('navto') }}>How does our pricing work?</div>

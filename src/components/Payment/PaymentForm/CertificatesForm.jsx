@@ -65,7 +65,7 @@ const CertificatesForm = (props) => {
         
     }
 
-    const handleChangeForNumeric = e => {
+    const handleChangeForNumeric = (e) => {
         setVolume(e)
         const data = {
             userTariffPackages: userTariffPackages,
@@ -143,7 +143,7 @@ const CertificatesForm = (props) => {
                     <Select components={{DropdownIndicator}} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} />
                     {selectedValue == 'choose' &&
                         <div className="payment__form-elem number-wrapper" id="cert_count">
-                            <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="count" name="volume" min={1} max={50} />
+                            <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
                             <div className="payment__form-elem info">${cost.certificate/100}&nbsp;per certificate</div></div>}
 
                     <div className="payment__form-elem upload">

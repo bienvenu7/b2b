@@ -441,15 +441,17 @@ padding: 12px 0;
         &-count {}
 
         &-hours {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 140%;
-            border-radius: 4px;
-            background: $c_g;
-            color: $c_w;
-            padding: 0 8px;
+            font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 140%;
+    border-radius: 4px;
+    background: #CBAD73;
+    color: #FFFFFF;
+    padding: 0 8px;
+    max-height: 19.58px;
+    display: flex;
         }
 
         &-button {

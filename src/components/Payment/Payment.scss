@@ -796,6 +796,7 @@
 
         &:not(:last-child) {
             margin-bottom: 10px;
+    align-items: center;
         }
 
         &-wrapper {
@@ -805,11 +806,13 @@
         }
 
         &-cat {
-            font-family: 'Roboto';
+            font-family: "Roboto";
             font-style: normal;
             font-weight: 300;
             font-size: 14px;
             line-height: 140%;
+            max-width: 65px;
+            width: 100%;
         }
 
         &-count {

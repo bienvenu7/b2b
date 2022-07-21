@@ -12,14 +12,20 @@ const Main = () => {
 
     const isAuth = useSelector(getIsAuth)
 
-    useEffect(()=>{
+    useEffect(() => {
         !isAuth && navigate('../auth/signup')
-    },[isAuth])
+    }, [isAuth])
 
-    return(
-        <div className="MainPage-container">Main Page
-        <button onClick={()=>{dispatch(logoutThunk())}}>Logout</button>
-        </div>
+    return (
+        <>
+            <div className="MainPage-container">Main Page
+                <button onClick={() => { dispatch(logoutThunk()) }}>Logout</button>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
+                <button onClick={() => navigate('../payment')}>Payment</button>
+                <button onClick={() => navigate('../authentication-request')}>Authentication request</button>
+            </div>
+        </>
     )
 }
 
