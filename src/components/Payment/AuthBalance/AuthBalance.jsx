@@ -15,18 +15,6 @@ const AuthBalance = (props) => {
                     <div className="auth__balance__elem-count">{el.volume}</div>
                 </div>)}
                 <div className="auth__balance__elem">
-                    <div className="auth__balance__elem-cat">sneakers luxury</div>
-                    <div className="auth__balance__elem-hours">12 h</div>
-                    <div className="auth__balance__elem-count">100</div>
-                </div>
-                <div className="auth__balance__elem">
-                    <div className="auth__balance__elem-cat">Bags</div>
-                    <div className="auth__balance__elem-hours">24 h</div>
-                    <div className="auth__balance__elem-count">100</div>
-                </div>
-                
-                
-                <div className="auth__balance__elem">
                     <div className="auth__balance__elem-button">
                         Top up now
                     </div>

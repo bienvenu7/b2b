@@ -2,6 +2,8 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setErrors } from '../../../redux/reducers/app-reducer';
+import { getPostErrors } from '../../../redux/selectors/app-selectors';
 import { getIsAuth } from '../../../redux/selectors/auth-selectors';
 import { loginThunk } from '../../../redux/thunks/auth-thunk';
 
@@ -9,6 +11,7 @@ const SignIn = () => {
 
     const dispatch = useDispatch()
 
+    const postErrors = useSelector(getPostErrors).signin
 
     const [switchBtn, setState] = useState('switch-btn')
 
@@ -60,8 +63,10 @@ const SignIn = () => {
                     placeholder='Email'
                     onChange={formik.handleChange}
                     value={formik.values.email}
+                    onClick={()=>{postErrors && dispatch(setErrors(null))}}
                     />
                 {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
+                {postErrors ? <div className='auth__form-errorMessage'>{postErrors === 'emailNotExists' && 'Email not exists'}</div> : null}
                 <input
                     className={formik.touched.password && formik.errors.password ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="password"

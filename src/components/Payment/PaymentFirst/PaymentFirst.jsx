@@ -12,6 +12,7 @@ const PaymentFirst = (props) => {
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
+
     
 
     const setPayMethod = (e) => {
@@ -25,11 +26,14 @@ const PaymentFirst = (props) => {
 
     const [method, setMethod] = useState()
     const [saveBilling, setSaveBilling] = useState(false)
+    const [buttonState, setButtonState] = useState(true)
 
-    const postInvoice = () => {
+    const postInvoice = async () => {
         if (totalPackage != {}) {
+            setButtonState(false)
             const data = { ...totalPackage, paymentSystem: method, savePaymentMethod: saveBilling }
-            dispatch(postInvoiceThunk(data))
+            const response = await dispatch(postInvoiceThunk(data))
+            response == true && setButtonState(true)
         }
     }
 
@@ -39,7 +43,7 @@ const PaymentFirst = (props) => {
 
     useEffect(()=>{
         if(Object.keys(totalPackage).length < 1){
-            navigate('../payment')
+            //navigate('../payment')
         }
     },[])
 
@@ -120,7 +124,7 @@ const PaymentFirst = (props) => {
                         Payment unsuccessful! Please try again.
                         </div>
                         <div className="payment_first__order__button-wrapper">
-                            <div className="button" onClick={postInvoice}>Pay now</div>
+                            <div className={buttonState ? "button" : "button disabled"} onClick={()=>buttonState && postInvoice()}>Pay now</div>
                         </div>
                         <div className="payment_first__order__error-wrapper">
                             <div className="payment_first__order__error-h1">Payment unsuccessful</div>

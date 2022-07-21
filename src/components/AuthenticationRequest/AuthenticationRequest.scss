@@ -310,11 +310,15 @@
 
         &__footer {
             display: flex;
-            justify-content: center;
-            background-color: #F6F6F7;
-            padding: 62px 0 100px 0;
+    align-items: center;
+    background-color: #F6F6F7;
+    padding: 62px 0 100px 0;
+    flex-direction: column;
             @include for-phone-only{
                 padding: 22px 21px 86px 21px;
+            }
+            &-error{
+                color: $c_r;
             }
 
             &-wrapper {
@@ -415,11 +419,16 @@ line-height: 19px;
                     font-size: 25px;
                     line-height: 140%;
                     cursor: pointer;
+                    &.disabled{
+                        cursor: default;
+                                            background: $c_dis;
+                    }
                     @include for-phone-only{
                         margin-top: 32px;
                         border-radius: 4px;
 font-size: 18px;
 padding: 12px 0;
+
                     }
                 }
             }

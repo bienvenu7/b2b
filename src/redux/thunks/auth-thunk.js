@@ -1,7 +1,7 @@
 import { login, register, getAuth, logout, forgotEmail, forgotPassword } from "../../api/auth/auth-api"
 import { setAuth } from '../reducers/auth-reducer'
 import Cookies from 'js-cookie'
-import { setStatusCode } from "../reducers/app-reducer"
+import { setErrors, setStatusCode } from "../reducers/app-reducer"
 
 export const regThunk = (data) => async (dispatch) => {
     const postData = {
@@ -22,9 +22,15 @@ export const regThunk = (data) => async (dispatch) => {
 }
 
 export const loginThunk = (data) => async (dispatch) => {
+    try {
         const response = await login(data)
         Cookies.set('jwt', response.data.token)
         dispatch(setAuth(response.data.user))
+    } catch (error) {
+        const data = {page: 'signin', error: error && error.response && error.response.data && error.response.data.message ? error.response.data.message[0] : null}
+        dispatch(setErrors(data))
+    }    
+    
 }
 
 export const getAuthThunk = () => async (dispatch) => {
@@ -32,7 +38,7 @@ export const getAuthThunk = () => async (dispatch) => {
         const response = await getAuth()
         dispatch(setAuth(response.data))
     } catch (error) {
-        console.log(error)
+        
     }
 }
 

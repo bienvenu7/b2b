@@ -12,9 +12,10 @@ import { takeBrands, takeOrder, takeAngles } from '../../redux/selectors/authReq
 import Navigation from '../Navigation/Navigation'
 import DropdownIndicator from '../../common/react-select/DropdownIndicator'
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader'
-import { getStatusCode } from '../../redux/selectors/app-selectors'
+import { getPostErrors, getStatusCode } from '../../redux/selectors/app-selectors'
 import { useNavigate } from 'react-router-dom'
 import { setStatusCode } from '../../redux/reducers/app-reducer'
+import { setErrors } from '../../redux/reducers/app-reducer'
 
 const AuthenticationRequest = () => {
 
@@ -25,19 +26,22 @@ const AuthenticationRequest = () => {
     const brands = useSelector(takeBrands)
     const order = useSelector(takeOrder)
     const angles = useSelector(takeAngles)
+    const postErrors = useSelector(getPostErrors)
 
     const [productEditNumber, setProductEditNumber] = useState(0)
 
     const [certCheck, setCertCheck] = useState(false)
+
+    const [buttonState, setButtonState] = useState(true)
 
     const [modelTypeValue, setModelTypeValue] = useState('')
     const [supplierTypeValue, setSupplierTypeValue] = useState('')
     const [answerTime, setAnswerTime] = useState(12)
     const [productTypeValue, setProductTypeValue] = useState(null)
     const [brandValue, setBrandValue] = useState()
-    const [brandSelectorKey, setBrandSelectorKey ] = useState(0)
+    const [brandSelectorKey, setBrandSelectorKey] = useState(0)
     const status = useSelector(getStatusCode)
-    const [errors, setErrors] = useState({category: null, brand: null, typeModel: null})
+    const [errors, setErrorsForForm] = useState({ category: null, brand: null, typeModel: null })
 
     //errors
 
@@ -58,58 +62,64 @@ const AuthenticationRequest = () => {
         setProductTypeValue(e.type)
         setSelectedCategory(e.key)
         setPhotoFiles([])
-        setBrandSelectorKey(brandSelectorKey+1)
-        errors.category && setErrors({...errors, category: null})
+        setBrandSelectorKey(brandSelectorKey + 1)
+        errors.category && setErrorsForForm({ ...errors, category: null })
+        postErrors.authrequest && dispatch(setErrors(null))
     }
 
     function handleChangeBrand(e) {
         setBrandValue(e.brand)
         setSelectedBrand(e.key)
-        errors.brand && setErrors({...errors, brand: null})
+        errors.brand && setErrorsForForm({ ...errors, brand: null })
     }
 
-    function handleChangeModelType(e){
+    function handleChangeModelType(e) {
         setModelTypeValue(e.target.value)
-        errors.typeModel && setErrors({...errors, typeModel: null})
+        errors.typeModel && setErrorsForForm({ ...errors, typeModel: null })
+        
     }
 
     useEffect(() => {
-        setPhotoFiles(angles.map((el, index) => photoFiles.length == 0 && { key: index, file: '', imagePreviewUrl: '', angleId: el.angle.id, necessity: el.necessity, error: false, angleName: el.angle.publicName, format: null}))
+        setPhotoFiles(angles.map((el, index) => photoFiles.length == 0 && { key: index, file: '', imagePreviewUrl: '', angleId: el.angle.id, necessity: el.necessity, error: false, angleName: el.angle.publicName, format: null }))
     }, [angles])
 
 
     productTypes.map((el, index) => options.push({ key: index, value: el.id, type: el, label: el.publicName }))
-    brands.map((el,index) => optionsBrands.push({ key: index, value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
+    brands.map((el, index) => optionsBrands.push({ key: index, value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
 
-    function checkNecessity(){
-        setPhotoFiles(photoFiles.map((el, index) => el.necessity == 1 && el.file !== '' ? {...el, error: false} : {...el, error: true}))
-        !photoFiles.find(el=> el.error === true) && setPhotoError(false)
+    function checkNecessity() {
+        setPhotoFiles(photoFiles.map((el, index) => el.necessity == 1 && el.file !== '' ? { ...el, error: false } : { ...el, error: true }))
+        !photoFiles.find(el => el.error === true) && setPhotoError(false)
     }
 
     const handlePost = async () => {
+        setButtonState(false)
         let onlineOrder = {}
-        if (!brandValue){
-            !productTypeValue ? setErrors( {...errors, category: 'Please select', brand: 'Please select'})
-            : setErrors( {...errors, brand: 'Please select'})
+        if (!brandValue) {
+            !productTypeValue ? setErrorsForForm({ ...errors, category: 'Please select', brand: 'Please select' })
+                : setErrorsForForm({ ...errors, brand: 'Please select' })
         }
-        if (modelTypeValue == ''){
-            if (!brandValue){
-                !productTypeValue ? setErrors( {...errors, category: 'Please select', brand: 'Please select', typeModel: 'Please fill'})
-                : setErrors( {...errors, brand: 'Please select', typeModel: 'Please fill'})
-            } else{
-                setErrors({...errors, typeModel: 'Please fill'})
+        if (modelTypeValue == '') {
+            if (!brandValue) {
+                !productTypeValue ? setErrorsForForm({ ...errors, category: 'Please select', brand: 'Please select', typeModel: 'Please fill' })
+                    : setErrorsForForm({ ...errors, brand: 'Please select', typeModel: 'Please fill' })
+            } else {
+                setErrorsForForm({ ...errors, typeModel: 'Please fill' })
             }
+            setButtonState(true)
             return
-        } else{
-            if (!brandValue){
+        } else {
+            if (!brandValue) {
+                setButtonState(true)
                 return
             }
-        }   
-        if(photoFiles.find(el=> el.file == '' && el.necessity == 1)){
+        }
+        if (photoFiles.find(el => el.file == '' && el.necessity == 1)) {
             setPhotoFiles(
-                photoFiles.map((el,index)=> el.file == '' && el.necessity == 1 ? {...el, error: true} : el)
+                photoFiles.map((el, index) => el.file == '' && el.necessity == 1 ? { ...el, error: true } : el)
             )
             setPhotoError(true)
+            setButtonState(true)
             return
         }
         if (!order) {
@@ -125,19 +135,26 @@ const AuthenticationRequest = () => {
             certificateNeeded: certCheck,
             answerTime: answerTime,
         }
-        const photosCount = photoFiles.filter(el=>el.file!=='').length
+        const photosCount = photoFiles.filter(el => el.file !== '').length
 
         const response = await dispatch(createProductThunk(data))
-        photoFiles.map((el,index)=> el.file !== '' && dispatch(uploadPhotoForProductThunk({productId: response.data.id, file: el.file, angleId: el.angleId}, photosCount, index)))
-        
-        setModelTypeValue('') 
-        setSupplierTypeValue('')
-        setCertCheck(false)
-        setProductTypeValue(null)
-        setProductEditNumber(productEditNumber+1)
+        console.log(response)
+        const response1 = response != true ?
+            await photoFiles.map(
+                (el, index) => el.file !== '' && dispatch(uploadPhotoForProductThunk({ productId: response.data.id, file: el.file, angleId: el.angleId }, photosCount, index))
+            )
+            : setButtonState(true)
+        response1 && setButtonState(true)
+        if (status) {
+            setModelTypeValue('')
+            setSupplierTypeValue('')
+            setCertCheck(false)
+            setProductTypeValue(null)
+            setProductEditNumber(productEditNumber + 1)
+        }
     }
 
-    
+
 
     function handleImageChange(e) {
         e.preventDefault();
@@ -147,7 +164,7 @@ const AuthenticationRequest = () => {
 
         let index = e.target.id.split('-')[1]
 
-        if (!file.name.match(/\.(jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/)){
+        if (!file.name.match(/\.(jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/)) {
             setPhotoFiles(
                 photoFiles.map(item =>
                     item.key == index ? { ...item, format: false } : item)
@@ -164,18 +181,18 @@ const AuthenticationRequest = () => {
         checkNecessity()
     }
 
-    if(status == 201){
+    if (status == 201) {
         navigate('../success-order')
         dispatch(setStatusCode(null))
     }
 
     return (
         <>
-        <MobileHeader label='Authentication request'/>
+            <MobileHeader label='Authentication request' />
             <div className="auth_request__wrapper">
                 <div className="auth_request__nav">
                     <div className='auth_request__nav-bar'>
-                        <Navigation hrefs={[{label: 'Luxury store'},{label: 'New authentication'}]}/>
+                        <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentication' }]} />
                         <div className='auth_request__nav-label'>Authentication request</div>
                     </div>
                     <div className='auth_request__nav-bell'><SvgSelector id='bell' /></div>
@@ -229,7 +246,7 @@ const AuthenticationRequest = () => {
                                 {photoError && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
 
                                 <div className='auth_request__form__photo-container'>
-                                    {productTypeValue &&  photoFiles.map((el, index) =>
+                                    {productTypeValue && photoFiles.map((el, index) =>
                                         <div key={index} className={`auth_request__form__photo-elem ${index}`}>
                                             {el.imagePreviewUrl !== '' ?
                                                 <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${el.imagePreviewUrl})` }}>
@@ -245,8 +262,11 @@ const AuthenticationRequest = () => {
                             </div>
                         </div>
                         <div className="auth_request__form__footer">
+                        {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
                             <div className='auth_request__form__footer-wrapper'>
+                            
                                 <div className='auth_request__form__footer__info'>
+                                    
                                     <div className='auth_request__form__footer__info__h1'>Authentication summary</div>
                                     <div className='auth_request__form__footer__info__h2'>
                                         <div className='auth_request__form__footer__info__h2-label'>Authentication requests</div>
@@ -259,7 +279,7 @@ const AuthenticationRequest = () => {
                                 </div>
                                 <div className='auth_request__form__footer__button-wrapper'>
 
-                                    <div className='auth_request__form__footer__button-elem' onClick={handlePost}>Submit</div>
+                                    <div className={buttonState ? 'auth_request__form__footer__button-elem' : 'auth_request__form__footer__button-elem disabled'} onClick={() => buttonState && handlePost()}>Submit</div>
                                 </div>
 
                             </div>

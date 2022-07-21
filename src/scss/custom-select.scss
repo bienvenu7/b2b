@@ -1,5 +1,7 @@
 .custom-select {
+    
     &__control {
+        cursor: pointer !important;
         border: 1.17544px solid $c_o  !important;
         border-radius: 9.40351px !important;
         min-height: 67px !important;
@@ -24,7 +26,9 @@
     }
 
     &__value {
+        
         &-container {
+            
             padding-left: 33px !important;
 
             @include for-phone-only {
@@ -60,6 +64,7 @@
     }
 
     &__menu {
+        
         border-radius: 10px !important;
         border: 1.17544px solid $c_o  !important;
 
@@ -73,6 +78,7 @@
     }
 
     &__option {
+        cursor: pointer !important;
         font-family: 'Roboto' !important;
         font-style: normal !important;
         font-weight: 400 !important;

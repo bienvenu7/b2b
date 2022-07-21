@@ -1,5 +1,5 @@
 import { createProduct, getBalance, getBrands, orderCreate, uploadPhotoForProduct } from "../../api/authRequest/authRequest-api"
-import { setStatusCode } from "../reducers/app-reducer"
+import { setErrors, setStatusCode } from "../reducers/app-reducer"
 import { initOrder, setAngles, setBalance, setBrands } from "../reducers/authRequest-reducer"
 
 export const getProductTypePropThunk = (id) => async (dispatch) => {
@@ -23,7 +23,9 @@ export const createProductThunk = (data) => async (dispatch) => {
         const response = await createProduct(data)
         return response
     } catch (error) {
-        
+        console.log(error)
+        dispatch(setErrors({page: 'authrequest', error: error.response && error.response.data && error.response.data.message ? error.response.data.message : null}))
+        return true
     }
 }
 
@@ -45,8 +47,10 @@ export const uploadPhotoForProductThunk = (data, count, idx) => async (dispatch)
         const response = await uploadPhotoForProduct(formData)
         if (idx+1 == count){
             dispatch(setStatusCode(response.status))
+            return true
         }
     } catch (error) {
         console.log(error)
+        return true
     }
 }
