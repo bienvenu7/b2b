@@ -75,8 +75,10 @@ const SignIn = () => {
                     placeholder='Current password'
                     onChange={formik.handleChange}
                     value={formik.values.password}
+                    onClick={()=>{postErrors && dispatch(setErrors(null))}}
                     />
                 {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
+                {postErrors ? <div className='auth__form-errorMessage'>{postErrors === 'incorrectPassword' && 'Incorrect password'}</div> : null}
                 <div className='auth__form-elem-rememberMe'><input
                     id="rememberMe"
                     type='checkbox'

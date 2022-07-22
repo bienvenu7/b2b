@@ -1,13 +1,17 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setErrors } from '../../../redux/reducers/app-reducer';
+import { getPostErrors } from '../../../redux/selectors/app-selectors';
 import { forgotEmailThunk } from '../../../redux/thunks/auth-thunk';
 
 const ForgotPassword = () =>{
  
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    const postErrors = useSelector(getPostErrors)
 
     const [send, setSendState] = useState(false)
 
@@ -28,9 +32,9 @@ const ForgotPassword = () =>{
             email: '',
         },
         validate,
-        onSubmit: values => {
-            dispatch(forgotEmailThunk(values))
-            setSendState(true)
+        onSubmit: async (values) => {
+            const response = await dispatch(forgotEmailThunk(values))
+            response && setSendState(true)
         }
     });
 
@@ -44,9 +48,11 @@ const ForgotPassword = () =>{
                     type="text"
                     onChange={formik.handleChange}
                     placeholder='Enter your email'
-                    value={formik.values.email} 
+                    value={formik.values.email}
+                    onClick={()=>dispatch(setErrors(null))} 
                     />
                 {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
+                {postErrors.forgot ? <div className='auth__form-errorMessage'>Email not exists</div> : null}
                 
 
 

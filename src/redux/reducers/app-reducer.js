@@ -34,7 +34,11 @@ const appReducer = createReducer(initialState, (builder) => {
                     break;
                 case 'authrequest':
                     state.post.errors = {...state.post.errors, authrequest: action.payload.error }
-                default:
+                case 'signup':
+                    state.post.errors = {...state.post.errors, signup: action.payload.error }
+                case 'forgot':
+                    state.post.errors = {...state.post.errors, forgot: action.payload.error }
+                    default:
                     break;
             }
             } else{

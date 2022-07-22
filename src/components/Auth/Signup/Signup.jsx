@@ -2,6 +2,8 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setErrors } from '../../../redux/reducers/app-reducer';
+import { getPostErrors } from '../../../redux/selectors/app-selectors';
 import { getIsAuth } from '../../../redux/selectors/auth-selectors';
 import { getAuthThunk, loginThunk, regThunk } from '../../../redux/thunks/auth-thunk';
 
@@ -9,6 +11,8 @@ const SignUp = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const postErrors = useSelector(getPostErrors)
 
     const validate = values => {
         const errors = {};
@@ -97,9 +101,11 @@ const SignUp = () => {
                     onChange={formik.handleChange}
                     //onBlur={()=>{formik.values.email == '' && formik.setFieldValue('email','Email Address*')}}
                     value={formik.values.email}
+                    onClick={()=>postErrors && postErrors.signup && dispatch(setErrors(null))}
                     //onClick={()=>{formik.values.email =='Email Address*' && formik.setFieldValue('email','')}}
                 />
                 {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
+                {postErrors && postErrors.signup ? <div className='auth__form-errorMessage'>{postErrors.signup}</div> : null}
                 <input
                     className={formik.touched.password && formik.errors.password ? 'auth__form-elem invalid' : 'auth__form-elem'}
                     id="password"
@@ -107,6 +113,7 @@ const SignUp = () => {
                     type='password'
                     placeholder='Password*'
                     onChange={formik.handleChange}
+                    
                     //onBlur={formik.handleBlur}
                     value={formik.values.password}
                     //onClick={() => { setType('password'); formik.setFieldValue('password', '') }}

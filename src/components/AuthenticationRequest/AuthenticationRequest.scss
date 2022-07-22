@@ -447,7 +447,11 @@ padding: 12px 0;
     &__elem {
         &-cat {}
 
-        &-count {}
+        &-count {
+            display: flex;
+            justify-content: end;
+            width: 100%;
+        }
 
         &-hours {
             font-family: "Roboto";
@@ -461,6 +465,7 @@ padding: 12px 0;
     padding: 0 8px;
     max-height: 19.58px;
     display: flex;
+    white-space: nowrap;
         }
 
         &-button {

@@ -23,9 +23,9 @@
     }
 
     &__main-container {
-        padding-top: 25px;
-        max-width: 1321px;
-        margin: 0 auto;
+    max-width: 1321px;
+    margin: 0 auto;
+    height: 100vh;
         @include for-phone-only{
             padding: 0;
             background-color: #E5E5E5;

@@ -16,7 +16,7 @@ const AuthBalance = (props) => {
             <div className="auth__balance__elem-wrapper">
                 {balance.map((el, index) => <div key={index} className="auth__balance__elem">
                     <div className="auth__balance__elem-cat">{el.productType.publicName}</div>
-                    <div className="auth__balance__elem-hours">{el.answerTime} h</div>
+                    <div className="auth__balance__elem-hours">{String(el.answerTime)+' h'}</div>
                     <div className="auth__balance__elem-count">{el.volume}</div>
                 </div>)}
                 <div className="auth__balance__elem">

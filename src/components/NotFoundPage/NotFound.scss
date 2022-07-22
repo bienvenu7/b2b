@@ -23,6 +23,10 @@
     max-width: 1000px;
     text-align: center;
 color: $c_o;
+@include for-phone-only{
+    max-width: 95vw;
+    font-size: 20.278px;
+}
     }
     &__button{
         font-family: 'Roboto';
@@ -40,5 +44,16 @@ line-height: 140%;
     display: flex;
     justify-content: center;
     align-items: center;
+    @include for-phone-only{
+        max-width: 95vw;
+        border-radius: 4px;
+        font-size: 21px;
+        height: 71px;
+    }
+    }
+    &__image{
+        img{
+            width: 50vw;
+        }
     }
 }

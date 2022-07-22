@@ -7,7 +7,7 @@ export const postInvoiceThunk = (obj) => async (dispatch) => {
     const data = {...obj, successUrl: host+'/success', cancelUrl: window.location.href}
 
     const response = await postInvoices(data)
-    response.status == 201 && dispatch(setInvoiceLink(response.data))
+    response.status === 201 && dispatch(setInvoiceLink(response.data))
     return true
     } catch (error) {
         return true
@@ -17,16 +17,16 @@ export const postInvoiceThunk = (obj) => async (dispatch) => {
 
 export const getCartTotalThunk = (data) => async (dispatch) => {
     const response = await cartTotal(data)
-    response.status == 201 && dispatch(setTotal(response.data.total))
+    response.status === 201 && dispatch(setTotal(response.data.total))
 }
 
 export const getPriceThunk = (data) => async (dispatch) => {
     if (data == null) {
         const response = await getPrice(data)
-        response.status == 200 && dispatch(setPriceForCertificate(response.data.certificate))
+        response.status === 200 && dispatch(setPriceForCertificate(response.data.certificate))
     }
     else {
         const response = await getPrice({ id: data.productType.id, volume: data.volume, answerTime: data.answerTime })
-        response.status == 200 && dispatch(setPrice(response.data.tariffPackage.price))
+        response.status === 200 && dispatch(setPrice(response.data.tariffPackage.price))
     }
 }
