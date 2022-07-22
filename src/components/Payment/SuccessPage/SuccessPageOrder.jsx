@@ -1,10 +1,17 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../../common/images/logo-for-mobile.png'
+import { getBalanceThunk } from '../../../redux/thunks/authRequest-thunk'
 
 const SuccessPageOrder = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getBalanceThunk())
+    },[])
 
     return(
         <div className="payment__success-wrapper">

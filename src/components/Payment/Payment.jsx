@@ -8,6 +8,7 @@ import PaymentHeader from "./PaymentHeader/PaymentHeader"
 import { getCartTotalThunk, postInvoiceThunk } from "../../redux/thunks/payment-thunk"
 import { useNavigate } from "react-router-dom"
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader';
+import { getProductTypesThunk } from "../../redux/thunks/product-thunk"
 
 const Payment = (props) => {
 
@@ -30,21 +31,19 @@ const Payment = (props) => {
     const [method, setMethod] = useState()
 
 
-    useEffect(() => { }, [total])
+    useEffect(() => { 
 
+    }, [total])
 
-    /*useEffect(() => {
-        const data = {
-            userTariffPackages: packages
-        }
-        packages.length > 0 && dispatch(getCartTotalThunk(data))
-    }, [packages])*/
+    useEffect(()=>{
+        dispatch(getProductTypesThunk(1, 1000))
+    },[])
 
-    useEffect(() => {
+    useEffect(() => { 
 
     }, [packages.length])
 
-    invoiceLink != null && window.open(invoiceLink)
+    //invoiceLink != null && window.open(invoiceLink)
 
     const btnAddToogleClick = () => {
         setAddButState(true)

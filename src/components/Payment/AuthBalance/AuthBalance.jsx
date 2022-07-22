@@ -1,9 +1,14 @@
+import { useEffect } from 'react'
 import {useSelector} from 'react-redux'
 import {takeBalance} from '../../../redux/selectors/authRequest-selectors'
 
 const AuthBalance = (props) => {
 
     const balance = useSelector(takeBalance)
+
+    useEffect(()=>{
+
+    },[balance])
 
     return (
         <div className="auth__balance-wrapper" style={{marginTop: props.mt}}>

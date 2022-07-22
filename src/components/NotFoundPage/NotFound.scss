@@ -1,3 +1,5 @@
+@import '../../scss/vars';
+
 .notFoundPage{
     &-container{
         display: flex;
@@ -9,14 +11,34 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        align-items: center;
+        gap: 90px;
     }
     &__title{
-        text-align: center;
+        font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34.278px;
+    line-height: 140%;
+    max-width: 1000px;
+    text-align: center;
+color: $c_o;
     }
     &__button{
-        border: 1px solid;
-        border-radius: 6px;
-        padding: 10px;
+        font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 140%;
+
         cursor: pointer;
+        background: $c_g;
+        color: $c_w;
+        border-radius: 15.8px;
+        width: 449px;
+    height: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     }
 }

@@ -20,8 +20,8 @@ export const login = (data) => {
     return instance.post('auth/email/login', data)
 }
 
-export const getAuth = () => {
-    return instance.get('auth/me', {headers: {'Authorization': 'Bearer ' + token}})
+export const getAuth = (data) => {
+    return instance.get('auth/me', {headers: {'Authorization': 'Bearer ' + data}})
 }
 
 export const removeMe = () => {

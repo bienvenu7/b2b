@@ -24,6 +24,7 @@ const CategoryForm = (props) => {
     const cost = useSelector(getPrice)
     const [answerTime, setAnswerTime]=useState(12)
     const [productType, setProductType] = useState(null)
+    const [productTypeVar, setProductTypeVar] = useState(null)
 
 
 
@@ -50,6 +51,7 @@ const CategoryForm = (props) => {
     }
 
     const updateType = (e, typeOfShoes) => {
+        setProductTypeVar(typeOfShoes)
         if (e != null){
             let type = e != 3 && e.types.single
             if (e.name == 'hypeShoes') {
@@ -121,14 +123,14 @@ const CategoryForm = (props) => {
 
                         <div className="payment__form-radio_btn_types-container">
                             <div className="payment__form-radio_btn_types" id="types">
-                                <Field type="radio" name="typeOfShoes" value="sneakers" id="sneakers" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
-                                <label htmlFor="sneakers" />
-                                <div className="payment__form-radio_btn_types-label">Sneakers</div>
+                                <Field type="radio" name="typeOfShoes" checked={productTypeVar == 'sneakers' ? true : false} value="sneakers" id="sneakers" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
+                                <label htmlFor="sneakers">Sneakers</label>
+                                {/*<div className="payment__form-radio_btn_types-label">Sneakers</div>*/}
                             </div>
                             <div className="payment__form-radio_btn_types">
-                                <Field type="radio" name="typeOfShoes" value="other" id="other" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
-                                <label htmlFor="other" />
-                                <div className="payment__form-radio_btn_types-label">Other</div>
+                                <Field type="radio" name="typeOfShoes" checked={productTypeVar == 'other' ? true : false} value="other" id="other" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
+                                <label htmlFor="other" id="otherlabel">Other</label>
+                                {/*<label htmlFor="other" className="payment__form-radio_btn_types-label">Other</label>*/}
                             </div>
                         </div>
                     </div>}

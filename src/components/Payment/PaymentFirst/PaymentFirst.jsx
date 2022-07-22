@@ -6,6 +6,8 @@ import { getCartTotalThunk, postInvoiceThunk } from "../../../redux/thunks/payme
 import { Navigate, useNavigate } from "react-router-dom"
 import { isEmptyArray } from "formik"
 import MobileHeader from "../../Mobile/MobileHeader/MobileHeader"
+import { setInvoiceLink } from "../../../redux/reducers/payment-reducer"
+import Loader from "../../Loader/Loader"
 
 const PaymentFirst = (props) => {
 
@@ -39,11 +41,12 @@ const PaymentFirst = (props) => {
 
     if (invoiceLink != null){
         method === 'stripe' ? window.open(invoiceLink, '_self') : window.open(invoiceLink, '_blank')
+        dispatch(setInvoiceLink(null))
     }
 
     useEffect(()=>{
         if(Object.keys(totalPackage).length < 1){
-            //navigate('../payment')
+            navigate('../payment')
         }
     },[])
 
@@ -51,6 +54,10 @@ const PaymentFirst = (props) => {
         return <></>
     }
 
+
+    if (!buttonState){
+        return <Loader/>
+    }
 
     return(
         <>

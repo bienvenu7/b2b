@@ -16,6 +16,7 @@ import { getPostErrors, getStatusCode } from '../../redux/selectors/app-selector
 import { useNavigate } from 'react-router-dom'
 import { setStatusCode } from '../../redux/reducers/app-reducer'
 import { setErrors } from '../../redux/reducers/app-reducer'
+import Loader from '../Loader/Loader'
 
 const AuthenticationRequest = () => {
 
@@ -184,6 +185,10 @@ const AuthenticationRequest = () => {
     if (status == 201) {
         navigate('../success-order')
         dispatch(setStatusCode(null))
+    }
+
+    if (!buttonState){
+        return <Loader/>
     }
 
     return (

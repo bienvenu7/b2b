@@ -47,6 +47,7 @@ const CertificatesForm = (props) => {
         if (e.value == 'include'){
             let vol = 0
             userTariffPackages.map(e => vol += e.volume)
+            console.log(vol)
             setVolume(vol)
             const data = {
                 userTariffPackages: userTariffPackages,
@@ -59,6 +60,17 @@ const CertificatesForm = (props) => {
         } else if(e.value == 'notneeded'){
             const data = {
                 userTariffPackages: userTariffPackages,
+            }
+            props.cartTotal(data)
+        }
+        else if (e.value == 'choose'){
+            volume > 1 && setVolume(1)
+            const data = {
+                userTariffPackages: userTariffPackages,
+                userCertificatePackage: {
+                    volume: volume,
+                    userId: userId
+                }
             }
             props.cartTotal(data)
         }

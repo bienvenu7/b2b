@@ -25,7 +25,7 @@ export const loginThunk = (data) => async (dispatch) => {
     try {
         const response = await login(data)
         Cookies.set('jwt', response.data.token)
-        dispatch(setAuth(response.data.user))
+        dispatch(getAuthThunk())
     } catch (error) {
         const data = {page: 'signin', error: error && error.response && error.response.data && error.response.data.message ? error.response.data.message[0] : null}
         dispatch(setErrors(data))
@@ -35,7 +35,8 @@ export const loginThunk = (data) => async (dispatch) => {
 
 export const getAuthThunk = () => async (dispatch) => {
     try {
-        const response = await getAuth()
+        const token = Cookies.get('jwt')
+        const response = await getAuth(token)
         dispatch(setAuth(response.data))
     } catch (error) {
         
