@@ -45,7 +45,7 @@ export const uploadPhotoForProductThunk = (data, count, idx) => async (dispatch)
         formData.append('angleId', data.angleId)
         formData.append('photo', data.file)
         const response = await uploadPhotoForProduct(formData)
-        if (idx+1 == count){
+        if (idx+1 === count){
             dispatch(setStatusCode(response.status))
             return true
         }

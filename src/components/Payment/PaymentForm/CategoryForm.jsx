@@ -48,6 +48,8 @@ const CategoryForm = (props) => {
     const handleChangeForNumeric = (e) => {
         setVolume(e)
         dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
+        const data = {productType: productType, volume: e, answerTime: answerTime}
+        props.getPrice(data)
     }
 
     const updateType = (e, typeOfShoes) => {

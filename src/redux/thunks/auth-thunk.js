@@ -1,4 +1,4 @@
-import { login, register, getAuth, logout, forgotEmail, forgotPassword } from "../../api/auth/auth-api"
+import { login, register, getAuth, forgotEmail, forgotPassword } from "../../api/auth/auth-api"
 import { setAuth } from '../reducers/auth-reducer'
 import Cookies from 'js-cookie'
 import { setErrors, setStatusCode } from "../reducers/app-reducer"
@@ -44,7 +44,7 @@ export const loginThunk = (data) => async (dispatch) => {
 export const getAuthThunk = (data) => async (dispatch) => {
     try {
         const token = await Cookies.get('jwt')
-        if (token == undefined) {
+        if (token === undefined) {
             const response = await getAuth(data)
             dispatch(setAuth(response.data))
         } else {
@@ -63,7 +63,7 @@ export const logoutThunk = () => async (dispatch) => {
 
 export const forgotEmailThunk = (data) => async (dispatch) => {
     try {
-        const response = await forgotEmail(data)
+        await forgotEmail(data)
         return true
     } catch (error) {
         const data = { page: 'forgot', error: error.response && error.response.data && error.response.data.errors && error.response.data.errors.email ? error.response.data.errors.email : null }
@@ -74,7 +74,7 @@ export const forgotEmailThunk = (data) => async (dispatch) => {
 
 export const forgotPasswordThunk = (data) => async (dispatch) => {
     const response = await forgotPassword(data)
-    if (response.status == 200) {
+    if (response.status === 200) {
         dispatch(setStatusCode(200))
     }
 }

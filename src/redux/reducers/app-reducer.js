@@ -24,24 +24,27 @@ const appReducer = createReducer(initialState, (builder) => {
         .addCase('SET_INFO', (state = initialState, action) => {
             state.sendInfo = action.payload
         })
-        .addCase('SET_ERRORS', (state=initialState, action)=>{
-            if(action.payload != null){
-            const page = action.payload.page
-            state.post.errors = page == 'signin' && {...state.post.errors, signin: action.payload.error }
-            switch (page) {
-                case 'signin':
-                    state.post.errors = {...state.post.errors, signin: action.payload.error }
-                    break;
-                case 'authrequest':
-                    state.post.errors = {...state.post.errors, authrequest: action.payload.error }
-                case 'signup':
-                    state.post.errors = {...state.post.errors, signup: action.payload.error }
-                case 'forgot':
-                    state.post.errors = {...state.post.errors, forgot: action.payload.error }
+        .addCase('SET_ERRORS', (state = initialState, action) => {
+            if (action.payload != null) {
+                const page = action.payload.page
+                state.post.errors = page === 'signin' && { ...state.post.errors, signin: action.payload.error }
+                switch (page) {
+                    case 'signin':
+                        state.post.errors = { ...state.post.errors, signin: action.payload.error }
+                        break;
+                    case 'authrequest':
+                        state.post.errors = { ...state.post.errors, authrequest: action.payload.error }
+                        break;
+                    case 'signup':
+                        state.post.errors = { ...state.post.errors, signup: action.payload.error }
+                        break;
+                    case 'forgot':
+                        state.post.errors = { ...state.post.errors, forgot: action.payload.error }
+                        break;
                     default:
-                    break;
-            }
-            } else{
+                        break;
+                }
+            } else {
                 state.post.errors = {}
             }
         })

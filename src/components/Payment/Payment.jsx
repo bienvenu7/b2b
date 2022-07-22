@@ -5,7 +5,7 @@ import AuthBalance from "./AuthBalance/AuthBalance"
 import PackagesHistory from "./PackagesHistory/PackagesHistory"
 import PaymentForm from "./PaymentForm/PaymentForm"
 import PaymentHeader from "./PaymentHeader/PaymentHeader"
-import { getCartTotalThunk, postInvoiceThunk } from "../../redux/thunks/payment-thunk"
+import { getCartTotalThunk, getPriceThunk, postInvoiceThunk } from "../../redux/thunks/payment-thunk"
 import { useNavigate } from "react-router-dom"
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader';
 import { getProductTypesThunk } from "../../redux/thunks/product-thunk"
@@ -25,6 +25,8 @@ const Payment = (props) => {
 
     const [addButState, setAddButState] = useState(false)
     const [payButState, setPayButState] = useState(false)
+
+    const [timerPrice, setTimerPrice] = useState(false)
     const [timerCart, setTimerCart] = useState(false)
 
     const [saveBilling, setSaveBilling] = useState(false)
@@ -73,6 +75,13 @@ const Payment = (props) => {
         }, 1000))
     }
 
+    const getPrice = (data) => {
+        clearTimeout(timerPrice)
+        setTimerPrice(setTimeout(()=>{
+            dispatch(getPriceThunk(data))
+        }, 1000))
+    }
+
     const setPayMethod = (e) => {
         setMethod(e.target.value)
     }
@@ -84,7 +93,7 @@ const Payment = (props) => {
                 <PaymentHeader />
                 <div className="payment__content-container">
                     {packages.length > 0 && <PackagesHistory />}
-                    <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal} />
+                    <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal} getPrice={getPrice} />
                     <AuthBalance mt={100}/>
                 </div>
                 <div className="payment__footer">
