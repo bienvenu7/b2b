@@ -1,8 +1,8 @@
 import { Formik, Field, Form } from "formik"
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import * as NumericInput from 'react-numeric-input'
 import { useDispatch, useSelector } from "react-redux"
-import { initPackage, pushTotal, removePreviewPackage, setCategoryError, setPrice, updateCurrentPackage, updateHoursPackage, updateTypePackage, updateVolumePackage } from "../../../redux/reducers/payment-reducer"
+import { initPackage, pushTotal, setCategoryError, updateHoursPackage, updateTypePackage, updateVolumePackage } from "../../../redux/reducers/payment-reducer"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
@@ -55,13 +55,13 @@ const CategoryForm = (props) => {
     const updateType = (e, typeOfShoes) => {
         setProductTypeVar(typeOfShoes)
         if (e != null){
-            let type = e != 3 && e.types.single
-            if (e.name == 'hypeShoes') {
-                typeOfShoes == 'sneakers' ? type = e.types.sneakers : type = e.types.other
-            } else if (e.name == 'luxuryShoes') {
-                typeOfShoes == 'sneakers' ? type = e.types.sneakers : type = e.types.other
+            let type = e !== 3 && e.types.single
+            if (e.name === 'hypeShoes') {
+                typeOfShoes === 'sneakers' ? type = e.types.sneakers : type = e.types.other
+            } else if (e.name === 'luxuryShoes') {
+                typeOfShoes === 'sneakers' ? type = e.types.sneakers : type = e.types.other
             }
-            e.value != 3 && dispatch(updateTypePackage({index: packageEditNumber, type: type}))
+            e.value !== 3 && dispatch(updateTypePackage({index: packageEditNumber, type: type}))
             setProductType(type)
             const data = {productType: type, volume: volume, answerTime: answerTime}
             dispatch(getPriceThunk(data))
@@ -75,6 +75,7 @@ const CategoryForm = (props) => {
         dispatch(updateHoursPackage({index: packageEditNumber,hours:value}))
         dispatch(getPriceThunk(pack))
         props.cartTotal(data)
+        setErrorForAnswerTime(null)
     }
 
     cart.length < 1 && dispatch(initPackage(userId))
@@ -93,7 +94,7 @@ const CategoryForm = (props) => {
     let but = props.but
 
     const handlePost = (formik) => {
-        if (formik.values.hours != '0'){
+        if (formik.values.hours !== '0'){
             setPackageEdit(packageEditNumber+1)
             dispatch(initPackage(userId))
             dispatch(pushTotal(cost.package))
@@ -120,17 +121,17 @@ const CategoryForm = (props) => {
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
 
-                    {(selectedValue.name == 'hypeShoes' || selectedValue.name == "luxuryShoes") && <div className="payment__form-elem shoes-vars">
+                    {(selectedValue.name === 'hypeShoes' || selectedValue.name === "luxuryShoes") && <div className="payment__form-elem shoes-vars">
                         <label htmlFor="types" className="payment__form-label">Choose the category</label>
 
                         <div className="payment__form-radio_btn_types-container">
                             <div className="payment__form-radio_btn_types" id="types">
-                                <Field type="radio" name="typeOfShoes" checked={productTypeVar == 'sneakers' ? true : false} value="sneakers" id="sneakers" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
+                                <Field type="radio" name="typeOfShoes" checked={productTypeVar === 'sneakers' ? true : false} value="sneakers" id="sneakers" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
                                 <label htmlFor="sneakers">Sneakers</label>
                                 {/*<div className="payment__form-radio_btn_types-label">Sneakers</div>*/}
                             </div>
                             <div className="payment__form-radio_btn_types">
-                                <Field type="radio" name="typeOfShoes" checked={productTypeVar == 'other' ? true : false} value="other" id="other" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
+                                <Field type="radio" name="typeOfShoes" checked={productTypeVar === 'other' ? true : false} value="other" id="other" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
                                 <label htmlFor="other" id="otherlabel">Other</label>
                                 {/*<label htmlFor="other" className="payment__form-radio_btn_types-label">Other</label>*/}
                             </div>

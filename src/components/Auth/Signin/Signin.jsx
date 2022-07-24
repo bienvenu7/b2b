@@ -1,10 +1,9 @@
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setErrors } from '../../../redux/reducers/app-reducer';
 import { getPostErrors } from '../../../redux/selectors/app-selectors';
-import { getIsAuth } from '../../../redux/selectors/auth-selectors';
 import { loginThunk } from '../../../redux/thunks/auth-thunk';
 
 const SignIn = () => {
@@ -30,7 +29,7 @@ const SignIn = () => {
             errors.password = 'Must be 8 characters or more';
         }
 
-        if (!values.email || values.email == 'Email') {
+        if (!values.email || values.email === 'Email') {
             errors.email = 'Please fill in your email';
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
             errors.email = 'Invalid email address';

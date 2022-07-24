@@ -1,0 +1,12 @@
+@import '../../scss/vars';
+
+.header{
+    &-container{
+
+    }
+    &-wrapper{
+        display: flex;
+        justify-content: space-between;
+        padding: 54px 60px 0 29px;
+    }
+}

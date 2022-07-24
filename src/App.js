@@ -15,6 +15,7 @@ import PaymentFirst from './components/Payment/PaymentFirst/PaymentFirst';
 import AuthenticationRequest from './components/AuthenticationRequest/AuthenticationRequest';
 import SuccessPageOrder from './components/Payment/SuccessPage/SuccessPageOrder';
 import NotFoundPage from './components/NotFoundPage/NotFound';
+import Authentications from './components/PersonalArea/Authentications/Authentications';
 
 function App() {
 
@@ -25,15 +26,19 @@ function App() {
   const appInit = useSelector(getInitialApp)
   const paymentLink = useSelector(getInvoiceLink)
 
-  useEffect(() => {
+  function redirect(){
     appInit && !isAuth && navigate('/auth/signin')
+  }
+
+  useEffect(() => {
+    redirect()
 
   }, [isAuth])
 
   useEffect(() => {
     dispatch(initialApp())
     dispatch(getProductTypesThunk(1, 1000))
-  }, [])
+  })
 
 
   if (!appInit) {
@@ -56,6 +61,7 @@ function App() {
         <Route path='payment-first' element={<PaymentFirst />} />
         <Route path='authentication-request' element={<AuthenticationRequest />} />
         <Route path='*' element={<NotFoundPage/>}/>
+        <Route path='authentications' element={<Authentications/>}/>
       </Routes>
     </div>
   );

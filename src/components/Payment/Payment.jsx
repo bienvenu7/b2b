@@ -1,36 +1,25 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getUserTariffPackages, getCartTotal, getInvoiceLink, getTotalPackage, getCosts } from "../../redux/selectors/payment-selectors"
+import { getUserTariffPackages, getCartTotal } from "../../redux/selectors/payment-selectors"
 import AuthBalance from "./AuthBalance/AuthBalance"
 import PackagesHistory from "./PackagesHistory/PackagesHistory"
 import PaymentForm from "./PaymentForm/PaymentForm"
 import PaymentHeader from "./PaymentHeader/PaymentHeader"
-import { getCartTotalThunk, getPriceThunk, postInvoiceThunk } from "../../redux/thunks/payment-thunk"
-import { useNavigate } from "react-router-dom"
+import { getCartTotalThunk, getPriceThunk } from "../../redux/thunks/payment-thunk"
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader';
 import { getProductTypesThunk } from "../../redux/thunks/product-thunk"
 
 const Payment = (props) => {
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const [submit, setSubmit] = useState(false)
-
     const packages = useSelector(getUserTariffPackages)
     const total = useSelector(getCartTotal)
-    const invoiceLink = useSelector(getInvoiceLink)
-    const totalPackage = useSelector(getTotalPackage)
-    const costs = useSelector(getCosts)
 
     const [addButState, setAddButState] = useState(false)
     const [payButState, setPayButState] = useState(false)
 
     const [timerPrice, setTimerPrice] = useState(false)
     const [timerCart, setTimerCart] = useState(false)
-
-    const [saveBilling, setSaveBilling] = useState(false)
-    const [method, setMethod] = useState()
 
 
     useEffect(() => { 
@@ -39,7 +28,7 @@ const Payment = (props) => {
 
     useEffect(()=>{
         dispatch(getProductTypesThunk(1, 1000))
-    },[])
+    })
 
     useEffect(() => { 
 
@@ -64,7 +53,7 @@ const Payment = (props) => {
     const calcCartTotal = (data) => {
         clearTimeout(timerCart)
         setTimerCart(setTimeout(() => {
-            if (data.userTariffPackages.length == 1){
+            if (data.userTariffPackages.length === 1){
                 if (data.userTariffPackages[0].productType !== ''){
                     dispatch(getCartTotalThunk(data))
                 }
@@ -80,10 +69,6 @@ const Payment = (props) => {
         setTimerPrice(setTimeout(()=>{
             dispatch(getPriceThunk(data))
         }, 1000))
-    }
-
-    const setPayMethod = (e) => {
-        setMethod(e.target.value)
     }
 
     return (

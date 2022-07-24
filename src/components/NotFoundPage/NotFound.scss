@@ -53,7 +53,9 @@ line-height: 140%;
     }
     &__image{
         img{
+            @include for-phone-only{
             width: 50vw;
+            }
         }
     }
 }

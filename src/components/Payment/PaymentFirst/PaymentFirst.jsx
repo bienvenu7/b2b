@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getUserTariffPackages, getCartTotal, getInvoiceLink, getTotalPackage, getCosts } from "../../../redux/selectors/payment-selectors"
+import { getCartTotal, getInvoiceLink, getTotalPackage, getCosts } from "../../../redux/selectors/payment-selectors"
 import PaymentHeader from '../PaymentHeader/PaymentHeader'
-import { getCartTotalThunk, postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
-import { Navigate, useNavigate } from "react-router-dom"
-import { isEmptyArray } from "formik"
+import { postInvoiceThunk } from "../../../redux/thunks/payment-thunk"
+import { useNavigate } from "react-router-dom"
 import MobileHeader from "../../Mobile/MobileHeader/MobileHeader"
 import { setInvoiceLink } from "../../../redux/reducers/payment-reducer"
 import Loader from "../../Loader/Loader"
@@ -31,11 +30,11 @@ const PaymentFirst = (props) => {
     const [buttonState, setButtonState] = useState(true)
 
     const postInvoice = async () => {
-        if (totalPackage != {}) {
+        if (totalPackage !== {}) {
             setButtonState(false)
             const data = { ...totalPackage, paymentSystem: method, savePaymentMethod: saveBilling }
             const response = await dispatch(postInvoiceThunk(data))
-            response == true && setButtonState(true)
+            response === true && setButtonState(true)
         }
     }
 
@@ -48,7 +47,7 @@ const PaymentFirst = (props) => {
         if(Object.keys(totalPackage).length < 1){
             navigate('../payment')
         }
-    },[])
+    })
 
     if(Object.keys(totalPackage).length < 1){
         return <></>
@@ -109,7 +108,7 @@ const PaymentFirst = (props) => {
                     <div className="payment_first__order-wrapper">
                         <div className="payment_first__order-h1">Order summary</div>
                         <div className="payment_first__order-packages-wrapper">
-                            {totalPackage != null && totalPackage.userTariffPackages.map((e, index) => e.productType != '' && e.answerTime != '' && <div key={index} className="payment_first__order-packages-elem">
+                            {totalPackage !== null && totalPackage.userTariffPackages.map((e, index) => e.productType !== '' && e.answerTime !== '' && <div key={index} className="payment_first__order-packages-elem">
                                 <div className="photo">
                                     img
                                 </div>

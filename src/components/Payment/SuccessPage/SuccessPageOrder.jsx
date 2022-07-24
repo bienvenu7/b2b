@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import logo from '../../../common/images/logo-for-mobile.png'
 import { getBalanceThunk } from '../../../redux/thunks/authRequest-thunk'
 
@@ -11,12 +11,12 @@ const SuccessPageOrder = () => {
 
     useEffect(()=>{
         dispatch(getBalanceThunk())
-    },[])
+    })
 
     return(
         <div className="payment__success-wrapper">
             <div className="payment__success-container">
-                <div className='payment__success__logo'><img className='logoImage' src={logo} /></div>
+                <div className='payment__success__logo'><img className='logoImage' src={logo} alt=''/></div>
                 <div className="payment__success__message-h1">it’S a success!</div>
                 <div className="payment__success__message-h2">Your authentication order was successful!</div>
                 <div className="payment__success__message-h2 last-child">Our team will start the verification process as soon as possible. 

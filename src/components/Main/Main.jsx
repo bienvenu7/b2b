@@ -12,7 +12,7 @@ const Main = () => {
 
     const isAuth = useSelector(getIsAuth)
 
-    useEffect(() => {
+    useEffect((navigate) => {
         !isAuth && navigate('../auth/signup')
     }, [isAuth])
 

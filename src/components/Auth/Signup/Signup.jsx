@@ -1,11 +1,9 @@
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setErrors } from '../../../redux/reducers/app-reducer';
 import { getPostErrors } from '../../../redux/selectors/app-selectors';
-import { getIsAuth } from '../../../redux/selectors/auth-selectors';
-import { getAuthThunk, loginThunk, regThunk } from '../../../redux/thunks/auth-thunk';
+import { regThunk } from '../../../redux/thunks/auth-thunk';
 
 const SignUp = () => {
 
@@ -16,17 +14,17 @@ const SignUp = () => {
 
     const validate = values => {
         const errors = {};
-        if (!values.company || values.company == 'Company Name*') {
+        if (!values.company || values.company === 'Company Name*') {
             errors.company = 'Please fill in your company';
         }
 
-        if (!values.password || values.password == 'Password*') {
+        if (!values.password || values.password === 'Password*') {
             errors.password = 'Please fill in your password';
         } else if (values.password.length < 8) {
             errors.password = 'Must be 8 characters or more';
         }
 
-        if (!values.email || values.email == 'Email Address*') {
+        if (!values.email || values.email === 'Email Address*') {
             errors.email = 'Please fill in your email';
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
             errors.email = 'Invalid email address';
@@ -46,9 +44,9 @@ const SignUp = () => {
         },
         validate,
         onSubmit: values => {
-            if (values.email == 'Email Address*'){
+            if (values.email === 'Email Address*'){
                 formik.errors.company = 'Please fill in your company';
-            } else if (values.company == 'Company Name*'){
+            } else if (values.company === 'Company Name*'){
                 console.log()
             }
             dispatch(regThunk(values))
@@ -65,9 +63,9 @@ const SignUp = () => {
                     type="text"
                     placeholder='Company Name*'
                     onChange={formik.handleChange}
-                    onBlur={()=>{formik.values.company == '' && formik.setFieldValue('company','Company Name*')}}
+                    onBlur={()=>{formik.values.company === '' && formik.setFieldValue('company','Company Name*')}}
                     value={formik.values.company}
-                    onClick={()=>{formik.values.company =='Company Name*' && formik.setFieldValue('company','')}}
+                    onClick={()=>{formik.values.company ==='Company Name*' && formik.setFieldValue('company','')}}
                 />
                 {formik.touched.company && formik.errors.company ? <div className='auth__form-errorMessage'>{formik.errors.company}</div> : null}
                 <input

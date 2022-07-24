@@ -1,0 +1,67 @@
+@import '../../../scss/vars';
+
+.dashboard {
+    &-container {
+        max-width: 250px;
+        width: 100%;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        background: $c_w;
+        padding: 40px 16px 45px 16px;
+    }
+
+    &-wrapper {}
+
+    &__elem {
+        &__top {
+            &-wrapper {
+                display: flex;
+                align-items: center;
+                max-width: 218px;
+                width: 100%;
+            }
+
+            &-img {
+                width: 33px;
+                height: 33px;
+                background: $c_b;
+            }
+
+            &-label {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 140%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+        }
+
+        &__child {
+            &-wrapper {}
+
+            &__elem {}
+        }
+
+        &__auth_balance {
+            &-wrapper {}
+
+            &-label {}
+
+            &-wrapper {}
+
+            &__balance {
+                &__elem {}
+
+                &-category {}
+
+                &-count {}
+
+                &-button {}
+            }
+        }
+    }
+}

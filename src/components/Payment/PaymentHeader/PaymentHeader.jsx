@@ -29,7 +29,7 @@ const PaymentHeader = () => {
                     <div className='payment__header__nav__elem'>Authentication Bundle</div>
                 </div>
                 <div className="payment__header__logo-container">
-                    <img className='payment__header__logo-image' src={logo} />
+                    <img className='payment__header__logo-image' src={logo} alt=''/>
                     <div className="payment__header__logo-pageName">Authentication - Payment</div>
                 </div>
             </div>

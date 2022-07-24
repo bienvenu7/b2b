@@ -14,7 +14,7 @@ const NotFoundPage = () => {
         <>
             <div className="notFoundPage-container">
                 <div className="notFoundPage-wrapper">
-                    <div className="notFoundPage__image"><img src={src}/></div>
+                    <div className="notFoundPage__image"><img alt='' src={src}/></div>
                     <div className="notFoundPage__title">The page you are looking for might have been removed, had its name changed or is temporarily unavailable.</div>
                     <div className="notFoundPage__button" onClick={()=>{isAuth ? navigate('../main') : navigate('../auth/signin')}}>Go to dashboard</div>
                 </div>
