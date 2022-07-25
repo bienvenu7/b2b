@@ -1,0 +1,109 @@
+@import '../../../scss/vars';
+
+.photo_requests{
+    &-container{
+color: $c_o;
+    }
+    &-wrapper{
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        background: $c_w;
+        width: 1278px;
+        padding: 32px 0px 26px 0px;
+        }
+    &-label{
+        font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 140%;
+padding-left: 38px;
+    }
+    &__table{
+        color: #7B809A;
+        &__label{
+            &-wrapper{
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+line-height: 140%;
+text-transform: uppercase;
+display: flex;
+padding-left: 38px;
+border-bottom: 1px solid #F0F2F5;
+padding-bottom: 14px;
+padding-top: 29px;
+            }
+            &__elem{
+                &-category{
+                    width: 332px;
+                }
+                &-brand{
+                    width: 132px
+                }
+                &-date{
+                    width: 221px
+                }
+            }
+        }
+        &__elem{
+            display: flex;
+            padding: 12px 0 14px 38px;
+            border-bottom: 1px solid #F0F2F5;
+            font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 140%;
+            &__category{
+                width: 332px;
+                display: grid;
+                grid-template-areas: "image label"
+                                    "image number";
+                grid-column-gap: 16px;
+                grid-template-columns: 33px;
+                grid-area: label;
+                    font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 140%;
+color: $c_o;
+                &-image{
+                    grid-area: image;
+                }
+                &-label{
+                    font-weight: 400;
+                    font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 140%;
+color: $c_o;
+                }
+                &-number{
+                    grid-area: number;
+                    font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 140%;
+                    color: #414141;
+                }
+            }
+            &-brand{
+                width: 132px
+            }
+            &-date{
+                width: 221px
+            }
+            &-required{
+                width: 451px;
+            }
+            &-button{
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,8 +1,13 @@
+import { useParams } from "react-router-dom"
 import SvgSelector from "../../common/icons/SvgSelector"
 import Navigation from "../Navigation/Navigation"
 import './Header.scss'
 
-const Header = () => {
+const Header = (props) => {
+
+    const params = useParams()
+    console.log(params)
+
     return (
         <>
             <div className="header-container">

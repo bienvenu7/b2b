@@ -16,6 +16,7 @@ import AuthenticationRequest from './components/AuthenticationRequest/Authentica
 import SuccessPageOrder from './components/Payment/SuccessPage/SuccessPageOrder';
 import NotFoundPage from './components/NotFoundPage/NotFound';
 import Authentications from './components/PersonalArea/Authentications/Authentications';
+import PhotoRequests from './components/PersonalArea/PhotoRequests/PhotoRequests';
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
         <Route path='authentication-request' element={<AuthenticationRequest />} />
         <Route path='*' element={<NotFoundPage/>}/>
         <Route path='authentications' element={<Authentications/>}/>
+        <Route path='photo-requests' element={<PhotoRequests/>}/>
       </Routes>
     </div>
   );

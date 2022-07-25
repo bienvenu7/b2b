@@ -1,7 +1,13 @@
 import SvgSelector from '../../../common/icons/SvgSelector'
 import './Dashboard.scss'
+import storeLogo from '../../../common/images/logo-of-store.png'
+import dashboardIcon from '../../../common/images/dashboard-icon.png'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = (props) =>{
+
+
+    const navigate = useNavigate()
 
 
     //temp
@@ -20,17 +26,16 @@ const Dashboard = (props) =>{
             <div className='dashboard-wrapper'>
                 <div className='dashboard__elem'>
                     <div className='dashboard__elem__top-wrapper'>
-                        <div className='dashboard__elem__top-img'></div>
+                        <div className='dashboard__elem__top-img'><img alt='' src={storeLogo}/></div>
                         <div className='dashboard__elem__top-label'>Luxury store <SvgSelector id='arrow'/></div>
                     </div>
                     <div className='dashboard__elem__child-wrapper'>
-                        <div className='dashboard__elem__child__elem'>
-                            Dashboard
-                        </div>
+                        <div className='dashboard__elem__child-img'><img src={dashboardIcon} alt="" /></div>
+                        <div className='dashboard__elem__child__label'>Dashboard</div>
                     </div>
                 </div>
                 <div className='dashboard__elem__auth_balance-wrapper'>
-                    <div className='dashboard__elem__auth_balance-label'>Authentication balance</div>
+                    <div className='dashboard__elem__auth_balance-label'>Authentication balance <SvgSelector id='arrow'/></div>
                     <div className='dashboard__elem__auth_balance__balance-wrapper'>
                         {balance.map((el, index)=>
                         <div key={index} className='dashboard__elem__auth_balance__balance__elem'>
@@ -41,6 +46,26 @@ const Dashboard = (props) =>{
                         <div className='dashboard__elem__auth_balance__balance-button'>New authentication</div>
                     </div>
                 </div>
+                <div className='dashboard__elem__authentications-wrapper'>
+                    <div className='dashboard__elem__authentications-label'>Authentications</div>
+                    <div className='dashboard__elem__authentications-control__elements'>
+                        <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../authentications')}>
+                            <SvgSelector id='check-icon'/>All authentication
+                        </div>
+                        <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../photo-requests')}>
+                            <SvgSelector id='camera-icon'/>Photo requests
+                        </div>
+                    </div>
+                </div>
+                <div className='dashboard__elem__tools-wrapper'>
+                    <div className='dashboard__elem__tools-label'>Tools</div>
+                    <div className='dashboard__elem__tools-control__elements'>
+                        <div className='dashboard__elem__tools-control__elem-wrapper'>
+                            <SvgSelector id='card-icon'/>Billing 
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         </>

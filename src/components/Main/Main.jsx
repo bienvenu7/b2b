@@ -24,6 +24,7 @@ const Main = () => {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
                 <button onClick={() => navigate('../payment')}>Payment</button>
                 <button onClick={() => navigate('../authentication-request')}>Authentication request</button>
+                <button onClick={() => navigate('../authentications')}>Dashboard</button>
             </div>
         </>
     )
