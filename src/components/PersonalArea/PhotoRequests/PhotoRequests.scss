@@ -9,7 +9,7 @@ color: $c_o;
         border-radius: 12px;
         background: $c_w;
         width: 1278px;
-        padding: 32px 0px 26px 0px;
+        padding: 32px 0px 0 0px;
         }
     &-label{
         font-family: 'Roboto';
@@ -56,6 +56,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 14px;
 line-height: 140%;
+align-items: center;
             &__category{
                 width: 332px;
                 display: grid;
@@ -63,7 +64,7 @@ line-height: 140%;
                                     "image number";
                 grid-column-gap: 16px;
                 grid-template-columns: 33px;
-                grid-area: label;
+                
                     font-family: 'Roboto';
 font-style: normal;
 font-weight: 700;
@@ -74,6 +75,7 @@ color: $c_o;
                     grid-area: image;
                 }
                 &-label{
+                    grid-area: label;
                     font-weight: 400;
                     font-family: 'Roboto';
 font-style: normal;

@@ -40,9 +40,10 @@ export const getBalanceThunk = () => async (dispatch) => {
 
 export const uploadPhotoForProductThunk = (data, count, idx) => async (dispatch) => {
     try {
+        console.log(data.angle)
         let formData = new FormData()
         formData.append('productId', data.productId)
-        formData.append('angleId', data.angleId)
+        formData.append('angle', data.angle)
         formData.append('photo', data.file)
         const response = await uploadPhotoForProduct(formData)
         if (idx+1 === count){

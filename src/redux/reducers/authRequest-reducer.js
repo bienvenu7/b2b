@@ -24,7 +24,7 @@ const authRequestReducer = createReducer(initialState, (builder) => {
             state.balance = action.payload
         })
         .addCase('SET_ANGLES', (state = initialState, action) => {
-            state.angles = action.payload
+            state.angles = action.payload.sort((a,b)=>a.necessity-b.necessity)
         })
 })
 

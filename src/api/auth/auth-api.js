@@ -1,15 +1,14 @@
 import * as axios from 'axios'
 import Cookies from 'js-cookie'
+import { instance } from '../axios-instance'
+
+/*const token = Cookies.get('jwt')
 
 const instance = axios.create(
     {
-        baseURL: 'https://b2b-portal-dev.herokuapp.com/',
+        baseURL: 'https://b2b-portal-dev.herokuapp.com/'
     }
-)
-
-const token = Cookies.get('jwt')
-
-
+)*/
 
 
 export const register = (data) => {
@@ -25,7 +24,7 @@ export const getAuth = (data) => {
 }
 
 export const removeMe = () => {
-    return instance.delete('auth/me', {headers: {'Authorization': 'Bearer ' + token}})
+    return instance.delete('auth/me')
 }
 
 export const forgotEmail = (data) => {

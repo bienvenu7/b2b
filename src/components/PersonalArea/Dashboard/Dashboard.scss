@@ -94,6 +94,7 @@
                     padding: 0px 20px;
                     justify-content: space-between;
                     padding-bottom: 13px;
+                    
 
                     &:not(:last-child) {
                         padding-bottom: 20px;
@@ -110,6 +111,9 @@
                     font-weight: 300;
                     font-size: 14px;
                     line-height: 140%;
+                    grid-area: cat;
+                    width: 70px;
+    white-space: pre-wrap;
                 }
 
                 &-count {
@@ -118,6 +122,24 @@
                     font-weight: 700;
                     font-size: 14px;
                     line-height: 140%;
+                    grid-area: count;
+                    width: 40px;
+    display: flex;
+    justify-content: end;
+                }
+                &-answer{
+                    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 140%;
+    border-radius: 4px;
+    background: #CBAD73;
+    color: #FFFFFF;
+    padding: 0 8px;
+    max-height: 19.58px;
+    display: flex;
+    white-space: nowrap;
                 }
 
                 &-button {

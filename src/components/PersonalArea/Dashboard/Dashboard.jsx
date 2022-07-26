@@ -3,21 +3,19 @@ import './Dashboard.scss'
 import storeLogo from '../../../common/images/logo-of-store.png'
 import dashboardIcon from '../../../common/images/dashboard-icon.png'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { takeBalance } from '../../../redux/selectors/authRequest-selectors'
+import { getProductsThunk } from '../../../redux/thunks/requests-thunk'
 
 const Dashboard = (props) =>{
 
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
+    const balance = useSelector(takeBalance)
 
     //temp
-
-    const balance = [
-        {label: 'bags', count: 100},
-        {label: 'bags', count: 10000},
-        {label: 'bags', count: 10},
-        {label: 'bags', count: 1},
-    ]
 
 
     return(
@@ -37,10 +35,11 @@ const Dashboard = (props) =>{
                 <div className='dashboard__elem__auth_balance-wrapper'>
                     <div className='dashboard__elem__auth_balance-label'>Authentication balance <SvgSelector id='arrow'/></div>
                     <div className='dashboard__elem__auth_balance__balance-wrapper'>
-                        {balance.map((el, index)=>
+                        {balance.length > 0 && balance.map((el, index)=>
                         <div key={index} className='dashboard__elem__auth_balance__balance__elem'>
-                            <div className='dashboard__elem__auth_balance__balance-category'>{el.label}</div>
-                            <div className='dashboard__elem__auth_balance__balance-count'>{el.count}</div>
+                            <div className='dashboard__elem__auth_balance__balance-category'>{el.productType.publicName}</div>
+                            <div className='dashboard__elem__auth_balance__balance-answer'>{el.answerTime} h</div>
+                            <div className='dashboard__elem__auth_balance__balance-count'>{el.volume}</div>
                         </div>)}
                         <div className='dashboard__elem__auth_balance__balance-button'>Top up now</div>
                         <div className='dashboard__elem__auth_balance__balance-button'>New authentication</div>
@@ -60,7 +59,7 @@ const Dashboard = (props) =>{
                 <div className='dashboard__elem__tools-wrapper'>
                     <div className='dashboard__elem__tools-label'>Tools</div>
                     <div className='dashboard__elem__tools-control__elements'>
-                        <div className='dashboard__elem__tools-control__elem-wrapper'>
+                        <div onClick={()=>dispatch(getProductsThunk())} className='dashboard__elem__tools-control__elem-wrapper'>
                             <SvgSelector id='card-icon'/>Billing 
                         </div>
                     </div>

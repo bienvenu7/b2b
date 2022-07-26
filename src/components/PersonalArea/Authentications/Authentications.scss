@@ -22,6 +22,7 @@ color: $c_o;
             font-weight: 400;
             font-size: 16px;
             line-height: 140%;
+            cursor: pointer;
             &.selected{
                 font-weight: 700;
             }
@@ -41,6 +42,7 @@ color: $c_o;
             font-size: 16px;
             line-height: 140%;
             white-space: nowrap;
+            width: 210px;
         }
         &-search{
             width: 697px;
@@ -66,6 +68,172 @@ font-size: 14px;
 line-height: 140%;
 cursor: pointer;
                 }   
+            }
+        }
+    }
+    &__table{
+        &__label{
+            &-wrapper{
+                display: flex;
+                justify-content: space-between;
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+line-height: 140%;
+color: #7B809A;
+text-transform: uppercase;
+border-bottom: 1px solid #F0F2F5;
+padding: 0 44px 10px 31px;
+
+            }
+            &__elem{
+                &-checkbox{
+
+                }
+                &-category{
+                    display: flex;
+                    align-items: center;    
+                    width: 250px;                
+                }
+            }
+            &__elems{
+                &-wrapper{
+                    display: flex;
+                    align-items: center;
+                    gap: 19px;
+                }
+                &-brand{
+                    display: flex;
+                    justify-content: center;
+                    width: 340px;
+                }
+                &-model{
+                    display: flex;
+                    justify-content: center;
+                    width: 120px;
+                }
+                &-outcome{
+                    display: flex;
+                    justify-content: center;
+                    width: 80px;
+                }
+                &-order{
+                    width: 70px;
+                display: flex;
+                justify-content: center;
+                }
+                &-date{
+                    width: 100px;
+                display: flex;
+                justify-content: center;
+                white-space: nowrap;
+                cursor: pointer;
+                &.arrow-up{
+                    svg{
+                        transform: rotate(180deg);
+                    }
+                }
+                }
+                &-pdf{
+                    width: 110px;
+                    display: flex;
+                    justify-content: center;
+                }
+                &-status{
+                    width: 100px;
+                display: flex;
+                justify-content: center;
+                white-space: nowrap;
+                }
+                &-answer{
+                    width: 100px;
+                display: flex;
+                justify-content: center;
+                white-space: nowrap;
+                }
+            }
+        }
+        &__elem{
+            display: flex;
+            padding: 12px 44px 14px 31px;
+            justify-content: space-between;
+            border-bottom: 1px solid #F0F2F5;
+            font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 140%;
+color: #7B809A;
+            &-checkbox{
+
+            }
+            &__category{
+                grid-template-areas: "image label"
+                                    "image number";
+                                    grid-column-gap: 16px;
+                grid-template-columns: 33px;
+                display: grid;
+                width: 250px;
+                &-image{
+                    grid-area: image;
+                    display: flex;
+    align-items: center;
+                }
+                &-label{
+                    grid-area: label;
+                }
+                &-number{
+                    grid-area: number;
+                }
+            }
+            &-brand{
+                display: flex;
+                justify-content: center;
+                width: 340px;
+            }
+            &-model{
+                display: flex;
+                justify-content: center;
+                width: 120px;
+            }
+            &-outcome{
+                display: flex;
+                justify-content: center;
+                width: 80px;
+            }
+            &-order{
+                width: 70px;
+                display: flex;
+                justify-content: center;
+            }
+            &-date{
+                width: 100px;
+                display: flex;
+                justify-content: center;
+            }
+            &-pdf{
+                cursor: pointer;
+                width: 110px;
+                display: flex;
+                justify-content: center;
+            }
+            &-status{
+                width: 100px;
+                display: flex;
+                justify-content: center;
+            }
+            &-answer{
+                width: 100px;
+                display: flex;
+                justify-content: center;
+            }
+        }
+        &__elems{
+            &-wrapper{
+                display: flex;
+                gap: 19px;
+                align-items: center;
             }
         }
     }

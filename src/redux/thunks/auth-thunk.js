@@ -28,7 +28,7 @@ export const regThunk = (data) => async (dispatch) => {
 export const loginThunk = (data) => async (dispatch) => {
     try {
         const response = await login(data)
-        Cookies.set('jwt', response.data.token)
+        await Cookies.set('jwt', response.data.token)
         dispatch(getAuthThunk(response.data.token))
     } catch (error) {
 
@@ -57,7 +57,7 @@ export const getAuthThunk = (data) => async (dispatch) => {
 }
 
 export const logoutThunk = () => async (dispatch) => {
-    Cookies.remove('jwt')
+    await Cookies.remove('jwt')
     dispatch(setAuth(null))
 }
 
