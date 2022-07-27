@@ -1,57 +1,67 @@
 import PersonalAreaLayout from "../PersonalAreaLayout"
 import SvgSelector from "../../../common/icons/SvgSelector"
 import './Authentications.scss'
-import storeLogo from '../../../common/images/logo-of-store.png'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {takeRequests, takeResultStatuses} from "../../../redux/selectors/dashboard-selectors"
-import { getProductsThunk, getResultsStatusesThunk } from "../../../redux/thunks/requests-thunk"
+import { useNavigate } from "react-router-dom"
+import { takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
+import { getProductsThunk } from "../../../redux/thunks/product-thunk"
+import { setProducts } from "../../../redux/reducers/product-reducer"
 
 const Authentications = (props) => {
 
 
-    const requests = useSelector(takeRequests)
+    const products = useSelector(takeProducts)
     const resultStatuses = useSelector(takeResultStatuses)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [page, setPage] = useState(null)
 
     useEffect(()=>{
-        requests === null && dispatch(getProductsThunk())
-        resultStatuses === null && dispatch(getResultsStatusesThunk())
+        setPage(props.page)
     })
 
-    //temp
-
-    const [page, setPage] = useState('complete')
-    const [sortData, setSortData] = useState(true)
-    const [searchValue, setSearchValue ] = useState()
-
-    function onCompletedClick(){
-        setPage('complete')
-        const data = {resultStatuses: [resultStatuses.filter(el=>el.name === 'COMPLETED')[0]]}
-        dispatch(getProductsThunk(data))
-    }
-
-    function onProgressClick(){
-        setPage('progress')
-        const data = {resultStatuses: resultStatuses.filter(el=> el.name !== 'COMPLETED')}
-        dispatch(getProductsThunk(data))
-    }
-
-    function handleSort(){
-        setSortData(!sortData)
-        dispatch(getProductsThunk({sort: `createdAt:${sortData? 'DESC' : 'ASC'}`}))
-    }
-
-    function handleFilter(){
-        console.log(searchValue)
-        const data = {
-            search: searchValue,
-            resultStatuses: resultStatuses.filter(el=> page === 'progress' ? el.name !== 'COMPLETE' : el.name === 'COMPLETE' )
+    useEffect(() => {
+        products === null && resultStatuses !== null && dispatch(getProductsThunk(
+            {resultStatuses: resultStatuses.filter(el=> el.name === 'COMPLETED')}))
+        return()=>{
+            dispatch(setProducts(null))
         }
+    },[])
+
+    
+
+    
+    const [sortData, setSortData] = useState(true)
+    const [searchValue, setSearchValue] = useState()
+
+
+    function onCompletedClick() {
+        navigate('../authentications/completed')
+        const data = { resultStatuses: [resultStatuses.filter(el => el.name === 'COMPLETED')[0]] }
+        dispatch(setProducts(null))
         dispatch(getProductsThunk(data))
     }
-    
+
+    function onProgressClick() {
+        navigate('../authentications/in-progress')
+        const data = { resultStatuses: resultStatuses.filter(el => el.name !== 'COMPLETED') }
+        dispatch(setProducts(null))
+        dispatch(getProductsThunk(data))
+    }
+
+    function handleSort() {
+        setSortData(!sortData)
+        dispatch(getProductsThunk({ sort: `createdAt:${sortData ? 'DESC' : 'ASC'}` }))
+    }
+
+    function handleFilter() {
+        const data = {resultStatuses: resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETE' : el.name === 'COMPLETE')
+        }
+        dispatch(getProductsThunk(searchValue!== '' ? {...data, search: searchValue}: data))
+    }
+
 
 
     return (
@@ -65,7 +75,7 @@ const Authentications = (props) => {
                     <div className='authent-wrapper'>
                         <div className='authent__nav-wrapper'>
                             {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentications</div>}
-                            <input className='authent__nav-search' placeholder='Search' onChange={(e)=>setSearchValue(e.target.value)}/>
+                            <input className='authent__nav-search' placeholder='Search' onChange={(e) => setSearchValue(e.target.value)} />
                             <div className='authent__nav__buttons-wrapper'>
                                 <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' />Filter</div>
                                 {page === 'complete' && <div className='authent__nav__buttons__elem-wrapper'><SvgSelector id='download-icon' />Download</div>}
@@ -84,35 +94,32 @@ const Authentications = (props) => {
                                     <div className="authent__table__label__elems-brand">Brand</div>
                                     <div className="authent__table__label__elems-model">Model name</div>
                                     <div className="authent__table__label__elems-outcome">Outcome</div>
-                                    <div className="authent__table__label__elems-order">Order id</div>
-                                    <div className="authent__table__label__elems-date" onClick={handleSort}>Submission date <SvgSelector id='down-arrow-icon' /></div>
+                                    <div className={`authent__table__label__elems-date${sortData ? ' arrow-up' : ''}`} onClick={handleSort}>Submission date <SvgSelector id='down-arrow-icon' /></div>
                                     <div className="authent__table__label__elems-pdf">Pdf certificate</div>
                                 </div>
                             </div>
-                                    {requests && requests.map((el,index)=><div key={index} className="authent__table__elem">
-                                    <div className="authent__table__elems-wrapper">
+                            {products && products.map((el, index) => <div key={index} className="authent__table__elem">
+                                <div className="authent__table__elems-wrapper">
                                     <div className="authent__table__elem-checkbox">
-                                            <input key={index} type="checkbox" className='custom-checkbox__table' id={`check-for-elem-${index}`} />
-                                            <label htmlFor={`check-for-elem-${index}`} />
-                                        </div>
-                                        <div className="authent__table__elem__category">
-                                            <div className="authent__table__elem__category-image">
-                                                {/*<img src={el.image} alt="" />*/}
-                                            </div>
-                                            <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
-                                            <div className="authent__table__elem__category-number">{/*el.number*/}</div>
-                                        </div>
+                                        <input key={index} type="checkbox" className='custom-checkbox__table' id={`check-for-elem-${index}`} />
+                                        <label htmlFor={`check-for-elem-${index}`} />
                                     </div>
-                                    <div className="authent__table__elems-wrapper">
-                                        <div className="authent__table__elem-brand">{el.brand.publicName}</div>
-                                        <div className="authent__table__elem-model">{el.modelName}</div>
-                                        
-                                        <div className="authent__table__elem-outcome">{/*el.outcome*/}</div>
-                                        <div className="authent__table__elem-order">{/*el.order*/}</div>
-                                        <div className="authent__table__elem-date">{(new Date(el.createdAt)).getDate()+'/'+(Number((new Date(el.createdAt)).getMonth())+1)+'/'+(new Date(el.createdAt)).getYear()}</div>
-                                        <div className="authent__table__elem-pdf">{/*el.pdf ? 'View' : 'Add certificate'*/}</div>
+                                    <div className="authent__table__elem__category" onClick={()=>navigate(`../request/${el.id}`)}>
+                                        <div className="authent__table__elem__category-image">
+                                            {/*<img src={el.image} alt="" />*/}
+                                        </div>
+                                        <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
+                                        <div className="authent__table__elem__category-number">#{el.publicId}</div>
                                     </div>
-                                </div>)}
+                                </div>
+                                <div className="authent__table__elems-wrapper">
+                                    <div className="authent__table__elem-brand">{el.brand.publicName}</div>
+                                    <div className="authent__table__elem-model">{el.modelName}</div>
+                                    <div className="authent__table__elem-outcome">{/*el.outcome*/}</div>
+                                    <div className="authent__table__elem-date">{(new Date(el.createdAt)).getDate() + '/' + (Number((new Date(el.createdAt)).getMonth()) + 1) + '/' + (new Date(el.createdAt)).getYear()}</div>
+                                    <div className="authent__table__elem-pdf">{/*el.pdf ? 'View' : 'Add certificate'*/}</div>
+                                </div>
+                            </div>)}
                         </div>}
 
                         {page !== 'complete' && <div className="authent__table">
@@ -125,27 +132,27 @@ const Authentications = (props) => {
                                     <div className="authent__table__label__elems-model">Model name</div>
                                     <div className="authent__table__label__elems-status">Status</div>
                                     <div className="authent__table__label__elems-answer">Answer time</div>
-                                    <div className="authent__table__label__elems-date" onClick={handleSort}>Submission date <SvgSelector id='down-arrow-icon' /></div>
+                                    <div className={`authent__table__label__elems-date${sortData ? ' arrow-up' : ''}`} onClick={handleSort}>Submission date <SvgSelector id='down-arrow-icon' /></div>
                                 </div>
                             </div>
-                                    {requests && requests.map((el,index)=> <div key={index} className="authent__table__elem">
-                                    <div className="authent__table__elems-wrapper">
-                                        <div className="authent__table__elem__category">
-                                            <div className="authent__table__elem__category-image">
-                                                {/*<img src={el.image} alt="" />*/}
-                                            </div>
-                                            <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
-                                            <div className="authent__table__elem__category-number">{/*el.number*/}</div>
+                            {products && products.map((el, index) => <div key={index} className="authent__table__elem">
+                                <div className="authent__table__elems-wrapper">
+                                    <div className="authent__table__elem__category" onClick={()=>navigate(`../request/${el.id}`)}>
+                                        <div className="authent__table__elem__category-image">
+                                            {/*<img src={el.image} alt="" />*/}
                                         </div>
+                                        <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
+                                        <div className="authent__table__elem__category-number">#{el.publicId}</div>
                                     </div>
-                                    <div className="authent__table__elems-wrapper">
-                                        <div className="authent__table__elem-brand">{el.brand.publicName}</div>
-                                        <div className="authent__table__elem-model">{el.modelName}</div>
-                                        <div className="authent__table__elem-status">{el.resultStatus.publicName}</div>
-                                        <div className="authent__table__elem-answer">{el.answerTime} hours</div>
-                                        <div className="authent__table__elem-date">{(new Date(el.createdAt)).getDate()+'/'+(Number((new Date(el.createdAt)).getMonth())+1)+'/'+(new Date(el.createdAt)).getYear()}</div>
-                                    </div>
-                                </div>)}
+                                </div>
+                                <div className="authent__table__elems-wrapper">
+                                    <div className="authent__table__elem-brand">{el.brand.publicName}</div>
+                                    <div className="authent__table__elem-model">{el.modelName}</div>
+                                    <div className="authent__table__elem-status">{el.resultStatus.publicName}</div>
+                                    <div className="authent__table__elem-answer">{el.answerTime} hours</div>
+                                    <div className="authent__table__elem-date">{(new Date(el.createdAt)).getDate() + '/' + (Number((new Date(el.createdAt)).getMonth()) + 1) + '/' + (new Date(el.createdAt)).getYear()}</div>
+                                </div>
+                            </div>)}
                         </div>}
                     </div>
                 </div>

@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit'
 import appReducer from './reducers/app-reducer'
 import authReducer from './reducers/auth-reducer'
 import authRequestReducer from './reducers/authRequest-reducer'
-import dashboardReducer from './reducers/dashboard-reducer'
 import paymentReducer from './reducers/payment-reducer'
 import productReducer from './reducers/product-reducer'
 
@@ -13,6 +12,5 @@ export const store = configureStore({
       payment: paymentReducer,
       products: productReducer,
       authRequest: authRequestReducer,
-      dashboard: dashboardReducer
   }
 })

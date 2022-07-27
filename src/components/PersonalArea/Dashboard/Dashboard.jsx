@@ -5,7 +5,7 @@ import dashboardIcon from '../../../common/images/dashboard-icon.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { takeBalance } from '../../../redux/selectors/authRequest-selectors'
-import { getProductsThunk } from '../../../redux/thunks/requests-thunk'
+import { getProductsThunk } from '../../../redux/thunks/product-thunk'
 
 const Dashboard = (props) =>{
 
@@ -48,7 +48,7 @@ const Dashboard = (props) =>{
                 <div className='dashboard__elem__authentications-wrapper'>
                     <div className='dashboard__elem__authentications-label'>Authentications</div>
                     <div className='dashboard__elem__authentications-control__elements'>
-                        <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../authentications')}>
+                        <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../authentications/completed')}>
                             <SvgSelector id='check-icon'/>All authentication
                         </div>
                         <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../photo-requests')}>

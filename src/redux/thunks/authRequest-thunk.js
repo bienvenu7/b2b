@@ -43,7 +43,7 @@ export const uploadPhotoForProductThunk = (data, count, idx) => async (dispatch)
         console.log(data.angle)
         let formData = new FormData()
         formData.append('productId', data.productId)
-        formData.append('angle', data.angle)
+        formData.append('angleId', data.angleId)
         formData.append('photo', data.file)
         const response = await uploadPhotoForProduct(formData)
         if (idx+1 === count){

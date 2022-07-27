@@ -158,7 +158,9 @@
                     align-items: center;
                     color: $c_g;
                     cursor: pointer;
-
+                    &:first-child{
+                        margin-top: 15px;
+                    }
                     &:last-child {
                         margin-top: 10px;
                         color: $c_w;

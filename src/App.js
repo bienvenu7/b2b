@@ -17,6 +17,7 @@ import SuccessPageOrder from './components/Payment/SuccessPage/SuccessPageOrder'
 import NotFoundPage from './components/NotFoundPage/NotFound';
 import Authentications from './components/PersonalArea/Authentications/Authentications';
 import PhotoRequests from './components/PersonalArea/PhotoRequests/PhotoRequests';
+import Card from './components/PersonalArea/Card/Card';
 
 function App() {
 
@@ -37,9 +38,9 @@ function App() {
   }, [isAuth])
 
   useEffect(() => {
-    dispatch(initialApp())
+    !appInit && dispatch(initialApp())
     dispatch(getProductTypesThunk(1, 1000))
-  })
+  },[])
 
 
   if (!appInit) {
@@ -62,8 +63,10 @@ function App() {
         <Route path='payment-first' element={<PaymentFirst />} />
         <Route path='authentication-request' element={<AuthenticationRequest />} />
         <Route path='*' element={<NotFoundPage/>}/>
-        <Route path='authentications' element={<Authentications/>}/>
+        <Route path='authentications/in-progress' element={<Authentications page='progress'/>}/>
+        <Route path='authentications/completed' element={<Authentications page='complete'/>}/>
         <Route path='photo-requests' element={<PhotoRequests/>}/>
+        <Route path='request/:id' element={<Card/>}/>
       </Routes>
     </div>
   );

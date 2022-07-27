@@ -5,8 +5,6 @@ import './Header.scss'
 
 const Header = (props) => {
 
-    const params = useParams()
-    console.log(params)
 
     return (
         <>

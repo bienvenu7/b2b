@@ -83,7 +83,7 @@ const AuthenticationRequest = () => {
     }
 
     useEffect(() => {
-        setPhotoFiles(angles.map((el, index) => photoFiles.length == 0 && { key: index, file: '', imagePreviewUrl: '', angle: el.angle, necessity: el.necessity, error: false, angleName: el.angle.publicName, format: null }))
+        setPhotoFiles(angles.map((el, index) => photoFiles.length == 0 && { key: index, file: '', imagePreviewUrl: '', angleId: el.angle.id, necessity: el.necessity, error: false, angleName: el.angle.publicName, format: null }))
     }, [angles])
 
 
@@ -144,7 +144,7 @@ const AuthenticationRequest = () => {
         console.log(response)
         const response1 = response != true ?
             await photoFiles.map(
-                (el, index) => el.file !== '' && dispatch(uploadPhotoForProductThunk({ productId: response.data.id, file: el.file, angle: el.angle }, photosCount, index))
+                (el, index) => el.file !== '' && dispatch(uploadPhotoForProductThunk({ productId: response.data.id, file: el.file, angleId: el.angleId }, photosCount, index))
             )
             : setButtonState(true)
         response1 && setButtonState(true)

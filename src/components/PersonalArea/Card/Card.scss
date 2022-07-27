@@ -1,0 +1,173 @@
+@import '../../../scss/vars';
+
+.card{
+    &-container{
+
+    }
+    &__info{
+        &-wrapper{
+            background: $c_w;
+box-shadow: 0px 1.71049px 5.13146px rgba(0, 0, 0, 0.25);
+border-radius: 10.2629px;
+width: 600px;
+padding: 23px 0 35px 0;
+        }
+        &__header{
+            padding: 0 21px 19px 21px;
+            display: grid;
+            border-bottom: 0.855244px solid #F0F2F5;
+            grid-template-areas: "arrow number"
+                                "arrow date";
+            grid-template-columns: 20px 100%;
+            grid-column-gap: 28px;
+            grid-row-gap: 9px;
+            &-arrow{
+                cursor: pointer;
+                grid-area: arrow;
+            }
+            &__label{
+                &-wrapper{
+                    grid-area: number;
+                    display: flex;
+                    gap: 38px;
+                }
+                &-number{
+                    font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 17.1049px;
+line-height: 140%;
+color: #292929
+                }
+                &-status{
+                    font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 17.1049px;
+line-height: 140%;
+color: $c_g;
+                }
+            }
+            &-date{
+                grid-area: date;
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 11.9734px;
+line-height: 140%;
+color: rgba(65, 65, 65, 0.4);
+            }
+        }
+        &__content{
+            padding: 33px 30px 43px 30px;
+            border-bottom: 0.855244px solid #F0F2F5;
+            &-label{
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 17.1049px;
+line-height: 140%;
+color: #292929;
+padding-bottom: 17px;
+            }
+            &-wrapper{
+                padding: 0 33px;
+            }
+            &-brand{
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 15.3944px;
+                line-height: 140%;
+                color: rgba(65, 65, 65, 0.4);
+                padding-bottom: 15px;
+                display: flex;
+                .normal{
+                    font-weight: 400;
+                }
+            }
+            &__photos{
+                &-wrapper{
+                    padding-bottom: 19px;
+                }
+                &-label{
+                    font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15.3944px;
+line-height: 140%;
+color: rgba(65, 65, 65, 0.4);
+padding-bottom: 22px;
+                }
+                &__images{
+                    display: flex;
+                    gap: 17px;
+                    &-elem{
+                        width: 55px;
+                        height: 55px;
+                        background-size: contain !important;
+    background-repeat: no-repeat !important;
+                    }
+                }
+            }
+            &__elems{
+                &-wrapper{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 19px;
+                }
+            }
+            &__elem{
+                &-wrapper{
+                    display: flex;
+                    justify-content: space-between;
+                }
+                &-label{
+                    font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15.3944px;
+line-height: 140%;
+color: rgba(65, 65, 65, 0.4);
+                }
+                &-value{
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 15.3944px;
+                    line-height: 140%;
+                    color: rgba(65, 65, 65, 0.6);
+                }
+            }
+            &__button{
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 13.6839px;
+line-height: 140%;
+color: $c_g;
+background-color: $c_w;
+border: 1px solid $c_g;
+border-radius: 10.2629px;
+width: 183px;
+height: 41px;
+margin-left: 71px;
+margin-top: 25px;
+justify-content: center;
+align-items: center;
+display: flex;
+cursor: pointer;
+&.certificate{
+    color: $c_w;
+    background-color: $c_g;
+}
+            }
+        }
+    }
+    
+    &__details{
+        &-wrapper{
+
+        }
+    }
+}
