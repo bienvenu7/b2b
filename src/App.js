@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import Auth from './components/Auth/Auth';
 import Main from './components/Main/Main';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsAuth } from './redux/selectors/auth-selectors';
@@ -18,6 +17,10 @@ import NotFoundPage from './components/NotFoundPage/NotFound';
 import Authentications from './components/PersonalArea/Authentications/Authentications';
 import PhotoRequests from './components/PersonalArea/PhotoRequests/PhotoRequests';
 import Card from './components/PersonalArea/Card/Card';
+import SignIn from './components/Auth/Signin/Signin';
+import SignUp from './components/Auth/Signup/Signup';
+import ForgotPassword from './components/Auth/ForgotPassword/ForgotPassword';
+import ResetPassword from './components/Auth/ResetPassword/ResetPassword';
 
 function App() {
 
@@ -52,19 +55,18 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='main' element={<Main />} />
-        <Route path='auth/signin' element={<Auth page='signin' />} />
-        <Route path='auth/signup' element={<Auth page='signup' />} />
-        <Route path='auth/forgot' element={<Auth page='forgot' />} />
-        <Route path='password-change/:hash' element={<Auth page='reset' />} />
+        <Route path='auth/signin' element={<SignIn/>} />
+        <Route path='auth/signup' element={<SignUp/>} />
+        <Route path='auth/forgot' element={<ForgotPassword/>} />
+        <Route path='password-change/:hash' element={<ResetPassword/>} />
         <Route path='payment' element={<Payment />} />
         <Route path='success' element={<SuccessPage />} />
         <Route path='success-order' element={<SuccessPageOrder/>} />
-        <Route path='invoice' component={() => { window.location.href = { paymentLink }; return null; }} />
         <Route path='payment-first' element={<PaymentFirst />} />
         <Route path='authentication-request' element={<AuthenticationRequest />} />
         <Route path='*' element={<NotFoundPage/>}/>
-        <Route path='authentications/in-progress' element={<Authentications page='progress'/>}/>
-        <Route path='authentications/completed' element={<Authentications page='complete'/>}/>
+        <Route path='authentications/:page' element={<Authentications/>}/>
+        <Route path='authentications/:page' element={<Authentications/>}/>
         <Route path='photo-requests' element={<PhotoRequests/>}/>
         <Route path='request/:id' element={<Card/>}/>
       </Routes>

@@ -1,6 +1,5 @@
 import PersonalAreaLayout from "../PersonalAreaLayout"
 import './PhotoRequests.scss'
-import temp from '../../../common/images/logo-of-store.png'
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { takeAnglesList, takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
@@ -23,13 +22,12 @@ const PhotoRequests = (props) => {
     })
 
     function getReasons(reasons){
-        const arr = reasons.split(',').map(el=> anglesList.find(elem=> elem.id === el ))
-        const total = arr.map((el,index)=>arr.length == (index+1) ? el.publicName : el.publicName + ', ' )
-        if (total.length > 1){
-            const totall = total.slice(0,1)
-            console.log(totall)
+        if(reasons !== null && anglesList !== null){
+            const arr = reasons.split(',').map(el=> anglesList.find(elem=> elem.id === el))
+            console.log(arr)
+            const total = arr.length > 2 ? arr.map((el,index)=> el !== undefined ? index < 1 ? el.publicName + ', ' : index === 1 ? el.publicName + ` and ${arr.length - 2} more` : '' : null) : arr.map((el,index)=>el !== undefined ? arr.length == (index+1) ? el.publicName : el.publicName + ', ' : null)
+            return total
         }
-        //return total
     }
 
 

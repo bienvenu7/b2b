@@ -58,6 +58,7 @@ font-size: 14px;
 line-height: 140%;
 align-items: center;
             &__category{
+                cursor: pointer;
                 width: 332px;
                 display: grid;
                 grid-template-areas: "image label"

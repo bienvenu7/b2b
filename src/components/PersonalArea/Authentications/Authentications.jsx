@@ -3,7 +3,7 @@ import SvgSelector from "../../../common/icons/SvgSelector"
 import './Authentications.scss'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
 import { getProductsThunk } from "../../../redux/thunks/product-thunk"
 import { setProducts } from "../../../redux/reducers/product-reducer"
@@ -16,15 +16,23 @@ const Authentications = (props) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const params = useParams()
     const [page, setPage] = useState(null)
 
     useEffect(()=>{
-        setPage(props.page)
+        setPage(params.page === 'completed' ? 'complete' : params.page === 'in-progress' && 'progress')
     })
 
     useEffect(() => {
+        console.log(params.page)
+        console.log(sortData)
         products === null && resultStatuses !== null && dispatch(getProductsThunk(
-            {resultStatuses: resultStatuses.filter(el=> el.name === 'COMPLETED')}))
+          {resultStatuses: resultStatuses.filter(el=> params.page === 'completed' ? el.name === 'COMPLETED' : el.name !== 'COMPLETED'),
+          sort: `createdAt:${sortData ? 'DESC' : 'ASC'}`}))
+        
+    },)
+
+    useEffect(()=>{
         return()=>{
             dispatch(setProducts(null))
         }
@@ -38,26 +46,33 @@ const Authentications = (props) => {
 
 
     function onCompletedClick() {
+        setSortData(true)
         navigate('../authentications/completed')
-        const data = { resultStatuses: [resultStatuses.filter(el => el.name === 'COMPLETED')[0]] }
+        const data = { resultStatuses: [
+            resultStatuses.filter(el => el.name === 'COMPLETED')[0]],
+        sort:  'createdAt:DESC'}
         dispatch(setProducts(null))
         dispatch(getProductsThunk(data))
     }
 
     function onProgressClick() {
         navigate('../authentications/in-progress')
-        const data = { resultStatuses: resultStatuses.filter(el => el.name !== 'COMPLETED') }
+        const data = { 
+            sort:  'createdAt:DESC',
+            resultStatuses: resultStatuses.filter(el => el.name !== 'COMPLETED') }
         dispatch(setProducts(null))
         dispatch(getProductsThunk(data))
     }
 
-    function handleSort() {
+    function handleSort(sort) {
         setSortData(!sortData)
-        dispatch(getProductsThunk({ sort: `createdAt:${sortData ? 'DESC' : 'ASC'}` }))
+        dispatch(getProductsThunk({ 
+            resultStatuses: resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED'),
+            sort: `createdAt:${!sort ? 'DESC' : 'ASC'}` }))
     }
 
     function handleFilter() {
-        const data = {resultStatuses: resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETE' : el.name === 'COMPLETE')
+        const data = {resultStatuses: resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED')
         }
         dispatch(getProductsThunk(searchValue!== '' ? {...data, search: searchValue}: data))
     }
@@ -94,7 +109,7 @@ const Authentications = (props) => {
                                     <div className="authent__table__label__elems-brand">Brand</div>
                                     <div className="authent__table__label__elems-model">Model name</div>
                                     <div className="authent__table__label__elems-outcome">Outcome</div>
-                                    <div className={`authent__table__label__elems-date${sortData ? ' arrow-up' : ''}`} onClick={handleSort}>Submission date <SvgSelector id='down-arrow-icon' /></div>
+                                    <div className={`authent__table__label__elems-date${!sortData ? ' arrow-up' : ''}`} onClick={()=>handleSort(sortData)}>Submission date <SvgSelector id='down-arrow-icon' /></div>
                                     <div className="authent__table__label__elems-pdf">Pdf certificate</div>
                                 </div>
                             </div>
@@ -132,7 +147,7 @@ const Authentications = (props) => {
                                     <div className="authent__table__label__elems-model">Model name</div>
                                     <div className="authent__table__label__elems-status">Status</div>
                                     <div className="authent__table__label__elems-answer">Answer time</div>
-                                    <div className={`authent__table__label__elems-date${sortData ? ' arrow-up' : ''}`} onClick={handleSort}>Submission date <SvgSelector id='down-arrow-icon' /></div>
+                                    <div className={`authent__table__label__elems-date${!sortData ? ' arrow-up' : ''}`} onClick={()=>handleSort(sortData)}>Submission date <SvgSelector id='down-arrow-icon' /></div>
                                 </div>
                             </div>
                             {products && products.map((el, index) => <div key={index} className="authent__table__elem">

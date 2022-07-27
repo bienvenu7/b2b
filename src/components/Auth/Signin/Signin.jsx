@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { setErrors } from '../../../redux/reducers/app-reducer';
 import { getPostErrors } from '../../../redux/selectors/app-selectors';
 import { loginThunk } from '../../../redux/thunks/auth-thunk';
+import AuthLayout from '../AuthLayout';
+import mobileLogo from '../../../common/images/logo-for-mobile.png'
+import '../Auth.scss'
 
 const SignIn = () => {
 
@@ -14,7 +17,7 @@ const SignIn = () => {
 
     const [switchBtn, setState] = useState('switch-btn')
 
-    const setSwitchState = (switchState) =>{
+    const setSwitchState = (switchState) => {
         !switchState ? setState('switch-btn switch-on') : setState('switch-btn')
     }
 
@@ -52,49 +55,62 @@ const SignIn = () => {
 
 
     return (
-        <div className='auth__form'>
-            <form className="auth__form__signin" onSubmit={formik.handleSubmit}>
-                <input
-                    className={formik.touched.email && formik.errors.email ? 'auth__form-elem invalid' : 'auth__form-elem'}
-                    id="email"
-                    name="email"
-                    type="text"
-                    placeholder='Email'
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
-                    onClick={()=>{postErrors && dispatch(setErrors(null))}}
-                    />
-                {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
-                {postErrors ? <div className='auth__form-errorMessage'>{postErrors === 'emailNotExists' && 'Email not exists'}</div> : null}
-                <input
-                    className={formik.touched.password && formik.errors.password ? 'auth__form-elem invalid' : 'auth__form-elem'}
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder='Current password'
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
-                    onClick={()=>{postErrors && dispatch(setErrors(null))}}
-                    />
-                {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
-                {postErrors ? <div className='auth__form-errorMessage'>{postErrors === 'incorrectPassword' && 'Incorrect password'}</div> : null}
-                <div className='auth__form-elem-rememberMe'><input
-                    id="rememberMe"
-                    type='checkbox'
-                    onChange={formik.handleChange}
-                    value={formik.values.rememberMe}
-                    onClick={() => { setSwitchState(formik.values.rememberMe) }} />
-                    <label htmlFor='rememberMe' className={switchBtn} /><div className='switch-btn-label'>Remember Me</div></div>
+        <>
+
+            <AuthLayout>
+            <div className='auth__content-promo'></div>
+                <div className='auth__content-form'>
+                <div className='auth__content-form-headers'>
+                    <img className='mobileLogo' src={mobileLogo} />
+                    <div className='message-h1'>Welcome back to the LegitGrails Business Platform!</div>
+                    <div className='message-h2'>Enter your email and password to continue.</div>
+                </div>
+                <div className='auth__form'>
+                    <form className="auth__form__signin" onSubmit={formik.handleSubmit}>
+                        <input
+                            className={formik.touched.email && formik.errors.email ? 'auth__form-elem invalid' : 'auth__form-elem'}
+                            id="email"
+                            name="email"
+                            type="text"
+                            placeholder='Email'
+                            onChange={formik.handleChange}
+                            value={formik.values.email}
+                            onClick={() => { postErrors && dispatch(setErrors(null)) }}
+                        />
+                        {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
+                        {postErrors ? <div className='auth__form-errorMessage'>{postErrors === 'emailNotExists' && 'Email not exists'}</div> : null}
+                        <input
+                            className={formik.touched.password && formik.errors.password ? 'auth__form-elem invalid' : 'auth__form-elem'}
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder='Current password'
+                            onChange={formik.handleChange}
+                            value={formik.values.password}
+                            onClick={() => { postErrors && dispatch(setErrors(null)) }}
+                        />
+                        {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
+                        {postErrors ? <div className='auth__form-errorMessage'>{postErrors === 'incorrectPassword' && 'Incorrect password'}</div> : null}
+                        <div className='auth__form-elem-rememberMe'><input
+                            id="rememberMe"
+                            type='checkbox'
+                            onChange={formik.handleChange}
+                            value={formik.values.rememberMe}
+                            onClick={() => { setSwitchState(formik.values.rememberMe) }} />
+                            <label htmlFor='rememberMe' className={switchBtn} /><div className='switch-btn-label'>Remember Me</div></div>
 
 
-                <button className='auth__form-submit' type="submit">Sign In</button>
-            </form>
-            <div className='auth__form__bottom-signin'>
-                <div className='wrapper'><div className='auth__form__bottom-message'>Dont't have an account?&nbsp;</div>
-                <div className='auth__form__bottom-button' onClick={()=>{navigate('../auth/signup')}}>Sign up</div></div>
-                <div className='auth__form__bottom-button' id='1' onClick={()=>{navigate('../auth/forgot')}}>Forgot password?</div>
-            </div>
-        </div>
+                        <button className='auth__form-submit' type="submit">Sign In</button>
+                    </form>
+                    <div className='auth__form__bottom-signin'>
+                        <div className='wrapper'><div className='auth__form__bottom-message'>Dont't have an account?&nbsp;</div>
+                            <div className='auth__form__bottom-button' onClick={() => { navigate('../auth/signup') }}>Sign up</div></div>
+                        <div className='auth__form__bottom-button' id='1' onClick={() => { navigate('../auth/forgot') }}>Forgot password?</div>
+                    </div>
+                </div>
+                </div>
+            </AuthLayout>
+        </>
     )
 }
 

@@ -46,13 +46,13 @@ const Card = (props) =>{
     }
 
     function getReasons(reasons){
-        console.log(reasons)
-        if(reasons !== null){
-        const arr = reasons.split(',').map(el=> anglesList.find(elem=> elem.id === el ))
+        if(reasons !== null && anglesList !== null){
+        const arr = reasons.split(',').map(el=> anglesList.find(elem=> elem.id === el))
         console.log(arr)
-        //const total = arr.map((el,index)=>arr.length == (index+1) ? el.publicName : el.publicName + ', ' )
-        //return total
+        const total = arr.map((el,index)=> el !== undefined ?  arr.length == (index+1) ? el.publicName : el.publicName + ', ' : null)
+        return total
         }
+        return 'N/A'
     }
 
     
@@ -80,7 +80,7 @@ const Card = (props) =>{
                             <div className='card__info__content__photos-wrapper'>
                                 <div className='card__info__content__photos-label'>Uploaded images</div>
                                 <div className='card__info__content__photos__images'>
-                                    {product.files.map((el,index)=><div className='card__info__content__photos__images-elem' style={{ background: `url(${getPhotoUrl(el)})`}}></div>)}
+                                    {product.files.map((el,index)=><div key={index} className='card__info__content__photos__images-elem' style={{ background: `url(${getPhotoUrl(el)})`}}></div>)}
                                     </div> 
                             </div>
                             <div className='card__info__content__elems-wrapper'>

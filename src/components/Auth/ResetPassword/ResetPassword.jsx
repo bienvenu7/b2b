@@ -5,6 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import SvgSelector from '../../../common/icons/SvgSelector';
 import { getStatusCode } from '../../../redux/selectors/app-selectors';
 import { forgotPasswordThunk } from '../../../redux/thunks/auth-thunk';
+import AuthLayout from '../AuthLayout';
+import mobileLogo from '../../../common/images/logo-for-mobile.png'
 
 const ResetPassword = () => {
 
@@ -43,6 +45,15 @@ const ResetPassword = () => {
     });
 
     return (
+        <AuthLayout>
+            <div className='auth__content-promo'></div>
+            
+            <div className='auth__content-form'>
+            <div className='auth__content-form-headers'>
+                <img className='mobileLogo' src={mobileLogo} />
+                <div className='message-h1'>Set new password!</div>
+                <div className='message-h2'>Your password must be different to the previous one.</div>
+            </div>
         <div className='auth__form'>
             <form className="auth__form__reset" onSubmit={formik.handleSubmit}>
                 <input
@@ -73,6 +84,8 @@ const ResetPassword = () => {
                 <div className='auth__form__bottom-button' onClick={()=>{navigate('../auth/signin')}}><SvgSelector id='backIcon'/>&nbsp;Back to login</div></div>
             </div>
         </div>
+        </div>
+        </AuthLayout>
     )
 }
 

@@ -23,7 +23,7 @@ const SuccessPageOrder = () => {
 For now, you can start another authentication or go to your dashboard.</div>
                 <div className="payment__success__buttons-wrapper">
                     <div className="payment__success__buttons-elem" onClick={()=>navigate('../authentication-request')}>Start another authentication</div>
-                    <div className="payment__success__buttons-elem">Go to dashboard</div>
+                    <div className="payment__success__buttons-elem" onClick={()=>navigate('../authentications/completed')}>Go to dashboard</div>
                 </div>
             </div>
         </div>
