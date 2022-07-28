@@ -53,6 +53,7 @@ const Payment = (props) => {
     const calcCartTotal = (data) => {
         clearTimeout(timerCart)
         setTimerCart(setTimeout(() => {
+            if (data.userTariffPackages){
             if (data.userTariffPackages.length === 1){
                 if (data.userTariffPackages[0].productType !== ''){
                     dispatch(getCartTotalThunk(data))
@@ -61,6 +62,10 @@ const Payment = (props) => {
             else if (data.userTariffPackages.length !== 0){
                 dispatch(getCartTotalThunk(data))
             }
+        }
+        else{
+            dispatch(getCartTotalThunk(data))
+        }
         }, 1000))
     }
 

@@ -1,5 +1,6 @@
-import { getAllAngles, getProduct, getProducts, getProductTypes, getResultsStatuses } from "../../api/product/product-api"
+import { addCertificate, getAllAngles, getProduct, getProducts, getProductTypes, getResultsStatuses } from "../../api/product/product-api"
 import { setAnglesList, setProduct, setProducts, setProductTypes, setResultStatuses } from "../reducers/product-reducer"
+import { getBalanceThunk } from "./authRequest-thunk"
 import { getPriceThunk } from "./payment-thunk"
 
 export const getProductTypesThunk = (page, limit) => async (dispatch) => {
@@ -42,6 +43,21 @@ export const getAnglesListThunk = () => async (dispatch) => {
         const response = await getAllAngles()
         dispatch(setAnglesList(response.data.entities))
     } catch (error) {
-        console.log('fdj')
+
+    }
+}
+
+export const addCertificateThunk = (product) => async (dispatch) => {
+    try {
+        const balance = await dispatch(getBalanceThunk())
+        if (balance > 0){
+            await addCertificate(product)
+            return true
+        }
+        else{
+            return false
+        }
+    } catch (error) {
+
     }
 }

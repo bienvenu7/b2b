@@ -1,4 +1,4 @@
-import { createProduct, getBalance, getBrands, orderCreate, uploadPhotoForProduct } from "../../api/authRequest/authRequest-api"
+import { createProduct, getBalance, getBalanceCert, getBrands, orderCreate, uploadPhotoForProduct } from "../../api/authRequest/authRequest-api"
 import { setErrors, setStatusCode } from "../reducers/app-reducer"
 import { initOrder, setAngles, setBalance, setBrands } from "../reducers/authRequest-reducer"
 
@@ -24,7 +24,7 @@ export const createProductThunk = (data) => async (dispatch) => {
         return response
     } catch (error) {
         console.log(error)
-        dispatch(setErrors({page: 'authrequest', error: error.response && error.response.data && error.response.data.message ? error.response.data.message : null}))
+        dispatch(setErrors({ page: 'authrequest', error: error.response && error.response.data && error.response.data.message ? error.response.data.message : null }))
         return true
     }
 }
@@ -32,8 +32,13 @@ export const createProductThunk = (data) => async (dispatch) => {
 export const getBalanceThunk = () => async (dispatch) => {
     try {
         const response = await getBalance()
-        response.status === 200 && dispatch(setBalance(response.data))
-    } catch (error) {
+        const next = await getBalanceCert()
+        if (next.status === 200) {
+            dispatch(setBalance([...response.data, { productType: { publicName: 'Certificate' }, answerTime: '', volume: next.data }]))
+            return next.data
+        }
+    }
+    catch (error) {
         console.log(error)
     }
 }
@@ -46,7 +51,7 @@ export const uploadPhotoForProductThunk = (data, count, idx) => async (dispatch)
         formData.append('angleId', data.angleId)
         formData.append('photo', data.file)
         const response = await uploadPhotoForProduct(formData)
-        if (idx+1 === count){
+        if (idx + 1 === count) {
             dispatch(setStatusCode(response.status))
             return true
         }

@@ -26,6 +26,10 @@ export const getBalance = () =>{
     return instance.get('user-tariff-packages/get-balance', {headers: {'Authorization': 'Bearer ' + token}})
 }
 
+export const getBalanceCert = () =>{
+    return instance.get('user-certificate-packages/get-balance', {headers: {'Authorization': 'Bearer ' + token}})
+}
+
 export const uploadPhotoForProduct = (data) =>{
     //console.log(data)
     //return instance.post('file/photo', {productId: data.productId, angleId: data.angleId, photo: data.file}, {headers: {'Authorization': 'Bearer ' + token}})

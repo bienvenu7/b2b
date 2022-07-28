@@ -23,11 +23,15 @@ const PhotoRequests = (props) => {
 
     function getReasons(reasons){
         if(reasons !== null && anglesList !== null){
-            const arr = reasons.split(',').map(el=> anglesList.find(elem=> elem.id === el))
+            const arr = reasons.split(',').map(el=> anglesList.find(elem=> elem.clickupId === el))
             console.log(arr)
             const total = arr.length > 2 ? arr.map((el,index)=> el !== undefined ? index < 1 ? el.publicName + ', ' : index === 1 ? el.publicName + ` and ${arr.length - 2} more` : '' : null) : arr.map((el,index)=>el !== undefined ? arr.length == (index+1) ? el.publicName : el.publicName + ', ' : null)
             return total
         }
+    }
+
+    function getPhotoUrl(file){
+        return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + file.path + '/' + file.name
     }
 
 
@@ -47,8 +51,8 @@ const PhotoRequests = (props) => {
                             {products !== null && products.map((el,index)=> 
                             <div key={index} className="photo_requests__table__elem">
                                 <div className="photo_requests__table__elem__category" onClick={()=>navigate(`../request/${el.id}`)}>
-                                    <div className="photo_requests__table__elem__category-image">
-                                        <img src='{/*el.image*/}' alt="" />
+                                    <div className="photo_requests__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el)})`}}>
+
                                     </div>
                                     <div className="photo_requests__table__elem__category-label">{el.productType.publicName}</div>
                                     <div className="photo_requests__table__elem__category-number">#{el.publicId}</div>

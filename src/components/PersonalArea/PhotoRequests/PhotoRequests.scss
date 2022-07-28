@@ -74,6 +74,11 @@ line-height: 140%;
 color: $c_o;
                 &-image{
                     grid-area: image;
+                    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    display: flex;
+    width: 42px;
+    height: 42px;
                 }
                 &-label{
                     grid-area: label;

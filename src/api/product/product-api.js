@@ -19,3 +19,7 @@ export const getResultsStatuses = () => {
 export const getAllAngles = () => {
     return instance.get('angles', {params: {page: 1, limit: 100}})
 }
+
+export const addCertificate = (product) => {
+    return instance.get('products/add-certificate', {product: product})
+}

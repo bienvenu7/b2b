@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
-import { getProductsThunk } from "../../../redux/thunks/product-thunk"
+import { addCertificateThunk, getProductsThunk } from "../../../redux/thunks/product-thunk"
 import { setProducts } from "../../../redux/reducers/product-reducer"
 
 const Authentications = (props) => {
@@ -24,8 +24,6 @@ const Authentications = (props) => {
     })
 
     useEffect(() => {
-        console.log(params.page)
-        console.log(sortData)
         products === null && resultStatuses !== null && dispatch(getProductsThunk(
           {resultStatuses: resultStatuses.filter(el=> params.page === 'completed' ? el.name === 'COMPLETED' : el.name !== 'COMPLETED'),
           sort: `createdAt:${sortData ? 'DESC' : 'ASC'}`}))
@@ -77,6 +75,20 @@ const Authentications = (props) => {
         dispatch(getProductsThunk(searchValue!== '' ? {...data, search: searchValue}: data))
     }
 
+    function getPhotoUrl(file){
+        return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + file.path + '/' + file.name
+    }
+
+    async function addViewCertificate(el){
+        console.log(el.certificateAvailable)
+        if (el.certificateAvailable !== null){
+            console.log('view')
+         } else{
+             const response = await dispatch(addCertificateThunk(el))
+             !response && navigate('../payment')
+            }
+    }
+
 
 
     return (
@@ -120,7 +132,7 @@ const Authentications = (props) => {
                                         <label htmlFor={`check-for-elem-${index}`} />
                                     </div>
                                     <div className="authent__table__elem__category" onClick={()=>navigate(`../request/${el.id}`)}>
-                                        <div className="authent__table__elem__category-image">
+                                        <div className="authent__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el)})`}}>
                                             {/*<img src={el.image} alt="" />*/}
                                         </div>
                                         <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
@@ -130,9 +142,9 @@ const Authentications = (props) => {
                                 <div className="authent__table__elems-wrapper">
                                     <div className="authent__table__elem-brand">{el.brand.publicName}</div>
                                     <div className="authent__table__elem-model">{el.modelName}</div>
-                                    <div className="authent__table__elem-outcome">{/*el.outcome*/}</div>
+                                    <div className="authent__table__elem-outcome">{el.checkStatus}</div>
                                     <div className="authent__table__elem-date">{(new Date(el.createdAt)).getDate() + '/' + (Number((new Date(el.createdAt)).getMonth()) + 1) + '/' + (new Date(el.createdAt)).getYear()}</div>
-                                    <div className="authent__table__elem-pdf">{/*el.pdf ? 'View' : 'Add certificate'*/}</div>
+                                    <div className="authent__table__elem-pdf" onClick={()=>addViewCertificate(el)}>{el.certificateAvailable ? 'View' : 'Add certificate'}</div>
                                 </div>
                             </div>)}
                         </div>}
@@ -153,7 +165,7 @@ const Authentications = (props) => {
                             {products && products.map((el, index) => <div key={index} className="authent__table__elem">
                                 <div className="authent__table__elems-wrapper">
                                     <div className="authent__table__elem__category" onClick={()=>navigate(`../request/${el.id}`)}>
-                                        <div className="authent__table__elem__category-image">
+                                        <div className="authent__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el)})`}}>
                                             {/*<img src={el.image} alt="" />*/}
                                         </div>
                                         <div className="authent__table__elem__category-label">{el.productType.publicName}</div>

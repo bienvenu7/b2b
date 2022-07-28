@@ -47,8 +47,7 @@ const Card = (props) =>{
 
     function getReasons(reasons){
         if(reasons !== null && anglesList !== null){
-        const arr = reasons.split(',').map(el=> anglesList.find(elem=> elem.id === el))
-        console.log(arr)
+        const arr = reasons.split(',').map(el=> anglesList.find(elem=> elem.clickupId === el))
         const total = arr.map((el,index)=> el !== undefined ?  arr.length == (index+1) ? el.publicName : el.publicName + ', ' : null)
         return total
         }

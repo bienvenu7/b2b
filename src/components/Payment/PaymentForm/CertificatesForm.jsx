@@ -63,13 +63,14 @@ const CertificatesForm = (props) => {
         else if (e.value === 'choose'){
             volume > 1 && setVolume(1)
             const data = {
-                userTariffPackages: userTariffPackages,
                 userCertificatePackage: {
                     volume: volume,
                     userId: userId
                 }
             }
-            props.cartTotal(data)
+            const totalData = userTariffPackages && userTariffPackages.length === 1 && (userTariffPackages[0].productType === '' || userTariffPackages[0].answerTime === '') ? data : {...data, userTariffPackages: userTariffPackages}
+            //console.log(totalData)
+            props.cartTotal(totalData)
         }
         
     }
@@ -77,13 +78,13 @@ const CertificatesForm = (props) => {
     const handleChangeForNumeric = (e) => {
         setVolume(e)
         const data = {
-            userTariffPackages: userTariffPackages,
             userCertificatePackage: {
                 volume: e,
                 userId: userId
             }
         }
-        props.cartTotal(data)
+        const totalData = userTariffPackages && userTariffPackages.length === 1 && (userTariffPackages[0].productType === '' || userTariffPackages[0].answerTime === '') ? data : {...data, userTariffPackages: userTariffPackages}
+        props.cartTotal(totalData)
     }
 
     const handlePost = (formik) => {
@@ -98,8 +99,10 @@ const CertificatesForm = (props) => {
         const data = {
             //paymentSystem: "paypal", 
             //savePaymentMethod: false, 
-            useSavedPaymentMethod: false, successUrl: "https://example.com",
-            cancelUrl: "https://example.com", userTariffPackages: userTariffPackages
+            //useSavedPaymentMethod: false, 
+            //successUrl: "https://example.com",
+            //cancelUrl: "https://example.com", 
+            //userTariffPackages: userTariffPackages
         }
         if (selectedValue === 'include') {
             vol = 0
@@ -117,6 +120,10 @@ const CertificatesForm = (props) => {
         
         if(selectedValue !==''){
             if(lastPack.productType !== ''){
+                dispatch(setTotalPackage({...data, userTariffPackages: userTariffPackages}))
+                navigate('../payment-first')
+            }
+            else{
                 dispatch(setTotalPackage(data))
                 navigate('../payment-first')
             }

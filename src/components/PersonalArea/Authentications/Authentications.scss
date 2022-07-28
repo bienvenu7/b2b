@@ -37,12 +37,13 @@ color: $c_o;
         }
         &-label{
             font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 140%;
+font-style: normal;
+font-weight: 700;
+font-size: 14.1022px;
+line-height: 140%;
             white-space: nowrap;
             width: 210px;
+            color: $c_g;
         }
         &-search{
             width: 697px;
@@ -180,10 +181,20 @@ color: #7B809A;
                     grid-area: image;
                     display: flex;
     align-items: center;
-    
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    display: flex;
+    width: 42px;
+    height: 42px;
                 }
                 &-label{
                     grid-area: label;
+                    font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 12.3395px;
+line-height: 140%;
+color: $c_g;
                 }
                 &-number{
                     grid-area: number;
@@ -219,6 +230,9 @@ color: #7B809A;
                 width: 110px;
                 display: flex;
                 justify-content: center;
+                &:hover{
+                    text-decoration: underline;
+                }
             }
             &-status{
                 width: 100px;

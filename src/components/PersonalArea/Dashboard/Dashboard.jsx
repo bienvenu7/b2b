@@ -38,11 +38,11 @@ const Dashboard = (props) =>{
                         {balance.length > 0 && balance.map((el, index)=>
                         <div key={index} className='dashboard__elem__auth_balance__balance__elem'>
                             <div className='dashboard__elem__auth_balance__balance-category'>{el.productType.publicName}</div>
-                            <div className='dashboard__elem__auth_balance__balance-answer'>{el.answerTime} h</div>
+                            {el.answerTime !== '' && <div className='dashboard__elem__auth_balance__balance-answer'>{el.answerTime} h</div>}
                             <div className='dashboard__elem__auth_balance__balance-count'>{el.volume}</div>
                         </div>)}
-                        <div className='dashboard__elem__auth_balance__balance-button'>Top up now</div>
-                        <div className='dashboard__elem__auth_balance__balance-button'>New authentication</div>
+                        <div className='dashboard__elem__auth_balance__balance-button' onClick={()=>navigate('../payment')}>Top up now</div>
+                        <div className='dashboard__elem__auth_balance__balance-button' onClick={()=>navigate('../authentication-request')}>New authentication</div>
                     </div>
                 </div>
                 <div className='dashboard__elem__authentications-wrapper'>
