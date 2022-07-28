@@ -141,9 +141,8 @@ const AuthenticationRequest = () => {
         const photosCount = photoFiles.filter(el => el.file !== '').length
 
         const response = await dispatch(createProductThunk(data))
-        console.log(response)
-        const response1 = response != true ?
-            await photoFiles.map(
+        const response1 = response !== true ?
+            await photoFiles.filter(el=>el.file !== '').map(
                 (el, index) => el.file !== '' && dispatch(uploadPhotoForProductThunk({ productId: response.data.id, file: el.file, angleId: el.angleId }, photosCount, index))
             )
             : setButtonState(true)
@@ -167,7 +166,7 @@ const AuthenticationRequest = () => {
 
         let index = e.target.id.split('-')[1]
 
-        if (!file.name.match(/\.(jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/)) {
+        if (!file.name.match(/\.(gif|jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/)) {
             setPhotoFiles(
                 photoFiles.map(item =>
                     item.key == index ? { ...item, format: false } : item)

@@ -11,7 +11,6 @@ const initialState = {
         status: null,
         message: null,
         errors: {
-
         }
     }
 }
@@ -41,6 +40,9 @@ const appReducer = createReducer(initialState, (builder) => {
                     case 'forgot':
                         state.post.errors = { ...state.post.errors, forgot: action.payload.error }
                         break;
+                    case 'upload-photos':
+                        console.log({...state.post.errors})
+                        state.post.errors = { ...state.post.errors, uploadPhotos: [action.payload.error] }
                     default:
                         break;
                 }

@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
 import { addCertificateThunk, getProductsThunk } from "../../../redux/thunks/product-thunk"
 import { setProducts } from "../../../redux/reducers/product-reducer"
+import UploadPhotoModal from "../UploadPhotoModal/UploadPhotoModal"
 
 const Authentications = (props) => {
 
@@ -90,9 +91,11 @@ const Authentications = (props) => {
     }
 
 
+    
 
     return (
         <>
+        
             <PersonalAreaLayout>
                 <div className='authent-container'>
                     <div className='authent__buttons-wrapper'>

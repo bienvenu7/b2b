@@ -44,19 +44,16 @@ export const getBalanceThunk = () => async (dispatch) => {
 }
 
 export const uploadPhotoForProductThunk = (data, count, idx) => async (dispatch) => {
-    try {
-        console.log(data.angle)
-        let formData = new FormData()
-        formData.append('productId', data.productId)
-        formData.append('angleId', data.angleId)
-        formData.append('photo', data.file)
-        const response = await uploadPhotoForProduct(formData)
-        if (idx + 1 === count) {
-            dispatch(setStatusCode(response.status))
-            return true
-        }
-    } catch (error) {
-        console.log(error)
-        return true
-    }
+    let formData = new FormData()
+    formData.append('productId', data.productId)
+    formData.append('angleId', data.angleId)
+    formData.append('photo', data.file)
+    const response = await uploadPhotoForProduct(formData)
+        .then((response) => {
+            if (idx + 1 === count) {
+                dispatch(setStatusCode(response.status))
+            }
+        }).catch(() => { 
+            dispatch(setErrors({page: 'upload-photos', error: {index: idx}}))})
+    
 }

@@ -9,7 +9,7 @@ export const getProduct = (id) => {
 }
 
 export const getProducts = (data) => {
-    return instance.post('products/get-products', data)
+    return instance.post('products/get-products', {...data, page: 1, limit:100} )
 }
 
 export const getResultsStatuses = () => {
@@ -21,5 +21,5 @@ export const getAllAngles = () => {
 }
 
 export const addCertificate = (product) => {
-    return instance.post('products/add-certificate', product)
+    return instance.patch(`products/add-certificate/${product.id}`)
 }
