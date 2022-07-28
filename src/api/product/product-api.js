@@ -21,5 +21,5 @@ export const getAllAngles = () => {
 }
 
 export const addCertificate = (product) => {
-    return instance.get('products/add-certificate', {product: product})
+    return instance.post('products/add-certificate', product)
 }
