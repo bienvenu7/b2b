@@ -23,3 +23,7 @@ export const getAllAngles = () => {
 export const addCertificate = (product) => {
     return instance.patch(`products/add-certificate/${product.id}`)
 }
+
+export const updateProduct = (productId, data) => {
+    return instance.patch(`products/${productId}`, data)
+}

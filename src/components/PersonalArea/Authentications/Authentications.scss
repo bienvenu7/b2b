@@ -8,7 +8,7 @@ color: $c_o;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
         border-radius: 12px;
         background: $c_w;
-        width: 1278px;
+        width: 811px;
         margin-top: 37px;
     }
     &__buttons{
@@ -25,6 +25,24 @@ color: $c_o;
             cursor: pointer;
             &.selected{
                 font-weight: 700;
+            }
+        }
+    }
+    &__filter{
+        &-wrapper{
+
+        }
+        &__elems{
+            &-wrapper{
+
+            }
+        }
+        &__elem{
+            display: flex;
+            &:not(:last-child){
+                .authent__filter__elem-button{
+                    display: none;
+                }
             }
         }
     }
@@ -95,7 +113,7 @@ padding: 0 44px 10px 31px;
                 &-category{
                     display: flex;
                     align-items: center;    
-                    width: 250px;            
+                    width: 150px;          
                 }
             }
             &__elems{
@@ -107,7 +125,7 @@ padding: 0 44px 10px 31px;
                 &-brand{
                     display: flex;
                     justify-content: center;
-                    width: 340px;
+                    width: 80px;
                 }
                 &-model{
                     display: flex;
@@ -175,7 +193,7 @@ color: #7B809A;
                                     grid-column-gap: 16px;
                 grid-template-columns: 33px;
                 display: grid;
-                width: 250px;
+                width: 150px;
                 cursor: pointer;
                 &-image{
                     grid-area: image;
@@ -203,7 +221,8 @@ color: $c_g;
             &-brand{
                 display: flex;
                 justify-content: center;
-                width: 340px;
+                width: 80px;
+                text-align: center;
             }
             &-model{
                 display: flex;
@@ -230,6 +249,8 @@ color: $c_g;
                 width: 110px;
                 display: flex;
                 justify-content: center;
+                text-decoration: none;
+                color: #7B809A;
                 &:hover{
                     text-decoration: underline;
                 }

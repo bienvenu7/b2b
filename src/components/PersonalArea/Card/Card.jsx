@@ -1,11 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import SvgSelector from '../../../common/icons/SvgSelector'
 import { setProduct } from '../../../redux/reducers/product-reducer'
 import { takeAnglesList, takeProduct } from '../../../redux/selectors/product-selectors'
-import { getProductThunk } from '../../../redux/thunks/product-thunk'
+import { getProductThunk, updateProductThunk } from '../../../redux/thunks/product-thunk'
 import PersonalAreaLayout from '../PersonalAreaLayout'
+import UploadPhotoModal from '../UploadPhotoModal/UploadPhotoModal'
 import './Card.scss'
 
 const Card = (props) =>{
@@ -16,6 +17,8 @@ const Card = (props) =>{
 
     const product = useSelector(takeProduct)
     const anglesList = useSelector(takeAnglesList)
+
+    const [editMode, setEditMode]=useState(false)
 
     useEffect(()=>{
         dispatch(getProductThunk(params.id))
@@ -54,11 +57,35 @@ const Card = (props) =>{
         return 'N/A'
     }
 
+
+    //for modal
+    const [isOpen, setIsOpen] = useState(false)
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    function openModal(el) {
+        setIsOpen(true);
+    }
+    //
+
+
+    //edit
+    const [modelValue, setModelValue] = useState(product && product.modelName)
+    const [supplierValue, setSupplierValue] = useState('')
+
+    function onEditClick(){
+        setEditMode(!editMode)
+        editMode && dispatch(updateProductThunk(product.id, {modelName: modelValue, supplier: supplierValue}))
+    }
+    //
     
     
 
     return (
         <>
+        {isOpen && <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={product}/>}
         <PersonalAreaLayout>
         {product !== null && <div className='card-container'>
                 <div className='card__info-wrapper'>
@@ -102,7 +129,29 @@ const Card = (props) =>{
                     {product.certificateAvailable ? <div className='card__info__content__button certificate'>View certificate</div>
                     : <div className='card__info__content__button'>Request help</div>}
                 </div>
-                <div className='card__details-wrapper'></div>
+                <div className='card__details-wrapper'>
+                    <div className='card__details__header'>
+                        <div className='card__details__header-label'>Additional details</div>
+                        <div className='card__details__header-button' onClick={onEditClick}>Edit</div>
+                    </div>
+                    <div className='card__details__content-wrapper'>
+                        <div className='card__details__content__elem-wrapper'>
+                            <div className='card__details__content__elem-label'>Model name</div>
+                            {!editMode ? <div className='card__details__content__elem-value'>{product.modelName}</div>
+                            : <input className='card__details__content__elem-input' dir='rtl' type="text" value={modelValue} onChange={(e)=>setModelValue(e.target.value)}/>}
+                        </div>
+                       <div className='card__details__content__elem-wrapper'>
+                            <div className='card__details__content__elem-label'>Supplier</div>
+                            {!editMode ? <div className='card__details__content__elem-value'>{product.supplier === '' ? '—' : product.supplier}</div>
+                            : <input className='card__details__content__elem-input' dir='rtl' type="text" value={supplierValue} onChange={(e)=>setSupplierValue(e.target.value)}/>}
+                        </div>
+                    </div>
+                </div>
+                {product.resultStatus.name === 'UPDATE_NEEDED' && <div className='card__warning-wrapper'>
+                    <div className='card__warning-label'>Additional photos are needed</div>
+                    <div className='card__warning-message'>Please upload the following photos to complete the authentication: inside stitching, size label</div>
+                    <div className='card__warning-button' onClick={openModal}>Add photos</div>
+                </div>}
             </div>}
         </PersonalAreaLayout>
         </>

@@ -1,4 +1,4 @@
-import { addCertificate, getAllAngles, getProduct, getProducts, getProductTypes, getResultsStatuses } from "../../api/product/product-api"
+import { addCertificate, getAllAngles, getProduct, getProducts, getProductTypes, getResultsStatuses, updateProduct } from "../../api/product/product-api"
 import { setAnglesList, setProduct, setProducts, setProductTypes, setResultStatuses } from "../reducers/product-reducer"
 import { getBalanceThunk } from "./authRequest-thunk"
 import { getPriceThunk } from "./payment-thunk"
@@ -59,5 +59,13 @@ export const addCertificateThunk = (product) => async (dispatch) => {
         }
     } catch (error) {
 
+    }
+}
+
+export const updateProductThunk = (productId, data) => async (dispatch) => {
+    try {
+        const response = await updateProduct(productId,data)
+    } catch (error) {
+        
     }
 }

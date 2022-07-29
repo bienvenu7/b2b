@@ -9,7 +9,7 @@
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
         border-radius: 12px;
         background: $c_w;
-        width: 1278px;
+        width: 811px;
         padding: 32px 0px 0 0px;
     }
 
@@ -42,14 +42,16 @@
 
             &__elem {
                 &-category {
-                    width: 332px;
+                    width: 180px
                 }
 
                 &-brand {
+                    text-align: center;
                     width: 132px
                 }
 
                 &-date {
+                    text-align: center;
                     width: 221px
                 }
             }
@@ -68,7 +70,7 @@
 
             &__category {
                 cursor: pointer;
-                width: 332px;
+                width: 180px;
                 display: grid;
                 grid-template-areas: "image label"
                     "image number";
@@ -114,19 +116,25 @@
             }
 
             &-brand {
-                width: 132px
+                width: 132px;
+                text-align: center;
             }
 
             &-date {
+                text-align: center;
                 width: 221px
             }
 
             &-required {
-                width: 451px;
+                text-align: center;
+                width: 100px
             }
 
             &-button {
                 cursor: pointer;
+                width: 100px;
+    display: flex;
+    justify-content: flex-end;
             }
         }
     }

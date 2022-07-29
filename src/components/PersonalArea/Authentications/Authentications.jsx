@@ -8,6 +8,9 @@ import { takeProducts, takeResultStatuses } from "../../../redux/selectors/produ
 import { addCertificateThunk, getProductsThunk } from "../../../redux/thunks/product-thunk"
 import { setProducts } from "../../../redux/reducers/product-reducer"
 import Paginator from "../../Paginator/Paginator"
+import Select from "react-select"
+import FilterSelect from "./FilterSelect"
+import { getCertificateThunk } from "../../../redux/thunks/files-thunk"
 
 const Authentications = (props) => {
 
@@ -105,14 +108,9 @@ const Authentications = (props) => {
         return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + file.path + '/' + file.name
     }
 
-    async function addViewCertificate(el) {
-        console.log(el.certificateAvailable)
-        if (el.certificateAvailable !== null) {
-            console.log('view')
-        } else {
+    async function addCertificate(el) {
             const response = await dispatch(addCertificateThunk(el))
             !response && navigate('../payment')
-        }
     }
 
     useEffect(() => {
@@ -120,6 +118,57 @@ const Authentications = (props) => {
     }, [currentTableData])
 
 
+    //for filter
+    const [filterMode, setFilterMode] = useState(false)
+
+    const [filterValues, setFilterValues] = useState(null)
+
+    const [selectedFilter, setSelectedFilter] = useState(null)
+
+    function handleFilter() {
+        setFilterMode(!filterMode)
+        !filterValues && setFilterValues([
+            { value: '', secondValue: '' }
+        ]) 
+        if (filterValues){
+            setFilterValues(null)
+            setSelectedFilter(null)
+        }
+    }
+
+    function handleChange(e,idx, length) {
+        if (selectedFilter === null) {
+            let arr = []
+            for (let i = 0; i <= idx; i++) {
+                i === idx ? arr.push(e) : arr.push({ value: '', label: '' })
+            }
+            setSelectedFilter(arr)
+        } else{
+            if (idx < selectedFilter.length){
+                setSelectedFilter(selectedFilter.map((el,index)=>index === idx ? el=e : el))
+            }
+            else{setSelectedFilter([...selectedFilter, e])}
+        }
+        setFilterValues(filterValues.map((el,index)=>index===idx ? {...el, value: e.value} : el))
+    }
+
+    const mainOptions = [
+        { value: 'BRAND', label: 'Brand name' },
+        { value: 'MODEL', label: 'Model name' },
+        { value: 'CATEGORY', label: 'Item category' },
+        { value: 'OUTCOME', label: 'Outcome' },
+        { value: 'LAST_UPDATE', label: 'Last update' }
+    ]
+
+    function getCertificateLink(product){
+        const file = product.files.find(el=> el.feature==='certificate')
+        if (process.env.NODE_ENV !== 'production'){
+            return '/app/files'
+        } else{
+            return file.path + '/' + file.name
+        }
+        
+    }
 
 
     return (
@@ -134,12 +183,22 @@ const Authentications = (props) => {
                     <div className='authent-wrapper'>
                         <div className='authent__nav-wrapper'>
                             {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentications</div>}
-                            <input className='authent__nav-search' placeholder='Search' onChange={(e) => setSearchValue(e.target.value)} onBlur={handleSearch}/>
+                            <input className='authent__nav-search' placeholder='Search' onChange={(e) => setSearchValue(e.target.value)} onBlur={handleSearch} />
                             <div className='authent__nav__buttons-wrapper'>
-                                <div className='authent__nav__buttons__elem-wrapper'><SvgSelector id='filter-icon' />Filter</div>
-                                {page === 'complete' && <div className='authent__nav__buttons__elem-wrapper'><SvgSelector id='download-icon' />Download</div>}
+                                <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' />Filter</div>
+                                {/*page === 'complete' && <div className='authent__nav__buttons__elem-wrapper'><SvgSelector id='download-icon' />Download</div>*/}
                             </div>
                         </div>
+                        {filterMode && <div className="authent__filter-wrapper">
+                            <div className="authent__filter__elems-wrapper">
+                                {filterValues && filterValues.map((el, index) => <div key={index} className="authent__filter__elem">
+                                    <FilterSelect key={index} index={index} mainOptions={mainOptions} handleChange={handleChange} length={filterValues.length}/>
+                                    {selectedFilter && selectedFilter[index] && selectedFilter[index].value === 'MODEL' ? <input type="text" placeholder="model"/>
+                                    :<Select classNamePrefix="custom-select__dashboard" placeholder='Select filter' />}
+                                    {filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>}
+                                </div>)}
+                            </div>
+                        </div>}
                         {page === 'complete' && <div className="authent__table">
                             <div className="authent__table__label-wrapper">
                                 <div className="authent__table__label__elems-wrapper">
@@ -176,7 +235,8 @@ const Authentications = (props) => {
                                     <div className="authent__table__elem-model">{el.modelName}</div>
                                     <div className="authent__table__elem-outcome">{el.checkStatus}</div>
                                     <div className="authent__table__elem-date">{(new Date(el.createdAt)).getDate() + '/' + (Number((new Date(el.createdAt)).getMonth()) + 1) + '/' + (new Date(el.createdAt)).getYear()}</div>
-                                    <div className="authent__table__elem-pdf" onClick={() => addViewCertificate(el)}>{el.certificateAvailable ? 'View' : 'Add certificate'}</div>
+                                    {el.certificateAvailable ? <a className="authent__table__elem-pdf" href={getCertificateLink(el)}>View</a> 
+                                    : <div className="authent__table__elem-pdf" onClick={() =>addCertificate(el)}>Add</div>}
                                 </div>
                             </div>) : 'loader'}
                         </div>}
