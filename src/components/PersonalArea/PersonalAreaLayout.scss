@@ -1,8 +1,21 @@
 @import '../../scss/vars';
 
-.content-wrapper{
+.content-wrapper {
     display: flex;
     gap: 45px;
     margin-top: 65px;
     margin-left: 28px;
+
+    @include for-phone-only {
+        margin: 0;
+    }
+}
+
+.container-center {
+    width: 1170px;
+    margin: 0 auto;
+
+    @include for-phone-only {
+        width: 100vw;
+    }
 }

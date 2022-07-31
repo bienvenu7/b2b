@@ -9,6 +9,9 @@
         padding: 40px 16px 45px 16px;
         min-width: 218px;
         height: 100%;
+        @include for-phone-only{
+            display: none;
+        }
     }
 
     &-wrapper {}

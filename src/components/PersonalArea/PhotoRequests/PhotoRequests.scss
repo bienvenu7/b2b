@@ -11,6 +11,10 @@
         background: $c_w;
         width: 811px;
         padding: 32px 0px 0 0px;
+        @include for-phone-only{
+            box-shadow: none;
+            width: 100vw;
+        }
     }
 
     &-label {
@@ -20,6 +24,9 @@
         font-size: 16px;
         line-height: 140%;
         padding-left: 38px;
+        @include for-phone-only{
+            display: none;
+        }
     }
 
     &__table {
@@ -38,6 +45,9 @@
                 border-bottom: 1px solid #F0F2F5;
                 padding-bottom: 14px;
                 padding-top: 29px;
+                @include for-phone-only{
+                    display: none;
+                }
             }
 
             &__elem {
@@ -67,7 +77,11 @@
             font-size: 14px;
             line-height: 140%;
             align-items: center;
-
+            @include for-phone-only{
+                flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+            }
             &__category {
                 cursor: pointer;
                 width: 180px;
@@ -83,7 +97,13 @@
                 font-size: 14px;
                 line-height: 140%;
                 color: $c_o;
-
+                @include for-phone-only{
+                    grid-template-areas:
+        "number date date"
+        "label label button";
+        grid-template-columns: 15vw;
+        width: 100vw;
+                }
                 &-image {
                     grid-area: image;
                     background-size: contain !important;
@@ -91,6 +111,9 @@
                     display: flex;
                     width: 42px;
                     height: 42px;
+                    @include for-phone-only{
+                        display: none;
+                    }
                 }
 
                 &-label {
@@ -102,6 +125,49 @@
                     font-size: 14px;
                     line-height: 140%;
                     color: $c_o;
+                    @include for-phone-only{
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+color: #020202;
+                    }
+                }
+
+                &-button{
+                    grid-area: button;
+                    display: none;
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: $c_g;
+display: flex;
+align-items: center;
+&::before{
+    content: '+';
+}
+                    @include for-phone-only{
+                        display: block;
+                    }
+                }
+
+                &-date{
+                    grid-area: date;
+                    display: none;
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #414141;
+grid-column-start: 2;
+    grid-column-end: 2;
+                    @include for-phone-only{
+                        display: block;
+                    }
                 }
 
                 &-number {
@@ -112,22 +178,61 @@
                     font-size: 14px;
                     line-height: 140%;
                     color: #414141;
+                    @include for-phone-only{
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #414141;
+                    }
                 }
             }
 
             &-brand {
                 width: 132px;
                 text-align: center;
+                @include for-phone-only{
+                    display: none;
+                }
             }
 
             &-date {
                 text-align: center;
-                width: 221px
+                width: 221px;
+                @include for-phone-only{
+                    display: none;
+                }
             }
 
             &-required {
                 text-align: center;
-                width: 100px
+                width: 100px;
+                @include for-phone-only{
+                    display: none;
+                }
+                &__mobile{
+                    display: none;
+                    @include for-phone-only{
+                        display: flex;
+                        gap: 6px;
+                    }
+                    &-elem{
+                        background: #DFDFDF;
+border-radius: 10px;
+height: 23px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #8E8E93;
+padding: 0 10px;
+                    }
+                }
             }
 
             &-button {
@@ -135,6 +240,9 @@
                 width: 100px;
     display: flex;
     justify-content: flex-end;
+    @include for-phone-only{
+        display: none;
+    }
             }
         }
     }

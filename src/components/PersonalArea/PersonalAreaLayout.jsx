@@ -5,7 +5,7 @@ import './PersonalAreaLayout.scss'
 const PersonalAreaLayout = ({ children }) => {
     return (
         <>
-        <div className="container-center" style={{width: '1170px', margin: '0 auto'}}>
+        <div className="container-center">
             <Header/>
             <div className="content-wrapper">
                 <Dashboard />

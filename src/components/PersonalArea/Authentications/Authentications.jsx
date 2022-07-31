@@ -170,6 +170,15 @@ const Authentications = (props) => {
         
     }
 
+    function getDate(data, version){
+        const date = new Date(data)
+        if (version === 'desktop'){
+        return date.getDate() + '/' + Number(date.getMonth() + 1) + '/' + date.getYear()
+        } else if (version === 'mobile'){
+            return date.getHours() + ':' + date.getMinutes() + '·' + date.getDate() + '/' + Number(date.getMonth() + 1) + '/' + date.getYear()
+        }
+    }
+
 
     return (
         <>
@@ -182,11 +191,11 @@ const Authentications = (props) => {
                     </div>
                     <div className='authent-wrapper'>
                         <div className='authent__nav-wrapper'>
+                            <div className="authent__nav-sort"><SvgSelector id='sort-icon'/></div>
                             {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentications</div>}
-                            <input className='authent__nav-search' placeholder='Search' onChange={(e) => setSearchValue(e.target.value)} onBlur={handleSearch} />
+                            <div className="authent__nav-search_icon"><SvgSelector id='search-icon'/></div><input className='authent__nav-search' placeholder='Search' onChange={(e) => setSearchValue(e.target.value)} onBlur={handleSearch} />
                             <div className='authent__nav__buttons-wrapper'>
-                                <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' />Filter</div>
-                                {/*page === 'complete' && <div className='authent__nav__buttons__elem-wrapper'><SvgSelector id='download-icon' />Download</div>*/}
+                                <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' /></div>
                             </div>
                         </div>
                         {filterMode && <div className="authent__filter-wrapper">
@@ -228,13 +237,14 @@ const Authentications = (props) => {
                                         </div>
                                         <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
                                         <div className="authent__table__elem__category-number">#{el.publicId}</div>
+                                        <div className="authent__table__elem__category-date">{getDate(el.createdAt, 'mobile')}</div>
                                     </div>
                                 </div>
                                 <div className="authent__table__elems-wrapper">
                                     <div className="authent__table__elem-brand">{el.brand.publicName}</div>
                                     <div className="authent__table__elem-model">{el.modelName}</div>
                                     <div className="authent__table__elem-outcome">{el.checkStatus}</div>
-                                    <div className="authent__table__elem-date">{(new Date(el.createdAt)).getDate() + '/' + (Number((new Date(el.createdAt)).getMonth()) + 1) + '/' + (new Date(el.createdAt)).getYear()}</div>
+                                    <div className="authent__table__elem-date">{getDate(el.createdAt, 'desktop')}</div>
                                     {el.certificateAvailable ? <a className="authent__table__elem-pdf" href={getCertificateLink(el)}>View</a> 
                                     : <div className="authent__table__elem-pdf" onClick={() =>addCertificate(el)}>Add</div>}
                                 </div>
@@ -262,6 +272,7 @@ const Authentications = (props) => {
                                         </div>
                                         <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
                                         <div className="authent__table__elem__category-number">#{el.publicId}</div>
+                                        <div className="authent__table__elem__category-date">{getDate(el.createdAt, 'mobile')}</div>
                                     </div>
                                 </div>
                                 <div className="authent__table__elems-wrapper">
