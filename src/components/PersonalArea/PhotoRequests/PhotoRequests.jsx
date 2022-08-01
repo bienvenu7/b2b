@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { takeAnglesList, takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
 import { getProductsThunk } from "../../../redux/thunks/product-thunk"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import UploadPhotoModal from "../UploadPhotoModal/UploadPhotoModal"
 
 const PhotoRequests = (props) => {
@@ -61,7 +61,9 @@ const PhotoRequests = (props) => {
         }
     }
 
-    
+    const params = useParams()
+
+    console.log(params)
 
 
     return (

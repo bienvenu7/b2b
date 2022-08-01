@@ -26,12 +26,17 @@ const Dashboard = (props) =>{
                     <div className='dashboard__elem__top-wrapper'>
                         <div className='dashboard__elem__top-img'><img alt='' src={storeLogo}/></div>
                         <div className='dashboard__elem__top-label'>Luxury store <SvgSelector id='arrow'/></div>
+                        <div className='dashboard__elem__top__icon-wrapper'>
+                            <div className='dashboard__elem__top__icon-elem'><img src={dashboardIcon} alt="" /></div>
+                            <div className='dashboard__elem__top__icon-elem'><SvgSelector id='bell' /></div>
+                        </div>
                     </div>
                     <div className='dashboard__elem__child-wrapper'>
                         <div className='dashboard__elem__child-img'><img src={dashboardIcon} alt="" /></div>
                         <div className='dashboard__elem__child__label'>Dashboard</div>
                     </div>
                 </div>
+                <div className='dashboard__elem__auth_balance__balance-button mobile' onClick={()=>navigate('../authentication-request')}>New authentication</div>
                 <div className='dashboard__elem__auth_balance-wrapper'>
                     <div className='dashboard__elem__auth_balance-label'>Authentication balance <SvgSelector id='arrow'/></div>
                     <div className='dashboard__elem__auth_balance__balance-wrapper'>
@@ -46,12 +51,12 @@ const Dashboard = (props) =>{
                     </div>
                 </div>
                 <div className='dashboard__elem__authentications-wrapper'>
-                    <div className='dashboard__elem__authentications-label'>Authentications</div>
+                    <div className='dashboard__elem__authentications-label'>Authentications <SvgSelector id='arrow'/></div>
                     <div className='dashboard__elem__authentications-control__elements'>
                         <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../authentications/completed')}>
                             <SvgSelector id='check-icon'/>All authentication
                         </div>
-                        <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../photo-requests')}>
+                        <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../photo-requests/all')}>
                             <SvgSelector id='camera-icon'/>Photo requests
                         </div>
                     </div>
@@ -66,6 +71,7 @@ const Dashboard = (props) =>{
                 </div>
 
             </div>
+            <label htmlFor="dashboard-open" className='dashboard__cross-container'><SvgSelector id='cross-icon'/></label>
         </div>
         </>
     )

@@ -1,6 +1,17 @@
 @import '../../../scss/vars';
 
 .dashboard {
+    &__cross{
+        &-container{
+            display: none;
+    justify-content: center;
+    padding-top: 24px;
+            @include for-phone-only{
+                display: flex;
+            }
+            background: #DFDFDF;
+        }
+    }
     &-container {
         width: 218px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
@@ -10,11 +21,27 @@
         min-width: 218px;
         height: 100%;
         @include for-phone-only{
-            display: none;
+            position: absolute;
+            transition: left .2s, z-index .1s;
+  z-index: -2;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  left: -600px;
+  display: flex;
+  box-shadow: none;
+  justify-content: space-between;
+  width: 100vw;
+  top: 0;
+    padding: 0;
         }
     }
 
-    &-wrapper {}
+    &-wrapper {
+        @include for-phone-only{
+            padding: 93px 21px 0 17px;
+            width: 100%;
+        }
+    }
 
     &__elem {
         &__top {
@@ -26,9 +53,33 @@
                 gap: 10px;
                 padding: 0 20px 15px 20px;
                 border-bottom: 1px solid;
+                @include for-phone-only{
+                    border: 0;
+                    max-width: 100%;
+                    padding: 0 0 16px 0;
+                }
             }
 
-            &-img {}
+            &__icon{
+                &-wrapper{
+                    display: none;
+                    @include for-phone-only{
+                        display: flex;
+                        align-items: center;
+                        gap: 11px;
+                    }
+                }
+                &-elem{
+                    display: flex;
+                }
+            }
+
+            &-img {
+                @include for-phone-only{
+                    display: none;
+                    
+                }
+            }
 
             &-label {
                 font-family: 'Roboto';
@@ -40,6 +91,18 @@
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
+                @include for-phone-only{
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+                }
+                svg{
+                    @include for-phone-only{
+                        display: none;
+                    }
+                }
             }
         }
 
@@ -52,6 +115,9 @@
                 align-items: center;
                 gap: 20px;
                 margin-top: 20px;
+                @include for-phone-only{
+                    display: none;
+                }
             }
 
             &-img {
@@ -84,24 +150,50 @@
                 justify-content: space-between;
                 padding-bottom: 10px;
                 align-items: center;
-
+                @include for-phone-only{
+                    border: 0;
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 22px;
+line-height: 26px;
+text-transform: none;
+                }
                 svg {
                     margin-right: 17px;
+                    @include for-phone-only{
+                        margin: 0;
+                    }
                 }
             }
 
-            &-wrapper {}
+            &-wrapper {
+                padding: 0 10px;
+                @include for-phone-only{
+                    padding: 0 0 0 10px;
+                }
+            }
 
             &__balance {
+                &-wrapper{
+                    @include for-phone-only{
+                        padding-right: 49px;
+                    }
+                }
                 &__elem {
                     display: flex;
                     padding: 0px 20px;
                     justify-content: space-between;
                     padding-bottom: 13px;
-                    
+                    @include for-phone-only{
+                        padding: 8px 0;
+                    }
 
                     &:not(:last-child) {
                         padding-bottom: 20px;
+                        @include for-phone-only{
+                            border-bottom: 0.25px solid #656565;
+                        }
                     }
 
                     &:first-child {
@@ -118,6 +210,14 @@
                     grid-area: cat;
                     width: 70px;
     white-space: pre-wrap;
+    @include for-phone-only{
+        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 19px;
+color: #656565;
+    }
                 }
 
                 &-count {
@@ -130,6 +230,14 @@
                     width: 40px;
     display: flex;
     justify-content: end;
+    @include for-phone-only{
+        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 19px;
+color: #656565
+    }
                 }
                 &-answer{
                     font-family: "Roboto";
@@ -144,6 +252,9 @@
     max-height: 19.58px;
     display: flex;
     white-space: nowrap;
+    @include for-phone-only{
+        display: none;
+    }
                 }
 
                 &-button {
@@ -164,12 +275,42 @@
                     cursor: pointer;
                     &:first-child{
                         margin-top: 15px;
+                        
                     }
                     &:last-child {
                         margin-top: 10px;
                         color: $c_w;
                         background: $c_g;
+                        @include for-phone-only{
+                            display: none;
+                        }
                     }
+                    &:not(:last-child){
+                        font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 140%;
+@include for-phone-only{
+    margin-top: 20px;
+    font-size: 18px;
+}
+                    }
+                    &.mobile{
+                        display: none;
+                        @include for-phone-only{
+                            display: flex;
+                            color: $c_w;
+                        background: $c_g;
+                        font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 140%;
+margin: 0;
+                        }
+                    }
+                    
                 }
             }
         }
@@ -186,6 +327,18 @@
                 border-bottom: 1px solid;
                 text-transform: uppercase;
                 padding-bottom: 10px;
+                @include for-phone-only{
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 22px;
+line-height: 26px;
+border: 0;
+text-transform: none;
+display: flex;
+justify-content: space-between;
+align-items: center;
+                }
             }
             &-control{
                 &_elements{
@@ -197,13 +350,28 @@
                         gap: 23px;
                         padding: 16px 0 16px 20px;
                         cursor: pointer;
+                        @include for-phone-only{
+                            font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 21px;
+color: #656565;
+border-bottom: 0.25px solid #656565;
+margin-right: 49px;
+                        }
+                        svg{
+                            @include for-phone-only{
+                                display: none;
+                            }
+                        }
                     }
                 }
             }
         }
         &__tools{
             &-wrapper{
-
+                margin-top: 18px;
             }
             &-label{
                 font-family: 'Roboto';
@@ -214,6 +382,9 @@
                 border-bottom: 1px solid;
                 text-transform: uppercase;
                 padding-bottom: 10px;
+                @include for-phone-only{
+                    display: none;
+                }
             }
             &-control{
                 &__elements{
@@ -225,6 +396,20 @@
                         gap: 23px;
                         padding: 16px 0 16px 20px;
                         cursor: pointer;
+                        @include for-phone-only{
+                            font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 22px;
+line-height: 26px;
+color: $c_b;
+padding: 0;
+                        }
+                        svg{
+                            @include for-phone-only{
+                                display: none;
+                            }
+                        }
                     }
                 }
             }

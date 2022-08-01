@@ -67,7 +67,7 @@ function App() {
         <Route path='*' element={<NotFoundPage/>}/>
         <Route path='authentications/:page' element={<Authentications/>}/>
         <Route path='authentications/:page' element={<Authentications/>}/>
-        <Route path='photo-requests' element={<PhotoRequests/>}/>
+        <Route path='photo-requests/:page' element={<PhotoRequests/>}/>
         <Route path='request/:id' element={<Card/>}/>
       </Routes>
     </div>

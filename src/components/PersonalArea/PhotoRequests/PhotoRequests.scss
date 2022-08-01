@@ -247,3 +247,8 @@ padding: 0 10px;
         }
     }
 }
+
+
+.hidden-menu-ticker:checked ~ .photo_requests__table__elem__category-label{
+        color: red !important;
+    }

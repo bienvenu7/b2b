@@ -8,5 +8,36 @@
         display: flex;
         justify-content: space-between;
         padding: 54px 60px 0 29px;
+        @include for-phone-only{
+            display: none;
+        }
+        &.mobile{
+            display: none;
+            @include for-phone-only{
+                display: flex;
+                border-bottom: 0.855244px solid #F0F2F5;
+                height: 65px;
+                padding: 0;
+                position: fixed;
+                z-index: 100;
+                width: 100vw;
+                background: $c_w;
+                top: 0;
+                align-items: center;
+            }
+        }
     }
+}
+
+.label-go_back{
+    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+color: $c_g;
+display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
 }

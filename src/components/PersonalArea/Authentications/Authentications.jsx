@@ -179,10 +179,10 @@ const Authentications = (props) => {
         }
     }
 
+    params.page === 'photo-requests' && navigate('../luxury-store/authentications/photo-requests')
 
     return (
         <>
-
             <PersonalAreaLayout>
                 <div className='authent-container'>
                     <div className='authent__buttons-wrapper'>

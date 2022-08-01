@@ -7,7 +7,7 @@
     margin-left: 28px;
 
     @include for-phone-only {
-        margin: 0;
+        margin: 65px 0 0 0;
     }
 }
 
@@ -18,4 +18,20 @@
     @include for-phone-only {
         width: 100vw;
     }
+}
+
+.hidden-menu-ticker {
+    display: none;
+
+    &:checked {
+        &~.dashboard-container {
+            left: 0;
+            top: 0;
+            z-index: 101;
+            .dashboard__cross-container{
+                width: 20%;
+            }
+        }
+    }
+
 }
