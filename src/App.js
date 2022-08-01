@@ -42,7 +42,7 @@ function App() {
 
   useEffect(() => {
     !appInit && dispatch(initialApp())
-    dispatch(getProductTypesThunk(1, 1000))
+    isAuth && dispatch(getProductTypesThunk(1, 1000))
   },[])
 
 

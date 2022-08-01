@@ -8,12 +8,14 @@ import PaymentHeader from "./PaymentHeader/PaymentHeader"
 import { getCartTotalThunk, getPriceThunk } from "../../redux/thunks/payment-thunk"
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader';
 import { getProductTypesThunk } from "../../redux/thunks/product-thunk"
+import { getIsAuth } from "../../redux/selectors/auth-selectors"
 
 const Payment = (props) => {
 
     const dispatch = useDispatch()
     const packages = useSelector(getUserTariffPackages)
     const total = useSelector(getCartTotal)
+    const isAuth = useSelector(getIsAuth)
 
     const [addButState, setAddButState] = useState(false)
     const [payButState, setPayButState] = useState(false)
@@ -27,8 +29,8 @@ const Payment = (props) => {
     }, [total])
 
     useEffect(()=>{
-        dispatch(getProductTypesThunk(1, 1000))
-    })
+       isAuth && dispatch(getProductTypesThunk(1, 1000))
+    },[])
 
     useEffect(() => { 
 
