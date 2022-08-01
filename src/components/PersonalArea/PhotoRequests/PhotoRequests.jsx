@@ -90,7 +90,7 @@ const PhotoRequests = (props) => {
                                     <div className="photo_requests__table__elem-brand">{el.brand.publicName}</div>
                                     <div className="photo_requests__table__elem-date">{getDate(el.createdAt, 'desktop')}</div>
                                     <div className="photo_requests__table__elem-required">{getReasons(el.reasons,'desktop')}</div>
-                                    <div className="photo_requests__table__elem-required__mobile">{getReasons(el.reasons,'mobile').map((el,index)=>
+                                    <div className="photo_requests__table__elem-required__mobile">{getReasons() && getReasons(el.reasons,'mobile').map((el,index)=>
                                     <div key={index} className="photo_requests__table__elem-required__mobile-elem">{el}</div>)}</div>
                                     <div className="photo_requests__table__elem-button" onClick={()=>openModal(el)}>Upload</div>
                                 </div>)}

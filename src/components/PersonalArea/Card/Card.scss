@@ -6,6 +6,9 @@
     flex-direction: column;
     gap: 33px;
     width: 600px;
+    @include for-phone-only{
+        gap: 0;
+    }
     }
 
     &__info {
@@ -14,6 +17,10 @@
             box-shadow: 0px 1.71049px 5.13146px rgba(0, 0, 0, 0.25);
             border-radius: 10.2629px;
             padding: 23px 0 35px 0;
+            @include for-phone-only{
+                box-shadow: none;
+                border-bottom: 0.855244px solid #F0F2F5;
+            }
         }
 
         &__header {
@@ -25,10 +32,21 @@
             grid-template-columns: 20px 100%;
             grid-column-gap: 28px;
             grid-row-gap: 9px;
+            @include for-phone-only{
+                grid-template-areas: "number date";
+    grid-template-columns: max-content;
+    grid-column-gap: 21px;
+    align-items: center;
+    grid-row-gap: 12px;
+    padding-top: 12px;
+            }
 
             &-arrow {
                 cursor: pointer;
                 grid-area: arrow;
+                @include for-phone-only{
+                    display: none;
+                }
             }
 
             &__label {
@@ -44,7 +62,15 @@
                     font-weight: 700;
                     font-size: 17.1049px;
                     line-height: 140%;
-                    color: #292929
+                    color: #292929;
+                    @include for-phone-only{
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+color: #020202;
+                    }
                 }
 
                 &-status {
@@ -54,6 +80,9 @@
                     font-size: 17.1049px;
                     line-height: 140%;
                     color: $c_g;
+                    @include for-phone-only{
+                        display: none;
+                    }
                 }
             }
 
@@ -65,13 +94,58 @@
                 font-size: 11.9734px;
                 line-height: 140%;
                 color: rgba(65, 65, 65, 0.4);
+                @include for-phone-only{
+                    display: none;
+                }
+                &.mobile{
+                    display: none;
+                    @include for-phone-only{
+                        display: block;
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #8E8E93;
+                    }
+                }
+            }
+            &__bottom{
+                &-wrapper{
+                    display: none;
+                    @include for-phone-only{
+                        display: flex;
+                        gap: 9px;
+                    }
+                }
+            }
+            &-statuses{
+                font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #8E8E93;
+background: #F0DDB9;
+border-radius: 10px;
+height: 23px;
+justify-content: center;
+align-items: center;
+padding: 0 10px;
+display: flex;
+                &.grey{
+                    background: #DFDFDF;
+                }
             }
         }
 
         &__content {
             padding: 33px 30px 43px 30px;
             border-bottom: 0.855244px solid #F0F2F5;
-
+            @include for-phone-only{
+                border: 0px;
+                padding: 14px 23px 0 23px;
+            }
             &-label {
                 font-family: 'Roboto';
                 font-style: normal;
@@ -80,10 +154,33 @@
                 line-height: 140%;
                 color: #292929;
                 padding-bottom: 17px;
+                @include for-phone-only{
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+color: #020202;
+padding-bottom: 14px;
+                }
             }
 
             &-wrapper {
                 padding: 0 33px;
+                @include for-phone-only{
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: #525252;
+padding: 0 17px;
+display: grid;
+    grid-template-areas:
+        "brand"
+        "info"
+        "photos";
+                }
             }
 
             &-brand {
@@ -95,7 +192,15 @@
                 color: rgba(65, 65, 65, 0.4);
                 padding-bottom: 15px;
                 display: flex;
-
+                @include for-phone-only{
+                    color: #525252;
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+grid-area: brand;
+                }
                 .normal {
                     font-weight: 400;
                 }
@@ -104,6 +209,10 @@
             &__photos {
                 &-wrapper {
                     padding-bottom: 19px;
+                    @include for-phone-only{
+                        grid-area: photos;
+                        padding: 21px 0 0 0;
+                    }
                 }
 
                 &-label {
@@ -114,17 +223,49 @@
                     line-height: 140%;
                     color: rgba(65, 65, 65, 0.4);
                     padding-bottom: 22px;
+                    .button{
+                        display: none;
+                        @include for-phone-only{
+                            display: block;
+                            font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 19px;
+color: $c_g;
+                            &::before{
+                                content: '+';
+                            }
+                        }
+                    }
+                    @include for-phone-only{
+                        color: #525252;
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+display:  flex;
+justify-content: space-between;
+padding-bottom: 14px;
+                    }
                 }
 
                 &__images {
                     display: flex;
                     gap: 17px;
-
+@include for-phone-only{
+    justify-content: center;
+}
                     &-elem {
                         width: 55px;
                         height: 55px;
                         background-size: contain !important;
                         background-repeat: no-repeat !important;
+                        @include for-phone-only{
+                            width: 45px;
+                            height: 45px;
+                        }
                     }
                 }
             }
@@ -134,6 +275,9 @@
                     display: flex;
                     flex-direction: column;
                     gap: 19px;
+                    @include for-phone-only{
+                        grid-area: info;
+                    }
                 }
             }
 
@@ -141,6 +285,17 @@
                 &-wrapper {
                     display: flex;
                     justify-content: space-between;
+                    &.brand{
+                        display: none;
+                        @include for-phone-only{
+                            display: flex;
+                        }
+                    }
+                    &.none{
+                        @include for-phone-only{
+                            display: none;
+                        }
+                    }
                 }
 
                 &-label {
@@ -150,6 +305,14 @@
                     font-size: 15.3944px;
                     line-height: 140%;
                     color: rgba(65, 65, 65, 0.4);
+                    @include for-phone-only{
+                        color: #525252;
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+                    }
                 }
 
                 &-value {
@@ -159,6 +322,19 @@
                     font-size: 15.3944px;
                     line-height: 140%;
                     color: rgba(65, 65, 65, 0.6);
+                    &.red{
+                        @include for-phone-only{
+                            color: #B51111;
+                        }
+                    }
+                    @include for-phone-only{
+                        font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: #020202;
+                    }
                 }
             }
 
@@ -180,6 +356,13 @@
                 align-items: center;
                 display: flex;
                 cursor: pointer;
+                @include for-phone-only{
+                    margin: 0 23px;
+                    font-size: 18px;
+                    border-radius: 4px;
+                    width: auto;
+                    margin-top: 50px;
+                }
 
                 &.certificate {
                     color: $c_w;
@@ -195,6 +378,11 @@
             box-shadow: 0px 1.71049px 5.13146px rgba(0, 0, 0, 0.25);
             border-radius: 10.2629px;
             padding: 23px 0 35px 0;
+            @include for-phone-only{
+                box-shadow: none;
+                border-top: 0.855244px solid #F0F2F5;
+                border-radius: 0;
+            }
         }
 
         &__header {
@@ -202,6 +390,10 @@
             padding: 0 48px 12px 48px;
             display: flex;
             justify-content: space-between;
+            @include for-phone-only{
+                border: 0;
+                padding: 0 23px 11px 23px;
+            }
             &-label {
                 font-family: 'Roboto';
                 font-style: normal;
@@ -209,6 +401,14 @@
                 font-size: 20px;
                 line-height: 140%;
                 color: #272727;
+                @include for-phone-only{
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
+color: #020202;
+                }
             }
 
             &-button {
@@ -219,11 +419,18 @@
                 font-size: 16px;
                 line-height: 140%;
                 color: $c_g;
-
+                @include for-phone-only{
+                    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+                }
                 &:hover {
                     text-decoration: underline;
                 }
             }
+            
         }
 
         &__content {
@@ -232,6 +439,9 @@
                 gap: 15px;
                 display: flex;
                 flex-direction: column;
+                @include for-phone-only{
+                    padding: 0 25px;
+                }
             }
             &__elem {
                 &-wrapper {
@@ -239,6 +449,10 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    @include for-phone-only{
+                        flex-direction: column;
+                        align-items: start;
+                    }
                 }
 
                 &-label {
@@ -247,6 +461,15 @@ font-style: normal;
 font-weight: 500;
 font-size: 18px;
 line-height: 140%;
+@include for-phone-only{
+    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: #020202;
+margin-bottom: 10px;
+}
                 }
 
                 &-value {
@@ -255,6 +478,22 @@ font-style: normal;
 font-weight: 400;
 font-size: 18px;
 line-height: 140%;
+@include for-phone-only{
+    font-family: 'SF Pro Display Medium';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: #666666;
+background: #FFFFFF;
+box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+padding: 0 18px;
+height: 50px;
+display: flex;
+align-items: center;
+width: -webkit-fill-available;
+}
                 }
                 &-input{
                     border: 0.5px solid rgba(141, 141, 141, 0.4);
@@ -267,6 +506,23 @@ font-weight: 400;
 font-size: 18px;
 line-height: 140%;
 padding: 0 9px;
+@include for-phone-only{
+    font-family: 'SF Pro Display Medium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #666666;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0 18px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    width: -webkit-fill-available;
+    border: 0;
+}
                 }
             }
         }
@@ -281,6 +537,9 @@ padding: 0 9px;
             display: flex;
     flex-direction: column;
     gap: 10px;
+    @include for-phone-only{
+        display: none;
+    }
         }
         &-label{
             font-family: 'Roboto';

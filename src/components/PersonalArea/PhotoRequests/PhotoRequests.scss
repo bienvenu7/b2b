@@ -137,7 +137,7 @@ color: #020202;
 
                 &-button{
                     grid-area: button;
-                    display: none;
+                    display: none !important;
                     font-family: 'SF Pro Display Medium';
 font-style: normal;
 font-weight: 400;

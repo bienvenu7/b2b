@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import SvgSelector from '../../../common/icons/SvgSelector'
+import { useWindowSize } from '../../../hooks/useWindowSize'
 import { setProduct } from '../../../redux/reducers/product-reducer'
 import { takeAnglesList, takeProduct } from '../../../redux/selectors/product-selectors'
 import { getProductThunk, updateProductThunk } from '../../../redux/thunks/product-thunk'
@@ -27,16 +28,20 @@ const Card = (props) =>{
         }
     },[])
 
+    const [width, height] = useWindowSize()
+
+
     function getPhotoUrl(file){
         //const domain = 'https://b2b-portal-dev.herokuapp.com'
         return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + file.path + '/' + file.name
     }
 
-    function getDate(str){
+    function getDate(str, version){
+        const date = new Date(str)
+        if (version === 'desktop'){
         const months = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
       ]
-        const date = new Date(Date.parse(str))
         let hours = date.getHours();
         let minutes = date.getMinutes();
         let ampm = hours >= 12 ? 'pm' : 'am';
@@ -46,6 +51,10 @@ const Card = (props) =>{
         minutes = minutes < 10 ? '0'+minutes : minutes;
         let strTime = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear() + ' at ' + hours + ':' + minutes + ' ' + ampm;
         return strTime;
+    }
+    else if (version === 'mobile'){
+        return date.getHours() + ':' + date.getMinutes() + '·' + date.getDate() + '/' + Number(date.getMonth() + 1) + '/' + date.getYear()
+    }
     }
 
     function getReasons(reasons){
@@ -79,9 +88,7 @@ const Card = (props) =>{
         setEditMode(!editMode)
         editMode && dispatch(updateProductThunk(product.id, {modelName: modelValue, supplier: supplierValue}))
     }
-    //
-    
-    
+    //   
 
     return (
         <>
@@ -95,26 +102,36 @@ const Card = (props) =>{
                             <div className='card__info__header__label-number'>#{product.publicId}</div>
                             <div className='card__info__header__label-status'>{product.resultStatus.name !== 'COMPLETED' ? 'In progress' : 'Completed'}</div>
                         </div>
-                        <div className='card__info__header-date'>{getDate(product.createdAt)}</div>
+                        <div className='card__info__header-date'>{getDate(product.createdAt, 'desktop')}</div>
+                        <div className='card__info__header-date mobile'>{getDate(product.createdAt, 'mobile')}</div>
+                        <div className='card__info__header__bottom-wrapper'>
+                        {product && product.resultStatus.name === 'UPDATE_NEEDED' ? <div className='card__info__header-statuses'>{product.resultStatus.publicName}</div>
+                        : product.resultStatus.name === 'COMPLETED' && <><div className='card__info__header-statuses grey'>{product.resultStatus.publicName}</div>
+                        <div className='card__info__header-statuses'>{product.checkStatus}</div></>}</div>
+
                     </div>
                     <div className='card__info__content'>
                         <div className='card__info__content-label'>
                             Authentication summary
                         </div>
                         <div className='card__info__content-wrapper'>
-                            <div className='card__info__content-brand'>{product.brand.publicName}&nbsp;<div className="normal">authentication</div></div>
+                            <div className='card__info__content-brand'>{width > 599 ? product.brand.publicName : product.productType.publicName}&nbsp;<div className="normal">authentication</div></div>
                             <div className='card__info__content__photos-wrapper'>
-                                <div className='card__info__content__photos-label'>Uploaded images</div>
+                                <div className='card__info__content__photos-label'>Uploaded images {product.resultStatus.name === 'UPDATE_NEEDED' && <div className='button' onClick={openModal}>Add photos</div>}</div>
                                 <div className='card__info__content__photos__images'>
-                                    {product.files.map((el,index)=><div key={index} className='card__info__content__photos__images-elem' style={{ background: `url(${getPhotoUrl(el)})`}}></div>)}
+                                    {(product.files.length < 1 ? [1,2,3,4] : product.files).map((el,index)=><div key={index} className='card__info__content__photos__images-elem' style={{ background: `url(${getPhotoUrl(el)})`}}></div>)}
                                     </div> 
                             </div>
                             <div className='card__info__content__elems-wrapper'>
-                            <div className='card__info__content__elem-wrapper'>
-                                <div className='card__info__content__elem-label'>Status</div>
-                                <div className='card__info__content__elem-value'>{product.resultStatus.publicName}</div>
+                            <div className='card__info__content__elem-wrapper brand'>
+                                <div className='card__info__content__elem-label'>Brand</div>
+                                <div className={`card__info__content__elem-value`}>{product.brand.publicName}</div>
                             </div>
                             <div className='card__info__content__elem-wrapper'>
+                                <div className='card__info__content__elem-label'>Status</div>
+                                <div className={`card__info__content__elem-value${product.resultStatus.name === 'UPDATE_NEEDED' && ' red'}`}>{product.resultStatus.publicName}</div>
+                            </div>
+                            <div className={`card__info__content__elem-wrapper${product.resultStatus.name !== 'COMPLETED' ? ' none' : ''}`} >
                                 <div className='card__info__content__elem-label'>Outcome</div>
                                 <div className='card__info__content__elem-value'>{product.checkStatus ? product.checkStatus : 'N/A'}</div>
                             </div>
@@ -138,12 +155,12 @@ const Card = (props) =>{
                         <div className='card__details__content__elem-wrapper'>
                             <div className='card__details__content__elem-label'>Model name</div>
                             {!editMode ? <div className='card__details__content__elem-value'>{product.modelName}</div>
-                            : <input className='card__details__content__elem-input' dir='rtl' type="text" value={modelValue} onChange={(e)=>setModelValue(e.target.value)}/>}
+                            : <input className='card__details__content__elem-input' dir={width > 599 && `rtl`} type="text" value={modelValue} onChange={(e)=>setModelValue(e.target.value)}/>}
                         </div>
                        <div className='card__details__content__elem-wrapper'>
                             <div className='card__details__content__elem-label'>Supplier</div>
                             {!editMode ? <div className='card__details__content__elem-value'>{product.supplier === '' ? '—' : product.supplier}</div>
-                            : <input className='card__details__content__elem-input' dir='rtl' type="text" value={supplierValue} onChange={(e)=>setSupplierValue(e.target.value)}/>}
+                            : <input className='card__details__content__elem-input' dir={width > 599 && `rtl`} type="text" value={supplierValue} onChange={(e)=>setSupplierValue(e.target.value)}/>}
                         </div>
                     </div>
                 </div>
