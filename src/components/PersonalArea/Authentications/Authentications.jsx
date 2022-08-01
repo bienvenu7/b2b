@@ -3,7 +3,7 @@ import SvgSelector from "../../../common/icons/SvgSelector"
 import './Authentications.scss'
 import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useLocation } from "react-router-dom"
 import { takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
 import { addCertificateThunk, getProductsThunk } from "../../../redux/thunks/product-thunk"
 import { setProducts } from "../../../redux/reducers/product-reducer"
@@ -13,6 +13,9 @@ import FilterSelect from "./FilterSelect"
 import { getCertificateThunk } from "../../../redux/thunks/files-thunk"
 
 const Authentications = (props) => {
+
+    const location = useLocation()
+
 
     const PageSize = 8
 
@@ -30,8 +33,7 @@ const Authentications = (props) => {
     }, [currentPage, products]);
 
     //
-
-
+  
 
 
     const resultStatuses = useSelector(takeResultStatuses)
@@ -60,6 +62,10 @@ const Authentications = (props) => {
         }
     }, [])
 
+    useEffect(()=>{
+        products && location.state && location.state.page && setCurrentPage(location.state.page)
+    },[products])
+
 
 
 
@@ -69,7 +75,7 @@ const Authentications = (props) => {
 
     function onCompletedClick() {
         setSortData(true)
-        navigate('../authentications/completed')
+        navigate('/authentications/completed')
         const data = {
             resultStatuses: [
                 resultStatuses && resultStatuses.filter(el => el.name === 'COMPLETED')[0]],
@@ -193,7 +199,7 @@ const Authentications = (props) => {
                         <div className='authent__nav-wrapper'>
                             <div className="authent__nav-sort"><SvgSelector id='sort-icon'/></div>
                             {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentications</div>}
-                            <div className="authent__nav-search_icon"><SvgSelector id='search-icon'/></div><input className='authent__nav-search' placeholder='Search' onChange={(e) => setSearchValue(e.target.value)} onBlur={handleSearch} />
+                            <div className="authent__nav-search_icon"><SvgSelector id='search-icon' onClick={handleSearch}/></div><input className='authent__nav-search' placeholder='Search' onChange={(e) => setSearchValue(e.target.value)} onBlur={handleSearch} />
                             <div className='authent__nav__buttons-wrapper'>
                                 <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' /></div>
                             </div>
@@ -231,7 +237,7 @@ const Authentications = (props) => {
                                         <input key={index} type="checkbox" className='custom-checkbox__table' id={`check-for-elem-${index}`} />
                                         <label htmlFor={`check-for-elem-${index}`} />
                                     </div>
-                                    <div className="authent__table__elem__category" onClick={() => navigate(`../request/${el.id}`)}>
+                                    <div className="authent__table__elem__category" onClick={() => navigate(`/request/${el.id}`, {state: {page: currentPage, var: page}})}>
                                         <div className="authent__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el)})` }}>
                                             {/*<img src={el.image} alt="" />*/}
                                         </div>
@@ -266,7 +272,7 @@ const Authentications = (props) => {
                             </div>
                             {currentTableData ? currentTableData.map((el, index) => <div key={index} className="authent__table__elem">
                                 <div className="authent__table__elems-wrapper">
-                                    <div className="authent__table__elem__category" onClick={() => navigate(`../request/${el.id}`)}>
+                                    <div className="authent__table__elem__category" onClick={() => navigate(`../request/${el.id}`, {state: {page: currentPage, var: page}})}>
                                         <div className="authent__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el)})` }}>
                                             {/*<img src={el.image} alt="" />*/}
                                         </div>

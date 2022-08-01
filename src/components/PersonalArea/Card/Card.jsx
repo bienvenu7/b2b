@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import SvgSelector from '../../../common/icons/SvgSelector'
 import { useWindowSize } from '../../../hooks/useWindowSize'
 import { setProduct } from '../../../redux/reducers/product-reducer'
@@ -15,6 +15,8 @@ const Card = (props) =>{
     const params = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
+
 
     const product = useSelector(takeProduct)
     const anglesList = useSelector(takeAnglesList)
@@ -90,6 +92,16 @@ const Card = (props) =>{
     }
     //   
 
+    function goBack(){
+        if (location.state && location.state.var !== 'photo-requests'){
+            navigate(`../authentications/${location.state.var==='progress' ? 'in-progress' : 'completed'}`, {state: {page: location.state.page, var: location.state.var}})
+        }
+        else{
+            navigate(`../photo-requests/all`, {state: {page: location.state && location.state.page, var: location.state && location.state.var}})
+        }
+        
+    }
+
     return (
         <>
         {isOpen && <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={product}/>}
@@ -97,7 +109,7 @@ const Card = (props) =>{
         {product !== null && <div className='card-container'>
                 <div className='card__info-wrapper'>
                     <div className='card__info__header'>
-                        <div className='card__info__header-arrow' onClick={()=>navigate(-1)}><SvgSelector id='go-back-icon'/></div>
+                        <div className='card__info__header-arrow' onClick={goBack}><SvgSelector id='go-back-icon'/></div>
                         <div className='card__info__header__label-wrapper'>
                             <div className='card__info__header__label-number'>#{product.publicId}</div>
                             <div className='card__info__header__label-status'>{product.resultStatus.name !== 'COMPLETED' ? 'In progress' : 'Completed'}</div>
