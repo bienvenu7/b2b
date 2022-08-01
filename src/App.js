@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Main from './components/Main/Main';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsAuth } from './redux/selectors/auth-selectors';
@@ -62,6 +62,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path='' element={<Navigate to='main'/>}/>
         <Route path='main' element={<Main />} />
         <Route path='auth/signin' element={<SignIn/>} />
         <Route path='auth/signup' element={<SignUp/>} />
