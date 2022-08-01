@@ -8,7 +8,7 @@ import { initialApp } from './redux/thunks/app-thunk';
 import { getInitialApp } from './redux/selectors/app-selectors';
 import Payment from './components/Payment/Payment';
 import SuccessPage from './components/Payment/SuccessPage/SuccessPage';
-import { getProductTypesThunk } from './redux/thunks/product-thunk';
+import { getProductTypesThunk, getResultsStatusesThunk } from './redux/thunks/product-thunk';
 import { getInvoiceLink } from './redux/selectors/payment-selectors';
 import PaymentFirst from './components/Payment/PaymentFirst/PaymentFirst';
 import AuthenticationRequest from './components/AuthenticationRequest/AuthenticationRequest';
@@ -21,6 +21,8 @@ import SignIn from './components/Auth/Signin/Signin';
 import SignUp from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './components/Auth/ResetPassword/ResetPassword';
+import { getBalanceThunk } from './redux/thunks/authRequest-thunk';
+import { takeResultStatuses } from './redux/selectors/product-selectors';
 
 function App() {
 
@@ -30,6 +32,10 @@ function App() {
   const isAuth = useSelector(getIsAuth)
   const appInit = useSelector(getInitialApp)
   const paymentLink = useSelector(getInvoiceLink)
+
+  const resultStatuses = useSelector(takeResultStatuses)
+
+  
 
   function redirect(){
     appInit && !isAuth && navigate('/auth/signin')
@@ -43,7 +49,9 @@ function App() {
   useEffect(() => {
     !appInit && dispatch(initialApp())
     isAuth && dispatch(getProductTypesThunk(1, 1000))
-  },[])
+    isAuth && dispatch(getBalanceThunk())
+    isAuth && !resultStatuses && dispatch(getResultsStatusesThunk()) 
+  },[isAuth])
 
 
   if (!appInit) {

@@ -72,7 +72,7 @@ const Authentications = (props) => {
         navigate('../authentications/completed')
         const data = {
             resultStatuses: [
-                resultStatuses.filter(el => el.name === 'COMPLETED')[0]],
+                resultStatuses && resultStatuses.filter(el => el.name === 'COMPLETED')[0]],
             sort: 'createdAt:DESC'
         }
         dispatch(setProducts(null))

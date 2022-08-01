@@ -24,14 +24,14 @@ export const getAuth = (data) => {
 }
 
 export const removeMe = () => {
-    return instance.delete('auth/me')
+    return instance.delete('auth/me', {headers: {'Authorization': 'Bearer ' + Cookies.get('jwt')}})
 }
 
 export const forgotEmail = (data) => {
-    return instance.post('auth/forgot/password', data)
+    return instance.post('auth/forgot/password', data, {headers: {'Authorization': 'Bearer ' + Cookies.get('jwt')}})
 }
 
 export const forgotPassword = (data) => {
-    return instance.post('auth/reset/password', data)
+    return instance.post('auth/reset/password', data, {headers: {'Authorization': 'Bearer ' + Cookies.get('jwt')}})
 }
 
