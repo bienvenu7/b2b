@@ -132,6 +132,8 @@ const Authentications = (props) => {
     const productTypes = useSelector(getTypesOfProduct)
     const checkStatuses = useSelector(takeCheckStatuses)
 
+    const [secondSelectIndex, setSecondSelectIndex] = useState(0)
+
     const [options, setOptions] = useState()
 
     const [filterMode, setFilterMode] = useState(false)
@@ -158,6 +160,7 @@ const Authentications = (props) => {
 
     function handleChange(e,idx, length) {
         setOptions()
+        setSecondSelectIndex(secondSelectIndex+1)
         if (selectedFilter === null) {
             let arr = []
             for (let i = 0; i <= idx; i++) {
@@ -226,7 +229,7 @@ const Authentications = (props) => {
                                 {filterValues && filterValues.map((el, index) => <div key={index} className="authent__filter__elem">
                                     <FilterSelect key={index} index={index} mainOptions={mainOptions} handleChange={handleChange} length={filterValues.length}/>
                                     {selectedFilter && selectedFilter[index] && selectedFilter[index].value && selectedFilter[index].value === 'MODEL' ? <input type="text" placeholder="model"/>
-                                    : selectedFilter && <Select key={index} classNamePrefix="custom-select__dashboard" placeholder='Select filter' options={options && options}/>}
+                                    : selectedFilter && <Select key={secondSelectIndex} classNamePrefix="custom-select__dashboard" placeholder='Select filter' options={options && options}/>}
                                     {/*filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>*/}
                                 </div>)}
                             </div>
