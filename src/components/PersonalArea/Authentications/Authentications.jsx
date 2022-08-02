@@ -4,7 +4,7 @@ import './Authentications.scss'
 import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams, useLocation } from "react-router-dom"
-import { getTypesOfProduct, takeCheckStatuses, takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
+import { getTypesOfProduct, takeBrandsList, takeCheckStatuses, takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
 import { addCertificateThunk, getBrandsListThunk, getProductsThunk } from "../../../redux/thunks/product-thunk"
 import { setProducts } from "../../../redux/reducers/product-reducer"
 import Paginator from "../../Paginator/Paginator"
@@ -44,6 +44,8 @@ const Authentications = (props) => {
     const params = useParams()
     const [page, setPage] = useState(null)
 
+    const [dataFilter, setDataFilter] = useState({})
+
     useEffect(() => {
         setPage(params.page === 'completed' ? 'complete' : params.page === 'in-progress' && 'progress')
     })
@@ -57,8 +59,9 @@ const Authentications = (props) => {
 
     })
 
+
     useEffect(() => {
-        !brands && dispatch(getBrandsListThunk())
+        !brandsList && dispatch(getBrandsListThunk())
         return () => {
             dispatch(setProducts(null))
         }
@@ -85,6 +88,7 @@ const Authentications = (props) => {
         }
         dispatch(setProducts(null))
         dispatch(getProductsThunk(data))
+        filterMode && handleFilter()
     }
 
     function onProgressClick() {
@@ -95,6 +99,7 @@ const Authentications = (props) => {
         }
         dispatch(setProducts(null))
         dispatch(getProductsThunk(data))
+        filterMode && handleFilter()
     }
 
     function handleSort(sort) {
@@ -128,7 +133,7 @@ const Authentications = (props) => {
 
     //for filter
 
-    const brands = useSelector(takeBrands)
+    const brandsList = useSelector(takeBrandsList)
     const productTypes = useSelector(getTypesOfProduct)
     const checkStatuses = useSelector(takeCheckStatuses)
 
@@ -141,6 +146,9 @@ const Authentications = (props) => {
     const [filterValues, setFilterValues] = useState(null)
 
     const [selectedFilter, setSelectedFilter] = useState(null)
+
+    const [modelNameValue, setModelNameValue] = useState(null)
+
 
     function handleFilter() {
         setFilterMode(!filterMode)
@@ -161,6 +169,10 @@ const Authentications = (props) => {
     function handleChange(e,idx, length) {
         setOptions()
         setSecondSelectIndex(secondSelectIndex+1)
+        setModelNameValue(null)
+        setFilterValues([
+            { value: '', secondValue: '' }
+        ])
         if (selectedFilter === null) {
             let arr = []
             for (let i = 0; i <= idx; i++) {
@@ -174,6 +186,28 @@ const Authentications = (props) => {
             else{setSelectedFilter([...selectedFilter, e])}
         }
         setFilterValues(filterValues.map((el,index)=>index===idx ? {...el, value: e.value} : el))
+    }
+
+    function filterData(elem){
+        console.log(elem)
+        const data = {
+            resultStatuses: resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED')
+        }
+        switch (elem.value) {
+            case 'CATEGORY':
+                return {...data, productType: elem.secondValue.value}
+            case 'OUTCOME':    
+                return {...data, checkStatus: elem.secondValue.value}
+            case 'MODEL':
+                return {...data, search: elem.secondValue.value}    
+            default:
+                break;
+        }
+    }
+
+    function subHandleChange(el){
+        setFilterValues([{...filterValues[0], secondValue: el}])
+        dispatch(getProductsThunk(filterData({...filterValues[0], secondValue: el})))
     }
 
     const mainOptions = [
@@ -205,6 +239,12 @@ const Authentications = (props) => {
         }
     }
 
+    useEffect(()=>{
+        setDataFilter({...dataFilter, resultStatuses: resultStatuses && resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED'), search: searchValue ? searchValue : ''
+    })
+        console.log(dataFilter)
+    },[resultStatuses, searchValue, page])
+
     params.page === 'photo-requests' && navigate('../luxury-store/authentications/photo-requests')
 
     return (
@@ -219,7 +259,7 @@ const Authentications = (props) => {
                         <div className='authent__nav-wrapper'>
                             <div className="authent__nav-sort"><SvgSelector id='sort-icon'/></div>
                             {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentications</div>}
-                            <div className="authent__nav-search_icon"><SvgSelector id='search-icon' onClick={handleSearch}/></div><input className='authent__nav-search' placeholder='Search' onChange={(e) => setSearchValue(e.target.value)} onBlur={handleSearch} />
+                            <div className="authent__nav-search_icon"><SvgSelector id='search-icon' onClick={(e)=>setSearchValue(e.target.value)}/></div><input className='authent__nav-search' placeholder='Search' onBlur={(e) => setSearchValue(e.target.value)} />
                             <div className='authent__nav__buttons-wrapper'>
                                 <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' /></div>
                             </div>
@@ -228,8 +268,9 @@ const Authentications = (props) => {
                             <div className="authent__filter__elems-wrapper">
                                 {filterValues && filterValues.map((el, index) => <div key={index} className="authent__filter__elem">
                                     <FilterSelect key={index} index={index} mainOptions={mainOptions} handleChange={handleChange} length={filterValues.length}/>
-                                    {selectedFilter && selectedFilter[index] && selectedFilter[index].value && selectedFilter[index].value === 'MODEL' ? <input type="text" placeholder="model"/>
-                                    : selectedFilter && <Select key={secondSelectIndex} classNamePrefix="custom-select__dashboard" placeholder='Select filter' options={options && options}/>}
+                                    {selectedFilter && selectedFilter[index] && selectedFilter[index].value && selectedFilter[index].value === 'MODEL' 
+                                    ? <input type="text" placeholder="model" onChange={setModelNameValue} onBlur={(e)=>subHandleChange({value: e.target.value})}/>
+                                    : selectedFilter && <Select key={secondSelectIndex} onChange={subHandleChange} classNamePrefix="custom-select__dashboard" placeholder='Select filter' options={options && options}/>}
                                     {/*filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>*/}
                                 </div>)}
                             </div>

@@ -254,6 +254,7 @@ padding-bottom: 14px;
                 &__images {
                     display: flex;
                     gap: 17px;
+                    flex-wrap: wrap;
 @include for-phone-only{
     justify-content: center;
 }
