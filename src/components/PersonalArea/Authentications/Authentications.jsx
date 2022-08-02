@@ -10,9 +10,6 @@ import { setProducts } from "../../../redux/reducers/product-reducer"
 import Paginator from "../../Paginator/Paginator"
 import Select from "react-select"
 import FilterSelect from "./FilterSelect"
-import { getCertificateThunk } from "../../../redux/thunks/files-thunk"
-import { takeBrands } from "../../../redux/selectors/authRequest-selectors"
-
 const Authentications = (props) => {
 
     const location = useLocation()
@@ -51,13 +48,14 @@ const Authentications = (props) => {
     })
 
     useEffect(() => {
-        products === null && resultStatuses !== null && dispatch(getProductsThunk(
+        resultStatuses !== null && dispatch(getProductsThunk(dataFilter))
+        /*dispatch(getProductsThunk(
             {
                 resultStatuses: resultStatuses.filter(el => params.page === 'completed' ? el.name === 'COMPLETED' : el.name !== 'COMPLETED'),
                 sort: `createdAt:${sortData ? 'DESC' : 'ASC'}`
-            }))
+            }))*/
 
-    })
+    },[dataFilter])
 
 
     useEffect(() => {
@@ -87,7 +85,7 @@ const Authentications = (props) => {
             sort: 'createdAt:DESC'
         }
         dispatch(setProducts(null))
-        dispatch(getProductsThunk(data))
+        dispatch(getProductsThunk(dataFilter))
         filterMode && handleFilter()
     }
 
@@ -105,7 +103,7 @@ const Authentications = (props) => {
     function handleSort(sort) {
         setSortData(!sortData)
         dispatch(getProductsThunk({
-            resultStatuses: resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED'),
+            ...dataFilter,
             sort: `createdAt:${!sort ? 'DESC' : 'ASC'}`
         }))
     }
@@ -114,7 +112,7 @@ const Authentications = (props) => {
         const data = {
             resultStatuses: resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED')
         }
-        dispatch(getProductsThunk(searchValue !== '' ? { ...data, search: searchValue } : data))
+        dispatch(getProductsThunk(searchValue !== '' ? { ...dataFilter, search: searchValue } : dataFilter))
     }
 
     function getPhotoUrl(files) {
@@ -158,8 +156,13 @@ const Authentications = (props) => {
         if (filterValues){
             setFilterValues(null)
             setSelectedFilter(null)
+            delete dataFilter.productType
+            setDataFilter({...dataFilter})
+        } else{
+            
         }
     }
+
     useEffect(()=>{
         selectedFilter && selectedFilter[0].value === 'CATEGORY' ? productTypes.length > 0 && setOptions(productTypes.map((el,index)=>
         el.publicName ? {label: el.publicName, value: el} : el)) : selectedFilter && selectedFilter[0].value === 'OUTCOME' && checkStatuses && setOptions(checkStatuses)
@@ -189,17 +192,16 @@ const Authentications = (props) => {
     }
 
     function filterData(elem){
-        console.log(elem)
         const data = {
             resultStatuses: resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED')
         }
         switch (elem.value) {
             case 'CATEGORY':
-                return {...data, productType: elem.secondValue.value}
+                return {...dataFilter, productType: elem.secondValue.value}
             case 'OUTCOME':    
-                return {...data, checkStatus: elem.secondValue.value}
+                return {...dataFilter, checkStatus: elem.secondValue.value}
             case 'MODEL':
-                return {...data, search: elem.secondValue.value}    
+                return {...dataFilter, search: elem.secondValue.value}    
             default:
                 break;
         }
@@ -240,10 +242,15 @@ const Authentications = (props) => {
     }
 
     useEffect(()=>{
-        setDataFilter({...dataFilter, resultStatuses: resultStatuses && resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED'), search: searchValue ? searchValue : ''
-    })
-        console.log(dataFilter)
+        searchValue && searchValue !== '' ? setDataFilter({...dataFilter, sort: `createdAt:${sortData ? 'DESC' : 'ASC'}`, resultStatuses: resultStatuses && resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED'), search: searchValue
+    }) : setDataFilter({...dataFilter, sort: `createdAt:${sortData ? 'DESC' : 'ASC'}`, resultStatuses: resultStatuses && resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED')
+})
     },[resultStatuses, searchValue, page])
+
+    useEffect(()=>{
+        setDataFilter({...dataFilter, sort: `createdAt:${sortData ? 'DESC' : 'ASC'}`, resultStatuses: resultStatuses && resultStatuses.filter(el => page === 'progress' ? el.name !== 'COMPLETED' : el.name === 'COMPLETED')
+    })
+    },[])
 
     params.page === 'photo-requests' && navigate('../luxury-store/authentications/photo-requests')
 
@@ -259,7 +266,7 @@ const Authentications = (props) => {
                         <div className='authent__nav-wrapper'>
                             <div className="authent__nav-sort"><SvgSelector id='sort-icon'/></div>
                             {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentications</div>}
-                            <div className="authent__nav-search_icon"><SvgSelector id='search-icon' onClick={(e)=>setSearchValue(e.target.value)}/></div><input className='authent__nav-search' placeholder='Search' onBlur={(e) => setSearchValue(e.target.value)} />
+                            <div className="authent__nav-search_icon"><SvgSelector id='search-icon' onClick={handleSearch}/></div><input className='authent__nav-search' onChange={(e) => setSearchValue(e.target.value)} placeholder='Search' onBlur={handleSearch} />
                             <div className='authent__nav__buttons-wrapper'>
                                 <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' /></div>
                             </div>
