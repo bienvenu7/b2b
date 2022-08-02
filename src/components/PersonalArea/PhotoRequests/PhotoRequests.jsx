@@ -35,8 +35,8 @@ const PhotoRequests = (props) => {
         }
     }
 
-    function getPhotoUrl(file) {
-        return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + file.path + '/' + file.name
+    function getPhotoUrl(files) {
+        return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + files.length > 0 && files[0].path + '/' + files[0].name
     }
 
     const [isOpen, setIsOpen] = useState(false)
@@ -83,7 +83,7 @@ const PhotoRequests = (props) => {
                             {products !== null && products.map((el, index) =>
                                 <div key={index} className="photo_requests__table__elem">
                                     <div className="photo_requests__table__elem__category" onClick={() => navigate(`../request/${el.id}`)}>
-                                        <div className="photo_requests__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el)})` }}></div>
+                                        <div className="photo_requests__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el.files)})` }}></div>
                                         <div className="photo_requests__table__elem__category-button" onClick={()=>openModal(el)}>Upload photos</div>
                                         <div className="photo_requests__table__elem__category-label">{el.productType.publicName}</div>
                                         <div className="photo_requests__table__elem__category-number">#{el.publicId}</div>

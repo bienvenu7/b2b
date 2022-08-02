@@ -28,3 +28,12 @@ export const addCertificate = (product) => {
 export const updateProduct = (productId, data) => {
     return instance.patch(`products/${productId}`, data, {headers: {'Authorization': 'Bearer ' + Cookies.get('jwt')}})
 }
+
+export const getBrandsList = (page, limit) =>{
+        return instance.get('brands', {params: {limit: limit ? limit : 200, page: page ? page : 1
+        }, headers: {'Authorization': 'Bearer ' + Cookies.get('jwt')}}) 
+}
+
+export const getCheckStatuses = () =>{
+        return instance.get('check-statuses', {headers: {'Authorization': 'Bearer ' + Cookies.get('jwt')}})
+}

@@ -4,13 +4,14 @@ import './Authentications.scss'
 import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams, useLocation } from "react-router-dom"
-import { takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
-import { addCertificateThunk, getProductsThunk } from "../../../redux/thunks/product-thunk"
+import { getTypesOfProduct, takeCheckStatuses, takeProducts, takeResultStatuses } from "../../../redux/selectors/product-selectors"
+import { addCertificateThunk, getBrandsListThunk, getProductsThunk } from "../../../redux/thunks/product-thunk"
 import { setProducts } from "../../../redux/reducers/product-reducer"
 import Paginator from "../../Paginator/Paginator"
 import Select from "react-select"
 import FilterSelect from "./FilterSelect"
 import { getCertificateThunk } from "../../../redux/thunks/files-thunk"
+import { takeBrands } from "../../../redux/selectors/authRequest-selectors"
 
 const Authentications = (props) => {
 
@@ -57,6 +58,7 @@ const Authentications = (props) => {
     })
 
     useEffect(() => {
+        !brands && dispatch(getBrandsListThunk())
         return () => {
             dispatch(setProducts(null))
         }
@@ -110,8 +112,8 @@ const Authentications = (props) => {
         dispatch(getProductsThunk(searchValue !== '' ? { ...data, search: searchValue } : data))
     }
 
-    function getPhotoUrl(file) {
-        return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + file.path + '/' + file.name
+    function getPhotoUrl(files) {
+        return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + files.length > 0 && files[0].path + '/' + files[0].name
     }
 
     async function addCertificate(el) {
@@ -125,6 +127,13 @@ const Authentications = (props) => {
 
 
     //for filter
+
+    const brands = useSelector(takeBrands)
+    const productTypes = useSelector(getTypesOfProduct)
+    const checkStatuses = useSelector(takeCheckStatuses)
+
+    const [options, setOptions] = useState()
+
     const [filterMode, setFilterMode] = useState(false)
 
     const [filterValues, setFilterValues] = useState(null)
@@ -141,8 +150,14 @@ const Authentications = (props) => {
             setSelectedFilter(null)
         }
     }
+    useEffect(()=>{
+        selectedFilter && selectedFilter[0].value === 'CATEGORY' ? productTypes.length > 0 && setOptions(productTypes.map((el,index)=>
+        el.publicName ? {label: el.publicName, value: el} : el)) : selectedFilter && selectedFilter[0].value === 'OUTCOME' && checkStatuses && setOptions(checkStatuses)
+    },[selectedFilter])
+     
 
     function handleChange(e,idx, length) {
+        setOptions()
         if (selectedFilter === null) {
             let arr = []
             for (let i = 0; i <= idx; i++) {
@@ -165,6 +180,8 @@ const Authentications = (props) => {
         { value: 'OUTCOME', label: 'Outcome' },
         { value: 'LAST_UPDATE', label: 'Last update' }
     ]
+
+    //
 
     function getCertificateLink(product){
         const file = product.files.find(el=> el.feature==='certificate')
@@ -208,9 +225,9 @@ const Authentications = (props) => {
                             <div className="authent__filter__elems-wrapper">
                                 {filterValues && filterValues.map((el, index) => <div key={index} className="authent__filter__elem">
                                     <FilterSelect key={index} index={index} mainOptions={mainOptions} handleChange={handleChange} length={filterValues.length}/>
-                                    {selectedFilter && selectedFilter[index] && selectedFilter[index].value === 'MODEL' ? <input type="text" placeholder="model"/>
-                                    :<Select classNamePrefix="custom-select__dashboard" placeholder='Select filter' />}
-                                    {filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>}
+                                    {selectedFilter && selectedFilter[index] && selectedFilter[index].value && selectedFilter[index].value === 'MODEL' ? <input type="text" placeholder="model"/>
+                                    : selectedFilter && <Select key={index} classNamePrefix="custom-select__dashboard" placeholder='Select filter' options={options && options}/>}
+                                    {/*filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>*/}
                                 </div>)}
                             </div>
                         </div>}
@@ -238,7 +255,7 @@ const Authentications = (props) => {
                                         <label htmlFor={`check-for-elem-${index}`} />
                                     </div>
                                     <div className="authent__table__elem__category" onClick={() => navigate(`/request/${el.id}`, {state: {page: currentPage, var: page}})}>
-                                        <div className="authent__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el)})` }}>
+                                        <div className="authent__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el.files)})` }}>
                                             {/*<img src={el.image} alt="" />*/}
                                         </div>
                                         <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
@@ -273,7 +290,7 @@ const Authentications = (props) => {
                             {currentTableData ? currentTableData.map((el, index) => <div key={index} className="authent__table__elem">
                                 <div className="authent__table__elems-wrapper">
                                     <div className="authent__table__elem__category" onClick={() => navigate(`../request/${el.id}`, {state: {page: currentPage, var: page}})}>
-                                        <div className="authent__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el)})` }}>
+                                        <div className="authent__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el.files)})` }}>
                                             {/*<img src={el.image} alt="" />*/}
                                         </div>
                                         <div className="authent__table__elem__category-label">{el.productType.publicName}</div>

@@ -1,5 +1,5 @@
-import { addCertificate, getAllAngles, getProduct, getProducts, getProductTypes, getResultsStatuses, updateProduct } from "../../api/product/product-api"
-import { setAnglesList, setProduct, setProducts, setProductTypes, setResultStatuses } from "../reducers/product-reducer"
+import { addCertificate, getAllAngles, getBrandsList, getCheckStatuses, getProduct, getProducts, getProductTypes, getResultsStatuses, updateProduct } from "../../api/product/product-api"
+import { setAnglesList, setBrandsList, setCheckStatuses, setProduct, setProducts, setProductTypes, setResultStatuses } from "../reducers/product-reducer"
 import { getBalanceThunk } from "./authRequest-thunk"
 import { getPriceThunk } from "./payment-thunk"
 
@@ -65,6 +65,28 @@ export const addCertificateThunk = (product) => async (dispatch) => {
 export const updateProductThunk = (productId, data) => async (dispatch) => {
     try {
         const response = await updateProduct(productId,data)
+    } catch (error) {
+        
+    }
+}
+
+export const getBrandsListThunk = (page, limit) => async (dispatch) =>{
+    try {
+        const response = await getBrandsList(page,limit)
+        dispatch(setBrandsList(response.data.entities))
+    } catch (error) {
+        
+    }
+}
+
+export const getCheckStatusesThunk = () => async (dispatch) => {
+    try {
+        const response = await getCheckStatuses()
+        const arr = [{obj: response.data, arr: []}]
+        for (var key in response.data){
+            arr.push({value: key, label: response.data[key]})
+        }
+        dispatch(setCheckStatuses(arr))
     } catch (error) {
         
     }

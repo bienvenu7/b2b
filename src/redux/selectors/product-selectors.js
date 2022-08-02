@@ -17,3 +17,12 @@ export const takeResultStatuses = (state) =>{
 export const takeAnglesList = (state) =>{
     return state.products.anglesList
 }
+
+export const takeBrandsList = (state) =>{
+    return state.products.brandsList
+}
+
+export const takeCheckStatuses = (state) =>{
+    return state.products.checkStatuses
+}
+
