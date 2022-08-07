@@ -316,7 +316,9 @@
                     height: 40px;
                     margin-top: 42px;
                     cursor: pointer;
-
+                    &:disabled{
+                        background-color: #5D5F62;
+                    }
                     @include for-phone-only {
                         font-size: 18px;
                         border-radius: 4px;

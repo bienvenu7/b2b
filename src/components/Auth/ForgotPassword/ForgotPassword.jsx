@@ -16,6 +16,7 @@ const ForgotPassword = () => {
     const postErrors = useSelector(getPostErrors)
 
     const [send, setSendState] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const validate = values => {
         const errors = {};
@@ -35,8 +36,10 @@ const ForgotPassword = () => {
         },
         validate,
         onSubmit: async (values) => {
+            setIsLoading(true)
             const response = await dispatch(forgotEmailThunk(values))
             response && setSendState(true)
+            setIsLoading(false)
         }
     });
 
@@ -68,7 +71,7 @@ const ForgotPassword = () => {
 
 
 
-                    <button className='auth__form-submit' type="submit">Reset password</button>
+                    <button className='auth__form-submit' type="submit" disabled={isLoading}>Reset password</button>
                 </form>
                 <div className='auth__form__bottom'>
                     <div className='wrapper'>

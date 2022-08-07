@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom'
 import ForgotPassword from '../components/Auth/ForgotPassword/ForgotPassword'
 import ResetPassword from '../components/Auth/ResetPassword/ResetPassword'
 import Signin from '../components/Auth/Signin/Signin'
@@ -20,6 +21,7 @@ export const publicRoutes = [
 ]
 
 export const privateRoutes = [
+    {path: '', component: <Navigate to='main'/>},
     { path: 'main', component: <Main /> },
     { path: 'payment', component: <Payment /> },
     { path: 'authentications/completed', component: <Authentications var={'completed'}/>},

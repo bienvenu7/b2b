@@ -16,6 +16,7 @@ const SignIn = () => {
     const postErrors = useSelector(getPostErrors).signin
 
     const [switchBtn, setState] = useState('switch-btn')
+    const [isLoading, setIsLoading] = useState(false)
 
     const setSwitchState = (switchState) => {
         !switchState ? setState('switch-btn switch-on') : setState('switch-btn')
@@ -49,8 +50,10 @@ const SignIn = () => {
         },
         validate,
         onSubmit: async values => {
+            setIsLoading(true)
             const response = await dispatch(loginThunk(values))
             response === 'access' && navigate('/main')
+            setIsLoading(false)
         }
     });
 
@@ -101,7 +104,7 @@ const SignIn = () => {
                             <label htmlFor='rememberMe' className={switchBtn} /><div className='switch-btn-label'>Remember Me</div></div>
 
 
-                        <button className='auth__form-submit' type="submit">Sign In</button>
+                        <button className='auth__form-submit' type="submit" disabled={isLoading}>Sign In</button>
                     </form>
                     <div className='auth__form__bottom-signin'>
                         <div className='wrapper'><div className='auth__form__bottom-message'>Dont't have an account?&nbsp;</div>

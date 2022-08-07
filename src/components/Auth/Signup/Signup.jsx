@@ -7,6 +7,7 @@ import { regThunk } from '../../../redux/thunks/auth-thunk';
 import AuthLayout from '../AuthLayout';
 import SvgSelector from '../../../common/icons/SvgSelector';
 import mobileLogo from '../../../common/images/logo-for-mobile.png'
+import { useState } from 'react';
 
 const SignUp = () => {
 
@@ -14,6 +15,8 @@ const SignUp = () => {
     const navigate = useNavigate()
 
     const postErrors = useSelector(getPostErrors)
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const validate = values => {
         const errors = {};
@@ -46,13 +49,16 @@ const SignUp = () => {
             rememberMe: false,
         },
         validate,
-        onSubmit: values => {
+        onSubmit: async values => {
+            setIsLoading(true)
             if (values.email === 'Email Address*') {
                 formik.errors.company = 'Please fill in your company';
             } else if (values.company === 'Company Name*') {
                 console.log()
             }
-            dispatch(regThunk(values))
+            const response = await dispatch(regThunk(values))
+            response === 'access' && navigate('/main')
+            setIsLoading(false)
         }
     });
 
@@ -144,7 +150,7 @@ const SignUp = () => {
                         {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
 
 
-                        <button className='auth__form-submit' type="submit">Sign Up</button>
+                        <button className='auth__form-submit' type="submit" disabled={isLoading}>Sign Up</button>
                     </form>
                     <div className='auth__form__bottom'>
                         <div className='auth__form__bottom-message'>Already have an account?&nbsp;</div>

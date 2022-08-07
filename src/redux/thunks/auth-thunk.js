@@ -18,7 +18,8 @@ export const regThunk = (data) => async (dispatch) => {
             password: data.password
         }
         if (response.status === 201) {
-            dispatch(loginThunk(loginData))
+            await dispatch(loginThunk(loginData))
+            return 'access'
         }
     } catch (error) {
         dispatch(setErrors({ page: 'signup', error: error && error.response && error.response.data && error.response.data.message ? error.response.data.message[0] : null }))
