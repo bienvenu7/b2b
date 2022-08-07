@@ -68,6 +68,7 @@ const ResetPassword = () => {
                     onChange={formik.handleChange}
                     placeholder='New password'
                     value={formik.values.password}
+                    autoComplete="off"
                     />
                 {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
                 <input
@@ -78,6 +79,7 @@ const ResetPassword = () => {
                     type='password'
                     onChange={formik.handleChange}
                     value={formik.values.confirm}
+                    autoComplete="off"
                     />
                 {formik.touched.password && formik.touched.confirm && formik.values.password != formik.values.confirm ? <div className='auth__form-errorMessage'>The passwords do not match!</div> : null}
 

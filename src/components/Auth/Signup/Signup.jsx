@@ -142,10 +142,8 @@ const SignUp = () => {
                             type='password'
                             placeholder='Password*'
                             onChange={formik.handleChange}
-
-                            //onBlur={formik.handleBlur}
+                            autoComplete="off"
                             value={formik.values.password}
-                        //onClick={() => { setType('password'); formik.setFieldValue('password', '') }}
                         />
                         {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
 

@@ -91,6 +91,7 @@ const SignIn = () => {
                             placeholder='Current password'
                             onChange={formik.handleChange}
                             value={formik.values.password}
+                            autoComplete="off"
                             onClick={() => { postErrors && dispatch(setErrors(null)) }}
                         />
                         {formik.touched.password && formik.errors.password ? <div className='auth__form-errorMessage'>{formik.errors.password}</div> : null}
