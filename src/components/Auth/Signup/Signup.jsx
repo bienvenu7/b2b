@@ -148,7 +148,7 @@ const SignUp = () => {
                     </form>
                     <div className='auth__form__bottom'>
                         <div className='auth__form__bottom-message'>Already have an account?&nbsp;</div>
-                        <div className='auth__form__bottom-button' onClick={() => { navigate('../auth/signin') }}>Sign in</div>
+                        <div className='auth__form__bottom-button' onClick={() => { navigate('/signin') }}>Sign in</div>
                     </div>
                 </div>
             </div>

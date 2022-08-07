@@ -88,7 +88,7 @@ const AuthenticationRequest = () => {
 
 
     productTypes.map((el, index) => options.push({ key: index, value: el.id, type: el, label: el.publicName }))
-    brands.map((el, index) => optionsBrands.push({ key: index, value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
+    brands.length > 0 && brands[0].brand && brands.map((el, index) => optionsBrands.push({ key: index, value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
 
     function checkNecessity() {
         setPhotoFiles(photoFiles.map((el, index) => el.necessity == 1 && el.file !== '' ? { ...el, error: false } : { ...el, error: true }))

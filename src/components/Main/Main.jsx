@@ -10,21 +10,15 @@ const Main = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const isAuth = useSelector(getIsAuth)
-
-    useEffect(() => {
-        !isAuth && navigate('../auth/signup')
-    }, [isAuth])
-
     return (
         <>
             <div className="MainPage-container">Main Page
                 <button onClick={() => { dispatch(logoutThunk()) }}>Logout</button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
-                <button onClick={() => navigate('../payment')}>Payment</button>
-                <button onClick={() => navigate('../authentication-request')}>Authentication request</button>
-                <button onClick={() => navigate('../authentications/completed')}>Dashboard</button>
+                <button onClick={() => navigate('/payment')}>Payment</button>
+                <button onClick={() => navigate('/authentication-request')}>Authentication request</button>
+                <button onClick={() => navigate('/authentications/completed')}>Dashboard</button>
             </div>
         </>
     )

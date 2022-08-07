@@ -44,11 +44,11 @@ const Authentications = (props) => {
     const [dataFilter, setDataFilter] = useState({})
 
     useEffect(() => {
-        setPage(params.page === 'completed' ? 'complete' : params.page === 'in-progress' && 'progress')
+        setPage(props.var === 'completed' ? 'complete' : props.var === 'progress' && 'progress')
     })
 
     useEffect(() => {
-        resultStatuses !== null && dispatch(getProductsThunk(dataFilter))
+        resultStatuses !== null && Object.keys(dataFilter).length > 0 && dispatch(getProductsThunk(dataFilter))
         /*dispatch(getProductsThunk(
             {
                 resultStatuses: resultStatuses.filter(el => params.page === 'completed' ? el.name === 'COMPLETED' : el.name !== 'COMPLETED'),
@@ -90,7 +90,7 @@ const Authentications = (props) => {
     }
 
     function onProgressClick() {
-        navigate('../authentications/in-progress')
+        navigate('/authentications/in-progress')
         const data = {
             sort: 'createdAt:DESC',
             resultStatuses: resultStatuses.filter(el => el.name !== 'COMPLETED')
@@ -254,6 +254,10 @@ const Authentications = (props) => {
 
     params.page === 'photo-requests' && navigate('../luxury-store/authentications/photo-requests')
 
+    if (page === null){
+        return <></>
+    } else {
+
     return (
         <>
             <PersonalAreaLayout>
@@ -370,7 +374,7 @@ const Authentications = (props) => {
                 </div>
             </PersonalAreaLayout>
         </>
-    )
+    )}
 }
 
 export default Authentications

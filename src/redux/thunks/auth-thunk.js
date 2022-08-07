@@ -29,7 +29,8 @@ export const loginThunk = (data) => async (dispatch) => {
     try {
         const response = await login(data)
         await Cookies.set('jwt', response.data.token)
-        dispatch(getAuthThunk(response.data.token))
+        await dispatch(getAuthThunk(response.data.token))
+        return 'access'
     } catch (error) {
 
         const data = {

@@ -81,7 +81,7 @@ const ResetPassword = () => {
             </form>
             <div className='auth__form__bottom-signin'>
                 <div className='wrapper'>{statusCode == 200 ? <div className='auth__form__bottom-message'>Your password has successfully been reset!</div> : null}
-                <div className='auth__form__bottom-button' onClick={()=>{navigate('../auth/signin')}}><SvgSelector id='backIcon'/>&nbsp;Back to login</div></div>
+                <div className='auth__form__bottom-button' onClick={()=>{navigate('/signin')}}><SvgSelector id='backIcon'/>&nbsp;Back to login</div></div>
             </div>
         </div>
         </div>

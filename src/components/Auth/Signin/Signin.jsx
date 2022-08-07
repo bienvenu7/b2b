@@ -48,8 +48,9 @@ const SignIn = () => {
             rememberMe: false,
         },
         validate,
-        onSubmit: values => {
-            dispatch(loginThunk(values))
+        onSubmit: async values => {
+            const response = await dispatch(loginThunk(values))
+            response === 'access' && navigate('/main')
         }
     });
 
@@ -104,8 +105,8 @@ const SignIn = () => {
                     </form>
                     <div className='auth__form__bottom-signin'>
                         <div className='wrapper'><div className='auth__form__bottom-message'>Dont't have an account?&nbsp;</div>
-                            <div className='auth__form__bottom-button' onClick={() => { navigate('../auth/signup') }}>Sign up</div></div>
-                        <div className='auth__form__bottom-button' id='1' onClick={() => { navigate('../auth/forgot') }}>Forgot password?</div>
+                            <div className='auth__form__bottom-button' onClick={() => { navigate('/signup') }}>Sign up</div></div>
+                        <div className='auth__form__bottom-button' id='1' onClick={() => { navigate('/forgot-password') }}>Forgot password?</div>
                     </div>
                 </div>
                 </div>

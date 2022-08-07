@@ -73,7 +73,7 @@ const ForgotPassword = () => {
                 <div className='auth__form__bottom'>
                     <div className='wrapper'>
                         {send && <div className='auth__form__bottom-message'>We’ve sent you the reset instruction!</div>}
-                        <div className='auth__form__bottom-button' onClick={() => { navigate('../auth/signin') }}>Back to login</div></div>
+                        <div className='auth__form__bottom-button' onClick={() => { navigate('/signin') }}>Back to login</div></div>
                 </div>
             </div>
             </div>

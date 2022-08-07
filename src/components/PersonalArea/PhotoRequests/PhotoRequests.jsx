@@ -61,11 +61,6 @@ const PhotoRequests = (props) => {
         }
     }
 
-    const params = useParams()
-
-    console.log(params)
-
-
     return (
         <>
             {isOpen && <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={elem}/>}
