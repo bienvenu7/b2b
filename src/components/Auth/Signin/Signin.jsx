@@ -65,7 +65,7 @@ const SignIn = () => {
             <div className='auth__content-promo'></div>
                 <div className='auth__content-form'>
                 <div className='auth__content-form-headers'>
-                    <img className='mobileLogo' src={mobileLogo} />
+                    <img className='mobileLogo' src={mobileLogo} alt=''/>
                     <div className='message-h1'>Welcome back to the LegitGrails Business Platform!</div>
                     <div className='message-h2'>Enter your email and password to continue.</div>
                 </div>

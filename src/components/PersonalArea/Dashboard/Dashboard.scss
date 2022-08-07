@@ -229,7 +229,7 @@ color: #656565;
                     grid-area: count;
                     width: 40px;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     @include for-phone-only{
         font-family: 'SF Pro Display Medium';
 font-style: normal;

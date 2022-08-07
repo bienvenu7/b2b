@@ -80,7 +80,7 @@ const SignUp = () => {
             </div>
             <div className='auth__content-form'>
             <div className='auth__content-form-headers'>
-                            <img className='mobileLogo' src={mobileLogo} />
+                            <img className='mobileLogo' src={mobileLogo} alt=''/>
                             <div className='message-h1'>Welcome to the LegitGrails Business Platform!</div>
                             <div className='message-h2'>Sign up to access all the benefits.</div>
     </div>
@@ -106,9 +106,7 @@ const SignUp = () => {
                             type="text"
                             placeholder='Your role at the company'
                             onChange={formik.handleChange}
-                            //onBlur={()=>{formik.values.role == '' && formik.setFieldValue('role','Your role at the company')}}
                             value={formik.values.role}
-                        //onClick={()=>{formik.values.role =='Your role at the company' && formik.setFieldValue('role','')}}
                         />
                         <input
                             className='auth__form-elem'
@@ -117,9 +115,7 @@ const SignUp = () => {
                             type="text"
                             onChange={formik.handleChange}
                             placeholder='Number of expected monthly authentications'
-                            //onBlur={()=>{formik.values.number == '' && formik.setFieldValue('number','Number of expected monthly authentications')}}
                             value={formik.values.number}
-                        //onClick={()=>{formik.values.number =='Number of expected monthly authentications' && formik.setFieldValue('number','')}}
                         />
                         <input
                             className={formik.touched.email && formik.errors.email ? 'auth__form-elem invalid' : 'auth__form-elem'}
@@ -128,10 +124,8 @@ const SignUp = () => {
                             type="text"
                             placeholder='Email Address*'
                             onChange={formik.handleChange}
-                            //onBlur={()=>{formik.values.email == '' && formik.setFieldValue('email','Email Address*')}}
                             value={formik.values.email}
                             onClick={() => postErrors && postErrors.signup && dispatch(setErrors(null))}
-                        //onClick={()=>{formik.values.email =='Email Address*' && formik.setFieldValue('email','')}}
                         />
                         {formik.touched.email && formik.errors.email ? <div className='auth__form-errorMessage'>{formik.errors.email}</div> : null}
                         {postErrors && postErrors.signup ? <div className='auth__form-errorMessage'>{postErrors.signup}</div> : null}

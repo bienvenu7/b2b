@@ -54,7 +54,7 @@ const ResetPassword = () => {
             
             <div className='auth__content-form'>
             <div className='auth__content-form-headers'>
-                <img className='mobileLogo' src={mobileLogo} />
+                <img className='mobileLogo' src={mobileLogo} alt=''/>
                 <div className='message-h1'>Set new password!</div>
                 <div className='message-h2'>Your password must be different to the previous one.</div>
             </div>
@@ -81,12 +81,12 @@ const ResetPassword = () => {
                     value={formik.values.confirm}
                     autoComplete="off"
                     />
-                {formik.touched.password && formik.touched.confirm && formik.values.password != formik.values.confirm ? <div className='auth__form-errorMessage'>The passwords do not match!</div> : null}
+                {formik.touched.password && formik.touched.confirm && formik.values.password !== formik.values.confirm ? <div className='auth__form-errorMessage'>The passwords do not match!</div> : null}
 
                 <button className='auth__form-submit' type="submit" disabled={isLoading}>Reset</button>
             </form>
             <div className='auth__form__bottom-signin'>
-                <div className='wrapper'>{statusCode == 200 ? <div className='auth__form__bottom-message'>Your password has successfully been reset!</div> : null}
+                <div className='wrapper'>{statusCode === 200 ? <div className='auth__form__bottom-message'>Your password has successfully been reset!</div> : null}
                 <div className='auth__form__bottom-button' onClick={()=>{navigate('/signin')}}><SvgSelector id='backIcon'/>&nbsp;Back to login</div></div>
             </div>
         </div>

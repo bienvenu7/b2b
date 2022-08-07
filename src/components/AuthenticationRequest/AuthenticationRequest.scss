@@ -402,7 +402,7 @@ line-height: 19px;
                 &-wrapper {
                     display: flex;
                     flex-direction: column;
-                    justify-content: end;
+                    justify-content: flex-end;
                     width: 100%;
                     max-width: 449px;
                 }
@@ -449,7 +449,7 @@ padding: 12px 0;
 
         &-count {
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
             width: 100%;
         }
 

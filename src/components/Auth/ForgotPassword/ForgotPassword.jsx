@@ -49,7 +49,7 @@ const ForgotPassword = () => {
             
             <div className='auth__content-form'>
             <div className='auth__content-form-headers'>
-                <img className='mobileLogo' src={mobileLogo} />
+                <img className='mobileLogo' src={mobileLogo} alt=''/>
                 <div className='message-h1'>Forgot your password?</div>
                 <div className='message-h2'>No worries, we’ll send you reset instructions.</div>
             </div>
