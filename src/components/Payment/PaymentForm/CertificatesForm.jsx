@@ -36,12 +36,12 @@ const CertificatesForm = (props) => {
 
     const [selectedValue, setSelectedValue] = useState(3);
 
-    selectedValue === 'choose' &&  categoryError != null && dispatch(setCategoryError(null))
+    selectedValue === 'choose' && categoryError != null && dispatch(setCategoryError(null))
 
     // handle onChange event of the dropdown
     const handleChange = e => {
         setSelectedValue(e.value);
-        if (e.value === 'include'){
+        if (e.value === 'include') {
             let vol = 0
             userTariffPackages.map(e => vol += e.volume)
             console.log(vol)
@@ -54,13 +54,13 @@ const CertificatesForm = (props) => {
                 }
             }
             props.cartTotal(data)
-        } else if(e.value === 'notneeded'){
+        } else if (e.value === 'notneeded') {
             const data = {
                 userTariffPackages: userTariffPackages,
             }
             props.cartTotal(data)
         }
-        else if (e.value === 'choose'){
+        else if (e.value === 'choose') {
             volume > 1 && setVolume(1)
             const data = {
                 userCertificatePackage: {
@@ -68,11 +68,11 @@ const CertificatesForm = (props) => {
                     userId: userId
                 }
             }
-            const totalData = userTariffPackages && userTariffPackages.length === 1 && (userTariffPackages[0].productType === '' || userTariffPackages[0].answerTime === '') ? data : {...data, userTariffPackages: userTariffPackages}
+            const totalData = userTariffPackages && userTariffPackages.length === 1 && (userTariffPackages[0].productType === '' || userTariffPackages[0].answerTime === '') ? data : { ...data, userTariffPackages: userTariffPackages }
             //console.log(totalData)
             props.cartTotal(totalData)
         }
-        
+
     }
 
     const handleChangeForNumeric = (e) => {
@@ -83,18 +83,18 @@ const CertificatesForm = (props) => {
                 userId: userId
             }
         }
-        const totalData = userTariffPackages && userTariffPackages.length === 1 && (userTariffPackages[0].productType === '' || userTariffPackages[0].answerTime === '') ? data : {...data, userTariffPackages: userTariffPackages}
+        const totalData = userTariffPackages && userTariffPackages.length === 1 && (userTariffPackages[0].productType === '' || userTariffPackages[0].answerTime === '') ? data : { ...data, userTariffPackages: userTariffPackages }
         props.cartTotal(totalData)
     }
 
     const handlePost = (formik) => {
         let vol = volume
-        if (userTariffPackages.length !== costs.length && selectedValue !== ''){
+        if (userTariffPackages.length !== costs.length && selectedValue !== '') {
             dispatch(pushTotal(cost.package))
         }
-        const lastPack = userTariffPackages[userTariffPackages.length-1] 
-        if (lastPack.productType === '' && lastPack.answerTime === ''){
-            dispatch(removePreviewPackage(userTariffPackages.length-1))
+        const lastPack = userTariffPackages[userTariffPackages.length - 1]
+        if (lastPack.productType === '' && lastPack.answerTime === '') {
+            dispatch(removePreviewPackage(userTariffPackages.length - 1))
         }
         const data = {
             //paymentSystem: "paypal", 
@@ -112,28 +112,28 @@ const CertificatesForm = (props) => {
         } else if (selectedValue === 'choose') {
             data.userCertificatePackage = { userId: userId, volume: vol, isGift: false }
         }
-        if (selectedValue === 'include' && userTariffPackages.length === 0){
+        if (selectedValue === 'include' && userTariffPackages.length === 0) {
             dispatch(setCategoryError('Please choose the category'));
             return
         }
         //selectedValue != '' && dispatch(postInvoiceThunk(data))
-        
-        if(selectedValue !==''){
-            if(lastPack.productType !== ''){
-                dispatch(setTotalPackage({...data, userTariffPackages: userTariffPackages}))
+
+        if (selectedValue !== '') {
+            if (lastPack.productType !== '') {
+                dispatch(setTotalPackage({ ...data, userTariffPackages: userTariffPackages }))
                 navigate('../payment-first')
             }
-            else{
+            else {
                 dispatch(setTotalPackage(data))
                 navigate('../payment-first')
             }
         }
-       // selectedValue != '' && lastPack.productType != '' && dispatch(setTotalPackage(data)) && navigate('../payment-first')
-        
-        
+        // selectedValue != '' && lastPack.productType != '' && dispatch(setTotalPackage(data)) && navigate('../payment-first')
+
+
         setSelectedValue('')
         setVolume(1)
-        
+
     }
 
     useEffect(() => {
@@ -156,12 +156,13 @@ const CertificatesForm = (props) => {
             {props => (<Form className="payment__form" onChange={props.handleChange} onSubmit={props.handleSubmit}>
                 <div className="payment__form-block-container second">
                     <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
-                    <Select components={{DropdownIndicator}} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} />
-                    {selectedValue === 'choose' &&
-                        <div className="payment__form-elem number-wrapper" id="cert_count">
-                            <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
-                            <div className="payment__form-elem info">${cost.certificate/100}&nbsp;per certificate</div></div>}
-
+                    <div className="payment__form-elems-wrapper">
+                        <div style={{width: '340px'}}><Select components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} /></div>
+                        {selectedValue === 'choose' &&
+                            <div className="payment__form-elem number-wrapper" id="cert_count">
+                                <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
+                                <div className="payment__form-elem info">${cost.certificate / 100}&nbsp;per certificate</div></div>}
+                    </div>
                     <div className="payment__form-elem upload">
                         <div className="payment__form-elem upload-btn">Upload logo</div>
                         <div className="payment__form-elem upload-info">This logo will be added to the certificates</div>

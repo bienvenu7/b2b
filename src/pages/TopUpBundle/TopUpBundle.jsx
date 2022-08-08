@@ -9,6 +9,8 @@ import Balance from "../../components/Balance/Balance"
 import './TopUpBundle.scss'
 import Summary from "../../components/Summary/Summary"
 import logo from '../../common/images/logo-for-mobile.png'
+import RigthSide from "../../components/Payment/RightSide/RightSide"
+import Header from "../../components/Payment/Header/Header"
 
 const TopUpBundle = (props) => {
 
@@ -80,28 +82,10 @@ const TopUpBundle = (props) => {
         <>
             <div className="top_up_bundle-container">
                 <div className="top_up_bundle__left-wrapper">
-                    <div className="top_up_bundle__header">
-                        <img src={logo} alt='' className="top_up_bundle__header-logo" />
-                        <div className="top_up_bundle__header__history">
-                            <div className="top_up_bundle__header__history-text bold">Authentication Bundle</div>
-                            <div className="top_up_bundle__header__history-text">&nbsp;{'>'}&nbsp;Payment</div>
-                        </div>
-                    </div>
+                    <Header/>
                     <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal} getPrice={getPrice} />
                 </div>
-                <div className="top_up_bundle__right-wrapper">
-                    <Balance />
-                    {packages.length > 0 && <div style={{ margin: '84px 0' }}><Summary /></div>}
-                    <div className="top_up_bundle__summary-wrapper"></div>
-                    <div className="top_up_bundle__total-wrapper">
-                        <div className="top_up_bundle__total-title">Subtotal</div>
-                        <div className="top_up_bundle__total-count">${total / 100}</div>
-                    </div>
-                    <div className="top_up_bundle__buttons-wrapper">
-                        <button className="top_up_bundle__buttons-button" onClick={() => btnAddToogleClick()}>Add another category</button>
-                        <button className="top_up_bundle__buttons-button" onClick={() => btnPayToogleClick()}>Proceed to payment</button>
-                    </div>
-                </div>
+                <RigthSide toogle={{add: btnAddToogleClick, pay: btnPayToogleClick}}/>
             </div>
         </>
     )

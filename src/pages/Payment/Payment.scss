@@ -1,0 +1,234 @@
+@import '../../scss/vars';
+
+.payment_page{
+    &-container{
+        display: flex;
+    }
+    &__form{
+        width: calc(1170px - 405px);
+    }
+    &__bundle {
+        &__checkbox{
+            margin: 21px 0 33px 0;
+        }
+        &-wrapper {
+            //width: 100%;
+            margin: 0 73px 0 89px;
+            @include for-phone-only {
+                border-bottom: 0.25px solid #656565;
+            }
+        }
+
+        &__checkbox {
+            //margin: 32px 0 0 65px;
+
+            @include for-phone-only {
+                margin: 0;
+                padding: 8px 0 8px 24px;
+                border-bottom: 0.25px solid #656565;
+            }
+        }
+
+        &__vars {
+            &-wrapper {
+                //margin: 87px 105px 0 52px;
+
+                @include for-phone-only {
+                    margin: 16px 17px 23px 17px;
+                }
+            }
+
+            &-radio {
+                &-wrapper {
+                    border: 0.5px solid #9A9A9A;
+                    ;
+                    border-radius: 10px;
+                    padding: 20px 0;
+                }
+
+                &__elem {
+                    display: flex;
+                    padding-left: 20px;
+
+                    &:not(:last-child) {
+                        padding-bottom: 10px;
+                        border-bottom: 0.5px solid #9A9A9A;
+                        ;
+                    }
+
+                    &:not(:first-child) {
+                        padding-top: 10px;
+                    }
+
+                    &>div {
+                        font-family: 'SF Pro Display Medium';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 18.4118px;
+                        line-height: 20px;
+
+                        @include for-phone-only {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__billing {
+            &-header {
+                display: none;
+
+                @include for-phone-only {
+                    display: block;
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 21px;
+                    margin: 12px 0 16px 21px;
+                }
+            }
+
+            &-wrapper {
+                margin-top: 93px;
+                border: 0.338942px solid #CECECE;
+border-radius: 8.8125px;
+                hr{
+                    /*<hr style={{background: '#E1E1E1',
+                        height: '0.7px',
+                        border: '0',
+                        width: '608px',
+                        margin: '0 auto',
+                        padding: '0'}}/>*/
+                        border: 0;
+                        background: #CECECE;
+                        margin: 0;
+                        height: 0.338942px;
+                        margin: 0 24px;
+                }
+                @include for-phone-only {
+                    margin: 0 21px;
+                    border: 0;
+                    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+                    border-radius: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 13px;
+                    padding: 17px;
+                }
+            }
+
+            &-elem {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 22px;
+                line-height: 140%;
+                display: flex;
+                gap: 40px;
+                padding: 15px 24px;
+
+                @include for-phone-only {
+                    flex-direction: column;
+                    gap: 8px;
+                    padding: 0;
+                }
+
+                &:not(:last-child) {
+                    //border-bottom: 0.5px solid #9A9A9A;
+
+                    @include for-phone-only {
+                        border: 0;
+                    }
+                }
+            }
+
+            &-label {
+
+                color: #616161;
+                //temp
+                max-width: 150px;
+                width: 100%;
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14.9135px;
+line-height: 140%;
+
+                @include for-phone-only {
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 19px;
+                }
+            }
+
+            &-value {
+                color: #000000;
+                font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14.9135px;
+line-height: 140%;
+
+                @include for-phone-only {
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 16px;
+                    line-height: 19px;
+                }
+            }
+
+            &-button {
+                cursor: pointer;
+                margin-left: auto;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 140%;
+                color: $c_g;
+
+                @include for-phone-only {
+                    display: none;
+                }
+            }
+        }
+
+        &__vars {
+            &-wrapper {}
+
+            &-h1 {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 140%;
+
+                @include for-phone-only {
+                    display: none;
+                }
+            }
+
+            &-h2 {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 140%;
+                margin: 20px 0;
+
+                @include for-phone-only {
+                    display: none;
+                }
+            }
+
+            &-radio {
+                &-wrapper {}
+            }
+        }
+    }
+}

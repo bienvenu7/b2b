@@ -9,6 +9,7 @@ import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 import { getPriceThunk } from "../../../redux/thunks/payment-thunk"
 import { getCategoryError, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
+import SvgSelector from "../../../common/icons/SvgSelector"
 
 const CategoryForm = (props) => {
 
@@ -101,7 +102,14 @@ const CategoryForm = (props) => {
             setVolume(1)
         }
         formik.values.hours = '0'
+        handleClose()
+    }
 
+    function handleClose(){
+        setProductType(null)
+        setSelectedValue('')
+        setProductTypeVar(null)
+        setVolume(1)
     }
 
     return (<>
@@ -118,11 +126,26 @@ const CategoryForm = (props) => {
         >
             {(props) => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
                 <div className="payment__form-block-container first">
+                {productType !== null && <><div className="payment__form-current_package_state-wrapper">
+                        <div onClick={handleClose}><SvgSelector id='xmark' /></div>
+                        <div className="payment__form-current_package_state" >
+                            <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName 
+                            : productTypeVar ? productTypeVar === 'sneakers' ? selectedValue.types.sneakers.publicName : selectedValue.types.other.publicName : '' }</div>
+                            <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
+                        </div>
+                    </div>
+                    <hr style={{background: '#E1E1E1',
+    height: '0.7px',
+    border: '0',
+    width: '608px',
+    margin: '0 auto',
+    padding: '0',
+    marginLeft: '-33px'}}/></>}
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
 
                     {(selectedValue.name === 'hypeShoes' || selectedValue.name === "luxuryShoes") && <div className="payment__form-elem shoes-vars">
-                        <label htmlFor="types" className="payment__form-label">Choose the category</label>
+                        <label htmlFor="types" className="payment__form-label">Choose the shoes type</label>
 
                         <div className="payment__form-radio_btn_types-container">
                             <div className="payment__form-radio_btn_types" id="types">
@@ -138,6 +161,8 @@ const CategoryForm = (props) => {
                         </div>
                     </div>}
                     {categoryError != null && <div className="payment__form-error">{categoryError}</div>}
+                    <div className="payment__form-second_block-wrapper">
+                        <div className="payment__form-elem__hours-wrapper">
                     <label htmlFor="hours" className="payment__form-label">Choose answer time</label>
                     <div className="payment__form-elem hours">
                         <div className="payment__form-radio_btn">
@@ -150,12 +175,16 @@ const CategoryForm = (props) => {
                         </div>
                         {errorsForAnswerTime != null && <div className="payment__form-errors">{errorsForAnswerTime}</div>}
                     </div>
-                    <label htmlFor="volume" className="payment__form-label">Choose the volume of authentications</label>
+                    </div>
+                    <div className="payment__form-elem__volume-wrapper">
+                    <label htmlFor="volume" className="payment__form-label">Authentication volume</label>
                     <div className="payment__form-elem number-wrapper">
                         <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
-                        {!cost != null && <div className="payment__form-elem info">${cost.package / 100}&nbsp;per authentication</div>}
+                        {!cost != null && <div className="payment__form-elem info">${cost.package / 100}&nbsp;per</div>}
                     </div>
-                    <div className="payment__form-href" onClick={() => { console.log('navto') }}>How does our pricing work?</div>
+                    <div className="payment__form-href" onClick={() => {}}>How does our pricing work?</div>
+                </div>
+                </div>
                 </div>
                 {but && handlePost(props)}
             </Form>)}

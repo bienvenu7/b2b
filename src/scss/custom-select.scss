@@ -1,16 +1,15 @@
 .custom-select {
-    
     &__control {
         cursor: pointer !important;
-        border: 1.17544px solid $c_o  !important;
-        border-radius: 9.40351px !important;
-        min-height: 67px !important;
-        font-family: 'Roboto' !important;
-        font-style: normal !important;
-        font-weight: 400 !important;
-        font-size: 20px !important;
-        line-height: 140% !important;
-        color: $c_o  !important;
+        border: 1.17544px solid #565656  !important;
+        border-radius: 6.40351px !important;
+        min-height: 38px !important;
+        font-family: 'Roboto'!important;
+font-style: normal !important;
+font-weight: 400 !important;
+font-size: 14.3237px !important;
+line-height: 140% !important;
+        color: #565656  !important;
 
         @include for-phone-only {
             font-family: 'SF Pro Display Medium' !important;
@@ -66,7 +65,7 @@
     &__menu {
         
         border-radius: 10px !important;
-        border: 1.17544px solid $c_o  !important;
+        border: 1.17544px solid #565656  !important;
         overflow: hidden !important;
 
         @include for-phone-only {
@@ -81,11 +80,11 @@
     &__option {
         cursor: pointer !important;
         font-family: 'Roboto' !important;
-        font-style: normal !important;
-        font-weight: 400 !important;
-        font-size: 20px !important;
-        line-height: 140% !important;
-        color: $c_o  !important;
+font-style: normal !important;
+font-weight: 400 !important;
+font-size: 14.2893px !important;
+line-height: 140% !important;
+        color: #565656 !important;
         background: $c_w  !important;
         padding-left: 32px !important;
 

@@ -6,7 +6,9 @@
     }
 
     &__left {
-        &-wrapper {}
+        &-wrapper {
+            width: calc(1170px - 405px);
+        }
     }
 
     &__right {
