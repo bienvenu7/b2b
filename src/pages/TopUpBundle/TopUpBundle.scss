@@ -1,0 +1,99 @@
+@import '../../scss/vars';
+
+.top_up_bundle {
+    &-container {
+        display: flex;
+    }
+
+    &__left {
+        &-wrapper {}
+    }
+
+    &__right {
+        &-wrapper {
+            background: #F6F6F7;
+            height: 100vh;
+            width: 405px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__total {
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20.0531px;
+            line-height: 140%;
+            max-width: 232px;
+    width: 100%;
+    margin-bottom: 16px;
+        }
+
+        &-title {}
+
+        &-count {
+            font-weight: 700;
+        }
+    }
+
+    &__buttons {
+        &-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 232px;
+    width: 100%;
+        }
+
+        &-button {
+            cursor: pointer;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12.8913px;
+            line-height: 140%;
+            height: 38px;
+            background: #CBAD73;
+            border-radius: 2.86473px;
+            border: 0;
+            color: $c_w;
+            &:first-child {
+                border: 1px;
+                color: $c_g;
+                background: hsla(120, 100%, 50%, 0);
+                border: 1px solid $c_g;
+            }
+        }
+    }
+    
+    &__header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        &__history{
+            display: flex;
+            &-text{
+                font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10.0266px;
+    line-height: 140%;
+    color: $c_g;
+                &.bold{
+                    font-weight: 700;
+                }
+            }
+        }
+        &-logo{
+            width: 43px;
+        height: 32px;
+        }
+    }
+}

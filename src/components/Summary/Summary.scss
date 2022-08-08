@@ -1,0 +1,38 @@
+@import '../../scss/vars';
+
+.summary{
+    &-container{
+        width: 232px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    &-title{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15.6298px;
+        line-height: 140%;
+        text-transform: uppercase;
+    }
+    &__elem{
+        &-wrapper{
+            display: flex;
+            flex-direction: column;
+        }
+        &-name{
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 13.8958px;
+            line-height: 140%;
+        }
+        &-cost{
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 13.8958px;
+            line-height: 140%;
+        }
+    }
+}

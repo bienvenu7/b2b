@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserTariffPackages, getCartTotal } from "../../redux/selectors/payment-selectors"
-import AuthBalance from "./AuthBalance/AuthBalance"
 import PackagesHistory from "./PackagesHistory/PackagesHistory"
 import PaymentForm from "./PaymentForm/PaymentForm"
 import PaymentHeader from "./PaymentHeader/PaymentHeader"
@@ -36,8 +35,6 @@ const Payment = (props) => {
     useEffect(() => { 
 
     }, [packages.length])
-
-    //invoiceLink != null && window.open(invoiceLink)
 
     const btnAddToogleClick = () => {
         setAddButState(true)
@@ -87,7 +84,6 @@ const Payment = (props) => {
                 <div className="payment__content-container">
                     {packages.length > 0 && <PackagesHistory />}
                     <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal} getPrice={getPrice} />
-                    {/*<AuthBalance mt={100}/>*/}
                     <Balance/>
                 </div>
                 <div className="payment__footer">

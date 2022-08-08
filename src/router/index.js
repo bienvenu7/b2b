@@ -12,6 +12,7 @@ import SuccessPageOrder from '../components/Payment/SuccessPage/SuccessPageOrder
 import Authentications from '../components/PersonalArea/Authentications/Authentications'
 import Card from '../components/PersonalArea/Card/Card'
 import PhotoRequests from '../components/PersonalArea/PhotoRequests/PhotoRequests'
+import TopUpBundle from '../pages/TopUpBundle/TopUpBundle'
 
 export const publicRoutes = [
     { path: '/signin', component: <Signin /> },
@@ -32,5 +33,8 @@ export const privateRoutes = [
     {path: 'payment-first', component: <PaymentFirst/>},
     {path: 'success-order', component: <SuccessPage/>},
     {path: 'success-order', component: <SuccessPageOrder/>},
-    {path: 'authentication-request', component: <AuthenticationRequest/>}
+    {path: 'authentication-request', component: <AuthenticationRequest/>},
+    
+    
+    {path: 'payment-new', component: <TopUpBundle/>}
 ]
