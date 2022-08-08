@@ -3,6 +3,9 @@
 @import '../../scss/vars';
 
 .auth {
+    &-container{
+        width: 100%;
+    }
     &__background {
         display: flex;
         height: 100%;

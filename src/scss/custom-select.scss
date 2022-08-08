@@ -67,6 +67,7 @@
         
         border-radius: 10px !important;
         border: 1.17544px solid $c_o  !important;
+        overflow: hidden !important;
 
         @include for-phone-only {
             box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1) !important;

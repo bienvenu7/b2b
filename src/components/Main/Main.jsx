@@ -12,14 +12,15 @@ const Main = () => {
 
     return (
         <>
-            <div className="MainPage-container">Main Page
+            <div className="MainPage-container" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>Main Page
                 <button onClick={() => { dispatch(logoutThunk()) }}>Logout</button>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
                 <button onClick={() => navigate('/payment')}>Payment</button>
                 <button onClick={() => navigate('/authentication-request')}>Authentication request</button>
                 <button onClick={() => navigate('/authentications/completed')}>Dashboard</button>
             </div>
+            </div>
+            
         </>
     )
 }

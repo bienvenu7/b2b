@@ -11,16 +11,18 @@ const AppRouter = () => {
     return (
         <>
             {isAuth ?
-                <Routes>
-                    {privateRoutes.map(el =>
-                        <Route key={el.path} element={el.component} path={el.path} />)}
-                    <Route path='*' element={<NotFoundPage/>} />
-                </Routes>
+                <div className='container' style={{ width: '1170px', display: 'flex', justifyContent: 'center' }}>
+                    <Routes>
+                        {privateRoutes.map(el =>
+                            <Route key={el.path} element={el.component} path={el.path} />)}
+                        <Route path='*' element={<NotFoundPage />} />
+                    </Routes>
+                </div>
                 :
                 <Routes>
                     {publicRoutes.map(el =>
                         <Route key={el.path} element={el.component} path={el.path} />)}
-                        <Route path='*' element={<Navigate to='signin' />} />
+                    <Route path='*' element={<Navigate to='signin' />} />
                 </Routes>
             }
         </>

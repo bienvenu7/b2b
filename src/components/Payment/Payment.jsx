@@ -9,6 +9,7 @@ import { getCartTotalThunk, getPriceThunk } from "../../redux/thunks/payment-thu
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader';
 import { getProductTypesThunk } from "../../redux/thunks/product-thunk"
 import { getIsAuth } from "../../redux/selectors/auth-selectors"
+import Balance from "../Balance/Balance"
 
 const Payment = (props) => {
 
@@ -86,7 +87,8 @@ const Payment = (props) => {
                 <div className="payment__content-container">
                     {packages.length > 0 && <PackagesHistory />}
                     <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal} getPrice={getPrice} />
-                    <AuthBalance mt={100}/>
+                    {/*<AuthBalance mt={100}/>*/}
+                    <Balance/>
                 </div>
                 <div className="payment__footer">
                     <div className="payment__footer-container">
