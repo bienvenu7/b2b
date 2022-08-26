@@ -3,6 +3,7 @@
 .photo_requests {
     &-container {
         color: $c_o;
+        max-width: 811px;
     }
 
     &-wrapper {
@@ -11,6 +12,7 @@
         background: $c_w;
         width: 811px;
         padding: 32px 0px 0 0px;
+
         @include for-phone-only{
             box-shadow: none;
             width: 100vw;

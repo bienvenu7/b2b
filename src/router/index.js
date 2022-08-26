@@ -13,6 +13,8 @@ import Authentications from '../components/PersonalArea/Authentications/Authenti
 import Card from '../components/PersonalArea/Card/Card'
 import PhotoRequests from '../components/PersonalArea/PhotoRequests/PhotoRequests'
 import TopUpBundle from '../pages/TopUpBundle/TopUpBundle'
+import Dashboard from '../components/Dashbord/Dashboard'
+import Billing from '../components/PersonalArea/billing/Billing'
 
 
 export const publicRoutes = [
@@ -34,7 +36,10 @@ export const privateRoutes = [
     {path: 'success-order', component: <SuccessPage/>},
     {path: 'success-order', component: <SuccessPageOrder/>},
     {path: 'authentication-request', component: <AuthenticationRequest/>},
-    {path: 'pay', component: <Payment/>}
+    {path: 'pay', component: <Payment/>},
+
+    {path: 'home', component: <Dashboard/>},
+    {path: 'billing-history', component: <Billing/>}
     
     //{path: 'payment-new', component: <TopUpBundle/>}
 ]

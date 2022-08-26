@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getTypesOfProduct } from '../../redux/selectors/product-selectors'
 import { useState } from 'react'
 import { createOrderThunk, createProductThunk, getProductTypePropThunk, uploadPhotoForProductThunk } from '../../redux/thunks/authRequest-thunk'
-import { takeBrands, takeOrder, takeAngles } from '../../redux/selectors/authRequest-selectors'
+import { takeBrands, takeOrder, takeAngles, takeBalance } from '../../redux/selectors/authRequest-selectors'
 import Navigation from '../Navigation/Navigation'
 import DropdownIndicator from '../../common/react-select/DropdownIndicator'
 import MobileHeader from '../Mobile/MobileHeader/MobileHeader'
@@ -86,9 +86,16 @@ const AuthenticationRequest = () => {
         setPhotoFiles(angles.map((el, index) => photoFiles.length == 0 && { key: index, file: '', imagePreviewUrl: '', angleId: el.angle.id, necessity: el.necessity, error: false, angleName: el.angle.publicName, format: null }))
     }, [angles])
 
-
-    productTypes.map((el, index) => options.push({ key: index, value: el.id, type: el, label: el.publicName }))
+    const balance = useSelector(takeBalance);
+    // productTypes.map((el, index) => options.push({ key: index, value: el.id, type: el, label: el.publicName }))
     brands.length > 0 && brands[0].brand && brands.map((el, index) => optionsBrands.push({ key: index, value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
+
+    
+    balance.map((el, index) => {
+
+        productTypes.map(item => el.productType.publicName === item.publicName &&  options.push({ key: index, value: item.id, type: item, label: item.publicName })) //el.productType.publicName !== 'Certificate' && el.productType.publicName }))
+
+    })
 
     function checkNecessity() {
         setPhotoFiles(photoFiles.map((el, index) => el.necessity == 1 && el.file !== '' ? { ...el, error: false } : { ...el, error: true }))
@@ -199,8 +206,8 @@ const AuthenticationRequest = () => {
             <div className="auth_request__wrapper">
                 <div className="auth_request__nav">
                     <div className='auth_request__nav-bar'>
-                        <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentication' }]} />
-                        <div className='auth_request__nav-label'>Authentication request</div>
+                        <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentification' }]} />
+                        <div className='auth_request__nav-label'>Authentification request</div>
                     </div>
                     <div className='auth_request__nav-bell'><SvgSelector id='bell' /></div>
                 </div>
@@ -214,9 +221,14 @@ const AuthenticationRequest = () => {
                             <div className='auth_request__form-container first'>
 
                                 <div className='auth_request__form-container-wrapper first'>
-                                    <div className='auth_request__form-heading'>Authentication request</div>
+                                    <div className='auth_request__form-heading'>Authentification request</div>
                                     <div className='auth_request__form__elem'>
-                                        <div className='auth_request__form__elem-label'>Choose the category</div>
+                                        <div className='auth_request__form__elem-label'>Choose the category
+                                        <div className='btn'>
+                                            <button>12 hours</button>
+                                            <button>24 hours</button>
+                                        </div>
+                                        </div>
                                         <Select key={productEditNumber} components={{ DropdownIndicator }} options={options} classNamePrefix="custom-select" placeholder='Please select the category' onChange={handleChangeCategory} />
                                         {errors.category && <div className='auth_request__form__elem-error'>{errors.category}</div>}
                                     </div>
@@ -257,10 +269,10 @@ const AuthenticationRequest = () => {
                                         <div key={index} className={`auth_request__form__photo-elem ${index}`}>
                                             {el.imagePreviewUrl !== '' ?
                                                 <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${el.imagePreviewUrl})` }}>
-                                                    <input className={`auth_request__form__photo-fileInput ${index}`} accept=".heic,.png,.heif,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
+                                                    <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                                 </label>
                                                 : <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'auth_request__form__photo-photolabel required' : 'auth_request__form__photo-photolabel'}>
-                                                    <input className={`auth_request__form__photo-fileInput ${index}`} accept=".heic,.png,.heif,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
+                                                    <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                                 </label>}
                                             <div className='auth_request__form__photo-name'>{el.angleName}</div>
                                             {el.format !== null && el.format !== true && <div className='auth_request__form__photo-error'>Format is not available</div>}

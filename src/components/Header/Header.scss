@@ -2,12 +2,16 @@
 
 .header{
     &-container{
-
+        position: relative;
     }
     &-wrapper{
         display: flex;
+        width: 1022px;
         justify-content: space-between;
-        padding: 54px 60px 0 29px;
+        align-items: center;
+        margin: auto;
+        margin-top: 54px;
+        position: relative;
         @include for-phone-only{
             display: none;
         }
@@ -15,8 +19,8 @@
             display: none;
             @include for-phone-only{
                 display: flex;
-                border-bottom: 0.855244px solid #F0F2F5;
-                height: 65px;
+                border-bottom: 1px solid $c_gray1;
+                height: 73px;
                 padding: 0;
                 position: fixed;
                 z-index: 100;
@@ -24,6 +28,22 @@
                 background: $c_w;
                 top: 0;
                 align-items: center;
+                justify-content: space-between;
+                padding: 0;
+                background-color: transparent !important;
+                margin-top: 0;
+                
+
+                .mobile_header-label {
+                    margin-top: 0;
+                    
+                }
+
+                .menu__btn {
+                    margin-top: 0;
+                    width: 20px;
+                    height: 18px;
+                }
             }
         }
     }
@@ -31,12 +51,12 @@
 
 .label-go_back{
     font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 24px;
-color: $c_g;
-display: flex;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: $c_g;
+    display: flex;
     align-items: center;
     gap: 20px;
     cursor: pointer;

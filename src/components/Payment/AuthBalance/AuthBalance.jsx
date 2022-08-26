@@ -23,7 +23,7 @@ const AuthBalance = (props) => {
                     <div className="auth__balance__elem-button">
                         Top up now
                     </div>
-                    <div className="auth__balance__elem-button">
+                    <div style={{display: 'none'}} className="auth__balance__elem-button">
                         New Authentication
                     </div>
                 </div>

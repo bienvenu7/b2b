@@ -10,6 +10,7 @@ import { setProducts } from "../../../redux/reducers/product-reducer"
 import Paginator from "../../Paginator/Paginator"
 import Select from "react-select"
 import FilterSelect from "./FilterSelect"
+import Loader from "../../Loader/Loader"
 const Authentications = (props) => {
 
     const location = useLocation()
@@ -262,7 +263,7 @@ const Authentications = (props) => {
         <>
             <PersonalAreaLayout>
                 <div className='authent-container'>
-                    <div className='authent__buttons-wrapper'>
+                    <div className='authent__buttons-wrapper desktop'>
                         <div className={page !== 'complete' ? `authent__buttons-elem` : `authent__buttons-elem selected`} onClick={onCompletedClick}>Completed</div>
                         <div className={page !== 'progress' ? `authent__buttons-elem` : `authent__buttons-elem selected`} onClick={onProgressClick}>In progress</div>
                     </div>
@@ -284,8 +285,19 @@ const Authentications = (props) => {
                                     : selectedFilter && <Select key={secondSelectIndex} onChange={subHandleChange} classNamePrefix="custom-select__dashboard" placeholder='Select filter' options={options && options}/>}
                                     {/*filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>*/}
                                 </div>)}
+                                <button onClick={() => {
+                                    setSelectedFilter(null);
+                                    handleFilter()
+                                }}>Clear</button>
                             </div>
                         </div>}
+
+                        {/* mobile buttons */}
+                        <div className='authent__buttons-wrapper mobile'>
+                            <div className={page !== 'complete' ? `authent__buttons-elem` : `authent__buttons-elem selected`} onClick={onCompletedClick}>Completed</div>
+                            <div className={page !== 'progress' ? `authent__buttons-elem` : `authent__buttons-elem selected`} onClick={onProgressClick}>In progress</div>
+                        </div>
+
                         {page === 'complete' && <div className="authent__table">
                             <div className="authent__table__label-wrapper">
                                 <div className="authent__table__label__elems-wrapper">
@@ -326,7 +338,7 @@ const Authentications = (props) => {
                                     {el.certificateAvailable ? <a className="authent__table__elem-pdf" href={getCertificateLink(el)}>View</a> 
                                     : <div className="authent__table__elem-pdf" onClick={() =>addCertificate(el)}>Add</div>}
                                 </div>
-                            </div>) : 'loader'}
+                            </div>) : <Loader/>}
                         </div>}
 
                         {page !== 'complete' && <div className="authent__table">
@@ -360,7 +372,7 @@ const Authentications = (props) => {
                                     <div className="authent__table__elem-answer">{el.answerTime} hours</div>
                                     <div className="authent__table__elem-date">{(new Date(el.createdAt)).getDate() + '/' + (Number((new Date(el.createdAt)).getMonth()) + 1) + '/' + (new Date(el.createdAt)).getYear()}</div>
                                 </div>
-                            </div>) : 'loader'}
+                            </div>) : <Loader/>}
 
                         </div>}
                         {products && currentTableData && <Paginator

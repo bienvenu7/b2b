@@ -2,17 +2,19 @@
 
 .content-wrapper {
     display: flex;
-    gap: 45px;
+    gap: 22px;
     margin-top: 65px;
-    margin-left: 28px;
+    // margin-left: 28px;
+    max-width: 1022px;
 
     @include for-phone-only {
         margin: 65px 0 0 0;
+        overflow: hidden;
     }
 }
 
 .container-center {
-    width: 1170px;
+    width: 1022px;
     margin: 0 auto;
 
     @include for-phone-only {

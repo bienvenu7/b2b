@@ -6,6 +6,7 @@ import { useWindowSize } from '../../../hooks/useWindowSize'
 import { setProduct } from '../../../redux/reducers/product-reducer'
 import { takeAnglesList, takeProduct } from '../../../redux/selectors/product-selectors'
 import { getProductThunk, updateProductThunk } from '../../../redux/thunks/product-thunk'
+import Loader from '../../Loader/Loader'
 import PersonalAreaLayout from '../PersonalAreaLayout'
 import UploadPhotoModal from '../UploadPhotoModal/UploadPhotoModal'
 import './Card.scss'
@@ -105,7 +106,7 @@ const Card = (props) =>{
     return (
         <>
         {isOpen && <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={product}/>}
-        <PersonalAreaLayout>
+        {product !==null ? <PersonalAreaLayout>
         {product !== null && <div className='card-container'>
                 <div className='card__info-wrapper'>
                     <div className='card__info__header'>
@@ -124,7 +125,7 @@ const Card = (props) =>{
                     </div>
                     <div className='card__info__content'>
                         <div className='card__info__content-label'>
-                            Authentication summary
+                            Authentification summary
                         </div>
                         <div className='card__info__content-wrapper'>
                             <div className='card__info__content-brand'>{width > 599 ? product.brand.publicName : product.productType.publicName}&nbsp;<div className="normal">authentication</div></div>
@@ -183,6 +184,7 @@ const Card = (props) =>{
                 </div>}
             </div>}
         </PersonalAreaLayout>
+        : <Loader/>}
         </>
     )
 }

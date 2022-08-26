@@ -3,12 +3,13 @@
 .card {
     &-container {
         display: flex;
-    flex-direction: column;
-    gap: 33px;
-    width: 600px;
-    @include for-phone-only{
-        gap: 0;
-    }
+        flex-direction: column;
+        gap: 33px;
+        width: 600px;
+        @include for-phone-only{
+            gap: 0;
+            max-width: calc(100vw - 23px);
+        }
     }
 
     &__info {
@@ -34,11 +35,11 @@
             grid-row-gap: 9px;
             @include for-phone-only{
                 grid-template-areas: "number date";
-    grid-template-columns: max-content;
-    grid-column-gap: 21px;
-    align-items: center;
-    grid-row-gap: 12px;
-    padding-top: 12px;
+                grid-template-columns: max-content;
+                grid-column-gap: 21px;
+                align-items: center;
+                grid-row-gap: 12px;
+                padding-top: 12px;
             }
 
             &-arrow {

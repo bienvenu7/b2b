@@ -36,7 +36,9 @@ const PhotoRequests = (props) => {
     }
 
     function getPhotoUrl(files) {
-        return process.env.NODE_ENV !== 'production' ? '/mockimage.png' : '/assets' + (files.length > 0 && files[0].path) + '/' + files[0].name
+        if(!files.length)
+            return '/_blank.png'
+        return process.env.NODE_ENV !== 'production' ? '/mockimage.png' :  '/assets' + (files.length > 0 && files[1].path) + '/' + files[1].name
     }
 
     const [isOpen, setIsOpen] = useState(false)
@@ -77,6 +79,7 @@ const PhotoRequests = (props) => {
                             </div>
                             {products !== null && products.map((el, index) =>
                                 <div key={index} className="photo_requests__table__elem">
+                                    {console.log(el.files)}
                                     <div className="photo_requests__table__elem__category" onClick={() => navigate(`../request/${el.id}`)}>
                                         <div className="photo_requests__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el.files)})` }}></div>
                                         <div className="photo_requests__table__elem__category-button" onClick={()=>openModal(el)}>Upload photos</div>

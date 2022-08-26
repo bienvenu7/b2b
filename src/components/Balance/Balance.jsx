@@ -9,7 +9,7 @@ const Balance = (props) => {
     return (
         <>
             <div className="balance-container">
-                <div className="balance-title">Your authentication balance
+                <div className="balance-title">Your authentification balance
                     <hr />
                 </div>
                 {balance.length > 0 && <div className="balance__elems-wrapper">

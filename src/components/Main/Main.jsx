@@ -18,6 +18,7 @@ const Main = () => {
                 <button onClick={() => navigate('/payment')}>Payment</button>
                 <button onClick={() => navigate('/authentication-request')}>Authentication request</button>
                 <button onClick={() => navigate('/authentications/completed')}>Dashboard</button>
+                <button onClick={() => navigate('/home')}>main dashbord</button>
             </div>
             </div>
             

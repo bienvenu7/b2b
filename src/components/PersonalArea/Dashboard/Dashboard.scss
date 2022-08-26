@@ -13,30 +13,35 @@
         }
     }
     &-container {
-        width: 218px;
+        min-width: 226px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
         border-radius: 12px;
         background: $c_w;
-        padding: 40px 16px 45px 16px;
-        min-width: 218px;
+        // padding: 40px 16px 45px 16px;
+        // min-width: 218px;
         height: 100%;
         @include for-phone-only{
             position: absolute;
             transition: left .2s, z-index .1s;
-  z-index: -2;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  left: -600px;
-  display: flex;
-  box-shadow: none;
-  justify-content: space-between;
-  width: 100vw;
-  top: 0;
-    padding: 0;
+            z-index: -2;
+            -webkit-transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            left: -600px;
+            display: flex;
+            box-shadow: none;
+            justify-content: space-between;
+            width: 100vw;
+            top: 0;
+            padding: 0;
         }
     }
 
     &-wrapper {
+
+        min-width: calc(226px - 28px);
+        padding: 38px 14px;
+        padding-top: 0;
+
         @include for-phone-only{
             padding: 93px 21px 0 17px;
             width: 100%;
@@ -48,10 +53,12 @@
             &-wrapper {
                 display: flex;
                 align-items: center;
-                max-width: 178px;
-                width: 100%;
+                justify-content: center;
+                // max-width: 178px;
+                // width: 100%;
                 gap: 10px;
-                padding: 0 20px 15px 20px;
+                padding: 27px 14px;
+                // padding: 0 20px 15px 20px;
                 border-bottom: 1px solid;
                 @include for-phone-only{
                     border: 0;
@@ -75,6 +82,17 @@
             }
 
             &-img {
+                height: 30px;
+                min-width: 30px;
+                overflow: hidden;
+                border-radius: 50%;
+
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: center center;
+                }
+
                 @include for-phone-only{
                     display: none;
                     
@@ -93,10 +111,10 @@
                 width: 100%;
                 @include for-phone-only{
                     font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 24px;
+                    line-height: 29px;
                 }
                 svg{
                     @include for-phone-only{
@@ -136,6 +154,9 @@ line-height: 29px;
         &__auth_balance {
             &-wrapper {
                 margin-top: 20px;
+                margin-left: -12px;
+                min-width: calc(226px - 28px);
+                padding: 0 14px;
             }
 
             &-label {
@@ -153,11 +174,11 @@ line-height: 29px;
                 @include for-phone-only{
                     border: 0;
                     font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 400;
-font-size: 22px;
-line-height: 26px;
-text-transform: none;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 22px;
+                    line-height: 26px;
+                    text-transform: none;
                 }
                 svg {
                     margin-right: 17px;
@@ -209,15 +230,15 @@ text-transform: none;
                     line-height: 140%;
                     grid-area: cat;
                     width: 70px;
-    white-space: pre-wrap;
-    @include for-phone-only{
-        font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 300;
-font-size: 16px;
-line-height: 19px;
-color: #656565;
-    }
+                    white-space: pre-wrap;
+                    @include for-phone-only{
+                        font-family: 'SF Pro Display Medium';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: #656565;
+                    }
                 }
 
                 &-count {
@@ -327,17 +348,27 @@ margin: 0;
                 border-bottom: 1px solid;
                 text-transform: uppercase;
                 padding-bottom: 10px;
+
+                svg{
+                    display: none;
+
+                    @include for-phone-only {
+                        display: block;
+                    }
+                }
+
                 @include for-phone-only{
                     font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 400;
-font-size: 22px;
-line-height: 26px;
-border: 0;
-text-transform: none;
-display: flex;
-justify-content: space-between;
-align-items: center;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 22px;
+                    line-height: 26px;
+                    border: 0;
+                    text-transform: none;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 267px;
                 }
             }
             &-control{
@@ -348,17 +379,19 @@ align-items: center;
                     &-wrapper{
                         display: flex;
                         gap: 23px;
-                        padding: 16px 0 16px 20px;
+                        padding: 16px 0 16px 0px;
                         cursor: pointer;
                         @include for-phone-only{
                             font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 300;
-font-size: 18px;
-line-height: 21px;
-color: #656565;
-border-bottom: 0.25px solid #656565;
-margin-right: 49px;
+                            font-style: normal;
+                            font-weight: 300;
+                            font-size: 18px;
+                            line-height: 21px;
+                            color: #656565;
+                            border-bottom: 0.25px solid #656565;
+                            margin-right: 0;
+                            width: 203px;
+                            margin-left: 23px;
                         }
                         svg{
                             @include for-phone-only{
@@ -393,8 +426,12 @@ margin-right: 49px;
                 &__elem{
                     &-wrapper{
                         display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
                         gap: 23px;
-                        padding: 16px 0 16px 20px;
+                        padding: 0 20px;
+                        padding-top: 30px;
+                        // padding: 16px 0 16px 20px;
                         cursor: pointer;
                         @include for-phone-only{
                             font-family: 'SF Pro Display Medium';

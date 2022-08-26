@@ -64,7 +64,7 @@ const Dashboard = (props) =>{
                 <div className='dashboard__elem__tools-wrapper'>
                     <div className='dashboard__elem__tools-label'>Tools</div>
                     <div className='dashboard__elem__tools-control__elements'>
-                        <div  className='dashboard__elem__tools-control__elem-wrapper'>
+                        <div onClick={()=>navigate('../billing-history')}  className='dashboard__elem__tools-control__elem-wrapper'>
                             <SvgSelector id='card-icon'/>Billing 
                         </div>
                     </div>
