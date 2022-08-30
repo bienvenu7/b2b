@@ -1,6 +1,7 @@
 @import '../../../scss/vars';
 
 .card {
+
     &-container {
         display: flex;
         flex-direction: column;
@@ -21,6 +22,13 @@
             @include for-phone-only{
                 box-shadow: none;
                 border-bottom: 0.855244px solid #F0F2F5;
+
+                .mybtn {
+                    margin-top: 59px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 18px;
+                }
             }
         }
 
@@ -122,18 +130,18 @@ color: #8E8E93;
             }
             &-statuses{
                 font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 17px;
-color: #8E8E93;
-background: #F0DDB9;
-border-radius: 10px;
-height: 23px;
-justify-content: center;
-align-items: center;
-padding: 0 10px;
-display: flex;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 17px;
+                color: #8E8E93;
+                background: #F0DDB9;
+                border-radius: 10px;
+                height: 23px;
+                justify-content: center;
+                align-items: center;
+                padding: 0 10px;
+                display: flex;
                 &.grey{
                     background: #DFDFDF;
                 }
@@ -157,12 +165,12 @@ display: flex;
                 padding-bottom: 17px;
                 @include for-phone-only{
                     font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 21px;
-color: #020202;
-padding-bottom: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 21px;
+                    color: #020202;
+                    padding-bottom: 14px;
                 }
             }
 
@@ -170,17 +178,17 @@ padding-bottom: 14px;
                 padding: 0 33px;
                 @include for-phone-only{
                     font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 19px;
-color: #525252;
-padding: 0 17px;
-display: grid;
-    grid-template-areas:
-        "brand"
-        "info"
-        "photos";
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: #525252;
+                    padding: 0 17px;
+                    display: grid;
+                    grid-template-areas:
+                    "brand"
+                    "info"
+                    "photos";
                 }
             }
 
@@ -195,12 +203,12 @@ display: grid;
                 display: flex;
                 @include for-phone-only{
                     color: #525252;
-                        font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 19px;
-grid-area: brand;
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 19px;
+                    grid-area: brand;
                 }
                 .normal {
                     font-weight: 400;
@@ -256,9 +264,9 @@ padding-bottom: 14px;
                     display: flex;
                     gap: 17px;
                     flex-wrap: wrap;
-@include for-phone-only{
-    justify-content: center;
-}
+                    @include for-phone-only{
+                        justify-content: center;
+                    }
                     &-elem {
                         width: 55px;
                         height: 55px;
@@ -351,19 +359,20 @@ color: #020202;
                 border: 1px solid $c_g;
                 border-radius: 10.2629px;
                 width: 183px;
-                height: 41px;
+                height: 43px;
                 margin-left: 71px;
                 margin-top: 25px;
                 justify-content: center;
                 align-items: center;
                 display: flex;
                 cursor: pointer;
+
                 @include for-phone-only{
                     margin: 0 23px;
                     font-size: 18px;
                     border-radius: 4px;
                     width: auto;
-                    margin-top: 50px;
+                    margin-top: 0;
                 }
 
                 &.certificate {

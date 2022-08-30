@@ -1,6 +1,7 @@
 @import '../../../scss/vars';
 
 .dashboard {
+
     &__cross{
         &-container{
             display: none;
@@ -33,6 +34,12 @@
             width: 100vw;
             top: 0;
             padding: 0;
+        }
+
+        &.fixed {
+            @include for-phone-only {
+                position: fixed;
+            }
         }
     }
 

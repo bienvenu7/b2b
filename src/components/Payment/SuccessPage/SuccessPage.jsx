@@ -12,12 +12,12 @@ const SuccessPage = () => {
             <div className="payment__success-container">
                 <div className='payment__success__logo'><img alt='' className='logoImage' src={logo} /></div>
                 <div className="payment__success__message-h1">it’S a success!</div>
-                <div className="payment__success__message-h2">Your bundle authentication order was successful!</div>
+                <div className="payment__success__message-h2">Your bundle authentification order was successful!</div>
                 <div className="payment__success__message-h2 last-child">You can start verifying your items right now, or any other time you prefer,
-                    just click on the <p id="target">New Authentications</p> tab in the side menu.</div>
+                    just click on the <p id="target">New Authentifications</p> tab in the side menu.</div>
                 <div className="payment__success__buttons-wrapper">
-                    <div className="payment__success__buttons-elem" onClick={() => navigate('../authentication-request')}>Start authentication</div>
-                    <div className="payment__success__buttons-elem">View all authentications</div>
+                    <div className="payment__success__buttons-elem" onClick={() => navigate('../authentication-request')}>Start authentification</div>
+                    <div className="payment__success__buttons-elem">View all authentifications</div>
                 </div>
             </div>
         </div>

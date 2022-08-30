@@ -270,7 +270,7 @@ const Authentications = (props) => {
                     <div className='authent-wrapper'>
                         <div className='authent__nav-wrapper'>
                             <div className="authent__nav-sort"><SvgSelector id='sort-icon'/></div>
-                            {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentications</div>}
+                            {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentifications</div>}
                             <div className="authent__nav-search_icon"><SvgSelector id='search-icon' onClick={handleSearch}/></div><input className='authent__nav-search' onChange={(e) => setSearchValue(e.target.value)} placeholder='Search' onBlur={handleSearch} />
                             <div className='authent__nav__buttons-wrapper'>
                                 <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' /></div>

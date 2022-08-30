@@ -26,11 +26,11 @@ const PaymentHeader = () => {
                 <div className="payment__header__nav">
                     <div className='payment__header__nav__home' onClick={()=>navigate('../main')}><SvgSelector id="home" /></div>
                     <div className='payment__header__nav__elem'>&nbsp;/ Luxury store /&nbsp;</div>
-                    <div className='payment__header__nav__elem'>Authentication Bundle</div>
+                    <div className='payment__header__nav__elem'>Authentification Bundle</div>
                 </div>
                 <div className="payment__header__logo-container">
                     <img className='payment__header__logo-image' src={logo} alt=''/>
-                    <div className="payment__header__logo-pageName">Authentication - Payment</div>
+                    <div className="payment__header__logo-pageName">Authentification - Payment</div>
                 </div>
             </div>
         </>

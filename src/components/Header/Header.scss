@@ -19,7 +19,7 @@
             display: none;
             @include for-phone-only{
                 display: flex;
-                border-bottom: 1px solid $c_gray1;
+                border-bottom: 0.25px solid #656565;;
                 height: 73px;
                 padding: 0;
                 position: fixed;
@@ -30,7 +30,7 @@
                 align-items: center;
                 justify-content: space-between;
                 padding: 0;
-                background-color: transparent !important;
+                background-color: white;
                 margin-top: 0;
                 
 

@@ -156,8 +156,11 @@ const Card = (props) =>{
                         </div>
                         
                     </div>
-                    {product.certificateAvailable ? <div className='card__info__content__button certificate'>View certificate</div>
-                    : <div className='card__info__content__button'>Request help</div>}
+                    <div className='mybtn'>
+                        {product.certificateAvailable ? <div className='card__info__content__button certificate'>View certificate</div>
+                        : <div className='card__info__content__button certificate'>Get a certificate</div>}
+                        <div className='card__info__content__button'>Request help</div>
+                    </div>
                 </div>
                 <div className='card__details-wrapper'>
                     <div className='card__details__header'>

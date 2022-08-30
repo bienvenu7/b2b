@@ -8,6 +8,12 @@
     &__left {
         &-wrapper {
             width: calc(1170px - 405px);
+
+            @include for-phone-only {
+                width: 100%;
+                margin-left: 0;
+                padding-left: 0;
+            }
         }
     }
 
@@ -20,6 +26,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            @include for-phone-only {
+                display: none;
+            }
         }
     }
 
@@ -95,7 +105,17 @@
         }
         &-logo{
             width: 43px;
-        height: 32px;
+            height: 32px;
+
+            @include for-phone-only {
+                display: none;
+            }
         }
+    }
+}
+
+.payment__form {
+    &-wrapper {
+        max-width: calc(100vw - 42px);
     }
 }

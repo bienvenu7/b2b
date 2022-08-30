@@ -119,7 +119,7 @@ const PaymentFirst = (props) => {
                             <div className="hours">{e.answerTime} hours</div>
                             <div className="cost">{e.volume} * {costs[index] / 100}</div>
                             <div className="total">$ {e.volume * (costs[index] / 100)}</div>
-                            <div className="volume">{e.volume} authentications</div>
+                            <div className="volume">{e.volume} authentifications</div>
                         </div>)}
                     </div>
                     <div className="payment_first__order__promocode-wrapper">

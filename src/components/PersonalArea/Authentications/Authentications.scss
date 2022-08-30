@@ -37,7 +37,7 @@
             color: $c_b;
 
             &.mobile {
-                display: none;
+                display: flex;
             }
 
             @include for-phone-only{
@@ -139,7 +139,7 @@
                 padding: 11px 8px;
                 border-top: 1px solid #F0F2F5;
                 border-bottom: 1px solid #F0F2F5;
-                margin-top: -30px;
+                margin-top: -40px;
             }
         }
         &-sort{
@@ -236,6 +236,10 @@
     &__table {
         max-width: calc(776px - 56px);
         padding: 0 28px;
+
+        @include for-phone-only {
+            padding: 0;
+        }
 
         &__label {
             &-wrapper {

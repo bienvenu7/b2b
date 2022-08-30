@@ -22,7 +22,7 @@ const Balance = (props) => {
                 </div>}
                 <div className="balance__buttons-wrapper">
                     <button className="balance-button top">Top up now</button>
-                    <button className="balance-button">New authentication</button>
+                    <button className="balance-button">New authentification</button>
                 </div>
             </div>
         </>
