@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import logo from '../../../common/images/logo-for-mobile.png'
+import Header from '../Header/Header'
 
 const SuccessPage = () => {
 
@@ -7,6 +8,7 @@ const SuccessPage = () => {
 
     return (
         <div className="payment__success-wrapper">
+            <Header/>
             <div className="payment__success-container">
                 <div className='payment__success__logo'><img alt='' className='logoImage' src={logo} /></div>
                 <div className="payment__success__message-h1">it’S a success!</div>
