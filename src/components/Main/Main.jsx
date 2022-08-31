@@ -15,11 +15,11 @@ const Main = () => {
             <div className="MainPage-container" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>Main Page
                 <button onClick={() => { dispatch(logoutThunk()) }}>Logout</button>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
-                <button onClick={() => navigate('/payment')}>Payment</button>
-                <button onClick={() => navigate('/authentication-request')}>Authentication request</button>
-                <button onClick={() => navigate('/authentications/completed')}>Dashboard</button>
-                <button onClick={() => navigate('/home')}>main dashbord</button>
-            </div>
+                    <button onClick={() => navigate('/payment')}>Payment</button>
+                    <button onClick={() => navigate('/authentication-request')}>Authentication request</button>
+                    <button onClick={() => navigate('/authentications/completed')}>All authentication</button>
+                    <button onClick={() => navigate('/home')}>Main dashboard</button>
+                </div>
             </div>
             
         </>

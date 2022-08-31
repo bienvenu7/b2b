@@ -117,5 +117,8 @@
 .payment__form {
     &-wrapper {
         max-width: calc(100vw - 42px);
+        @include for-phone-only {
+            max-width: inherit;
+        }
     }
 }
