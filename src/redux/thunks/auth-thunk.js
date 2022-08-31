@@ -1,4 +1,4 @@
-import { login, register, getAuth, forgotEmail, forgotPassword } from "../../api/auth/auth-api"
+import { login, register, getAuth, forgotEmail, forgotPassword, confirmEmail } from "../../api/auth/auth-api"
 import { setAuth } from '../reducers/auth-reducer'
 import Cookies from 'js-cookie'
 import { setErrors, setStatusCode } from "../reducers/app-reducer"
@@ -79,4 +79,11 @@ export const forgotPasswordThunk = (data) => async (dispatch) => {
     if (response.status === 200) {
         dispatch(setStatusCode(200))
     }
+}
+
+export const confirmEmailThunk = (data) => async (dispatch) => {
+  const response = await confirmEmail(data)
+  if (response.status === 200) {
+      dispatch(setStatusCode(200))
+  }
 }
