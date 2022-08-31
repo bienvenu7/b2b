@@ -12,7 +12,7 @@ const AuthBalance = (props) => {
 
     return (
         <div className="auth__balance-wrapper" style={{marginTop: props.mt}}>
-            <div className="auth__balance__header">Your authentification balance</div>
+            <div className="auth__balance__header">Your authentication balance</div>
             <div className="auth__balance__elem-wrapper">
                 {balance.map((el, index) => <div key={index} className="auth__balance__elem">
                     <div className="auth__balance__elem-cat">{el.productType.publicName}</div>
@@ -24,7 +24,7 @@ const AuthBalance = (props) => {
                         Top up now
                     </div>
                     <div style={{display: 'none'}} className="auth__balance__elem-button">
-                        New Authentification
+                        New Authentication
                     </div>
                 </div>
             </div>

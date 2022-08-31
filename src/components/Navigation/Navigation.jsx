@@ -3,7 +3,7 @@ import SvgSelector from "../../common/icons/SvgSelector"
 import './Navigation.scss'
 
 const Navigation = (props) =>{
-    
+
     const navigate = useNavigate()
 
     return(

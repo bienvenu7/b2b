@@ -32,7 +32,7 @@ const Authentications = (props) => {
     }, [currentPage, products]);
 
     //
-  
+
 
 
     const resultStatuses = useSelector(takeResultStatuses)
@@ -153,14 +153,14 @@ const Authentications = (props) => {
         setFilterMode(!filterMode)
         !filterValues && setFilterValues([
             { value: '', secondValue: '' }
-        ]) 
+        ])
         if (filterValues){
             setFilterValues(null)
             setSelectedFilter(null)
             delete dataFilter.productType
             setDataFilter({...dataFilter})
         } else{
-            
+
         }
     }
 
@@ -168,7 +168,7 @@ const Authentications = (props) => {
         selectedFilter && selectedFilter[0].value === 'CATEGORY' ? productTypes.length > 0 && setOptions(productTypes.map((el,index)=>
         el.publicName ? {label: el.publicName, value: el} : el)) : selectedFilter && selectedFilter[0].value === 'OUTCOME' && checkStatuses && setOptions(checkStatuses)
     },[selectedFilter])
-     
+
 
     function handleChange(e,idx, length) {
         setOptions()
@@ -199,10 +199,10 @@ const Authentications = (props) => {
         switch (elem.value) {
             case 'CATEGORY':
                 return {...dataFilter, productType: elem.secondValue.value}
-            case 'OUTCOME':    
+            case 'OUTCOME':
                 return {...dataFilter, checkStatus: elem.secondValue.value}
             case 'MODEL':
-                return {...dataFilter, search: elem.secondValue.value}    
+                return {...dataFilter, search: elem.secondValue.value}
             default:
                 break;
         }
@@ -230,7 +230,7 @@ const Authentications = (props) => {
         } else{
             return file.path + '/' + file.name
         }
-        
+
     }
 
     function getDate(data, version){
@@ -270,7 +270,7 @@ const Authentications = (props) => {
                     <div className='authent-wrapper'>
                         <div className='authent__nav-wrapper'>
                             <div className="authent__nav-sort"><SvgSelector id='sort-icon'/></div>
-                            {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentifications</div>}
+                            {page === 'progress' ? <div className='authent__nav-label'>In progress authentications</div> : <div className='authent__nav-label'>Completed authentications</div>}
                             <div className="authent__nav-search_icon"><SvgSelector id='search-icon' onClick={handleSearch}/></div><input className='authent__nav-search' onChange={(e) => setSearchValue(e.target.value)} placeholder='Search' onBlur={handleSearch} />
                             <div className='authent__nav__buttons-wrapper'>
                                 <div className='authent__nav__buttons__elem-wrapper' onClick={handleFilter}><SvgSelector id='filter-icon' /></div>
@@ -280,7 +280,7 @@ const Authentications = (props) => {
                             <div className="authent__filter__elems-wrapper">
                                 {filterValues && filterValues.map((el, index) => <div key={index} className="authent__filter__elem">
                                     <FilterSelect key={index} index={index} mainOptions={mainOptions} handleChange={handleChange} length={filterValues.length}/>
-                                    {selectedFilter && selectedFilter[index] && selectedFilter[index].value && selectedFilter[index].value === 'MODEL' 
+                                    {selectedFilter && selectedFilter[index] && selectedFilter[index].value && selectedFilter[index].value === 'MODEL'
                                     ? <input type="text" placeholder="model" onChange={setModelNameValue} onBlur={(e)=>subHandleChange({value: e.target.value})}/>
                                     : selectedFilter && <Select key={secondSelectIndex} onChange={subHandleChange} classNamePrefix="custom-select__dashboard" placeholder='Select filter' options={options && options}/>}
                                     {/*filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>*/}
@@ -335,7 +335,7 @@ const Authentications = (props) => {
                                     <div className="authent__table__elem-model">{el.modelName}</div>
                                     <div className="authent__table__elem-outcome">{el.checkStatus}</div>
                                     <div className="authent__table__elem-date">{getDate(el.createdAt, 'desktop')}</div>
-                                    {el.certificateAvailable ? <a className="authent__table__elem-pdf" href={getCertificateLink(el)}>View</a> 
+                                    {el.certificateAvailable ? <a className="authent__table__elem-pdf" href={getCertificateLink(el)}>View</a>
                                     : <div className="authent__table__elem-pdf" onClick={() =>addCertificate(el)}>Add</div>}
                                 </div>
                             </div>) : <Loader/>}
