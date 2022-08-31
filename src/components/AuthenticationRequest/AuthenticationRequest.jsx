@@ -103,6 +103,7 @@ const AuthenticationRequest = () => {
     }
 
     const handlePost = async () => {
+        console.log('post')
         setButtonState(false)
         let onlineOrder = {}
         if (!brandValue) {

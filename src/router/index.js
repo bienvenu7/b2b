@@ -33,7 +33,7 @@ export const privateRoutes = [
     { path: 'request/:id', component: <Card/>},
     { path: 'payment', component: <TopUpBundle/>},
     {path: 'payment-first', component: <Payment/>},
-    {path: 'success-order', component: <SuccessPage/>},
+    {path: 'success', component: <SuccessPage/>},
     {path: 'success-order', component: <SuccessPageOrder/>},
     {path: 'authentication-request', component: <AuthenticationRequest/>},
     {path: 'pay', component: <Payment/>},

@@ -37,11 +37,16 @@
             color: $c_b;
 
             &.mobile {
-                display: flex;
+                display: none;
             }
+
 
             @include for-phone-only{
                 padding: 22px 16px 0 16px;
+
+                &.mobile {
+                    display: flex;
+                }
 
                 &.desktop {
                     display: none;
@@ -52,6 +57,7 @@
 
         &-elem {
             font-family: 'Roboto';
+
             font-style: normal;
             font-weight: 400;
             font-size: 16px;

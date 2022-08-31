@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/Payment.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Payment.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +65,7 @@
       <updated>1660305619135</updated>
       <workItem from="1660305620348" duration="81000" />
       <workItem from="1660559905626" duration="4900000" />
-      <workItem from="1661926497399" duration="9403000" />
+      <workItem from="1661926497399" duration="13012000" />
     </task>
     <servers />
   </component>
