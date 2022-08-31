@@ -28,7 +28,7 @@ const Header = (props) => {
 
     })
 
-    
+
 
     useEffect(()=>{
 
@@ -41,16 +41,16 @@ const Header = (props) => {
         else{
             navigate(`../photo-requests/all`, {state: {page: location.state && location.state.page, var: location.state && location.state.var}})
         }
-        
+
     }
 
-    const title = params.id ? <div className="label-go_back" onClick={goBack}><SvgSelector id='yellow-arrow-icon'/>All authentifications</div> : params.page === 'completed' ? 'All authentications' : params.page === 'in-progress' ? 'All authentications' : params.page === 'all' && 'Photo requqests'
+    const title = params.id ? <div className="label-go_back" onClick={goBack}><SvgSelector id='yellow-arrow-icon'/>All authentications</div> : params.page === 'completed' ? 'All authentications' : params.page === 'in-progress' ? 'All authentications' : params.page === 'all' && 'Photo requqests'
 
     return (
         <>
             <div className="header-container">
                 <div className="header-wrapper">
-                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'Authentifications' }]} />
+                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'Authentication' }]} />
                     <label style={{cursor: 'pointer'}} onClick={() => showNotif ? setShowNotif(false) : setShowNotif(true)} htmlFor="" className="hamburger"><SvgSelector id='bell' /></label>
                 </div>
                 <div className="header-wrapper mobile">

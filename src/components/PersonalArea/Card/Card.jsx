@@ -91,7 +91,7 @@ const Card = (props) =>{
         setEditMode(!editMode)
         editMode && dispatch(updateProductThunk(product.id, {modelName: modelValue, supplier: supplierValue}))
     }
-    //   
+    //
 
     function goBack(){
         if (location.state && location.state.var !== 'photo-requests'){
@@ -100,7 +100,7 @@ const Card = (props) =>{
         else{
             navigate(`../photo-requests/all`, {state: {page: location.state && location.state.page, var: location.state && location.state.var}})
         }
-        
+
     }
 
     return (
@@ -125,7 +125,7 @@ const Card = (props) =>{
                     </div>
                     <div className='card__info__content'>
                         <div className='card__info__content-label'>
-                            Authentification summary
+                            Authentication summary
                         </div>
                         <div className='card__info__content-wrapper'>
                             <div className='card__info__content-brand'>{width > 599 ? product.brand.publicName : product.productType.publicName}&nbsp;<div className="normal">authentication</div></div>
@@ -133,7 +133,7 @@ const Card = (props) =>{
                                 <div className='card__info__content__photos-label'>Uploaded images {product.resultStatus.name === 'UPDATE_NEEDED' && <div className='button' onClick={openModal}>Add photos</div>}</div>
                                 <div className='card__info__content__photos__images'>
                                     {(product.files.length < 1 ? [1,2,3,4] : product.files).map((el,index)=><div key={index} className='card__info__content__photos__images-elem' style={{ background: `url(${getPhotoUrl(el)})`}}></div>)}
-                                    </div> 
+                                    </div>
                             </div>
                             <div className='card__info__content__elems-wrapper'>
                             <div className='card__info__content__elem-wrapper brand'>
@@ -154,7 +154,7 @@ const Card = (props) =>{
                             </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div className='mybtn'>
                         {product.certificateAvailable ? <div className='card__info__content__button certificate'>View certificate</div>

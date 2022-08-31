@@ -36,9 +36,9 @@ const Dashboard = (props) =>{
                         <div className='dashboard__elem__child__label'>Dashboard</div>
                     </div>
                 </div>
-                <div className='dashboard__elem__auth_balance__balance-button mobile' onClick={()=>navigate('../authentication-request')}>New authentification</div>
+                <div className='dashboard__elem__auth_balance__balance-button mobile' onClick={()=>navigate('../authentication-request')}>New authentication</div>
                 <div className='dashboard__elem__auth_balance-wrapper'>
-                    <div className='dashboard__elem__auth_balance-label'>Authentification balance <SvgSelector id='arrow'/></div>
+                    <div className='dashboard__elem__auth_balance-label'>Authentication balance <SvgSelector id='arrow'/></div>
                     <div className='dashboard__elem__auth_balance__balance-wrapper'>
                         {balance.length > 0 && balance.map((el, index)=>
                         <div key={index} className='dashboard__elem__auth_balance__balance__elem'>
@@ -47,14 +47,14 @@ const Dashboard = (props) =>{
                             <div className='dashboard__elem__auth_balance__balance-count'>{el.volume}</div>
                         </div>)}
                         <div className='dashboard__elem__auth_balance__balance-button' onClick={()=>navigate('../payment')}>Top up now</div>
-                        <div className='dashboard__elem__auth_balance__balance-button' onClick={()=>navigate('../authentication-request')}>New authentification</div>
+                        <div className='dashboard__elem__auth_balance__balance-button' onClick={()=>navigate('../authentication-request')}>New authentication</div>
                     </div>
                 </div>
                 <div className='dashboard__elem__authentications-wrapper'>
-                    <div className='dashboard__elem__authentications-label'>Authentifications <SvgSelector id='arrow'/></div>
+                    <div className='dashboard__elem__authentications-label'>Authentication <SvgSelector id='arrow'/></div>
                     <div className='dashboard__elem__authentications-control__elements'>
                         <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../authentications/completed')}>
-                            <SvgSelector id='check-icon'/>All authentification
+                            <SvgSelector id='check-icon'/>All authentication
                         </div>
                         <div className='dashboard__elem__authentications-control__elem-wrapper' onClick={()=>navigate('../photo-requests/all')}>
                             <SvgSelector id='camera-icon'/>Photo requests
@@ -65,7 +65,7 @@ const Dashboard = (props) =>{
                     <div className='dashboard__elem__tools-label'>Tools</div>
                     <div className='dashboard__elem__tools-control__elements'>
                         <div onClick={()=>navigate('../billing-history')}  className='dashboard__elem__tools-control__elem-wrapper'>
-                            <SvgSelector id='card-icon'/>Billing 
+                            <SvgSelector id='card-icon'/>Billing
                         </div>
                     </div>
                 </div>

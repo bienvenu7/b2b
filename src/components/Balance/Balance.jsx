@@ -9,7 +9,7 @@ const Balance = (props) => {
     return (
         <>
             <div className="balance-container">
-                <div className="balance-title">Your authentification balance
+                <div className="balance-title">Your authentication balance
                     <hr />
                 </div>
                 {balance.length > 0 && <div className="balance__elems-wrapper">
@@ -22,7 +22,7 @@ const Balance = (props) => {
                 </div>}
                 <div className="balance__buttons-wrapper">
                     <button className="balance-button top">Top up now</button>
-                    <button className="balance-button">New authentification</button>
+                    <button className="balance-button">New authentication</button>
                 </div>
             </div>
         </>
