@@ -223,7 +223,9 @@
 
         &-wrapper {
             //max-width: 800px;
-            width: 100vw;
+            @include for-phone-only {
+                width: 100vw;
+            }
         }
 
         &-href {

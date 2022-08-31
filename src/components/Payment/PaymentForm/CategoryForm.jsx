@@ -177,7 +177,7 @@ const CategoryForm = (props) => {
                     </div>
                     </div>
                     <div className="payment__form-elem__volume-wrapper">
-                    <label htmlFor="volume" className="payment__form-label">Choose the volume of authentications</label>
+                    <label htmlFor="volume" className="payment__form-label">Authentication volume</label>
                     <div className="payment__form-elem number-wrapper">
                         <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
                         {!cost != null && <div className="payment__form-elem info">${cost.package / 100}&nbsp;per authentication</div>}
