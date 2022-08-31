@@ -70,6 +70,10 @@ const AuthenticationRequest = () => {
         postErrors.authrequest && dispatch(setErrors(null))
     }
 
+    const handleChangeTime = (e) => {
+
+    }
+
     function handleChangeBrand(e) {
         setBrandValue(e.brand)
         setSelectedBrand(e.key)
