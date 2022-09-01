@@ -234,4 +234,8 @@
     @include for-phone-only {
         max-width: calc(100vw - 34px);
     }
+
+    &.second {
+        min-width: 340px;
+    }
 }
