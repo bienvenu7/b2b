@@ -157,15 +157,17 @@ const CertificatesForm = (props) => {
                 <div className="payment__form-block-container second">
                     <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
                     <div className="payment__form-elems-wrapper">
-                        <div style={{width: '340px'}}><Select components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} /></div>
+                        <div ><Select components={{ DropdownIndicator }} classNamePrefix='custom-select second' placeholder='Please select option' options={options} onChange={handleChange} /></div>
                         {selectedValue === 'choose' &&
                             <div className="payment__form-elem number-wrapper" id="cert_count">
                                 <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
                                 <div className="payment__form-elem info">${cost.certificate / 100}&nbsp;per certificate</div></div>}
+                                <div className="payment__form-elem number-wrapper">
+                    </div>        
                     </div>
                     <div className="payment__form-elem upload">
                         <div className="payment__form-elem upload-btn">Upload logo</div>
-                        <div className="payment__form-elem upload-info">This logo will be added to the certificates</div>
+                        <div className="payment__form-elem upload-info">It will be added to the certificates</div>
                     </div>
                 </div>
                 {but && handlePost(props)}

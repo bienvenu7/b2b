@@ -108,8 +108,10 @@ const SignIn = () => {
                         <button className='auth__form-submit' type="submit" disabled={isLoading}>Sign In</button>
                     </form>
                     <div className='auth__form__bottom-signin'>
-                        <div className='wrapper'><div className='auth__form__bottom-message'>Dont't have an account?&nbsp;</div>
-                            <div className='auth__form__bottom-button' onClick={() => { navigate('/signup') }}>Sign up</div></div>
+                        <div className='wrapper'>
+                            <div className='auth__form__bottom-message'>Dont't have an account?&nbsp;</div>
+                            <div className='auth__form__bottom-button' onClick={() => { navigate('/signup') }}>Sign up</div>
+                        </div>
                         <div className='auth__form__bottom-button' id='1' onClick={() => { navigate('/forgot-password') }}>Forgot password?</div>
                     </div>
                 </div>

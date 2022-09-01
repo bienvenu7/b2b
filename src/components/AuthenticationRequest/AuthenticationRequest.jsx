@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom'
 import { setStatusCode } from '../../redux/reducers/app-reducer'
 import { setErrors } from '../../redux/reducers/app-reducer'
 import Loader from '../Loader/Loader'
+import Dashboard from '../PersonalArea/Dashboard/Dashboard'
 
 const AuthenticationRequest = () => {
 
@@ -286,9 +287,9 @@ const AuthenticationRequest = () => {
                             
                                 <div className='auth_request__form__footer__info'>
                                     
-                                    <div className='auth_request__form__footer__info__h1'>Authentification summary</div>
+                                    <div className='auth_request__form__footer__info__h1'>Authentication summary</div>
                                     <div className='auth_request__form__footer__info__h2'>
-                                        <div className='auth_request__form__footer__info__h2-label'>Authentification requests</div>
+                                        <div className='auth_request__form__footer__info__h2-label'>Authentication requests</div>
                                         <div className='auth_request__form__footer__info__h2-value'>1</div>
                                     </div>
                                     <div className='auth_request__form__footer__info__h2'>

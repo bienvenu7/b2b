@@ -74,7 +74,7 @@ const Authentications = (props) => {
 
 
     const [sortData, setSortData] = useState(true)
-    const [searchValue, setSearchValue] = useState()
+    const [searchValue, setSearchValue] = useState('')
 
 
     function onCompletedClick() {

@@ -295,6 +295,7 @@ padding-bottom: 14px;
                 &-wrapper {
                     display: flex;
                     justify-content: space-between;
+                    color: rgba(65, 65, 65, 0.4);
                     &.brand{
                         display: none;
                         @include for-phone-only{
