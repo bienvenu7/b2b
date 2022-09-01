@@ -17,22 +17,20 @@ import { postInvoiceThunk } from "../../redux/thunks/payment-thunk";
 
 const Payment = () => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
-  const setPayMethod = (e) => {
-    setMethod(e.target.value);
-  };
-
+  const [method, setMethod] = useState();
+  const [saveBilling, setSaveBilling] = useState(false);
+  const [buttonState, setButtonState] = useState(true);
   const totalPackage = useSelector(getTotalPackage);
   const costs = useSelector(getCosts);
   const total = useSelector(getCartTotal);
   const invoiceLink = useSelector(getInvoiceLink);
   const userTariffPackages = useSelector(getUserTariffPackages);
 
-  const [method, setMethod] = useState();
-  const [saveBilling, setSaveBilling] = useState(false);
-  const [buttonState, setButtonState] = useState(true);
+  const setPayMethod = (e) => {
+    setMethod(e.target.value);
+  };
 
   const postInvoice = async () => {
     if (totalPackage !== {} && method) {
