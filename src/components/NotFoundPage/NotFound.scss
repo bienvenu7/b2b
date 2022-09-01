@@ -20,11 +20,11 @@
         font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
-    font-size: 34.278px;
+    font-size: 28px;
     line-height: 140%;
     max-width: 1000px;
     text-align: center;
-    color: $c_o;
+    color: #565656;
     max-width: 912px;
 
     @include for-phone-only{
@@ -58,7 +58,7 @@
     }
     &__image{
         img {
-            width: 372px;
+            width: 280px;
             height: auto;
         }
 

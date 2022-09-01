@@ -20,6 +20,7 @@ import Loader from '../Loader/Loader'
 import {updateHoursPackage} from "../../redux/reducers/payment-reducer";
 import {getPriceThunk} from "../../redux/thunks/payment-thunk";
 import Dashboard from '../PersonalArea/Dashboard/Dashboard'
+import Header from "../Header/Header";
 
 const AuthenticationRequest = () => {
 
@@ -40,7 +41,7 @@ const AuthenticationRequest = () => {
 
     const [modelTypeValue, setModelTypeValue] = useState('')
     const [supplierTypeValue, setSupplierTypeValue] = useState('')
-    const [answerTime, setAnswerTime] = useState(12)
+    const [answerTime, setAnswerTime] = useState(24)
     const [productTypeValue, setProductTypeValue] = useState(null)
     const [brandValue, setBrandValue] = useState()
     const [brandSelectorKey, setBrandSelectorKey] = useState(0)
@@ -58,8 +59,9 @@ const AuthenticationRequest = () => {
     const [selectedBrand, setSelectedBrand] = useState('')
 
     const [photoFiles, setPhotoFiles] = useState([])
+    // const [options, setOptions] = useState([])
 
-    const options = []
+    const options = [];
 
     const optionsBrands = []
 
@@ -93,10 +95,11 @@ const AuthenticationRequest = () => {
     // productTypes.map((el, index) => options.push({ key: index, value: el.id, type: el, label: el.publicName }))
     brands.length > 0 && brands[0].brand && brands.map((el, index) => optionsBrands.push({ key: index, value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
 
-    
-    balance.map((el, index) => {
 
-        productTypes.map(item => el.productType.publicName === item.publicName &&  options.push({ key: index, value: item.id, type: item, label: item.publicName })) //el.productType.publicName !== 'Certificate' && el.productType.publicName }))
+    const forOption = [...new Map(balance.map(item =>
+        [item.productType.id, item])).values()]
+    forOption.map((el, index) => {
+        productTypes.map(item => el.productType.id === item.id && options.push({ key: index, value: item.id, type: item, label: item.publicName })) //el.productType.publicName !== 'Certificate' && el.productType.publicName }))
 
     })
 
@@ -167,7 +170,7 @@ const AuthenticationRequest = () => {
             : setButtonState(true)
         response1 && setButtonState(true)
         if (status) {
-            setAnswerTime(12);
+            setAnswerTime(24);
             setModelTypeValue('')
             setSupplierTypeValue('')
             setCertCheck(false)
@@ -224,7 +227,9 @@ const AuthenticationRequest = () => {
                         <div className='auth_request__nav-label'>Authentification request</div>
                     </div>
                     <div className='auth_request__nav-bell'><SvgSelector id='bell' /></div>
+
                 </div>
+                <Header />
                 <div className="auth_request__container">
                     <div className="auth_request__logo">
                         <img src={logo} className='auth_request__logo-image' />
@@ -246,7 +251,7 @@ const AuthenticationRequest = () => {
                                                     <label htmlFor="12h" onClick={()=>setAnswerTime(12)}>12 hours</label>
                                                 </div>
                                                 <div className="auth_request__form-radio_btn">
-                                                    <input type="radio" name="hours" value="24" id="24h"/>
+                                                    <input type="radio" name="hours" checked value="24" id="24h"/>
                                                     <label htmlFor="24h" onClick={()=>setAnswerTime(24)} value="24">24 hours</label>
                                                 </div>
                                             </div>

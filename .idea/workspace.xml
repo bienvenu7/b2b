@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/burger.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/icons/SvgSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/icons/SvgSelector.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/Auth.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Auth.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/Signin/Signin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Signin/Signin.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Balance/Balance.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Balance/Balance.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Mobile/MobileHeader/MobileHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Mobile/MobileHeader/MobileHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CertificatesForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CertificatesForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/PaymentForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/PaymentForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NotFoundPage/NotFound.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NotFoundPage/NotFound.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +64,7 @@
       <workItem from="1660305620348" duration="81000" />
       <workItem from="1660559905626" duration="4900000" />
       <workItem from="1661926497399" duration="13904000" />
-      <workItem from="1662012815585" duration="6058000" />
+      <workItem from="1662012815585" duration="9514000" />
     </task>
     <servers />
   </component>
