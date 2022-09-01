@@ -323,10 +323,89 @@
                         color: $c_g;
                         width: 95px;
 
-                        &:nth-child(2) {
+                        &.active {
                             background-color: $c_g;
                             color: $c_w;
                         }
+                    }
+                }
+            }
+
+            &-radio_btn {
+
+                display: flex;
+                width: 100%;
+                justify-content: center;
+
+                input[type=radio] {
+                    display: none;
+                }
+
+                @include for-phone-only {
+                    width: auto;
+                }
+
+                label {
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14.3237px;
+                    line-height: 140%;
+                    cursor: pointer;
+                    color: #565656;
+                    border: 0.841829px solid #CECECE;
+                    border-radius: 6.40351px;
+                    width: 167px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 38px;
+
+                    @include for-phone-only {
+                        border-color: $c_g;
+                        border-radius: 4px;
+                        color: $c_g;
+                        width: 150px;
+                    }
+                }
+
+                input[type=radio]:checked+label {
+                    background: $c_g;
+                    color: $c_w;
+                    border: 0.841829px solid $c_g;
+
+                    @include for-phone-only {
+                        background-color: $c_g;
+                        color: $c_w;
+                    }
+                }
+
+                &_types {
+                    font-family: 'SF Pro Display Medium';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: $c_b;
+                    display: flex;
+
+                    @include for-phone-only {
+                        font-family: 'SF Pro Display Medium';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 19px;
+                    }
+
+                    //gap: 19px;
+
+                    &-container {
+                        display: flex;
+                        gap: 50px;
+                    }
+
+                    input {
+                        transform: scale(2);
                     }
                 }
             }

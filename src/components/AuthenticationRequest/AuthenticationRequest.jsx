@@ -17,6 +17,9 @@ import { useNavigate } from 'react-router-dom'
 import { setStatusCode } from '../../redux/reducers/app-reducer'
 import { setErrors } from '../../redux/reducers/app-reducer'
 import Loader from '../Loader/Loader'
+import {Field} from "formik";
+import {updateHoursPackage} from "../../redux/reducers/payment-reducer";
+import {getPriceThunk} from "../../redux/thunks/payment-thunk";
 
 const AuthenticationRequest = () => {
 
@@ -107,7 +110,15 @@ const AuthenticationRequest = () => {
     }
 
     const handlePost = async () => {
-        console.log('post')
+        console.log('data',{
+            order,
+            productType: productTypeValue,
+            brand: brandValue,
+            modelName: modelTypeValue,
+            supplier: supplierTypeValue,
+            certificateNeeded: certCheck,
+            answerTime: answerTime,
+        })
         setButtonState(false)
         let onlineOrder = {}
         if (!brandValue) {
@@ -205,6 +216,7 @@ const AuthenticationRequest = () => {
         return <Loader/>
     }
 
+
     return (
         <>
             <MobileHeader label='Authentication request' />
@@ -229,10 +241,18 @@ const AuthenticationRequest = () => {
                                     <div className='auth_request__form-heading'>Authentication request</div>
                                     <div className='auth_request__form__elem'>
                                         <div className='auth_request__form__elem-label'>Choose the category
-                                        <div className='btn'>
-                                            <button>12 hours</button>
-                                            <button>24 hours</button>
-                                        </div>
+                                            <div className='btn'>
+                                                {/*<button className={({answerTime}) => answerTime==12 ? 'active' : ''} onClick={()=>setAnswerTime(12)}>12 hours</button>
+                                                <button className={({answerTime}) => answerTime==24 ? 'active' : ''} onClick={()=>setAnswerTime(24)}>24 hours</button>*/}
+                                                <div className="auth_request__form-radio_btn">
+                                                    <input type="radio" name="hours" value="12" id="12h" />
+                                                    <label htmlFor="12h" onClick={()=>setAnswerTime(12)}>12 hours</label>
+                                                </div>
+                                                <div className="auth_request__form-radio_btn">
+                                                    <input type="radio" name="hours" value="24" id="24h"/>
+                                                    <label htmlFor="24h" onClick={()=>setAnswerTime(24)} value="24">24 hours</label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <Select key={productEditNumber} components={{ DropdownIndicator }} options={options} classNamePrefix="custom-select" placeholder='Please select the category' onChange={handleChangeCategory} />
                                         {errors.category && <div className='auth_request__form__elem-error'>{errors.category}</div>}
