@@ -33,9 +33,10 @@ const CategoryForm = (props) => {
   const cart = useSelector(getUserTariffPackages);
   const categoryError = useSelector(getCategoryError);
   const cost = useSelector(getPrice);
-  const [answerTime, setAnswerTime] = useState(12);
+  const [answerTime, setAnswerTime] = useState();
   const [productType, setProductType] = useState(null);
   const [productTypeVar, setProductTypeVar] = useState(null);
+  const [checked, setChecked] = useState(true);
 
   const options = [
     {
@@ -129,7 +130,9 @@ const CategoryForm = (props) => {
 
   cart.length < 1 && dispatch(initPackage(userId));
 
-  useEffect(() => {}, [props.but]);
+  useEffect(() => {
+    setAnswerTime(24);
+  }, []);
 
   useEffect(() => {
     const data = {
@@ -267,21 +270,34 @@ const CategoryForm = (props) => {
                   </label>
                   <div className="payment__form-elem hours">
                     <div className="payment__form-radio_btn">
-                      <Field type="radio" name="hours" value="12" id="12h" />
-                      <label
-                        htmlFor="12h"
-                        onClick={() => updateHours(12, cart)}
-                      >
+                      <Field
+                        type="radio"
+                        name="hours"
+                        value="12"
+                        id="12h"
+                        onClick={() => {
+                          updateHours(12, cart);
+                          setChecked(!checked);
+                        }}
+                        checked={!checked}
+                      />
+                      <label htmlFor="12h" value="12">
                         12 hours
                       </label>
                     </div>
                     <div className="payment__form-radio_btn">
-                      <Field type="radio" name="hours" value="24" id="24h" />
-                      <label
-                        htmlFor="24h"
-                        onClick={() => updateHours(24, cart)}
+                      <Field
+                        type="radio"
+                        name="hours"
                         value="24"
-                      >
+                        id="24h"
+                        onClick={() => {
+                          updateHours(24, cart);
+                          setChecked(!checked);
+                        }}
+                        checked={checked}
+                      />
+                      <label htmlFor="24h" value="24">
                         24 hours
                       </label>
                     </div>
