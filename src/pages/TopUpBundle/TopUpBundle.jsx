@@ -12,6 +12,10 @@ import logo from '../../common/images/logo-for-mobile.png'
 import RigthSide from "../../components/Payment/RightSide/RightSide"
 import Header from "../../components/Payment/Header/Header"
 
+import Header1 from '../../components/Header/Header'
+import Navigation from "../../components/Navigation/Navigation"
+import SvgSelector from "../../common/icons/SvgSelector"
+
 const TopUpBundle = (props) => {
 
     const dispatch = useDispatch()
@@ -79,9 +83,16 @@ const TopUpBundle = (props) => {
     }
 
     return (
-        <>
+        <>  
             <div className="top_up_bundle-container">
                 <div className="top_up_bundle__left-wrapper">
+                <div className="top_up_bundle__left-nav">
+                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'Authentication Bundle' }]}/>
+                    <div className="top_up_bundle__left-mobile">
+                        <h1>Authentification bundle</h1>
+                        <SvgSelector id='burger'/>
+                    </div>
+                </div>
                     <Header/>
                     <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal} getPrice={getPrice} />
                 </div>

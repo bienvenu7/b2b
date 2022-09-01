@@ -17,9 +17,9 @@ import { useNavigate } from 'react-router-dom'
 import { setStatusCode } from '../../redux/reducers/app-reducer'
 import { setErrors } from '../../redux/reducers/app-reducer'
 import Loader from '../Loader/Loader'
-import {Field} from "formik";
 import {updateHoursPackage} from "../../redux/reducers/payment-reducer";
 import {getPriceThunk} from "../../redux/thunks/payment-thunk";
+import Dashboard from '../PersonalArea/Dashboard/Dashboard'
 
 const AuthenticationRequest = () => {
 
@@ -73,10 +73,6 @@ const AuthenticationRequest = () => {
         postErrors.authrequest && dispatch(setErrors(null))
     }
 
-    const handleChangeTime = (e) => {
-
-    }
-
     function handleChangeBrand(e) {
         setBrandValue(e.brand)
         setSelectedBrand(e.key)
@@ -86,7 +82,7 @@ const AuthenticationRequest = () => {
     function handleChangeModelType(e) {
         setModelTypeValue(e.target.value)
         errors.typeModel && setErrorsForForm({ ...errors, typeModel: null })
-
+        
     }
 
     useEffect(() => {
@@ -97,7 +93,7 @@ const AuthenticationRequest = () => {
     // productTypes.map((el, index) => options.push({ key: index, value: el.id, type: el, label: el.publicName }))
     brands.length > 0 && brands[0].brand && brands.map((el, index) => optionsBrands.push({ key: index, value: el.brand.id, brand: el.brand, label: el.brand.publicName }))
 
-
+    
     balance.map((el, index) => {
 
         productTypes.map(item => el.productType.publicName === item.publicName &&  options.push({ key: index, value: item.id, type: item, label: item.publicName })) //el.productType.publicName !== 'Certificate' && el.productType.publicName }))
@@ -171,6 +167,7 @@ const AuthenticationRequest = () => {
             : setButtonState(true)
         response1 && setButtonState(true)
         if (status) {
+            setAnswerTime(12);
             setModelTypeValue('')
             setSupplierTypeValue('')
             setCertCheck(false)
@@ -223,8 +220,8 @@ const AuthenticationRequest = () => {
             <div className="auth_request__wrapper">
                 <div className="auth_request__nav">
                     <div className='auth_request__nav-bar'>
-                        <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentication' }]} />
-                        <div className='auth_request__nav-label'>Authentication request</div>
+                        <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentification' }]} />
+                        <div className='auth_request__nav-label'>Authentification request</div>
                     </div>
                     <div className='auth_request__nav-bell'><SvgSelector id='bell' /></div>
                 </div>
@@ -238,7 +235,7 @@ const AuthenticationRequest = () => {
                             <div className='auth_request__form-container first'>
 
                                 <div className='auth_request__form-container-wrapper first'>
-                                    <div className='auth_request__form-heading'>Authentication request</div>
+                                    <div className='auth_request__form-heading'>Authentification request</div>
                                     <div className='auth_request__form__elem'>
                                         <div className='auth_request__form__elem-label'>Choose the category
                                             <div className='btn'>
@@ -308,9 +305,9 @@ const AuthenticationRequest = () => {
                         <div className="auth_request__form__footer">
                         {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
                             <div className='auth_request__form__footer-wrapper'>
-
+                            
                                 <div className='auth_request__form__footer__info'>
-
+                                    
                                     <div className='auth_request__form__footer__info__h1'>Authentication summary</div>
                                     <div className='auth_request__form__footer__info__h2'>
                                         <div className='auth_request__form__footer__info__h2-label'>Authentication requests</div>
@@ -318,12 +315,12 @@ const AuthenticationRequest = () => {
                                     </div>
                                     <div className='auth_request__form__footer__info__h2'>
                                         <div className='auth_request__form__footer__info__h2-label'>Answer time</div>
-                                        <div className='auth_request__form__footer__info__h2-value'>12 hours</div>
+                                        <div className='auth_request__form__footer__info__h2-value'>{answerTime} hours</div>
                                     </div>
                                 </div>
-                                <div className='auth_request__form__footer__button-wrapper'>
+                                <div className='auth_request__form__footer__button-wrapper' onClick={() => buttonState && handlePost()}>
 
-                                    <div className={buttonState ? 'auth_request__form__footer__button-elem' : 'auth_request__form__footer__button-elem disabled'} onClick={() => buttonState && handlePost()}>Submit</div>
+                                    <div className={buttonState ? 'auth_request__form__footer__button-elem' : 'auth_request__form__footer__button-elem disabled'}>Submit</div>
                                 </div>
 
                             </div>
