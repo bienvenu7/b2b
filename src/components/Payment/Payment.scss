@@ -141,6 +141,9 @@
                 display: flex;
                 gap: 25px;
                 padding-top: 17px;
+                @include for-phone-only {
+                    flex-wrap: wrap;
+                }
             }
         }
 
@@ -199,7 +202,7 @@
             padding: 21px 87px 26px 108px;
 
             @include for-phone-only {
-                padding: 0 23px;
+                padding: 0 23px;//0 23px
             }
 
             &.first {
@@ -219,8 +222,10 @@
         }
 
         &-wrapper {
-            max-width: 800px;
-            width: 100%;
+            //max-width: 800px;
+            @include for-phone-only {
+                width: 100vw;
+            }
         }
 
         &-href {
@@ -285,6 +290,10 @@
                 display: none;
             }
 
+            @include for-phone-only {
+                width: auto;
+            }
+
             label {
                 font-family: 'Roboto';
                 font-style: normal;
@@ -305,6 +314,7 @@
                     border-color: $c_g;
                     border-radius: 4px;
                     color: $c_g;
+                    width: 150px;
                 }
             }
 
@@ -367,13 +377,16 @@
                 gap: 5px;
 
                 @include for-phone-only {
-                    gap: 20px;
+                    gap: initial;//20px
                 }
             }
 
             &__hours-wrapper {
                 display: flex;
                 flex-direction: column;
+                @include for-phone-only {
+                    width: 100%;
+                }
             }
 
             &.shoes-vars {
@@ -483,6 +496,7 @@
                     font-size: 16px;
                     line-height: 19px;
                     width: 100%;
+                    white-space: nowrap;
                 }
             }
 

@@ -15,6 +15,7 @@ import PhotoRequests from '../components/PersonalArea/PhotoRequests/PhotoRequest
 import TopUpBundle from '../pages/TopUpBundle/TopUpBundle'
 import Dashboard from '../components/Dashbord/Dashboard'
 import Billing from '../components/PersonalArea/billing/Billing'
+import ConfirmEmail from '../components/Auth/ConfirmEmail/ConfirmEmail'
 
 
 export const publicRoutes = [
@@ -22,6 +23,7 @@ export const publicRoutes = [
     { path: '/signup', component: <SignUp /> },
     { path: '/forgot-password', component: <ForgotPassword /> },
     { path: '/password-change/:hash', component: <ResetPassword /> },
+    { path: '/confirm-email/:hash', component: <ConfirmEmail /> },
 ]
 
 export const privateRoutes = [
@@ -33,13 +35,13 @@ export const privateRoutes = [
     { path: 'request/:id', component: <Card/>},
     { path: 'payment', component: <TopUpBundle/>},
     {path: 'payment-first', component: <Payment/>},
-    {path: 'success-order', component: <SuccessPage/>},
+    {path: 'success', component: <SuccessPage/>},
     {path: 'success-order', component: <SuccessPageOrder/>},
     {path: 'authentication-request', component: <AuthenticationRequest/>},
     {path: 'pay', component: <Payment/>},
 
     {path: 'home', component: <Dashboard/>},
     {path: 'billing-history', component: <Billing/>}
-    
+
     //{path: 'payment-new', component: <TopUpBundle/>}
 ]
