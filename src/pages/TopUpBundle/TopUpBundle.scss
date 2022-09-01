@@ -165,7 +165,6 @@
 .payment__form {
 
     &-wrapper {
-<<<<<<< HEAD
 
         hr {
             width: 608px;
@@ -238,11 +237,10 @@
 
     &.second {
         min-width: 340px;
-=======
+
         max-width: calc(100vw - 42px);
         @include for-phone-only {
             max-width: inherit;
         }
->>>>>>> 142aa109da30d8af55c39f8cab16f0f1b91546c5
     }
 }

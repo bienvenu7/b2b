@@ -133,19 +133,11 @@ const CategoryForm = (props) => {
                             : productTypeVar ? productTypeVar === 'sneakers' ? selectedValue.types.sneakers.publicName : selectedValue.types.other.publicName : '' }</div>
                             <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
                         </div>
-                    </div>
-<<<<<<< HEAD
-                    <hr/>
+                    </div>                   
                     </>}
-=======
-                    {/*<hr style={{background: '#E1E1E1',
-                        height: '0.7px',
-                        border: '0',
-                        width: '608px',
-                        margin: '0 auto',
-                        padding: '0',
-                        marginLeft: '-33px'}}/>*/}</>}
->>>>>>> 142aa109da30d8af55c39f8cab16f0f1b91546c5
+                    {/* <> */}
+                    <hr/>
+                    {/* </>} */}
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
 

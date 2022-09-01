@@ -38,14 +38,10 @@
 
             &.mobile {
                 display: none;
-<<<<<<< HEAD
 
                 @include for-phone-only {
                     display: flex;
                 }
-
-=======
->>>>>>> 142aa109da30d8af55c39f8cab16f0f1b91546c5
             }
 
 
