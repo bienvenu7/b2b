@@ -112,7 +112,8 @@ const CategoryForm = (props) => {
         volume: volume,
         answerTime: answerTime,
       };
-      // console.log(answerTime, data);
+      console.log("111")
+    //   console.log(answerTime, data);
       // dispatch(getPriceThunk(data));
     }
   };
@@ -122,7 +123,7 @@ const CategoryForm = (props) => {
     const pack = {
       productType: productType,
       volume: volume,
-      answerTime: answerTime,
+      answerTime: value,
     };
     console.log(pack, value);
 
