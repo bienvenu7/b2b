@@ -99,45 +99,45 @@ const CategoryForm = (props) => {
     setProductTypeVar(e.target.value);
   };
 
-  const updateType = () => {
-    const data = {
-      productType: productTypeVar,
-      volume: volume,
-      answerTime: answerTime,
-    };
-    dispatch(
-      updateTypePackage({ index: packageEditNumber, type: productTypeVar })
-    );
-    dispatch(getPriceThunk(data));
-  };
-
-  //   const updateType1 = (e, typeOfShoes) => {
-  //     console.log(e);
-  //     setProductTypeVar(typeOfShoes);
-  //     if (e != null) {
-  //       let type = e !== 3 && e.types.single;
-  //       console.log(type);
-  //       if (e.name === "hypeShoes") {
-  //         typeOfShoes === "sneakers"
-  //           ? (type = e.types.sneakers)
-  //           : (type = e.types.other);
-  //       } else if (e.name === "luxuryShoes") {
-  //         typeOfShoes === "sneakers"
-  //           ? (type = e.types.sneakers)
-  //           : (type = e.types.other);
-  //       }
-  //       e.value !== 3 &&
-  //         dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
-  //       setProductType(type);
-
-  //       const data = {
-  //         productType: type,
-  //         volume: volume,
-  //         answerTime: answerTime,
-  //       };
-  //       dispatch(getPriceThunk(data));
-  //     }
+  //   const updateType = () => {
+  //     const data = {
+  //       productType: productType,
+  //       volume: volume,
+  //       answerTime: answerTime,
+  //     };
+  //     dispatch(
+  //       updateTypePackage({ index: packageEditNumber, type: productType })
+  //     );
+  //     dispatch(getPriceThunk(data));
   //   };
+
+  const updateType = (e, typeOfShoes) => {
+    console.log(typeOfShoes);
+    setProductTypeVar(typeOfShoes);
+    if (e != null) {
+      let type = e !== 3 && e.types.single;
+      console.log(type);
+      if (e.name === "hypeShoes") {
+        typeOfShoes === "sneakers"
+          ? (type = e.types.sneakers)
+          : (type = e.types.other);
+      } else if (e.name === "luxuryShoes") {
+        typeOfShoes === "sneakers"
+          ? (type = e.types.sneakers)
+          : (type = e.types.other);
+      }
+      e.value !== 3 &&
+        dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
+      setProductType(type);
+
+      const data = {
+        productType: type,
+        volume: volume,
+        answerTime: answerTime,
+      };
+      dispatch(getPriceThunk(data));
+    }
+  };
 
   const updateHours = () => {
     console.log(answerTime, cart);
@@ -160,9 +160,9 @@ const CategoryForm = (props) => {
     updateHours();
   }, [answerTime]);
 
-  useEffect(() => {
-    updateType();
-  }, [productTypeVar]);
+  //   useEffect(() => {
+  //     updateType();
+  //   }, [productTypeVar]);
 
   useEffect(() => {
     const data = {
@@ -263,11 +263,11 @@ const CategoryForm = (props) => {
                         value="sneakers"
                         id="sneakers"
                         className="custom-radio"
-                        // onChange={(e) => {
-                        //   updateType(selectedValue, e.target.value);
-                        // }}
-                        onClick={() => console.log(selectedValue)}
-                        onChange={changeRadioInputType}
+                        onChange={(e) => {
+                          updateType(selectedValue, e.target.value);
+                        }}
+                        // onClick={() => console.log(selectedValue)}
+                        // onChange={changeRadioInputType}
                       />
                       <label htmlFor="sneakers">Sneakers</label>
                       {/*<div className="payment__form-radio_btn_types-label">Sneakers</div>*/}
