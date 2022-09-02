@@ -33,7 +33,7 @@ const CategoryForm = (props) => {
   const cart = useSelector(getUserTariffPackages);
   const categoryError = useSelector(getCategoryError);
   const cost = useSelector(getPrice);
-  const [answerTime, setAnswerTime] = useState();
+  const [answerTime, setAnswerTime] = useState(12);
   const [productType, setProductType] = useState(null);
   const [productTypeVar, setProductTypeVar] = useState(null);
   const [checked, setChecked] = useState(true);
@@ -106,33 +106,37 @@ const CategoryForm = (props) => {
       e.value !== 3 &&
         dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
       setProductType(type);
+
       const data = {
         productType: type,
         volume: volume,
         answerTime: answerTime,
       };
-      dispatch(getPriceThunk(data));
+      // console.log(answerTime, data);
+      // dispatch(getPriceThunk(data));
     }
   };
 
   const updateHours = (value, data) => {
+    setAnswerTime(value);
     const pack = {
       productType: productType,
       volume: volume,
-      answerTime: value,
+      answerTime: answerTime,
     };
-    setAnswerTime(value);
-    dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
-    dispatch(getPriceThunk(pack));
-    props.cartTotal(data);
-    setErrorForAnswerTime(null);
+    console.log(pack, value);
+
+    // dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
+    // dispatch(getPriceThunk(pack));
+    // props.cartTotal(data);
+    // setErrorForAnswerTime(null);
   };
 
   cart.length < 1 && dispatch(initPackage(userId));
 
-  useEffect(() => {
-    setAnswerTime(24);
-  }, []);
+  // useEffect(() => {
+  //   setAnswerTime(24);
+  // }, []);
 
   useEffect(() => {
     const data = {
@@ -276,8 +280,9 @@ const CategoryForm = (props) => {
                         value="12"
                         id="12h"
                         onClick={() => {
-                          updateHours(12, cart);
                           setChecked(!checked);
+                          // setAnswerTime(12);
+                          updateHours(12, cart);
                         }}
                         checked={!checked}
                       />
@@ -292,8 +297,9 @@ const CategoryForm = (props) => {
                         value="24"
                         id="24h"
                         onClick={() => {
-                          updateHours(24, cart);
                           setChecked(!checked);
+                          // setAnswerTime(24);
+                          updateHours(24, cart);
                         }}
                         checked={checked}
                       />
