@@ -94,10 +94,11 @@ const CategoryForm = (props) => {
     setAnswerTime(e.target.value);
   };
 
-  const changeRadioInputType = (e) => {
-    console.log(e);
-    setProductTypeVar(e.target.value);
-  };
+  //   const changeRadioInputType = (e) => {
+  //     console.log(e);
+  //     setProductTypeVar(e.target.value);
+  //     setProductType(e.target.value);
+  //   };
 
   //   const updateType = () => {
   //     const data = {
@@ -112,11 +113,12 @@ const CategoryForm = (props) => {
   //   };
 
   const updateType = (e, typeOfShoes) => {
-    console.log(typeOfShoes);
+    // console.log("e.types: ", e.types, "e.name: ", e.name);
+    console.log("e: ", e);
+    console.log("typeOfShoes: ", typeOfShoes);
     setProductTypeVar(typeOfShoes);
     if (e != null) {
       let type = e !== 3 && e.types.single;
-      console.log(type);
       if (e.name === "hypeShoes") {
         typeOfShoes === "sneakers"
           ? (type = e.types.sneakers)
@@ -139,6 +141,14 @@ const CategoryForm = (props) => {
     }
   };
 
+  //   console.log(
+  //     "сравнение ",
+  //     "ProductType: ",
+  //     productType,
+  //     "ProductTypeVar: ",
+  //     productTypeVar
+  //   );
+
   const updateHours = () => {
     console.log(answerTime, cart);
     const pack = {
@@ -160,9 +170,9 @@ const CategoryForm = (props) => {
     updateHours();
   }, [answerTime]);
 
-  //   useEffect(() => {
-  //     updateType();
-  //   }, [productTypeVar]);
+  useEffect(() => {
+    updateType();
+  }, [productTypeVar]);
 
   useEffect(() => {
     const data = {
