@@ -33,7 +33,7 @@ const CategoryForm = (props) => {
   const cart = useSelector(getUserTariffPackages);
   const categoryError = useSelector(getCategoryError);
   const cost = useSelector(getPrice);
-  const [answerTime, setAnswerTime] = useState(12);
+  const [answerTime, setAnswerTime] = useState(24);
   const [productType, setProductType] = useState(null);
   const [productTypeVar, setProductTypeVar] = useState(null);
   const [checked, setChecked] = useState(true);
@@ -90,54 +90,79 @@ const CategoryForm = (props) => {
     props.getPrice(data);
   };
 
-  const updateType = (e, typeOfShoes) => {
-    setProductTypeVar(typeOfShoes);
-    if (e != null) {
-      let type = e !== 3 && e.types.single;
-      if (e.name === "hypeShoes") {
-        typeOfShoes === "sneakers"
-          ? (type = e.types.sneakers)
-          : (type = e.types.other);
-      } else if (e.name === "luxuryShoes") {
-        typeOfShoes === "sneakers"
-          ? (type = e.types.sneakers)
-          : (type = e.types.other);
-      }
-      e.value !== 3 &&
-        dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
-      setProductType(type);
-
-      const data = {
-        productType: type,
-        volume: volume,
-        answerTime: answerTime,
-      };
-      console.log("111")
-    //   console.log(answerTime, data);
-      // dispatch(getPriceThunk(data));
-    }
+  const changeRadioInputHours = (e) => {
+    setAnswerTime(e.target.value);
   };
 
-  const updateHours = (value, data) => {
-    setAnswerTime(value);
+  const changeRadioInputType = (e) => {
+    console.log(e);
+    setProductTypeVar(e.target.value);
+  };
+
+  const updateType = () => {
+    const data = {
+      productType: productTypeVar,
+      volume: volume,
+      answerTime: answerTime,
+    };
+    dispatch(
+      updateTypePackage({ index: packageEditNumber, type: productTypeVar })
+    );
+    dispatch(getPriceThunk(data));
+  };
+
+  //   const updateType1 = (e, typeOfShoes) => {
+  //     console.log(e);
+  //     setProductTypeVar(typeOfShoes);
+  //     if (e != null) {
+  //       let type = e !== 3 && e.types.single;
+  //       console.log(type);
+  //       if (e.name === "hypeShoes") {
+  //         typeOfShoes === "sneakers"
+  //           ? (type = e.types.sneakers)
+  //           : (type = e.types.other);
+  //       } else if (e.name === "luxuryShoes") {
+  //         typeOfShoes === "sneakers"
+  //           ? (type = e.types.sneakers)
+  //           : (type = e.types.other);
+  //       }
+  //       e.value !== 3 &&
+  //         dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
+  //       setProductType(type);
+
+  //       const data = {
+  //         productType: type,
+  //         volume: volume,
+  //         answerTime: answerTime,
+  //       };
+  //       dispatch(getPriceThunk(data));
+  //     }
+  //   };
+
+  const updateHours = () => {
+    console.log(answerTime, cart);
     const pack = {
       productType: productType,
       volume: volume,
-      answerTime: value,
+      answerTime: answerTime,
     };
-    console.log(pack, value);
-
-    // dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
-    // dispatch(getPriceThunk(pack));
-    // props.cartTotal(data);
-    // setErrorForAnswerTime(null);
+    dispatch(
+      updateHoursPackage({ index: packageEditNumber, hours: answerTime })
+    );
+    dispatch(getPriceThunk(pack));
+    props.cartTotal(cart);
+    setErrorForAnswerTime(null);
   };
 
   cart.length < 1 && dispatch(initPackage(userId));
 
-  // useEffect(() => {
-  //   setAnswerTime(24);
-  // }, []);
+  useEffect(() => {
+    updateHours();
+  }, [answerTime]);
+
+  useEffect(() => {
+    updateType();
+  }, [productTypeVar]);
 
   useEffect(() => {
     const data = {
@@ -238,9 +263,11 @@ const CategoryForm = (props) => {
                         value="sneakers"
                         id="sneakers"
                         className="custom-radio"
-                        onChange={(e) => {
-                          updateType(selectedValue, e.target.value);
-                        }}
+                        // onChange={(e) => {
+                        //   updateType(selectedValue, e.target.value);
+                        // }}
+                        onClick={() => console.log(selectedValue)}
+                        onChange={changeRadioInputType}
                       />
                       <label htmlFor="sneakers">Sneakers</label>
                       {/*<div className="payment__form-radio_btn_types-label">Sneakers</div>*/}
@@ -282,9 +309,8 @@ const CategoryForm = (props) => {
                         id="12h"
                         onClick={() => {
                           setChecked(!checked);
-                          // setAnswerTime(12);
-                          updateHours(12, cart);
                         }}
+                        onChange={changeRadioInputHours}
                         checked={!checked}
                       />
                       <label htmlFor="12h" value="12">
@@ -299,9 +325,8 @@ const CategoryForm = (props) => {
                         id="24h"
                         onClick={() => {
                           setChecked(!checked);
-                          // setAnswerTime(24);
-                          updateHours(24, cart);
                         }}
+                        onChange={changeRadioInputHours}
                         checked={checked}
                       />
                       <label htmlFor="24h" value="24">
