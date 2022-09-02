@@ -34,9 +34,60 @@ const CategoryForm = (props) => {
   const categoryError = useSelector(getCategoryError);
   const cost = useSelector(getPrice);
   const [answerTime, setAnswerTime] = useState(24);
-  const [productType, setProductType] = useState(null);
+  const [productType, setProductType] = useState([]);
   const [productTypeVar, setProductTypeVar] = useState(null);
   const [checked, setChecked] = useState(true);
+
+  //   const doubles = [
+  //     {
+  //       parent: "SNEAKERS_HYPE",
+  //       childs: ["SNEAKERS_HYPE","OTHER_SHOES_HYPE"],
+  //       publicName: "Hype shoes",
+  //     },
+  //     {
+  //       parent: "SNEAKERS_LUXURY",
+  //       childs: ["SNEAKERS_LUXURY","OTHER_SHOES_LUXURY"],
+  //       publicName: "Luxury shoes",
+  //     },
+  //   ];
+
+  //   const options2 = productTypes
+  //     .filter((item, index) => {
+  //       const doubleItem = doubles.find((item=>item.childs.indexOf(item.name))!=-1)
+  //       doubleItem
+  //     //   const doubleItem = doubles.find(
+  //     //     (itemDoub) => itemDoub.name === item.name
+  //     //   );
+  //     //   console.log({ doubleItem, index });
+  //     //   if (doubleItem && doubleItem.name != doubleItem.parent) return false;
+  //       else return true;
+  //     })
+  //     .map((item, index) => {
+  //       const doubleItem = doubles.find(
+  //         (itemDoub) => itemDoub.name === item.name
+  //       );
+  //       const parentItem = productType.find(
+  //         (itemProduct) => itemProduct.name == doubleItem.parent
+  //       );
+  //       const doubles = productType.filter
+  //       return {
+  //         value: {
+  //           id: parentItem ? parentItem.id : item.id,
+  //           doubles:
+  //         },
+  //         label: doubleItem ? doubleItem.publicName : item.publicName,
+  //       };
+  //     });
+  //   console.log({ options });
+
+  //   let single = {
+  //     id: "ec10993d-8e1b-42a6-9e61-65a6e2c2e292",
+  //     name: "SNEAKERS_HYPE",
+  //     publicName: "Sneakers: Hype",
+  //     __entity: "ProductType",
+  //   };
+
+  //   console.log({ productTypes });
 
   const options = [
     {
@@ -74,9 +125,10 @@ const CategoryForm = (props) => {
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleChange = (e, formik) => {
+    console.log("formik ", formik);
     setSelectedValue(e.value);
     dispatch(setCategoryError(null));
-    updateType(e.value, formik);
+    updateType(e.value, formik, "handle formik");
   };
 
   const handleChangeForNumeric = (e) => {
@@ -94,42 +146,61 @@ const CategoryForm = (props) => {
     setAnswerTime(e.target.value);
   };
 
-  //   const changeRadioInputType = (e) => {
-  //     console.log(e);
-  //     setProductTypeVar(e.target.value);
-  //     setProductType(e.target.value);
-  //   };
+  const changeRadioInputType = (e) => {
+    console.log(e);
+    setProductTypeVar(e.target.value);
+  };
 
-  //   const updateType = () => {
+  // const updateType = () => {
+  //   if (selectedValue != null) {
+  //     //   let type = selectedValue !== 3 && selectedValue.types.single;
+  //     let type;
+  //     if (selectedValue.name === "hypeShoes") {
+  //       productTypeVar === "sneakers" // заменить на productTypeVar
+  //         ? (type = selectedValue.types.sneakers) // e заменить на selectedValue
+  //         : (type = selectedValue.types.other);
+  //     } else if (selectedValue.name === "luxuryShoes") {
+  //       productTypeVar === "sneakers"
+  //         ? (type = selectedValue.types.sneakers)
+  //         : (type = selectedValue.types.other);
+  //     }
+  //     selectedValue.value !== 3 &&
+  //       dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
+  //     setProductType(type);
+
   //     const data = {
-  //       productType: productType,
+  //       productType: type,
   //       volume: volume,
   //       answerTime: answerTime,
   //     };
-  //     dispatch(
-  //       updateTypePackage({ index: packageEditNumber, type: productType })
-  //     );
   //     dispatch(getPriceThunk(data));
-  //   };
+  //   }
+  // };
 
-  const updateType = (e, typeOfShoes) => {
-    // console.log("e.types: ", e.types, "e.name: ", e.name);
-    console.log("e: ", e);
+  const updateType = (e, typeOfShoes, fromWhere = "unknow") => {
+    console.log({ fromWhere });
     console.log("typeOfShoes: ", typeOfShoes);
+    console.log("e: ", e);
     setProductTypeVar(typeOfShoes);
     if (e != null) {
       let type = e !== 3 && e.types.single;
+      console.log("результат непонятного условия: ", e !== 3 && e.types.single);
+      console.log("type перед условиями = ", type);
       if (e.name === "hypeShoes") {
-        typeOfShoes === "sneakers"
-          ? (type = e.types.sneakers)
+        console.log(fromWhere);
+        typeOfShoes === "sneakers" || !typeOfShoes // заменить на productTypeVar
+          ? (type = e.types.sneakers) // e заменить на selectedValue
           : (type = e.types.other);
       } else if (e.name === "luxuryShoes") {
-        typeOfShoes === "sneakers"
+        console.log(fromWhere);
+        typeOfShoes === "sneakers" || !typeOfShoes
           ? (type = e.types.sneakers)
           : (type = e.types.other);
+        console.log(type);
       }
-      e.value !== 3 &&
-        dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
+      //   e.value !== 3 &&
+      dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
+
       setProductType(type);
 
       const data = {
@@ -137,6 +208,7 @@ const CategoryForm = (props) => {
         volume: volume,
         answerTime: answerTime,
       };
+      console.log(data);
       dispatch(getPriceThunk(data));
     }
   };
@@ -170,9 +242,9 @@ const CategoryForm = (props) => {
     updateHours();
   }, [answerTime]);
 
-  useEffect(() => {
-    updateType();
-  }, [productTypeVar]);
+  //   useEffect(() => {
+  //     updateType();
+  //   }, [productTypeVar]);
 
   useEffect(() => {
     const data = {
@@ -269,12 +341,20 @@ const CategoryForm = (props) => {
                       <Field
                         type="radio"
                         name="typeOfShoes"
-                        checked={productTypeVar === "sneakers" ? true : false}
+                        checked={
+                          productTypeVar === "sneakers" // || !productTypeVar
+                            ? true
+                            : false
+                        }
                         value="sneakers"
                         id="sneakers"
                         className="custom-radio"
                         onChange={(e) => {
-                          updateType(selectedValue, e.target.value);
+                          updateType(
+                            selectedValue,
+                            e.target.value,
+                            "radio change"
+                          );
                         }}
                         // onClick={() => console.log(selectedValue)}
                         // onChange={changeRadioInputType}
@@ -291,7 +371,11 @@ const CategoryForm = (props) => {
                         id="other"
                         className="custom-radio"
                         onChange={(e) => {
-                          updateType(selectedValue, e.target.value);
+                          updateType(
+                            selectedValue,
+                            e.target.value,
+                            "radio change 2"
+                          );
                         }}
                       />
                       <label htmlFor="other" id="otherlabel">
