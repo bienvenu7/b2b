@@ -34,7 +34,7 @@ const CategoryForm = (props) => {
   const categoryError = useSelector(getCategoryError);
   const cost = useSelector(getPrice);
   const [answerTime, setAnswerTime] = useState(24); // answerTime - NUMBER!!!!
-  const [productType, setProductType] = useState([]);
+  const [productType, setProductType] = useState(null);
   const [productTypeVar, setProductTypeVar] = useState(null);
   const [checked, setChecked] = useState("24");
 
@@ -238,6 +238,7 @@ const CategoryForm = (props) => {
             onChange={props.change}
           >
             <div className="payment__form-block-container first">
+              {console.log(productType)}
               {productType !== null && (
                 <>
                   <div className="payment__form-current_package_state-wrapper">
