@@ -33,10 +33,10 @@ const CategoryForm = (props) => {
   const cart = useSelector(getUserTariffPackages);
   const categoryError = useSelector(getCategoryError);
   const cost = useSelector(getPrice);
-  const [answerTime, setAnswerTime] = useState(24);
+  const [answerTime, setAnswerTime] = useState(24); // answerTime - NUMBER!!!!
   const [productType, setProductType] = useState([]);
   const [productTypeVar, setProductTypeVar] = useState(null);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState("24");
 
   //   const doubles = [
   //     {
@@ -125,7 +125,6 @@ const CategoryForm = (props) => {
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleChange = (e, formik) => {
-    console.log("formik ", formik);
     setSelectedValue(e.value);
     dispatch(setCategoryError(null));
     updateType(e.value, formik, "handle formik");
@@ -143,7 +142,9 @@ const CategoryForm = (props) => {
   };
 
   const changeRadioInputHours = (e) => {
-    setAnswerTime(e.target.value);
+    console.log("value - это номер? ", e.target.value === typeof number);
+    setChecked(e.target.value);
+    setAnswerTime(Number(e.target.value)); // используем Number т.к прилетает в e.target.value - STRING
   };
 
   const updateType = (e, typeOfShoes) => {
@@ -173,7 +174,6 @@ const CategoryForm = (props) => {
   };
 
   const updateHours = () => {
-    console.log(answerTime, cart);
     const pack = {
       productType: productType,
       volume: volume,
@@ -190,6 +190,7 @@ const CategoryForm = (props) => {
   cart.length < 1 && dispatch(initPackage(userId));
 
   useEffect(() => {
+    console.log("стработал эффект");
     updateHours();
   }, [answerTime]);
 
@@ -336,13 +337,10 @@ const CategoryForm = (props) => {
                       <Field
                         type="radio"
                         name="hours"
-                        value="12"
+                        value={12}
                         id="12h"
-                        onClick={() => {
-                          setChecked(!checked);
-                        }}
                         onChange={changeRadioInputHours}
-                        checked={!checked}
+                        checked={checked === "12"}
                       />
                       <label htmlFor="12h" value="12">
                         12 hours
@@ -352,13 +350,10 @@ const CategoryForm = (props) => {
                       <Field
                         type="radio"
                         name="hours"
-                        value="24"
+                        value={24}
                         id="24h"
-                        onClick={() => {
-                          setChecked(!checked);
-                        }}
                         onChange={changeRadioInputHours}
-                        checked={checked}
+                        checked={checked === "24"}
                       />
                       <label htmlFor="24h" value="24">
                         24 hours
