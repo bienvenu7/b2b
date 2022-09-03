@@ -238,7 +238,7 @@ const CategoryForm = (props) => {
             onChange={props.change}
           >
             <div className="payment__form-block-container first">
-              {productType !== null && (
+              {productType.length > 0 && (
                 <>
                   <div className="payment__form-current_package_state-wrapper">
                     <div onClick={handleClose}>
