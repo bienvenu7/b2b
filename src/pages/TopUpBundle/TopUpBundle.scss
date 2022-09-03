@@ -6,7 +6,8 @@
 
         @include for-phone-only {
             max-width: 100vh;
-            overflow: hidden;
+            overflow-y: scroll;
+            overflow-x: hidden;
         }
     }
 
@@ -24,6 +25,14 @@
         &-nav {
             margin-top: 43px;
             margin-bottom: 6px;
+
+            .mobile-nav {
+                display: none;
+
+                @include for-phone-only {
+                    display: block;
+                }
+            }
 
             @include for-phone-only {
                 margin-top: 0;

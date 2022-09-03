@@ -135,9 +135,6 @@ const CategoryForm = (props) => {
                         </div>
                     </div>                   
                     </>}
-                    {/* <> */}
-                    <hr/>
-                    {/* </>} */}
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
 

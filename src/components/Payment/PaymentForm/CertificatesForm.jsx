@@ -157,7 +157,7 @@ const CertificatesForm = (props) => {
                 <div className="payment__form-block-container second">
                     <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
                     <div className="payment__form-elems-wrapper">
-                        <div ><Select components={{ DropdownIndicator }} classNamePrefix='custom-select second' placeholder='Please select option' options={options} onChange={handleChange} /></div>
+                        <div><Select components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} /></div>
                         {selectedValue === 'choose' &&
                             <div className="payment__form-elem number-wrapper" id="cert_count">
                                 <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />

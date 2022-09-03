@@ -12,6 +12,25 @@
             color: $c_b;
             overflow-x: hidden;
         }
+
+        .top {
+            max-width: 1021px;
+            margin: auto;
+            margin-top: 54px;
+
+            @include for-phone-only {
+                display: none;
+            }
+        }
+
+        .top-mobile {
+            display: none;
+
+            @include for-phone-only {
+                display: block;
+            }
+
+        }
     }
 
     &__nav {
@@ -55,6 +74,10 @@
             margin-top: 107px;
             display: flex;
             flex-direction: column;
+
+            @include for-phone-only {
+                margin-top: 21px;
+            }
         }
 
         &-container {

@@ -3,6 +3,11 @@
 .header{
     &-container{
         position: relative;
+        z-index: 9000000000;
+
+        @include for-phone-only {
+            z-index: 10;
+        }
     }
     &-wrapper{
         display: flex;
@@ -10,7 +15,6 @@
         justify-content: space-between;
         align-items: center;
         margin: auto;
-        margin-top: 54px;
         position: relative;
         @include for-phone-only{
             display: none;

@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import SvgSelector from '../../../common/icons/SvgSelector'
 import logo from '../../../common/images/logo-for-mobile.png'
 import { getBalanceThunk } from '../../../redux/thunks/authRequest-thunk'
-import Header from '../Header/Header'
+import Header from '../../Header/Header'
 
 const SuccessPageOrder = () => {
 
@@ -17,6 +18,8 @@ const SuccessPageOrder = () => {
     return(
         <div className="payment__success-wrapper">
             <div className="payment__success-container">
+                <div className='close'><SvgSelector id='cross-icon'/></div>
+                <div className='top'><Header/></div>
                 <div className='payment__success__logo'><img className='logoImage' src={logo} alt=''/></div>
                 <div className="payment__success__message-h1">it’S a success!</div>
                 <div className="payment__success__message-h2">Your authentication order was successful!</div>

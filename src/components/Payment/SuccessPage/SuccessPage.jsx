@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import logo from '../../../common/images/logo-for-mobile.png'
-import Header from '../Header/Header'
+import Navigation from '../../Navigation/Navigation'
+import Header from '../../Header/Header'
+import SvgSelector from '../../../common/icons/SvgSelector'
 
 const SuccessPage = () => {
 
@@ -8,8 +10,9 @@ const SuccessPage = () => {
 
     return (
         <div className="payment__success-wrapper">
-            <Header/>
             <div className="payment__success-container">
+                <div className='close'><SvgSelector id='cross-icon'/></div>
+                <div className='top'><Header/></div>
                 <div className='payment__success__logo'><img alt='' className='logoImage' src={logo} /></div>
                 <div className="payment__success__message-h1">it’S a success!</div>
                 <div className="payment__success__message-h2">Your bundle authentication order was successful!</div>

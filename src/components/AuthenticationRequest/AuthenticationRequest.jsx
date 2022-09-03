@@ -21,6 +21,7 @@ import {updateHoursPackage} from "../../redux/reducers/payment-reducer";
 import {getPriceThunk} from "../../redux/thunks/payment-thunk";
 import Dashboard from '../PersonalArea/Dashboard/Dashboard'
 import Header from "../Header/Header";
+import PersonalAreaLayout from '../PersonalArea/PersonalAreaLayout'
 
 const AuthenticationRequest = () => {
 
@@ -219,17 +220,18 @@ const AuthenticationRequest = () => {
 
     return (
         <>
-            <MobileHeader label='Authentication request' />
+            {/* <MobileHeader label='Authentication request' /> */}
             <div className="auth_request__wrapper">
-                <div className="auth_request__nav">
+                {/* <div className="auth_request__nav">
                     <div className='auth_request__nav-bar'>
                         <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentification' }]} />
                         <div className='auth_request__nav-label'>Authentification request</div>
                     </div>
                     <div className='auth_request__nav-bell'><SvgSelector id='bell' /></div>
 
-                </div>
-                <Header />
+                </div> */}
+                <div className='top'><Header /></div>
+                <div className='top-mobile'><PersonalAreaLayout/></div>
                 <div className="auth_request__container">
                     <div className="auth_request__logo">
                         <img src={logo} className='auth_request__logo-image' />
