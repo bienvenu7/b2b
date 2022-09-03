@@ -33,10 +33,61 @@ const CategoryForm = (props) => {
   const cart = useSelector(getUserTariffPackages);
   const categoryError = useSelector(getCategoryError);
   const cost = useSelector(getPrice);
-  const [answerTime, setAnswerTime] = useState(12);
-  const [productType, setProductType] = useState(null);
+  const [answerTime, setAnswerTime] = useState(24); // answerTime - NUMBER!!!!
+  const [productType, setProductType] = useState([]);
   const [productTypeVar, setProductTypeVar] = useState(null);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState("24");
+
+  //   const doubles = [
+  //     {
+  //       parent: "SNEAKERS_HYPE",
+  //       childs: ["SNEAKERS_HYPE","OTHER_SHOES_HYPE"],
+  //       publicName: "Hype shoes",
+  //     },
+  //     {
+  //       parent: "SNEAKERS_LUXURY",
+  //       childs: ["SNEAKERS_LUXURY","OTHER_SHOES_LUXURY"],
+  //       publicName: "Luxury shoes",
+  //     },
+  //   ];
+
+  //   const options2 = productTypes
+  //     .filter((item, index) => {
+  //       const doubleItem = doubles.find((item=>item.childs.indexOf(item.name))!=-1)
+  //       doubleItem
+  //     //   const doubleItem = doubles.find(
+  //     //     (itemDoub) => itemDoub.name === item.name
+  //     //   );
+  //     //   console.log({ doubleItem, index });
+  //     //   if (doubleItem && doubleItem.name != doubleItem.parent) return false;
+  //       else return true;
+  //     })
+  //     .map((item, index) => {
+  //       const doubleItem = doubles.find(
+  //         (itemDoub) => itemDoub.name === item.name
+  //       );
+  //       const parentItem = productType.find(
+  //         (itemProduct) => itemProduct.name == doubleItem.parent
+  //       );
+  //       const doubles = productType.filter
+  //       return {
+  //         value: {
+  //           id: parentItem ? parentItem.id : item.id,
+  //           doubles:
+  //         },
+  //         label: doubleItem ? doubleItem.publicName : item.publicName,
+  //       };
+  //     });
+  //   console.log({ options });
+
+  //   let single = {
+  //     id: "ec10993d-8e1b-42a6-9e61-65a6e2c2e292",
+  //     name: "SNEAKERS_HYPE",
+  //     publicName: "Sneakers: Hype",
+  //     __entity: "ProductType",
+  //   };
+
+  //   console.log({ productTypes });
 
   const options = [
     {
@@ -76,7 +127,7 @@ const CategoryForm = (props) => {
   const handleChange = (e, formik) => {
     setSelectedValue(e.value);
     dispatch(setCategoryError(null));
-    updateType(e.value, formik);
+    updateType(e.value, formik, "handle formik");
   };
 
   const handleChangeForNumeric = (e) => {
@@ -90,54 +141,58 @@ const CategoryForm = (props) => {
     props.getPrice(data);
   };
 
+  const changeRadioInputHours = (e) => {
+    console.log("value - это номер? ", e.target.value === typeof number);
+    setChecked(e.target.value);
+    setAnswerTime(Number(e.target.value)); // используем Number т.к прилетает в e.target.value - STRING
+  };
+
   const updateType = (e, typeOfShoes) => {
     setProductTypeVar(typeOfShoes);
     if (e != null) {
       let type = e !== 3 && e.types.single;
       if (e.name === "hypeShoes") {
-        typeOfShoes === "sneakers"
+        typeOfShoes === "sneakers" || !typeOfShoes
           ? (type = e.types.sneakers)
           : (type = e.types.other);
       } else if (e.name === "luxuryShoes") {
-        typeOfShoes === "sneakers"
+        typeOfShoes === "sneakers" || !typeOfShoes
           ? (type = e.types.sneakers)
           : (type = e.types.other);
+        console.log(type);
       }
-      e.value !== 3 &&
-        dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
+      //   e.value !== 3 &&
+      dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
       setProductType(type);
-
       const data = {
         productType: type,
         volume: volume,
         answerTime: answerTime,
       };
-      console.log("111");
-      console.log(answerTime, data);
       dispatch(getPriceThunk(data));
     }
   };
 
-  const updateHours = (value, data) => {
-    setAnswerTime(value);
+  const updateHours = () => {
     const pack = {
       productType: productType,
       volume: volume,
-      answerTime: value,
+      answerTime: answerTime,
     };
-    console.log(pack, value);
-
-    // dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
-    // dispatch(getPriceThunk(pack));
-    // props.cartTotal(data);
-    // setErrorForAnswerTime(null);
+    dispatch(
+      updateHoursPackage({ index: packageEditNumber, hours: answerTime })
+    );
+    dispatch(getPriceThunk(pack));
+    props.cartTotal(cart);
+    setErrorForAnswerTime(null);
   };
 
   cart.length < 1 && dispatch(initPackage(userId));
 
-  // useEffect(() => {
-  //   setAnswerTime(24);
-  // }, []);
+  useEffect(() => {
+    console.log("стработал эффект");
+    updateHours();
+  }, [answerTime]);
 
   useEffect(() => {
     const data = {
@@ -234,7 +289,11 @@ const CategoryForm = (props) => {
                       <Field
                         type="radio"
                         name="typeOfShoes"
-                        checked={productTypeVar === "sneakers" ? true : false}
+                        checked={
+                          productTypeVar === "sneakers" // || !productTypeVar
+                            ? true
+                            : false
+                        }
                         value="sneakers"
                         id="sneakers"
                         className="custom-radio"
@@ -278,14 +337,10 @@ const CategoryForm = (props) => {
                       <Field
                         type="radio"
                         name="hours"
-                        value="12"
+                        value={12}
                         id="12h"
-                        onClick={() => {
-                          setChecked(!checked);
-                          // setAnswerTime(12);
-                          updateHours(12, cart);
-                        }}
-                        checked={!checked}
+                        onChange={changeRadioInputHours}
+                        checked={checked === "12"}
                       />
                       <label htmlFor="12h" value="12">
                         12 hours
@@ -295,14 +350,10 @@ const CategoryForm = (props) => {
                       <Field
                         type="radio"
                         name="hours"
-                        value="24"
+                        value={24}
                         id="24h"
-                        onClick={() => {
-                          setChecked(!checked);
-                          // setAnswerTime(24);
-                          updateHours(24, cart);
-                        }}
-                        checked={checked}
+                        onChange={changeRadioInputHours}
+                        checked={checked === "24"}
                       />
                       <label htmlFor="24h" value="24">
                         24 hours
