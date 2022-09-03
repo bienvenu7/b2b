@@ -36,7 +36,6 @@ const CategoryForm = (props) => {
   const [answerTime, setAnswerTime] = useState(12);
   const [productType, setProductType] = useState(null);
   const [productTypeVar, setProductTypeVar] = useState(null);
-  const [checked, setChecked] = useState(true);
 
   const options = [
     {
@@ -106,38 +105,31 @@ const CategoryForm = (props) => {
       e.value !== 3 &&
         dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
       setProductType(type);
-
       const data = {
         productType: type,
         volume: volume,
         answerTime: answerTime,
       };
-      console.log("111");
-      console.log(answerTime, data);
       dispatch(getPriceThunk(data));
     }
   };
 
   const updateHours = (value, data) => {
-    setAnswerTime(value);
     const pack = {
       productType: productType,
       volume: volume,
       answerTime: value,
     };
-    console.log(pack, value);
-
-    // dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
-    // dispatch(getPriceThunk(pack));
-    // props.cartTotal(data);
-    // setErrorForAnswerTime(null);
+    setAnswerTime(value);
+    dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
+    dispatch(getPriceThunk(pack));
+    props.cartTotal(data);
+    setErrorForAnswerTime(null);
   };
 
   cart.length < 1 && dispatch(initPackage(userId));
 
-  // useEffect(() => {
-  //   setAnswerTime(24);
-  // }, []);
+  useEffect(() => {}, [props.but]);
 
   useEffect(() => {
     const data = {
@@ -204,11 +196,15 @@ const CategoryForm = (props) => {
                       </div>
                     </div>
                   </div>
+                  {/*<hr style={{background: '#E1E1E1',
+                        height: '0.7px',
+                        border: '0',
+                        width: '608px',
+                        margin: '0 auto',
+                        padding: '0',
+                        marginLeft: '-33px'}}/>*/}
                 </>
               )}
-              {/* <> */}
-              <hr />
-              {/* </>} */}
               <label htmlFor="category" className="payment__form-label">
                 Choose the category
               </label>
@@ -275,36 +271,21 @@ const CategoryForm = (props) => {
                   </label>
                   <div className="payment__form-elem hours">
                     <div className="payment__form-radio_btn">
-                      <Field
-                        type="radio"
-                        name="hours"
-                        value="12"
-                        id="12h"
-                        onClick={() => {
-                          setChecked(!checked);
-                          // setAnswerTime(12);
-                          updateHours(12, cart);
-                        }}
-                        checked={!checked}
-                      />
-                      <label htmlFor="12h" value="12">
+                      <Field type="radio" name="hours" value="12" id="12h" />
+                      <label
+                        htmlFor="12h"
+                        onClick={() => updateHours(12, cart)}
+                      >
                         12 hours
                       </label>
                     </div>
                     <div className="payment__form-radio_btn">
-                      <Field
-                        type="radio"
-                        name="hours"
+                      <Field type="radio" name="hours" value="24" id="24h" />
+                      <label
+                        htmlFor="24h"
+                        onClick={() => updateHours(24, cart)}
                         value="24"
-                        id="24h"
-                        onClick={() => {
-                          setChecked(!checked);
-                          // setAnswerTime(24);
-                          updateHours(24, cart);
-                        }}
-                        checked={checked}
-                      />
-                      <label htmlFor="24h" value="24">
+                      >
                         24 hours
                       </label>
                     </div>
