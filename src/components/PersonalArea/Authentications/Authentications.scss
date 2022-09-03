@@ -1,5 +1,14 @@
 @import '../../../scss/vars';
 
+
+.top {
+    margin-top: 54px;
+
+    @include for-phone-only {
+        margin-top: 0;
+    }
+}
+
 .authent {
     &-container {
         color: $c_o;

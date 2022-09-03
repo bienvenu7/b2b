@@ -260,7 +260,7 @@ const Authentications = (props) => {
     } else {
 
     return (
-        <>
+        <div className="top">
             <PersonalAreaLayout>
                 <div className='authent-container'>
                     <div className='authent__buttons-wrapper desktop'>
@@ -385,7 +385,7 @@ const Authentications = (props) => {
                     </div>
                 </div>
             </PersonalAreaLayout>
-        </>
+        </div>
     )}
 }
 

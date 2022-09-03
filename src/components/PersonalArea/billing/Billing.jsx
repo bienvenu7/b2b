@@ -42,7 +42,7 @@ const infos = [
 
 const Billing = () => {
   return (
-    <>
+    <div className='top'>
         <PersonalAreaLayout>
             <div className="billing-container">
                 <div className="billing-header">
@@ -63,7 +63,7 @@ const Billing = () => {
                 </div>
             </div>
         </PersonalAreaLayout>
-    </>
+    </div>
   )
 }
 
