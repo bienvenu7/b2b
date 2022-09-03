@@ -146,53 +146,15 @@ const CategoryForm = (props) => {
     setAnswerTime(e.target.value);
   };
 
-  const changeRadioInputType = (e) => {
-    console.log(e);
-    setProductTypeVar(e.target.value);
-  };
-
-  // const updateType = () => {
-  //   if (selectedValue != null) {
-  //     //   let type = selectedValue !== 3 && selectedValue.types.single;
-  //     let type;
-  //     if (selectedValue.name === "hypeShoes") {
-  //       productTypeVar === "sneakers" // заменить на productTypeVar
-  //         ? (type = selectedValue.types.sneakers) // e заменить на selectedValue
-  //         : (type = selectedValue.types.other);
-  //     } else if (selectedValue.name === "luxuryShoes") {
-  //       productTypeVar === "sneakers"
-  //         ? (type = selectedValue.types.sneakers)
-  //         : (type = selectedValue.types.other);
-  //     }
-  //     selectedValue.value !== 3 &&
-  //       dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
-  //     setProductType(type);
-
-  //     const data = {
-  //       productType: type,
-  //       volume: volume,
-  //       answerTime: answerTime,
-  //     };
-  //     dispatch(getPriceThunk(data));
-  //   }
-  // };
-
-  const updateType = (e, typeOfShoes, fromWhere = "unknow") => {
-    console.log({ fromWhere });
-    console.log("typeOfShoes: ", typeOfShoes);
-    console.log("e: ", e);
+  const updateType = (e, typeOfShoes) => {
     setProductTypeVar(typeOfShoes);
     if (e != null) {
       let type = e !== 3 && e.types.single;
-      console.log("результат непонятного условия: ", e !== 3 && e.types.single);
-      console.log("type перед условиями = ", type);
       if (e.name === "hypeShoes") {
-        console.log(fromWhere);
-        typeOfShoes === "sneakers" || !typeOfShoes // заменить на productTypeVar
-          ? (type = e.types.sneakers) // e заменить на selectedValue
+        typeOfShoes === "sneakers" || !typeOfShoes
+          ? (type = e.types.sneakers)
           : (type = e.types.other);
       } else if (e.name === "luxuryShoes") {
-        console.log(fromWhere);
         typeOfShoes === "sneakers" || !typeOfShoes
           ? (type = e.types.sneakers)
           : (type = e.types.other);
@@ -200,26 +162,15 @@ const CategoryForm = (props) => {
       }
       //   e.value !== 3 &&
       dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
-
       setProductType(type);
-
       const data = {
         productType: type,
         volume: volume,
         answerTime: answerTime,
       };
-      console.log(data);
       dispatch(getPriceThunk(data));
     }
   };
-
-  //   console.log(
-  //     "сравнение ",
-  //     "ProductType: ",
-  //     productType,
-  //     "ProductTypeVar: ",
-  //     productTypeVar
-  //   );
 
   const updateHours = () => {
     console.log(answerTime, cart);
@@ -241,10 +192,6 @@ const CategoryForm = (props) => {
   useEffect(() => {
     updateHours();
   }, [answerTime]);
-
-  //   useEffect(() => {
-  //     updateType();
-  //   }, [productTypeVar]);
 
   useEffect(() => {
     const data = {
@@ -350,14 +297,8 @@ const CategoryForm = (props) => {
                         id="sneakers"
                         className="custom-radio"
                         onChange={(e) => {
-                          updateType(
-                            selectedValue,
-                            e.target.value,
-                            "radio change"
-                          );
+                          updateType(selectedValue, e.target.value);
                         }}
-                        // onClick={() => console.log(selectedValue)}
-                        // onChange={changeRadioInputType}
                       />
                       <label htmlFor="sneakers">Sneakers</label>
                       {/*<div className="payment__form-radio_btn_types-label">Sneakers</div>*/}
@@ -371,11 +312,7 @@ const CategoryForm = (props) => {
                         id="other"
                         className="custom-radio"
                         onChange={(e) => {
-                          updateType(
-                            selectedValue,
-                            e.target.value,
-                            "radio change 2"
-                          );
+                          updateType(selectedValue, e.target.value);
                         }}
                       />
                       <label htmlFor="other" id="otherlabel">
