@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
 import { takeBalance } from "../../redux/selectors/authRequest-selectors";
-import "./Balance.scss";
+import { useEffect } from "react";
+import "./Balance1.scss";
 
 const Balance = (props) => {
   const balance = useSelector(takeBalance);
+  useEffect(() => {}, [balance]);
 
   return (
     <>
       <div className="balance-container">
-        <div className="balance-title">
-          Your authentication balance
-          <hr />
-        </div>
+        <div className="balance-title">Your authentication balance</div>
+        <hr />
         {balance.length > 0 && (
           <div className="balance__elems-wrapper">
             {balance.map(
@@ -21,18 +21,29 @@ const Balance = (props) => {
                     <div className="balance__elem-title">
                       {el.productType.publicName}
                     </div>
-                    <div className="balance__elem-hours">
-                      {el.answerTime + " hours"}
-                    </div>
+                    {el.answerTime && (
+                      <div className="balance__elem-hours">
+                        {el.answerTime + " hours"}
+                      </div>
+                    )}
                     <div className="balance__elem-volume">{el.volume}</div>
                   </div>
                 )
             )}
           </div>
         )}
-        {/* <div className="balance__buttons-wrapper">
-          <button className="balance-button top">Top up now</button>
+        <div className="balance__buttons-wrapper">
+          <button className="balance-button top-button">Top up now</button>
           <button className="balance-button">New authentication</button>
+        </div>
+        {/* <div className="auth__balance__elem">
+          <div className="auth__balance__elem-button">Top up now</div>
+          <div
+            // style={{ display: "none" }}
+            className="auth__balance__elem-button"
+          >
+            New Authentication
+          </div>
         </div> */}
       </div>
     </>

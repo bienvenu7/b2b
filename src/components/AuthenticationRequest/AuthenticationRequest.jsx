@@ -4,6 +4,7 @@ import Select from "react-select";
 import logo from "../../common/images/logo-for-mobile.png";
 import SvgSelector from "../../common/icons/SvgSelector";
 import AuthBalance from "../Payment/AuthBalance/AuthBalance";
+import Balance from "../Balance/Balance";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypesOfProduct } from "../../redux/selectors/product-selectors";
 import { useState } from "react";
@@ -327,7 +328,7 @@ const AuthenticationRequest = () => {
             <SvgSelector id="bell" />
           </div>
         </div>
-        <Header />
+        {/* <Header /> */}
         <div className="auth_request__container">
           <div className="auth_request__logo">
             <img src={logo} className="auth_request__logo-image" />
@@ -460,7 +461,8 @@ const AuthenticationRequest = () => {
                   </div>
                 </div>
                 <div className="auth_request__form-container-wrapper second">
-                  <AuthBalance mt={0} />
+                  {/* <AuthBalance mt={0} /> */}
+                  <Balance />
                 </div>
               </div>
               <div className="auth_request__form-container second">
