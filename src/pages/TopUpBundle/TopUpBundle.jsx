@@ -82,8 +82,6 @@ const TopUpBundle = (props) => {
       }, 1000)
     );
   };
-
-<<<<<<< HEAD
   return (
     <>
       <div className="top_up_bundle-container">
