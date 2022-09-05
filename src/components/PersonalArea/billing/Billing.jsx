@@ -39,7 +39,6 @@ const infos = [
 
 const Billing = () => {
   return (
-<<<<<<< HEAD
     <>
       <PersonalAreaLayout>
         <div className="billing-container">
@@ -62,31 +61,4 @@ const Billing = () => {
     </>
   );
 };
-=======
-    <div className='top'>
-        <PersonalAreaLayout>
-            <div className="billing-container">
-                <div className="billing-header">
-                    Payment History
-                </div>
-                <div className="billing-table">
-                    <div className="billing-table_header">
-                        <div className="billing-date">Date</div>
-                        <div className="billing-reference">reference</div>
-                        <div className="billing-method">Method</div>
-                        <div className="billing-price">price</div>
-                    </div>
-                    {infos.map((info, index) =>
-                    <div key={index} className='billing-table-cards'>
-                        <CardLine item={info}/>
-                    </div>    
-                    )}
-                </div>
-            </div>
-        </PersonalAreaLayout>
-    </div>
-  )
-}
->>>>>>> b0332b9a35824a366f2d09db5ea538b52b4118f9
-
 export default Billing;
