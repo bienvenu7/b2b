@@ -112,28 +112,6 @@ const PhotoRequests = (props) => {
     }
   }
 
-const [isOpen, setIsOpen] = useState(false)
-    const [elem, setElem] = useState(null)
-
-    function closeModal() {
-        setIsOpen(false);
-    }
-
-    function openModal(el) {
-        setIsOpen(true);
-        setElem(el)
-    }
-
-
-    function getDate(data, version){
-        const date = new Date(data)
-        if (version === 'desktop'){
-        return date.getDate() + '/' + Number(date.getMonth() + 1) + '/' + date.getYear()
-        } else if (version === 'mobile'){
-            return date.getHours() + ':' + date.getMinutes() + '·' + date.getDate() + '/' + Number(date.getMonth() + 1) + '/' + date.getYear()
-        }
-    }
-
     return (
         <>
             {isOpen && <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={elem}/>}
