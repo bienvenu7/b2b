@@ -1,12 +1,12 @@
 @import '../../../scss/vars';
 
-// .top {
-//     margin-top: 54px;
+.top {
+    margin-top: 54px;
 
-//     @include for-phone-only {
-//         margin-top: 0;
-//     }
-// }
+    @include for-phone-only {
+        margin-top: 0;
+    }
+}
 
 .photo_requests {
     &-container {
