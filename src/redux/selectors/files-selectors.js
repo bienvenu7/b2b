@@ -1,3 +1,3 @@
 export const getCertificateLink = (state) => {
-    return state.files.certificateLink
-}
+  return state.files.certificateLink;
+};
