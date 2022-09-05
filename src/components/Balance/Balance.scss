@@ -46,17 +46,19 @@
         &-title {
             font-family: 'Roboto';
             font-style: normal;
-            font-weight: 300;
+            font-weight: 400;
             font-size: 14px;
             line-height: 140%;
-            width: auto;
-            white-space: pre-wrap;
+            width: 100px;
+            white-space: pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         &-hours {
             font-family: 'Roboto';
             font-style: normal;
-            font-weight: 300;
+            font-weight: 400;
             font-size: 12px;
             line-height: 140%;
             background: #F0DDB9;

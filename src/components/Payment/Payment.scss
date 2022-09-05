@@ -152,6 +152,8 @@
             padding-left: 6px;
         }
 
+        //react input number
+
         .react-numeric-input {
             display: block !important;
             max-width: 219px !important;
@@ -164,12 +166,17 @@
             b {
                 //right: 27px !important;
                 width: 24px !important;
-                height: 16px !important;
+                height: 18px !important;
                 background: $c_w  !important;
                 border-radius: 2px !important;
                 border: 0px !important;
                 box-shadow: none !important;
                 inset: 18px auto 2px 57px !important;
+                background-color: transparent !important;
+
+                i {
+                    color: rgba(203, 173, 115, 1) !important;
+                }
 
                 @include for-phone-only {
                     inset: 24px auto 2px 167px !important;
@@ -193,7 +200,7 @@
                 }
 
                 &:hover {
-                    background-color: $c_gray  !important;
+                    background-color: rgba(203, 173, 115, 0.54)  !important;
                 }
             }
         }
@@ -215,9 +222,25 @@
 
             &.second {
 
-                @include for-phone-only {
-                    margin-bottom: 40px;
+                .custom-select__control {
+                    width: 340px;
+
+                    @include for-phone-only {
+                        width: calc(100vw - 21px);
+                    }
                 }
+
+
+                @include for-phone-only {
+                    margin-top: 21px;
+                    margin-bottom: 40px;
+
+                    .payment__form-elems-wrapper {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+
             }
         }
 
@@ -225,6 +248,15 @@
             //max-width: 800px;
             @include for-phone-only {
                 width: 100vw;
+            }
+
+            hr {
+                width: 609px;
+                margin-left: 80px;
+
+                @include for-phone-only {
+                    margin-left: 0;
+                }
             }
         }
 
@@ -460,6 +492,8 @@
 
 
                 @include for-phone-only {
+                    width: 155px;
+                    height: 43px;
                     border-radius: 4px !important;
                     border-color: $c_g  !important;
                 }
@@ -471,11 +505,11 @@
                     color: $c_o;
 
                     @include for-phone-only {
-                        gap: 20px;
+                        gap: 15px;
                     }
 
                     &#cert_count {
-                        //margin-top: 29px;
+                        // margin-top: 29px;
                     }
                 }
             }
@@ -491,8 +525,9 @@
 
                 @include for-phone-only {
                     font-family: 'SF Pro Display Medium';
-                    font-weight: 400;
                     color: $c_b;
+                    font-style: normal;
+                    font-weight: 400;
                     font-size: 16px;
                     line-height: 19px;
                     width: 100%;
@@ -717,7 +752,7 @@
         &-wrapper {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
 
             @include for-phone-only {
@@ -730,17 +765,44 @@
             flex-direction: column;
             align-items: center;
 
+            .close {
+                display: none;
+
+                @include for-phone-only {
+                    display: flex;
+                    align-self: flex-end;
+                    margin-top: 24px;
+                    margin-bottom: 48px;
+                }
+            }
+
+            .top {
+                margin-top: 54px;
+                margin-bottom: 130px;
+
+                @include for-phone-only {
+                    display: none;
+                }
+
+            }
+
             @include for-phone-only {
                 padding: 0 23px;
             }
         }
 
         &__logo {
-            display: none;
+            width: 190px;
+            height: 141px;
+            margin-bottom: 68px;
+
+            img {
+                width: 100%;
+            }
 
             @include for-phone-only {
-                display: block;
-                padding: 100px 0 81px 0;
+                width: 84px;
+                height: 62px;
             }
         }
 
@@ -749,10 +811,10 @@
                 font-family: 'Roboto';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 42.8475px;
+                font-size: 40px;
                 line-height: 140%;
                 text-transform: uppercase;
-                margin-bottom: 57px;
+                margin-bottom: 51px;
 
                 @include for-phone-only {
                     display: none;
@@ -763,9 +825,11 @@
                 font-family: 'Roboto';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 34.278px;
+                font-size: 28px;
                 line-height: 140%;
                 text-align: center;
+                color: #565656;
+
 
                 @include for-phone-only {
                     font-family: 'SF Pro Display Medium';
@@ -773,6 +837,7 @@
                     font-weight: 700;
                     font-size: 24px;
                     line-height: 29px;
+                    color: rgba(0, 0, 0, 1);
                 }
 
                 &.last-child {
@@ -808,29 +873,42 @@
                 gap: 31px;
                 display: flex;
                 flex-direction: column;
+                padding-bottom: 50px;
+
+                @include for-phone-only {
+                    margin-top: 65px;
+                }
             }
 
             &-elem {
                 font-family: 'Roboto';
                 font-style: normal;
-                font-weight: 700;
-                font-size: 25px;
+                font-weight: 400;
+                font-size: 18px;
                 line-height: 140%;
-                background: $c_g;
-                text-align: center;
-                border-radius: 15.8px;
-                padding: 23px 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #CBAD73;
                 color: $c_w;
+                border-radius: 4px;
                 cursor: pointer;
                 text-decoration: none;
+                width: 399px;
+                height: 56px;
 
                 @include for-phone-only {
-                    border-radius: 4px;
-                    max-height: 43px;
+                    width: 274px;
+                    height: 43px;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 140%;
                 }
 
                 &:last-child {
-                    background: rgba(203, 173, 115, 0.71);
+                    background: transparent;
+                    border: 1px solid #CBAD73;
+                    color: #CBAD73;
 
                     @include for-phone-only {
                         background: $c_w;
@@ -890,8 +968,11 @@
             font-weight: 300;
             font-size: 14px;
             line-height: 140%;
-            max-width: 65px;
-            width: 100%;
+            min-width: 120px;
+            max-width: 120px;
+            text-overflow: ellipsis;
+            height: 20px;
+            overflow: hidden;
         }
 
         &-count {

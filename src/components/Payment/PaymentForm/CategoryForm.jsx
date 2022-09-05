@@ -221,6 +221,7 @@ const CategoryForm = (props) => {
     setVolume(1);
   }
 
+<<<<<<< HEAD
   return (
     <>
       <Formik
@@ -244,6 +245,106 @@ const CategoryForm = (props) => {
                   <div className="payment__form-current_package_state-wrapper">
                     <div onClick={handleClose}>
                       <SvgSelector id="xmark" />
+=======
+    const updateHours = (value, data) =>{
+        const pack = {productType: productType, volume: volume, answerTime: value}
+        setAnswerTime(value)
+        dispatch(updateHoursPackage({index: packageEditNumber,hours:value}))
+        dispatch(getPriceThunk(pack))
+        props.cartTotal(data)
+        setErrorForAnswerTime(null)
+    }
+
+    cart.length < 1 && dispatch(initPackage(userId))
+
+    useEffect(() => {
+
+    }, [props.but])
+
+    useEffect(() => {
+        const data = {
+            userTariffPackages: cart
+        }
+        cart.length > 0 && props.cartTotal(data)
+    }, [cart])
+
+    let but = props.but
+
+    const handlePost = (formik) => {
+        if (formik.values.hours !== '0'){
+            setPackageEdit(packageEditNumber+1)
+            dispatch(initPackage(userId))
+            dispatch(pushTotal(cost.package))
+            setVolume(1)
+        }
+        formik.values.hours = '0'
+        handleClose()
+    }
+
+    function handleClose(){
+        setProductType(null)
+        setSelectedValue('')
+        setProductTypeVar(null)
+        setVolume(1)
+    }
+
+    return (<>
+        <Formik
+            initialValues={{ hours: '0', typeOfShoes: '' }}
+            validate={values => {
+
+            }}
+            change={() => {
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+                setSubmitting(false);
+            }}
+        >
+            {(props) => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
+                <div className="payment__form-block-container first">
+                {productType !== null && <><div className="payment__form-current_package_state-wrapper">
+                        <div onClick={handleClose}><SvgSelector id='xmark' /></div>
+                        <div className="payment__form-current_package_state" >
+                            <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName 
+                            : productTypeVar ? productTypeVar === 'sneakers' ? selectedValue.types.sneakers.publicName : selectedValue.types.other.publicName : '' }</div>
+                            <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
+                        </div>
+                    </div>                   
+                    </>}
+                    <label htmlFor="category" className="payment__form-label">Choose the category</label>
+                    <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
+
+                    {(selectedValue.name === 'hypeShoes' || selectedValue.name === "luxuryShoes") && <div className="payment__form-elem shoes-vars">
+                        <label htmlFor="types" className="payment__form-label">Choose the shoes type</label>
+
+                        <div className="payment__form-radio_btn_types-container">
+                            <div className="payment__form-radio_btn_types" id="types">
+                                <Field type="radio" name="typeOfShoes" checked={productTypeVar === 'sneakers' ? true : false} value="sneakers" id="sneakers" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
+                                <label htmlFor="sneakers">Sneakers</label>
+                                {/*<div className="payment__form-radio_btn_types-label">Sneakers</div>*/}
+                            </div>
+                            <div className="payment__form-radio_btn_types">
+                                <Field type="radio" name="typeOfShoes" checked={productTypeVar === 'other' ? true : false} value="other" id="other" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
+                                <label htmlFor="other" id="otherlabel">Other</label>
+                                {/*<label htmlFor="other" className="payment__form-radio_btn_types-label">Other</label>*/}
+                            </div>
+                        </div>
+                    </div>}
+                    {categoryError != null && <div className="payment__form-error">{categoryError}</div>}
+                    <div className="payment__form-second_block-wrapper">
+                        <div className="payment__form-elem__hours-wrapper">
+                    <label htmlFor="hours" className="payment__form-label">Choose answer time</label>
+                    <div className="payment__form-elem hours">
+                        <div className="payment__form-radio_btn">
+                            <Field type="radio" name="hours" value="12" id="12h" />
+                            <label htmlFor="12h" onClick={()=>updateHours(12, cart)}>12 hours</label>
+                        </div>
+                        <div className="payment__form-radio_btn">
+                            <Field type="radio" name="hours" value="24" id="24h"/>
+                            <label htmlFor="24h" onClick={()=>updateHours(24, cart)} value="24">24 hours</label>
+                        </div>
+                        {errorsForAnswerTime != null && <div className="payment__form-errors">{errorsForAnswerTime}</div>}
+>>>>>>> b0332b9a35824a366f2d09db5ea538b52b4118f9
                     </div>
                     <div className="payment__form-current_package_state">
                       <div className="payment__form-current_package_state-name">

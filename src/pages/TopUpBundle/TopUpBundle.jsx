@@ -17,7 +17,6 @@ import Summary from "../../components/Summary/Summary";
 import logo from "../../common/images/logo-for-mobile.png";
 import RigthSide from "../../components/Payment/RightSide/RightSide";
 import Header from "../../components/Payment/Header/Header";
-
 import Header1 from "../../components/Header/Header";
 import Navigation from "../../components/Navigation/Navigation";
 import SvgSelector from "../../common/icons/SvgSelector";
@@ -84,6 +83,7 @@ const TopUpBundle = (props) => {
     );
   };
 
+<<<<<<< HEAD
   return (
     <>
       <div className="top_up_bundle-container">

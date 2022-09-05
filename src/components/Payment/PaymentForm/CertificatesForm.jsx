@@ -181,6 +181,7 @@ const CertificatesForm = (props) => {
           onChange={props.handleChange}
           onSubmit={props.handleSubmit}
         >
+<<<<<<< HEAD
           <div className="payment__form-block-container second">
             <label htmlFor="certificates" className="payment__form-label">
               Authenticity Certificates
@@ -211,6 +212,24 @@ const CertificatesForm = (props) => {
                   <div className="payment__form-elem info">
                     ${cost.certificate / 100}&nbsp;per certificate
                   </div>
+=======
+            {props => (<Form className="payment__form" onChange={props.handleChange} onSubmit={props.handleSubmit}>
+                <div className="payment__form-block-container second">
+                    <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
+                    <div className="payment__form-elems-wrapper">
+                        <div><Select components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} /></div>
+                        {selectedValue === 'choose' &&
+                            <div className="payment__form-elem number-wrapper" id="cert_count">
+                                <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
+                                <div className="payment__form-elem info">${cost.certificate / 100}&nbsp;per certificate</div></div>}
+                                <div className="payment__form-elem number-wrapper">
+                    </div>        
+                    </div>
+                    <div className="payment__form-elem upload">
+                        <div className="payment__form-elem upload-btn">Upload logo</div>
+                        <div className="payment__form-elem upload-info">It will be added to the certificates</div>
+                    </div>
+>>>>>>> b0332b9a35824a366f2d09db5ea538b52b4118f9
                 </div>
               )}
               <div className="payment__form-elem number-wrapper"></div>

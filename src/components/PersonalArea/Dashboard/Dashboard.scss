@@ -39,6 +39,7 @@
         &.fixed {
             @include for-phone-only {
                 position: fixed;
+                z-index: 900000000000000000;
             }
         }
     }
@@ -48,6 +49,8 @@
         min-width: calc(226px - 28px);
         padding: 38px 14px;
         padding-top: 0;
+        overflow-x: hidden;
+        overflow-y: scroll;
 
         @include for-phone-only{
             padding: 93px 21px 0 17px;

@@ -34,6 +34,7 @@ import { updateHoursPackage } from "../../redux/reducers/payment-reducer";
 import { getPriceThunk } from "../../redux/thunks/payment-thunk";
 import Dashboard from "../PersonalArea/Dashboard/Dashboard";
 import Header from "../Header/Header";
+import PersonalAreaLayout from "../PersonalArea/PersonalAreaLayout";
 
 const AuthenticationRequest = () => {
   const dispatch = useDispatch();
