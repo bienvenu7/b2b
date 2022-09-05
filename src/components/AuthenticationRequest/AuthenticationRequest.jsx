@@ -477,6 +477,8 @@ const AuthenticationRequest = () => {
                 )}
 
                 <div className="auth_request__form__photo-container">
+                  {console.log("productTypeValue: ", productTypeValue)}
+                  {console.log("photoFiles: ", photoFiles)}
                   {productTypeValue &&
                     photoFiles.map((el, index) => (
                       <div
@@ -506,6 +508,7 @@ const AuthenticationRequest = () => {
                                 : "auth_request__form__photo-photolabel"
                             }
                           >
+                            {el.necessity}
                             <input
                               className={`auth_request__form__photo-fileInput ${index}`}
                               accept=".png,.jpg,.jpeg"
