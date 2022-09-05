@@ -469,6 +469,7 @@ const AuthenticationRequest = () => {
                 >
                   Upload photos
                 </div>
+                {console.log("photoError: ", photoError)}
                 {photoError && (
                   <div className="auth_request__form-desc">
                     Required fields are outlined, please fill them up if details
