@@ -66,6 +66,7 @@ const PhotoRequests = (props) => {
     return (
         <>
             {isOpen && <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={elem}/>}
+            <div className="top">
             <PersonalAreaLayout>
                 <div className="photo_requests-container">
                     <div className="photo_requests-wrapper">
@@ -98,6 +99,7 @@ const PhotoRequests = (props) => {
                     </div>
                 </div>
             </PersonalAreaLayout>
+            </div>
         </>
     )
 }
