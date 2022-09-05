@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { takeBalance } from "../../redux/selectors/authRequest-selectors";
 import { useEffect } from "react";
-import "./Balance1.scss";
+import "./Balance.scss";
 
 const Balance = (props) => {
   const balance = useSelector(takeBalance);
@@ -32,10 +32,10 @@ const Balance = (props) => {
             )}
           </div>
         )}
-        <div className="balance__buttons-wrapper">
+        {/* <div className="balance__buttons-wrapper">
           <button className="balance-button top-button">Top up now</button>
           <button className="balance-button">New authentication</button>
-        </div>
+        </div> */}
         {/* <div className="auth__balance__elem">
           <div className="auth__balance__elem-button">Top up now</div>
           <div
