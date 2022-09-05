@@ -112,92 +112,45 @@ const PhotoRequests = (props) => {
     }
   }
 
-  return (
-    <>
-      {isOpen && (
-        <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={elem} />
-      )}
-      <PersonalAreaLayout>
-        <div className="photo_requests-container">
-          <div className="photo_requests-wrapper">
-            <div className="photo_requests-label">Photo requests</div>
-            <div className="photo_requests__table">
-              <div className="photo_requests__table__label-wrapper">
-                <div className="photo_requests__table__label__elem-category">
-                  Item category
+    return (
+        <>
+            {isOpen && <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={elem}/>}
+            <div className="top">
+            <PersonalAreaLayout>
+                <div className="photo_requests-container">
+                    <div className="photo_requests-wrapper">
+                        <div className="photo_requests-label">Photo requests</div>
+                        <div className="photo_requests__table">
+                            <div className="photo_requests__table__label-wrapper">
+                                <div className="photo_requests__table__label__elem-category">Item category</div>
+                                <div className="photo_requests__table__label__elem-brand">Brand</div>
+                                <div className="photo_requests__table__label__elem-date">Submission date</div>
+                                <div className="photo_requests__table__label__elem-required">Required photos</div>
+                            </div>
+                            {products !== null && products.map((el, index) =>
+                                <div key={index} className="photo_requests__table__elem">
+                                    {console.log(el.files)}
+                                    <div className="photo_requests__table__elem__category" onClick={() => navigate(`../request/${el.id}`)}>
+                                        <div className="photo_requests__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el.files)})` }}></div>
+                                        <div className="photo_requests__table__elem__category-button" onClick={()=>openModal(el)}>Upload photos</div>
+                                        <div className="photo_requests__table__elem__category-label">{el.productType.publicName}</div>
+                                        <div className="photo_requests__table__elem__category-number">#{el.publicId}</div>
+                                        <div className="photo_requests__table__elem__category-date">{getDate(el.createdAt, 'mobile')}</div>
+                                    </div>
+                                    <div className="photo_requests__table__elem-brand">{el.brand.publicName}</div>
+                                    <div className="photo_requests__table__elem-date">{getDate(el.createdAt, 'desktop')}</div>
+                                    <div className="photo_requests__table__elem-required">{getReasons(el.reasons,'desktop')}</div>
+                                    <div className="photo_requests__table__elem-required__mobile">{getReasons() && getReasons(el.reasons,'mobile').map((el,index)=>
+                                    <div key={index} className="photo_requests__table__elem-required__mobile-elem">{el}</div>)}</div>
+                                    <div className="photo_requests__table__elem-button" onClick={()=>openModal(el)}>Upload</div>
+                                </div>)}
+                        </div>
+                    </div>
                 </div>
-                <div className="photo_requests__table__label__elem-brand">
-                  Brand
-                </div>
-                <div className="photo_requests__table__label__elem-date">
-                  Submission date
-                </div>
-                <div className="photo_requests__table__label__elem-required">
-                  Required photos
-                </div>
-              </div>
-              {products !== null &&
-                products.map((el, index) => (
-                  <div key={index} className="photo_requests__table__elem">
-                    {console.log(el.files)}
-                    <div
-                      className="photo_requests__table__elem__category"
-                      onClick={() => navigate(`../request/${el.id}`)}
-                    >
-                      <div
-                        className="photo_requests__table__elem__category-image"
-                        style={{ background: `url(${getPhotoUrl(el.files)})` }}
-                      ></div>
-                      <div
-                        className="photo_requests__table__elem__category-button"
-                        onClick={() => openModal(el)}
-                      >
-                        Upload photos
-                      </div>
-                      <div className="photo_requests__table__elem__category-label">
-                        {el.productType.publicName}
-                      </div>
-                      <div className="photo_requests__table__elem__category-number">
-                        #{el.publicId}
-                      </div>
-                      <div className="photo_requests__table__elem__category-date">
-                        {getDate(el.createdAt, "mobile")}
-                      </div>
-                    </div>
-                    <div className="photo_requests__table__elem-brand">
-                      {el.brand.publicName}
-                    </div>
-                    <div className="photo_requests__table__elem-date">
-                      {getDate(el.createdAt, "desktop")}
-                    </div>
-                    <div className="photo_requests__table__elem-required">
-                      {getReasons(el.reasons, "desktop")}
-                    </div>
-                    <div className="photo_requests__table__elem-required__mobile">
-                      {getReasons() &&
-                        getReasons(el.reasons, "mobile").map((el, index) => (
-                          <div
-                            key={index}
-                            className="photo_requests__table__elem-required__mobile-elem"
-                          >
-                            {el}
-                          </div>
-                        ))}
-                    </div>
-                    <div
-                      className="photo_requests__table__elem-button"
-                      onClick={() => openModal(el)}
-                    >
-                      Upload
-                    </div>
-                  </div>
-                ))}
+            </PersonalAreaLayout>
             </div>
-          </div>
-        </div>
-      </PersonalAreaLayout>
-    </>
-  );
-};
+        </>
+    )
+}
 
 export default PhotoRequests;
