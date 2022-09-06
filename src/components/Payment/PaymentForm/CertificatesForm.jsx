@@ -52,10 +52,6 @@ const CertificatesForm = (props) => {
   const handleChange = (event) => {    
     setSelectedValue(event.value);    
     if (event.value === "include") {
-      // let vol = 0;
-      // userTariffPackages.map((element) => (vol += element.volume));
-      // console.log(vol);
-      // setVolume(vol);
       const data = {
         userTariffPackages: userTariffPackages,
         userCertificatePackage: {

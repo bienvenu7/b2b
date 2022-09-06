@@ -53,14 +53,13 @@ const Payment = (props) => {
   const calcCartTotal = (data) => {
     dispatch(getCartTotalThunk(data))
   };
-  // const calcCartTotal = (data) => {
-  //   clearTimeout(timerCart);
-  //   setTimerCart(
-  //     setTimeout(() => {
-  //       dispatch(getCartTotalThunk(data))
-  //     }, 1000)
-  //   );
-  // };
+
+  const getPrice = (data) => {
+    dispatch(getPriceThunk(data));
+  };
+  
+  // Оставить на ПАМЯТЬ!!!
+  //
   // const calcCartTotal = (data) => {
   //   clearTimeout(timerCart);
   //   setTimerCart(
@@ -79,15 +78,15 @@ const Payment = (props) => {
   //     }, 1000)
   //   );
   // };
-
-  const getPrice = (data) => {
-    clearTimeout(timerPrice);
-    setTimerPrice(
-      setTimeout(() => {
-        dispatch(getPriceThunk(data));
-      }, 1000)
-    );
-  };
+  //
+  // const getPrice = (data) => {
+  //   clearTimeout(timerPrice);
+  //   setTimerPrice(
+  //     setTimeout(() => {
+  //       dispatch(getPriceThunk(data));
+  //     }, 1000)
+  //   );
+  // };
 
   return (
     <>
