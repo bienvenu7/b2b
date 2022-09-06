@@ -1,11 +1,14 @@
 import { useSelector } from "react-redux";
 import { takeBalance } from "../../redux/selectors/authRequest-selectors";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "./Balance.scss";
 
 const Balance = (props) => {
   const balance = useSelector(takeBalance);
   useEffect(() => {}, [balance]);
+  const {pathname} = useLocation()
+  console.log(pathname)
 
   return (
     <>
@@ -32,19 +35,25 @@ const Balance = (props) => {
             )}
           </div>
         )}
-        {/* <div className="balance__buttons-wrapper">
-          <button className="balance-button top-button">Top up now</button>
-          <button className="balance-button">New authentication</button>
-        </div> */}
-        {/* <div className="auth__balance__elem">
-          <div className="auth__balance__elem-button">Top up now</div>
-          <div
-            // style={{ display: "none" }}
-            className="auth__balance__elem-button"
-          >
-            New Authentication
+        { pathname === "/payment" && balance.length > 0 && (
+          <div className="balance__buttons-wrapper">
+            {/* <button className="balance-button top-button">Top up now</button> */}
+            <button className="balance-button">New authentication</button>
           </div>
-        </div> */}
+        )}
+        { pathname === "/authentication-request" && balance.length > 0 && (
+          <div className="balance__buttons-wrapper">
+            <button className="balance-button top-button">Top up now</button>
+            {/* <button className="balance-button">New authentication</button> */}
+          </div>
+        )}
+        { pathname !== "/authentication-request" && pathname === "/payment" && (
+          <div className="balance__buttons-wrapper">
+            {/* <button className="balance-button top-button">Top up now</button> */}
+            {balance.length > 0 && (<button className="balance-button">New authentication</button>)}
+            {balance.length = 0 && (<button className="balance-button" disabled >New authentication</button>)}
+          </div>
+        )}
       </div>
     </>
   );
