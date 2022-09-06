@@ -50,10 +50,11 @@ const CertificatesForm = (props) => {
 
   // handle onChange event of the dropdown
   const handleChange = (e) => {
+    
     setSelectedValue(e.value);
     if (e.value === "include") {
-      let vol = 0;
-      userTariffPackages.map((e) => (vol += e.volume));
+      let vol = 0;      
+      userTariffPackages.map((element) => (vol += element.volume));
       console.log(vol);
       setVolume(vol);
       const data = {
