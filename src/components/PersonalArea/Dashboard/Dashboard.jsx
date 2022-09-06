@@ -88,14 +88,14 @@ const Dashboard = (props) => {
                     New authentication
                   </button>
                 ) : (
-                  <button
-                    className="dashboard__elem__auth_balance__balance-button"
+                  <div
+                    className="dashboard__elem__auth_balance__balance-button disabled"
                     disabled
-                    onClick={() => alert("Пополните баланс")}
+                    onClick={() => alert("To upload items for an authentication, please top up your authentication balance")}
                     // onClick={() => navigate("../authentication-request")}
                   >
                     New authentication
-                  </button>
+                  </div>
                 )
               }
               
