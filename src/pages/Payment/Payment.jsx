@@ -83,10 +83,10 @@ const Payment = () => {
         <div className="payment_page__form">
           <Header />
           <div className="payment_page__bundle-wrapper">
-            <div className="payment_page__bundle__billing-header">
+            {/* <div className="payment_page__bundle__billing-header">
               Billing information
-            </div>
-            <div className="payment_page__bundle__billing-wrapper">
+            </div> */}
+            {/* <div className="payment_page__bundle__billing-wrapper">
               <div className="payment_page__bundle__billing-elem">
                 <div className="payment_page__bundle__billing-label">
                   Business name
@@ -122,8 +122,8 @@ const Payment = () => {
                   Change
                 </div>
               </div>
-            </div>
-            <div className="payment_page__bundle__checkbox">
+            </div> */}
+            {/* <div className="payment_page__bundle__checkbox">
               <input
                 type="checkbox"
                 className="custom-checkbox"
@@ -133,7 +133,7 @@ const Payment = () => {
                 onChange={() => setSaveBilling(!saveBilling)}
               />
               <label htmlFor="saveBilling">Save billing information</label>
-            </div>
+            </div> */}
             <div className="payment_page__bundle__vars-wrapper">
               <div className="payment_page__bundle__vars-h1">Payment</div>
               <div className="payment_page__bundle__vars-h2">
