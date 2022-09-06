@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import { takeBalance } from "../../redux/selectors/authRequest-selectors";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Balance.scss";
 
 const Balance = (props) => {
+  const navigate = useNavigate();
   const balance = useSelector(takeBalance);
   useEffect(() => {}, [balance]);
   const {pathname} = useLocation()
@@ -37,23 +38,14 @@ const Balance = (props) => {
         )}
         { pathname === "/payment" && balance.length > 0 && (
           <div className="balance__buttons-wrapper">
-            {/* <button className="balance-button top-button">Top up now</button> */}
-            <button className="balance-button">New authentication</button>
+            <button className="balance-button" onClick={() => navigate("/authentication-request")}>New authentication</button>
           </div>
         )}
         { pathname === "/authentication-request" && balance.length > 0 && (
           <div className="balance__buttons-wrapper">
-            <button className="balance-button top-button">Top up now</button>
-            {/* <button className="balance-button">New authentication</button> */}
+            <button className="balance-button top-button" onClick={() => navigate("../payment")}>Top up now</button>
           </div>
         )}
-        {/* { pathname !== "/authentication-request" && pathname !== "/payment" && (
-          <div className="balance__buttons-wrapper">
-            {console.log("Баланс ",balance.length)}
-            {balance.length > 0 && (<button className="balance-button">New authentication</button>)}
-            {balance.length === 0 && (<button className="balance-button" disabled >New authentication</button>)}
-          </div>
-        )} */}
       </div>
     </>
   );
