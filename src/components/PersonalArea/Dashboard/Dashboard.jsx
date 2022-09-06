@@ -73,18 +73,32 @@ const Dashboard = (props) => {
                     </div>
                   </div>
                 ))}
-              <div
+              {/* <div
                 className="dashboard__elem__auth_balance__balance-button"
                 onClick={() => navigate("../payment")}
               >
                 Top up now
-              </div>
-              <div
-                className="dashboard__elem__auth_balance__balance-button"
-                onClick={() => navigate("../authentication-request")}
-              >
-                New authentication
-              </div>
+              </div> */}
+              {
+                balance.length > 0 ? (
+                  <button
+                    className="dashboard__elem__auth_balance__balance-button"
+                    onClick={() => navigate("../authentication-request")}
+                  >
+                    New authentication
+                  </button>
+                ) : (
+                  <button
+                    className="dashboard__elem__auth_balance__balance-button"
+                    disabled
+                    onClick={() => alert("Пополните баланс")}
+                    // onClick={() => navigate("../authentication-request")}
+                  >
+                    New authentication
+                  </button>
+                )
+              }
+              
             </div>
           </div>
           <div className="dashboard__elem__authentications-wrapper">

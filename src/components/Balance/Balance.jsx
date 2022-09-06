@@ -47,13 +47,13 @@ const Balance = (props) => {
             {/* <button className="balance-button">New authentication</button> */}
           </div>
         )}
-        { pathname !== "/authentication-request" && pathname === "/payment" && (
+        {/* { pathname !== "/authentication-request" && pathname !== "/payment" && (
           <div className="balance__buttons-wrapper">
-            {/* <button className="balance-button top-button">Top up now</button> */}
+            {console.log("Баланс ",balance.length)}
             {balance.length > 0 && (<button className="balance-button">New authentication</button>)}
-            {balance.length = 0 && (<button className="balance-button" disabled >New authentication</button>)}
+            {balance.length === 0 && (<button className="balance-button" disabled >New authentication</button>)}
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
