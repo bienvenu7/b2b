@@ -58,7 +58,7 @@ export const getBalanceThunk = () => async (dispatch) => {
         setBalance([
           ...response.data,
           {
-            productType: { publicName: "Certificate" },
+            productType: { publicName: "Certificates" },
             answerTime: "",
             volume: next.data,
           },
