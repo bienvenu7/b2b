@@ -323,7 +323,8 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    color: $c_g;
+                    color: $c_w;
+                    background: $c_g;
                     cursor: pointer;
 
                     &.disabled {
