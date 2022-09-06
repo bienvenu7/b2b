@@ -11,7 +11,8 @@ const Dashboard = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const balance = useSelector(takeBalance);
+  // const balance = useSelector(takeBalance);
+  const balance = [];
 
   //temp
 
@@ -89,14 +90,12 @@ const Dashboard = (props) => {
                   </button>
                 ) : (
                   <div
-                    className="dashboard__elem__auth_balance__balance-button disabled"
-                    disabled
-                    onClick={() => alert("To upload items for an authentication, please top up your authentication balance")}
-                    // onClick={() => navigate("../authentication-request")}
+                    className="dashboard__elem__auth_balance__balance-button"
+                    onClick={() => navigate("../payment")}
                   >
-                    New authentication
+                    Top up now
                   </div>
-                )
+                    )
               }
               
             </div>
