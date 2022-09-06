@@ -15,7 +15,7 @@ const RigthSide = ({ toogle }) => {
     <div className="top_up_bundle__right-wrapper">
       <Balance />
       {packages.length > 0 && (
-        <div style={{ margin: "84px 0" }}>
+        <div style={{ margin: "84px auto" }}>
           <Summary />
         </div>
       )}
