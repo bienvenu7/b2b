@@ -58,6 +58,7 @@ const AuthenticationRequest = () => {
   const [answerTime, setAnswerTime] = useState(24);
   const [productTypeValue, setProductTypeValue] = useState(null);
   const [brandValue, setBrandValue] = useState();
+  const [errorMessage, setErrorMessage] = useState("")
   const [brandSelectorKey, setBrandSelectorKey] = useState(0);
   const status = useSelector(getStatusCode);
   const [errors, setErrorsForForm] = useState({
@@ -206,6 +207,8 @@ const AuthenticationRequest = () => {
       }
     }
     if (photoFiles.find((el) => el.file == "" && el.necessity == 1)) {
+      const reqBlank =  photoFiles.filter((el) => el.necessity == 1)
+      const inputBlank = photoFiles.filter((el) => el.file == "" && el.necessity == 1)      
       setPhotoFiles(
         photoFiles.map((el, index) =>
           el.file == "" && el.necessity == 1 ? { ...el, error: true } : el
@@ -213,6 +216,8 @@ const AuthenticationRequest = () => {
       );
       setPhotoError(true);
       setButtonState(true);
+      if(reqBlank.length === inputBlank.length) setErrorMessage("It seems you did not upload photos of your item, please upload them before submitting!")
+      if(reqBlank.length > inputBlank.length) setErrorMessage("One or more of the required photos are missing, please make sure you upload them!")
       return;
     }
     if (!order) {
@@ -472,17 +477,13 @@ const AuthenticationRequest = () => {
                 >
                   Upload photos
                 </div>
-                {console.log("photoError: ", photoError)}
                 {photoError && (
                   <div className="auth_request__form-desc">
-                    Required fields are outlined, please fill them up if details
-                    are available
+                    {errorMessage}
                   </div>
                 )}
 
                 <div className="auth_request__form__photo-container">
-                  {console.log("productTypeValue: ", productTypeValue)}
-                  {console.log("photoFiles: ", photoFiles)}
                   {productTypeValue &&
                     photoFiles.map((el, index) => (
                       <div
@@ -512,7 +513,6 @@ const AuthenticationRequest = () => {
                                 : "auth_request__form__photo-photolabel"
                             }
                           >
-                            {el.necessity}
                             <input
                               className={`auth_request__form__photo-fileInput ${index}`}
                               accept=".png,.jpg,.jpeg"
