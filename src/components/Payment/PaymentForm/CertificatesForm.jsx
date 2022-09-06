@@ -49,29 +49,27 @@ const CertificatesForm = (props) => {
     dispatch(setCategoryError(null));
 
   // handle onChange event of the dropdown
-  const handleChange = (e) => {
-    
-    setSelectedValue(e.value);
-    if (e.value === "include") {
-      let vol = 0;      
-      userTariffPackages.map((element) => (vol += element.volume));
-      console.log(vol);
-      setVolume(vol);
+  const handleChange = (event) => {    
+    setSelectedValue(event.value);    
+    if (event.value === "include") {
+      // let vol = 0;
+      // userTariffPackages.map((element) => (vol += element.volume));
+      // console.log(vol);
+      // setVolume(vol);
       const data = {
         userTariffPackages: userTariffPackages,
         userCertificatePackage: {
-          volume: volume,
+          volume: 1,
           userId: userId,
         },
       };
       props.cartTotal(data);
-    } else if (e.value === "notneeded") {
+    } else if (event.value === "notneeded") {
       const data = {
         userTariffPackages: userTariffPackages,
       };
       props.cartTotal(data);
-    } else if (e.value === "choose") {
-      volume > 1 && setVolume(1);
+    } else if (event.value === "choose") {
       const data = {
         userCertificatePackage: {
           volume: volume,
@@ -85,7 +83,7 @@ const CertificatesForm = (props) => {
           userTariffPackages[0].answerTime === "")
           ? data
           : { ...data, userTariffPackages: userTariffPackages };
-      //console.log(totalData)
+      console.log(totalData)
       props.cartTotal(totalData);
     }
   };

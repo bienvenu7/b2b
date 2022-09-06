@@ -51,23 +51,34 @@ const Payment = (props) => {
   };
 
   const calcCartTotal = (data) => {
-    clearTimeout(timerCart);
-    setTimerCart(
-      setTimeout(() => {
-        if (data.userTariffPackages) {
-          if (data.userTariffPackages.length === 1) {
-            if (data.userTariffPackages[0].productType !== "") {
-              dispatch(getCartTotalThunk(data));
-            }
-          } else if (data.userTariffPackages.length !== 0) {
-            dispatch(getCartTotalThunk(data));
-          }
-        } else {
-          dispatch(getCartTotalThunk(data));
-        }
-      }, 1000)
-    );
+    dispatch(getCartTotalThunk(data))
   };
+  // const calcCartTotal = (data) => {
+  //   clearTimeout(timerCart);
+  //   setTimerCart(
+  //     setTimeout(() => {
+  //       dispatch(getCartTotalThunk(data))
+  //     }, 1000)
+  //   );
+  // };
+  // const calcCartTotal = (data) => {
+  //   clearTimeout(timerCart);
+  //   setTimerCart(
+  //     setTimeout(() => {
+  //       if (data.userTariffPackages) {
+  //         if (data.userTariffPackages.length === 1) {
+  //           if (data.userTariffPackages[0].productType !== "") {
+  //             dispatch(getCartTotalThunk(data));
+  //           }
+  //         } else if (data.userTariffPackages.length !== 0) {
+  //           dispatch(getCartTotalThunk(data));
+  //         }
+  //       } else {
+  //         dispatch(getCartTotalThunk(data));
+  //       }
+  //     }, 1000)
+  //   );
+  // };
 
   const getPrice = (data) => {
     clearTimeout(timerPrice);
