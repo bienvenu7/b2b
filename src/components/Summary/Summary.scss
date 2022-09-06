@@ -1,13 +1,15 @@
 @import '../../scss/vars';
 
-.summary{
-    &-container{
+.summary {
+    &-container {
+        margin: 0 auto;
         width: 232px;
         display: flex;
         flex-direction: column;
         gap: 16px;
     }
-    &-title{
+
+    &-title {
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 700;
@@ -15,19 +17,22 @@
         line-height: 140%;
         text-transform: uppercase;
     }
-    &__elem{
-        &-wrapper{
+
+    &__elem {
+        &-wrapper {
             display: flex;
             flex-direction: column;
         }
-        &-name{
+
+        &-name {
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 700;
             font-size: 13.8958px;
             line-height: 140%;
         }
-        &-cost{
+
+        &-cost {
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
