@@ -97,7 +97,7 @@ const Authentications = (props) => {
       sort: "createdAt:DESC",
     };
     dispatch(setProducts(null));
-    dispatch(getProductsThunk(dataFilter));
+    dispatch(getProductsThunk(data));//
     filterMode && handleFilter();
   }
 
@@ -336,7 +336,7 @@ const Authentications = (props) => {
     return <></>;
   } else {
     return (
-      <>
+      <div className="top">
         <PersonalAreaLayout>
           <div className="authent-container">
             <div className="authent__buttons-wrapper desktop">
@@ -686,7 +686,7 @@ const Authentications = (props) => {
             </div>
           </div>
         </PersonalAreaLayout>
-      </>
+      </div>
     );
   }
 };
