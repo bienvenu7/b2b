@@ -1,12 +1,9 @@
-import React from 'react'
+import React from "react";
 
-
-import './Dashboard.scss'
+import "./Dashboard.scss";
 
 const Dashboard = () => {
-  return (
-    <div className='bord'>COMMING SOON...</div>
-  )
-}
+  return <div className="bord">COMMING SOON...</div>;
+};
 
-export default Dashboard
+export default Dashboard;

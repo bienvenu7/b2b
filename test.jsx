@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import * as NumericInput from "react-numeric-input";
 import { useDispatch, useSelector } from "react-redux";
 import {
- updateCurrentPackage, initPackage,
+  initPackage,
   pushTotal,
   setCategoryError,
   updateHoursPackage,
@@ -33,61 +33,9 @@ const CategoryForm = (props) => {
   const cart = useSelector(getUserTariffPackages);
   const categoryError = useSelector(getCategoryError);
   const cost = useSelector(getPrice);
-  const [answerTime, setAnswerTime] = useState(24); // answerTime - NUMBER!!!!
+  const [answerTime, setAnswerTime] = useState(12);
   const [productType, setProductType] = useState(null);
   const [productTypeVar, setProductTypeVar] = useState(null);
-  const [checked, setChecked] = useState("24");
-
-  //   const doubles = [
-  //     {
-  //       parent: "SNEAKERS_HYPE",
-  //       childs: ["SNEAKERS_HYPE","OTHER_SHOES_HYPE"],
-  //       publicName: "Hype shoes",
-  //     },
-  //     {
-  //       parent: "SNEAKERS_LUXURY",
-  //       childs: ["SNEAKERS_LUXURY","OTHER_SHOES_LUXURY"],
-  //       publicName: "Luxury shoes",
-  //     },
-  //   ];
-
-  //   const options2 = productTypes
-  //     .filter((item, index) => {
-  //       const doubleItem = doubles.find((item=>item.childs.indexOf(item.name))!=-1)
-  //       doubleItem
-  //     //   const doubleItem = doubles.find(
-  //     //     (itemDoub) => itemDoub.name === item.name
-  //     //   );
-  //     //   console.log({ doubleItem, index });
-  //     //   if (doubleItem && doubleItem.name != doubleItem.parent) return false;
-  //       else return true;
-  //     })
-  //     .map((item, index) => {
-  //       const doubleItem = doubles.find(
-  //         (itemDoub) => itemDoub.name === item.name
-  //       );
-  //       const parentItem = productType.find(
-  //         (itemProduct) => itemProduct.name == doubleItem.parent
-  //       );
-  //       const doubles = productType.filter
-  //       return {
-  //         value: {
-  //           id: parentItem ? parentItem.id : item.id,
-  //           doubles:
-  //         },
-  //         label: doubleItem ? doubleItem.publicName : item.publicName,
-  //       };
-  //     });
-  //   console.log({ options });
-
-  //   let single = {
-  //     id: "ec10993d-8e1b-42a6-9e61-65a6e2c2e292",
-  //     name: "SNEAKERS_HYPE",
-  //     publicName: "Sneakers: Hype",
-  //     __entity: "ProductType",
-  //   };
-
-  //   console.log({ productTypes });
 
   const options = [
     {
@@ -124,12 +72,10 @@ const CategoryForm = (props) => {
 
   const [selectedValue, setSelectedValue] = useState("");
 
-    const handleChange = (e, formik) => {
-
-        // console.log(e.value)
-        setSelectedValue(e.value);
-        dispatch(setCategoryError(null));
-    updateType(e.value, formik, "handle formik");
+  const handleChange = (e, formik) => {
+    setSelectedValue(e.value);
+    dispatch(setCategoryError(null));
+    updateType(e.value, formik);
   };
 
   const handleChangeForNumeric = (e) => {
@@ -143,28 +89,21 @@ const CategoryForm = (props) => {
     props.getPrice(data);
   };
 
-  const changeRadioInputHours = (e) => {
-    console.log("value - это номер? ", e.target.value === typeof number);
-    setChecked(e.target.value);
-    setAnswerTime(Number(e.target.value)); // используем Number т.к прилетает в e.target.value - STRING
-  };
-
   const updateType = (e, typeOfShoes) => {
     setProductTypeVar(typeOfShoes);
     if (e != null) {
       let type = e !== 3 && e.types.single;
       if (e.name === "hypeShoes") {
-        typeOfShoes === "sneakers" || !typeOfShoes
+        typeOfShoes === "sneakers"
           ? (type = e.types.sneakers)
           : (type = e.types.other);
       } else if (e.name === "luxuryShoes") {
-        typeOfShoes === "sneakers" || !typeOfShoes
+        typeOfShoes === "sneakers"
           ? (type = e.types.sneakers)
           : (type = e.types.other);
-        console.log(type);
       }
-      //   e.value !== 3 &&
-      dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
+      e.value !== 3 &&
+        dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
       setProductType(type);
       const data = {
         productType: type,
@@ -175,26 +114,22 @@ const CategoryForm = (props) => {
     }
   };
 
-  const updateHours = () => {
+  const updateHours = (value, data) => {
     const pack = {
       productType: productType,
       volume: volume,
-      answerTime: answerTime,
+      answerTime: value,
     };
-    dispatch(
-      updateHoursPackage({ index: packageEditNumber, hours: answerTime })
-    );
+    setAnswerTime(value);
+    dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
     dispatch(getPriceThunk(pack));
-    props.cartTotal(cart);
+    props.cartTotal(data);
     setErrorForAnswerTime(null);
   };
 
   cart.length < 1 && dispatch(initPackage(userId));
 
-  useEffect(() => {
-    console.log("стработал эффект");
-    updateHours();
-  }, [answerTime]);
+  useEffect(() => {}, [props.but]);
 
   useEffect(() => {
     const data = {
@@ -206,42 +141,15 @@ const CategoryForm = (props) => {
   let but = props.but;
 
   const handlePost = (formik) => {
-      if (formik.values.hours !== "0") {
-          setPackageEdit(packageEditNumber + 1);
-          dispatch(initPackage(userId));
-          dispatch(pushTotal(cost.package));
-          setVolume(1);
-          //for updating packages
-          const packages = useSelector(getUserTariffPackages)
-
-          const handlePost = (formik) => {
-              if (formik.values.hours !== '0') {
-                  // setPackageEdit(packageEditNumber+1)
-                  // // dispatch(initPackage(userId))
-                  // dispatch(pushTotal(cost.package))
-                  // setVolume(1)
-
-                  const findName = packages.find(item => item.productType.name !== selectedValue);
-                  const findInd = packages.findIndex(item => item.productType.name === selectedValue)
-
-                  if (findName) {
-                      setPackageEdit(packageEditNumber + 1)
-                      dispatch(initPackage(userId))
-                      dispatch(pushTotal(cost.package))
-                      setVolume(1)
-                  } else {
-                      dispatch(updateCurrentPackage({index: findInd, volume: 5}))
-
-                  }
-
-              }
-              formik.values.hours = '0'
-              handleClose()
-          }
-          formik.values.hours = "0";
-          handleClose();
-      };
-  }
+    if (formik.values.hours !== "0") {
+      setPackageEdit(packageEditNumber + 1);
+      dispatch(initPackage(userId));
+      dispatch(pushTotal(cost.package));
+      setVolume(1);
+    }
+    formik.values.hours = "0";
+    handleClose();
+  };
 
   function handleClose() {
     setProductType(null);
@@ -249,31 +157,66 @@ const CategoryForm = (props) => {
     setProductTypeVar(null);
     setVolume(1);
   }
-    return (<>
-        <Formik
-            initialValues={{ hours: '0', typeOfShoes: '' }}
-            validate={values => {
 
-            }}
-            change={() => {
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-                setSubmitting(false);
-            }}
-        >
-            {(props2) => (<Form className="payment__form" onSubmit={props2.handleSubmit} onChange={props2.change}>
-                <div className="payment__form-block-container first">
-                {productType !== null && <><div className="payment__form-current_package_state-wrapper">
-                        <div onClick={handleClose}><SvgSelector id='xmark' /></div>
-                        <div className="payment__form-current_package_state" >
-                            <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName
-                            : productTypeVar ? productTypeVar === 'sneakers' ? selectedValue.types.sneakers.publicName : selectedValue.types.other.publicName : '' }</div>
-                            <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
-                        </div>
+  return (
+    <>
+      <Formik
+        initialValues={{ hours: "0", typeOfShoes: "" }}
+        validate={(values) => {}}
+        change={() => {}}
+        onSubmit={(values, { setSubmitting }) => {
+          setSubmitting(false);
+        }}
+      >
+        {(props) => (
+          <Form
+            className="payment__form"
+            onSubmit={props.handleSubmit}
+            onChange={props.change}
+          >
+            <div className="payment__form-block-container first">
+              {productType !== null && (
+                <>
+                  <div className="payment__form-current_package_state-wrapper">
+                    <div onClick={handleClose}>
+                      <SvgSelector id="xmark" />
                     </div>
-                    </>}
-                    <label htmlFor="category" className="payment__form-label">Choose the category</label>
-                    <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=> handleChange(e, props2.values.typeOfShoes)} />
+                    <div className="payment__form-current_package_state">
+                      <div className="payment__form-current_package_state-name">
+                        {selectedValue && selectedValue.types.single
+                          ? selectedValue.types.single.publicName
+                          : productTypeVar
+                          ? productTypeVar === "sneakers"
+                            ? selectedValue.types.sneakers.publicName
+                            : selectedValue.types.other.publicName
+                          : ""}
+                      </div>
+                      <div className="payment__form-current_package_state-cost">
+                        ${cost.package / 100}&nbsp;x&nbsp;{volume}
+                      </div>
+                    </div>
+                  </div>
+                  {/*<hr style={{background: '#E1E1E1',
+                        height: '0.7px',
+                        border: '0',
+                        width: '608px',
+                        margin: '0 auto',
+                        padding: '0',
+                        marginLeft: '-33px'}}/>*/}
+                </>
+              )}
+              <label htmlFor="category" className="payment__form-label">
+                Choose the category
+              </label>
+              <Select
+                key={packageEditNumber}
+                components={{ DropdownIndicator }}
+                classNamePrefix="custom-select"
+                placeholder="Please select the category"
+                options={productTypes.length > 0 ? options : []}
+                value={options[selectedValue]}
+                onChange={(e) => handleChange(e, props.values.typeOfShoes)}
+              />
 
               {(selectedValue.name === "hypeShoes" ||
                 selectedValue.name === "luxuryShoes") && (
@@ -287,11 +230,7 @@ const CategoryForm = (props) => {
                       <Field
                         type="radio"
                         name="typeOfShoes"
-                        checked={
-                          productTypeVar === "sneakers" // || !productTypeVar
-                            ? true
-                            : false
-                        }
+                        checked={productTypeVar === "sneakers" ? true : false}
                         value="sneakers"
                         id="sneakers"
                         className="custom-radio"
@@ -332,28 +271,21 @@ const CategoryForm = (props) => {
                   </label>
                   <div className="payment__form-elem hours">
                     <div className="payment__form-radio_btn">
-                      <Field
-                        type="radio"
-                        name="hours"
-                        value={12}
-                        id="12h"
-                        onChange={changeRadioInputHours}
-                        checked={checked === "12"}
-                      />
-                      <label htmlFor="12h" value="12">
+                      <Field type="radio" name="hours" value="12" id="12h" />
+                      <label
+                        htmlFor="12h"
+                        onClick={() => updateHours(12, cart)}
+                      >
                         12 hours
                       </label>
                     </div>
                     <div className="payment__form-radio_btn">
-                      <Field
-                        type="radio"
-                        name="hours"
-                        value={24}
-                        id="24h"
-                        onChange={changeRadioInputHours}
-                        checked={checked === "24"}
-                      />
-                      <label htmlFor="24h" value="24">
+                      <Field type="radio" name="hours" value="24" id="24h" />
+                      <label
+                        htmlFor="24h"
+                        onClick={() => updateHours(24, cart)}
+                        value="24"
+                      >
                         24 hours
                       </label>
                     </div>
@@ -389,7 +321,7 @@ const CategoryForm = (props) => {
                 </div>
               </div>
             </div>
-            {but && handlePost(props2)}
+            {but && handlePost(props)}
           </Form>
         )}
       </Formik>
