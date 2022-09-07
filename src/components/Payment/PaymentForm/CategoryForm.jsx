@@ -175,6 +175,40 @@ const CategoryForm = (props) => {
     }
   };
 
+    cart.length < 1 && dispatch(initPackage(userId))
+
+    useEffect(() => {
+
+    }, [props.but])
+
+    useEffect(() => {
+        const data = {
+            userTariffPackages: cart
+        }
+        cart.length > 0 && props.cartTotal(data)
+    }, [cart])
+
+    let but = props.but
+
+    //for updating packages
+    const packages = useSelector(getUserTariffPackages)
+
+    const handlePost = (formik) => {
+        if (formik.values.hours !== '0'){
+
+            const findInd = packages.findIndex(item => item.productType.name === selectedValue)
+            
+            if(packages.find(item => item.productType.name !== selectedValue)) {
+                setPackageEdit(packageEditNumber+1)
+                dispatch(initPackage(userId))
+                dispatch(pushTotal(cost.package))
+                setVolume(1)
+            }
+            
+        }
+        formik.values.hours = '0'
+        handleClose()
+    }
   const updateHours = () => {
     const pack = {
       productType: productType,
@@ -202,46 +236,7 @@ const CategoryForm = (props) => {
     };
     cart.length > 0 && props.cartTotal(data);
   }, [cart]);
-
-  let but = props.but;
-
-  const handlePost = (formik) => {
-      if (formik.values.hours !== "0") {
-          setPackageEdit(packageEditNumber + 1);
-          dispatch(initPackage(userId));
-          dispatch(pushTotal(cost.package));
-          setVolume(1);
-          //for updating packages
-          const packages = useSelector(getUserTariffPackages)
-
-          const handlePost = (formik) => {
-              if (formik.values.hours !== '0') {
-                  // setPackageEdit(packageEditNumber+1)
-                  // // dispatch(initPackage(userId))
-                  // dispatch(pushTotal(cost.package))
-                  // setVolume(1)
-
-                  const findName = packages.find(item => item.productType.name !== selectedValue);
-                  const findInd = packages.findIndex(item => item.productType.name === selectedValue)
-
-                  if (findName) {
-                      setPackageEdit(packageEditNumber + 1)
-                      dispatch(initPackage(userId))
-                      dispatch(pushTotal(cost.package))
-                      setVolume(1)
-                  } else {
-                      dispatch(updateCurrentPackage({index: findInd, volume: 5}))
-
-                  }
-
-              }
-              formik.values.hours = '0'
-              handleClose()
-          }
-          formik.values.hours = "0";
-          handleClose();
-      };
-  }
+  
 
   function handleClose() {
     setProductType(null);

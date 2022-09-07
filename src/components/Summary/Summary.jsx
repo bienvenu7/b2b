@@ -5,7 +5,7 @@ import {
 import "./Summary.scss";
 import { useDispatch, useSelector } from "react-redux"
 
-import {removePreviewPackage} from '../../redux/reducers/payment-reducer'
+import {removePreviewPackage, updateVolumePackage} from '../../redux/reducers/payment-reducer'
 import './Summary.scss'
 
 
@@ -29,7 +29,16 @@ const Summary = (props) => {
                     <div className="box">
                         <button onClick={() => dispatch(removePreviewPackage())}>remove</button>
                         <div className="summary__elem-name">{el.productType.publicName} bundle</div>
-                        <span>{el.answerTime} h</span>
+                        {el.answerTime !== "" && <span>{el.answerTime} h</span>}
+                    </div>
+                    <div className="box">
+                        <button onClick={() => 
+                            el.volume > 1 && dispatch(updateVolumePackage({index: index, volume: el.volume - 1}))
+                        }>-</button>
+                        <div className="summary__elem-cost">{cost && cost[index] && cost[index]/100 + ' X ' + el.volume}</div>
+                        <button onClick={() => 
+                            dispatch(updateVolumePackage({index: index, volume: el.volume + 1}))
+                        }>+</button>
                     </div>
                   <div className="summary__elem-cost">
                     {cost &&
