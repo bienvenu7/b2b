@@ -101,22 +101,14 @@ const CategoryForm = (props) => {
 
     const handlePost = (formik) => {
         if (formik.values.hours !== '0'){
-            // setPackageEdit(packageEditNumber+1)
-            // // dispatch(initPackage(userId))
-            // dispatch(pushTotal(cost.package))
-            // setVolume(1)
 
-            const findName = packages.find(item => item.productType.name !== selectedValue);
             const findInd = packages.findIndex(item => item.productType.name === selectedValue)
             
-            if(findName) {
+            if(packages.find(item => item.productType.name !== selectedValue)) {
                 setPackageEdit(packageEditNumber+1)
                 dispatch(initPackage(userId))
                 dispatch(pushTotal(cost.package))
                 setVolume(1)
-            }else {
-                dispatch(updateCurrentPackage({index: findInd, volume: 5}))
-                
             }
             
         }
