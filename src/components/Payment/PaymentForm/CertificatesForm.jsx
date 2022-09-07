@@ -39,41 +39,39 @@ const CertificatesForm = (props) => {
   selectedValue === 'choose' && categoryError != null && dispatch(setCategoryError(null))
 
   // handle onChange event of the dropdown
-  const handleChange = e => {
-    setSelectedValue(e.value);
-    if (e.value === 'include') {
-      let vol = 0
-      userTariffPackages.map(e => vol += e.volume)
-      console.log(vol)
-      setVolume(vol)
+  const handleChange = (event) => {    
+    setSelectedValue(event.value);    
+    if (event.value === "include") {
       const data = {
         userTariffPackages: userTariffPackages,
         userCertificatePackage: {
-          volume: volume,
-          userId: userId
-        }
-      }
-      props.cartTotal(data)
-    } else if (e.value === 'notneeded') {
+          volume: 1,
+          userId: userId,
+        },
+      };
+      props.cartTotal(data);
+    } else if (event.value === "notneeded") {
       const data = {
         userTariffPackages: userTariffPackages,
-      }
-      props.cartTotal(data)
-    }
-    else if (e.value === 'choose') {
-      volume > 1 && setVolume(1)
+      };
+      props.cartTotal(data);
+    } else if (event.value === "choose") {
       const data = {
         userCertificatePackage: {
           volume: volume,
-          userId: userId
-        }
-      }
-      const totalData = userTariffPackages && userTariffPackages.length === 1 && (userTariffPackages[0].productType === '' || userTariffPackages[0].answerTime === '') ? data : { ...data, userTariffPackages: userTariffPackages }
-      //console.log(totalData)
-      props.cartTotal(totalData)
+          userId: userId,
+        },
+      };
+      const totalData =
+        userTariffPackages &&
+        userTariffPackages.length === 1 &&
+        (userTariffPackages[0].productType === "" ||
+          userTariffPackages[0].answerTime === "")
+          ? data
+          : { ...data, userTariffPackages: userTariffPackages };
+      props.cartTotal(totalData);
     }
-
-  }
+  };
 
   const handleChangeForNumeric = (e) => {
     setVolume(e)

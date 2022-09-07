@@ -175,18 +175,19 @@ const CategoryForm = (props) => {
     }
   };
 
-    cart.length < 1 && dispatch(initPackage(userId))
-
-    useEffect(() => {
-
-    }, [props.but])
-
-    useEffect(() => {
-        const data = {
-            userTariffPackages: cart
-        }
-        cart.length > 0 && props.cartTotal(data)
-    }, [cart])
+  const updateHours = () => {
+    const pack = {
+      productType: productType,
+      volume: volume,
+      answerTime: answerTime,
+    };
+    dispatch(
+      updateHoursPackage({ index: packageEditNumber, hours: answerTime })
+    );
+    dispatch(getPriceThunk(pack));
+    props.cartTotal(cart);
+    setErrorForAnswerTime(null);
+  };
 
     let but = props.but
 
@@ -209,19 +210,6 @@ const CategoryForm = (props) => {
         formik.values.hours = '0'
         handleClose()
     }
-  const updateHours = () => {
-    const pack = {
-      productType: productType,
-      volume: volume,
-      answerTime: answerTime,
-    };
-    dispatch(
-      updateHoursPackage({ index: packageEditNumber, hours: answerTime })
-    );
-    dispatch(getPriceThunk(pack));
-    props.cartTotal(cart);
-    setErrorForAnswerTime(null);
-  };
 
   cart.length < 1 && dispatch(initPackage(userId));
 

@@ -1,4 +1,6 @@
 import Header from "../../components/Payment/Header/Header";
+import SvgSelector from "../../common/icons/SvgSelector";
+import Navigation from "../../components/Navigation/Navigation";
 import RigthSide from "../../components/Payment/RightSide/RightSide";
 import "./Payment.scss";
 import { useEffect, useState } from "react";
@@ -14,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import { setInvoiceLink } from "../../redux/reducers/payment-reducer";
 import { postInvoiceThunk } from "../../redux/thunks/payment-thunk";
+import PersonalAreaLayout from "../../components/PersonalArea/PersonalAreaLayout";
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -81,8 +84,18 @@ const Payment = () => {
     <>
       <div className="payment_page-container">
         <div className="payment_page__form">
-          <Header />
+          
+          <div className="top_up_bundle__left-nav">
+                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'Authentication Bundle' }]}/>
+                    <div className="top_up_bundle__left-mobile">
+                        <h1>Authentification bundle</h1>
+                        <SvgSelector id='burger'/>
+                    </div>
+                    <div className="mobile-nav"><PersonalAreaLayout/></div>
+                </div>
+                <Header />
           <div className="payment_page__bundle-wrapper">
+
             {/* <div className="payment_page__bundle__billing-header">
               Billing information
             </div> */}
