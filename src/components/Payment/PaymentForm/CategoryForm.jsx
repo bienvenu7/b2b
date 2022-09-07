@@ -2,7 +2,7 @@ import { Formik, Field, Form } from "formik"
 import React, { useState, useEffect } from "react"
 import * as NumericInput from 'react-numeric-input'
 import { useDispatch, useSelector } from "react-redux"
-import { initPackage, pushTotal, setCategoryError, updateHoursPackage, updateTypePackage, updateVolumePackage } from "../../../redux/reducers/payment-reducer"
+import {updateCurrentPackage, initPackage, pushTotal, setCategoryError, updateHoursPackage, updateTypePackage, updateVolumePackage } from "../../../redux/reducers/payment-reducer"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
@@ -41,6 +41,8 @@ const CategoryForm = (props) => {
     const [selectedValue, setSelectedValue] = useState('');
 
     const handleChange = (e, formik) => {
+
+        // console.log(e.value)
         setSelectedValue(e.value);
         dispatch(setCategoryError(null))
         updateType(e.value, formik)
@@ -94,12 +96,29 @@ const CategoryForm = (props) => {
 
     let but = props.but
 
+    //for updating packages
+    const packages = useSelector(getUserTariffPackages)
+
     const handlePost = (formik) => {
         if (formik.values.hours !== '0'){
-            setPackageEdit(packageEditNumber+1)
-            dispatch(initPackage(userId))
-            dispatch(pushTotal(cost.package))
-            setVolume(1)
+            // setPackageEdit(packageEditNumber+1)
+            // // dispatch(initPackage(userId))
+            // dispatch(pushTotal(cost.package))
+            // setVolume(1)
+
+            const findName = packages.find(item => item.productType.name !== selectedValue);
+            const findInd = packages.findIndex(item => item.productType.name === selectedValue)
+            
+            if(findName) {
+                setPackageEdit(packageEditNumber+1)
+                dispatch(initPackage(userId))
+                dispatch(pushTotal(cost.package))
+                setVolume(1)
+            }else {
+                dispatch(updateCurrentPackage({index: findInd, volume: 5}))
+                
+            }
+            
         }
         formik.values.hours = '0'
         handleClose()
@@ -124,7 +143,7 @@ const CategoryForm = (props) => {
                 setSubmitting(false);
             }}
         >
-            {(props) => (<Form className="payment__form" onSubmit={props.handleSubmit} onChange={props.change}>
+            {(props2) => (<Form className="payment__form" onSubmit={props2.handleSubmit} onChange={props2.change}>
                 <div className="payment__form-block-container first">
                 {productType !== null && <><div className="payment__form-current_package_state-wrapper">
                         <div onClick={handleClose}><SvgSelector id='xmark' /></div>
@@ -136,7 +155,7 @@ const CategoryForm = (props) => {
                     </div>                   
                     </>}
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
-                    <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=>handleChange(e, props.values.typeOfShoes)} />
+                    <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=> handleChange(e, props2.values.typeOfShoes)} />
 
                     {(selectedValue.name === 'hypeShoes' || selectedValue.name === "luxuryShoes") && <div className="payment__form-elem shoes-vars">
                         <label htmlFor="types" className="payment__form-label">Choose the shoes type</label>
@@ -180,7 +199,7 @@ const CategoryForm = (props) => {
                 </div>
                 </div>
                 </div>
-                {but && handlePost(props)}
+                {but && handlePost(props2)}
             </Form>)}
         </Formik>
     </>

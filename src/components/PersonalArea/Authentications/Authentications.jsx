@@ -86,7 +86,7 @@ const Authentications = (props) => {
             sort: 'createdAt:DESC'
         }
         dispatch(setProducts(null))
-        dispatch(getProductsThunk(dataFilter))
+        dispatch(getProductsThunk(data))
         filterMode && handleFilter()
     }
 

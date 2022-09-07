@@ -19,6 +19,27 @@
         &-wrapper{
             display: flex;
             flex-direction: column;
+
+            .box {
+                display: flex;
+                flex-direction: row;
+                gap: 4px;
+
+                button {
+                    padding: 2px 5px;
+                    background: transparent;
+                    color: #CBAD73;
+                    border: solid 1px #CBAD73;
+                    border-radius: 4px;
+                }
+
+                span {
+                    padding: 2px 5px;
+                    background-color: #CBAD73;
+                    color: #fff;
+                    border-radius: 4px;
+                }
+            }
         }
         &-name{
             font-family: 'Roboto';

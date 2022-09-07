@@ -88,8 +88,11 @@
                 color: #020202;
                 padding: 0 15px;
             }
+
             &.selected {
                 font-weight: 700;
+                color: #CBAD73;
+                
                 @include for-phone-only{
                     font-weight: 400;
                     background: #CBAD73;

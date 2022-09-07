@@ -11,6 +11,7 @@ const RigthSide = (props) =>{
 
     return(
         <>
+        {/* {console.log(props)} */}
         <div className="top_up_bundle__right-wrapper">
                     <Balance />
                     {packages.length > 0 && <div style={{ margin: '84px 0' }}><Summary /></div>}
