@@ -1,6 +1,6 @@
-import CategoryForm from "./CategoryForm"
-import CertificatesForm from "./CertificatesForm"
-import React from "react"
+import CategoryForm from "./CategoryForm";
+import CertificatesForm from "./CertificatesForm";
+import React from "react";
 
 const PaymentForm = (props) => {
 

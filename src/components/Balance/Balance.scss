@@ -8,7 +8,8 @@
         border-radius: 8.59419px;
         height: fit-content;
         padding: 19px 15px;
-        width: 232px;
+        margin: auto;
+        width: 250px;
     }
 
     &-title {
@@ -16,9 +17,10 @@
         font-style: normal;
         font-weight: 700;
         font-size: 8.59419px;
-        line-height: 140%;
         text-transform: uppercase;
-
+        line-height: 12.03px;
+        color: $c_b;
+        margin-bottom: 10px;
         hr {
             height: 0.716183px;
             border: 0;
@@ -40,13 +42,12 @@
             display: flex;
             width: 100%;
             justify-content: space-between;
-            // flex-wrap: nowrap;
         }
 
         &-title {
             font-family: 'Roboto';
             font-style: normal;
-            font-weight: 400;
+            font-weight: 300;
             font-size: 14px;
             line-height: 140%;
             width: 100px;
@@ -103,7 +104,7 @@
         height: 30px;
         cursor: pointer;
 
-        &.top {
+        &.top-button {
             background-color: $c_w;
             color: $c_g;
         }

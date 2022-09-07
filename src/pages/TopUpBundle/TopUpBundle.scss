@@ -72,12 +72,10 @@
     &__right {
         &-wrapper {
             background: #F6F6F7;
-            height: 100vh;
+            height: 100%;
             width: 405px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding-top: 87px;
+            margin: auto;
 
             @include for-phone-only {
                 display: none;
@@ -87,6 +85,7 @@
 
     &__total {
         &-wrapper {
+            margin: auto;
             display: flex;
             justify-content: space-between;
             font-family: 'Roboto';
@@ -95,8 +94,8 @@
             font-size: 20.0531px;
             line-height: 140%;
             max-width: 232px;
-    width: 100%;
-    margin-bottom: 16px;
+            width: 100%;
+            margin-bottom: 16px;
         }
 
         &-title {}
@@ -108,11 +107,12 @@
 
     &__buttons {
         &-wrapper {
+            margin: auto;
             display: flex;
             flex-direction: column;
             gap: 15px;
             max-width: 232px;
-    width: 100%;
+            width: 100%;
         }
 
         &-button {

@@ -1,19 +1,23 @@
 @import '../../scss/vars';
 
-.payment_page{
-    &-container{
+.payment_page {
+    &-container {
         display: flex;
     }
-    &__form{
+
+    &__form {
         width: calc(1170px - 405px);
     }
+
     &__bundle {
-        &__checkbox{
+        &__checkbox {
             margin: 21px 0 33px 0;
         }
+
         &-wrapper {
             //width: 100%;
             margin: 0 73px 0 89px;
+
             @include for-phone-only {
                 border-bottom: 0.25px solid #656565;
             }
@@ -93,20 +97,22 @@
             &-wrapper {
                 margin-top: 93px;
                 border: 0.338942px solid #CECECE;
-border-radius: 8.8125px;
-                hr{
+                border-radius: 8.8125px;
+
+                hr {
                     /*<hr style={{background: '#E1E1E1',
                         height: '0.7px',
                         border: '0',
                         width: '608px',
                         margin: '0 auto',
                         padding: '0'}}/>*/
-                        border: 0;
-                        background: #CECECE;
-                        margin: 0;
-                        height: 0.338942px;
-                        margin: 0 24px;
+                    border: 0;
+                    background: #CECECE;
+                    margin: 0;
+                    height: 0.338942px;
+                    margin: 0 24px;
                 }
+
                 @include for-phone-only {
                     margin: 0 21px;
                     border: 0;
@@ -151,10 +157,10 @@ border-radius: 8.8125px;
                 max-width: 150px;
                 width: 100%;
                 font-family: 'Roboto';
-font-style: normal;
-font-weight: 400;
-font-size: 14.9135px;
-line-height: 140%;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14.9135px;
+                line-height: 140%;
 
                 @include for-phone-only {
                     font-family: 'SF Pro Display Medium';
@@ -168,10 +174,10 @@ line-height: 140%;
             &-value {
                 color: #000000;
                 font-family: 'Roboto';
-font-style: normal;
-font-weight: 400;
-font-size: 14.9135px;
-line-height: 140%;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14.9135px;
+                line-height: 140%;
 
                 @include for-phone-only {
                     font-family: 'SF Pro Display Medium';
@@ -199,7 +205,9 @@ line-height: 140%;
         }
 
         &__vars {
-            &-wrapper {}
+            &-wrapper {
+                margin-top: 100px;
+            }
 
             &-h1 {
                 font-family: 'Roboto';
