@@ -267,6 +267,13 @@ const AuthenticationRequest = () => {
     }
   };
 
+  const deleteImage = (index) => {
+    setPhotoFiles(
+      photoFiles.map((item) =>
+        item.key == index ? { ...item, file: '', imagePreviewUrl:'', format: false } : item
+      )
+    );
+  }
   function handleImageChange(e) {
     e.preventDefault();
 
@@ -491,19 +498,23 @@ const AuthenticationRequest = () => {
                         className={`auth_request__form__photo-elem ${index}`}
                       >
                         {el.imagePreviewUrl !== "" ? (
-                          <label
-                            htmlFor={`photo-${index}`}
-                            className="auth_request__form__photo-previewImg"
-                            style={{ background: `url(${el.imagePreviewUrl})` }}
-                          >
-                            <input
-                              className={`auth_request__form__photo-fileInput ${index}`}
-                              accept=".png,.jpg,.jpeg"
-                              type="file"
-                              onChange={handleImageChange}
-                              id={`photo-${index}`}
-                            />
-                          </label>
+                          <>
+                            <label
+                              htmlFor={`photo-${index}`}
+                              className="auth_request__form__photo-photolabel"
+                              style={{ background: `url(${el.imagePreviewUrl})` }}
+                            >
+                              <input
+                                className={`auth_request__form__photo-fileInput ${index}`}
+                                accept=".png,.jpg,.jpeg"
+                                type="file"
+                                onChange={handleImageChange}
+                                id={`photo-${index}`}
+                              />
+                            </label>
+                            <button className="auth_request__form__photo-button" onClick={()=> deleteImage(index)}>удалить</button>
+                          </>
+                          
                         ) : (
                           <label
                             htmlFor={`photo-${index}`}
