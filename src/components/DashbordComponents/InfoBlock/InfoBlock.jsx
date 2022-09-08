@@ -2,7 +2,9 @@ import './InfoBlock.scss'
 import BlockComponentLayout from '../../BlockComponentLayout/BlockComponentLayout'
 
 const InfoBlock = () => {
-  return <div></div>
+  return (
+    <BlockComponentLayout> Info блок </BlockComponentLayout>
+  )
 }
 
 export default InfoBlock

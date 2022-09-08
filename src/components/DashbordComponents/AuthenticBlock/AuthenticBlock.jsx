@@ -2,7 +2,9 @@ import './AuthenticBlock.scss'
 import BlockComponentLayout from '../../BlockComponentLayout/BlockComponentLayout'
 
 const AuthenticBlock = () => {
-  return <div></div>
+  return (
+    <BlockComponentLayout> Блок проверки вещей </BlockComponentLayout>
+  )
 }
 
 export default AuthenticBlock
