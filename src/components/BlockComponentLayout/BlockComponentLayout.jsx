@@ -1,7 +1,7 @@
 import './BlockComponentLayout.scss'
 
-const BlockComponentLayout = () => {
-  return <div className='block'>лейут для блоков</div>
+const BlockComponentLayout = ({children}) => {
+  return <div className='block'>{children}</div>
 }
 
 export default BlockComponentLayout

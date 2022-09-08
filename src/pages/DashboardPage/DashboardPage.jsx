@@ -6,7 +6,9 @@ const DashboardPage = () => {
   return (
     <div className='top'>
       <PersonalAreaLayout>
-        <BlockComponentLayout/>
+        <BlockComponentLayout> 
+          Проверка
+        </BlockComponentLayout>
       </PersonalAreaLayout>
     </div>
     
