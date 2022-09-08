@@ -1,0 +1,49 @@
+@import '../../../scss/vars';
+
+.icon {
+  width: 47px;
+  height: 47px;
+  border-radius: 8px;
+  background-color: $c_g;
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-block {
+  & p {
+    margin: 0;
+    text-align: right;
+  }
+}
+
+.bottom-block {
+  & p {
+    margin: 0;
+  }
+}
+
+.text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10.1617px;
+  line-height: 140%;
+  color: rgba(65, 65, 65, 0.6)
+}
+
+.number {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17.42px;
+  line-height: 140%;
+  color: #414141
+}
+
+.span {
+  font-weight: 700;
+}
