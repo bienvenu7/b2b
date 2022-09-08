@@ -43,8 +43,6 @@ const DashboardPage = () => {
           </div>
           <AuthenticBlock/>
         </div>
-        
-
       </PersonalAreaLayout>
     </div>
     
