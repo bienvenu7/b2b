@@ -1,0 +1,57 @@
+@import '../../../scss/vars';
+
+.title {
+  margin: 0;
+  padding: 0;
+  padding-top: 15px;
+  color: $c_g;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 140%;
+}
+
+.container {
+  display: flex;
+  gap: 22px;
+  padding: 20px;
+  padding-left: 40px;
+  padding-right: 25px;
+
+}
+
+.card {
+  min-width: 293px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  gap: 6px;
+  // & img {
+  //   width: 59px;
+  //   height: 59px;
+  // }
+
+  & h3 {
+    margin: 0;
+    color: rgba(65, 65, 65, 0.6);
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12.2328px;
+    line-height: 140%;
+  }
+
+  & p {
+    margin: 0;
+    color: rgba(65, 65, 65, 0.6);
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    text-align: center;
+  }
+}

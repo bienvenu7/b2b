@@ -1,8 +1,9 @@
 @import '../../scss/vars';
 
 .block {
+  padding: 15px 12px;
   width: 100%;
-  height: 190px;
+  // height: 190px;
   background-color: $c_w;
   border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
