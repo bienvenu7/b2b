@@ -39,8 +39,7 @@ const DashboardPage = () => {
               contentChekedBlock.map((block) => {
                 return <CheckBlock image={block.image} textTop={block.textTop} numberTop={block.numberTop} textBottom={block.textBottom} numberBottom={block.numberBottom} />
               })
-            }
-            
+            }            
           </div>
           <AuthenticBlock/>
         </div>
