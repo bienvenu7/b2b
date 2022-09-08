@@ -8,3 +8,14 @@
     margin-top: 0;
   }
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.second-block {
+  display: flex;
+  gap: 30px;
+}

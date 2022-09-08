@@ -6,9 +6,21 @@ const DashboardPage = () => {
   return (
     <div className='top'>
       <PersonalAreaLayout>
+        <div className='content'>
         <BlockComponentLayout> 
-          Проверка
+          Первый блок
         </BlockComponentLayout>
+        <div className='second-block'>
+          <BlockComponentLayout> 
+            второй блок
+          </BlockComponentLayout>
+          <BlockComponentLayout> 
+            третий блок
+          </BlockComponentLayout>
+        </div>
+        </div>
+        
+
       </PersonalAreaLayout>
     </div>
     
