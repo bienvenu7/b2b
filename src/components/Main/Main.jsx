@@ -27,6 +27,9 @@ const Main = () => {
         >
           Logout
         </button>
+        <button onClick={() => {navigate("/dashboard")}}>
+          Dashboard
+        </button>
         <div
           style={{
             display: "flex",
@@ -41,7 +44,7 @@ const Main = () => {
           <button onClick={() => navigate("/authentications/completed")}>
             All authentication
           </button>
-          <button onClick={() => navigate("/home")}>Main dashboard</button>
+          {/* <button onClick={() => navigate("/home")}>Main dashboard</button> */}
         </div>
       </div>
     </>

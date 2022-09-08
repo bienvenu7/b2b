@@ -16,6 +16,7 @@ import TopUpBundle from "../pages/TopUpBundle/TopUpBundle";
 import Dashboard from "../components/Dashbord/Dashboard";
 import Billing from "../components/PersonalArea/billing/Billing";
 import ConfirmEmail from "../components/Auth/ConfirmEmail/ConfirmEmail";
+import DashboardPage from "../pages/DashboardPage/DashboardPage";
 
 export const publicRoutes = [
   { path: "/signin", component: <Signin /> },
@@ -36,6 +37,7 @@ export const privateRoutes = [
     path: "authentications/in-progress",
     component: <Authentications var={"progress"} />,
   },
+  { path: "dashboard", component: <DashboardPage />},
   { path: "photo-requests/:page", component: <PhotoRequests /> },
   { path: "request/:id", component: <Card /> },
   { path: "payment", component: <TopUpBundle /> },
