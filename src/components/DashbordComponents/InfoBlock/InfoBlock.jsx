@@ -10,7 +10,8 @@ const InfoBlock = () => {
       <h2 className='title'>How does the LegitGrails platform work?</h2>
       <div className='container'>
         <div className='card'>
-          <img src={persons} alt='#'/>
+          {/* <img src={persons} alt='#'/> */}
+          <div></div>
           <h3>THE MOST RELIABLE AUTHENTICATION</h3>
           <p>Your items are reviewed by the most experienced authenticators</p>
         </div>
