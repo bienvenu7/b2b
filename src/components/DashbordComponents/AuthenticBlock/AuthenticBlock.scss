@@ -7,12 +7,18 @@
 
   &__container {
     display: flex;
-    gap: 49px
+    gap: 49px;
+    align-items: end;
+  }
+
+  &__content-block {
+    padding: 20px
   }
 
   &__cards-block {
     display: flex;
     gap: 10px;
+    padding-bottom: 20px;
 
     &__item {
       max-width: 180px;
@@ -20,18 +26,22 @@
   }
 
   &__title {
-    margin: 0;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
 
     &_big {
+      padding-bottom: 10px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
       font-size: 14.5167px;
       line-height: 140%;
       color: $c_g;
     }
 
     &_little {
+      padding-bottom: 10px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
       font-size: 10.1617px;
       line-height: 140%;
       color: $c_b;
@@ -39,17 +49,20 @@
   }
 
   &__text {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-
     &_big {
+      padding-bottom: 20px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
       font-size: 10.1617px;
       line-height: 140%;
       color: rgba(65, 65, 65, 0.6);
     }
 
     &_little {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
       font-size: 8.71001px;
       line-height: 140%;
       color: rgba(65, 65, 65, 0.6);
@@ -57,9 +70,34 @@
   }
 
   &__button {
-    width: 254px;
-    height: 30px;
-    border-radius: 3px;
+
+
+
+    &_dark {
+      background-color: $c_g;
+      color: $c_w;
+      width: 254px;
+      height: 30px;
+      border: 1px solid $c_w;
+      border-radius: 3px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &_light {
+      background-color: $c_w;
+      color: $c_g;
+      width: 254px;
+      height: 30px;
+      border: 1px solid $c_g;
+      border-radius: 3px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
 }
