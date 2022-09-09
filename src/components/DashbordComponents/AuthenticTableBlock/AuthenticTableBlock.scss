@@ -52,7 +52,7 @@
       // }
     }
 
-    &__filter {
+    &__filter-btn {
       display: flex;
       gap: 8px;
       align-items: center;
@@ -72,6 +72,39 @@
       }
     }
   }
+
+  &__filter-wrapper {
+    display: none;
+    padding-top: 20px;
+
+    &.visible {
+      display: block;
+    }
+
+    &__elements {
+      display: flex;
+      gap: 20px;
+    }
+
+    &__button {
+      width: 150px;
+      height: 38px;
+      background-color: transparent;
+      border: 1px solid $c_g;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14.1022px;
+      line-height: 140%;
+      color: $c_g;
+    }
+
+
+  }
+
+
 
 
 }
