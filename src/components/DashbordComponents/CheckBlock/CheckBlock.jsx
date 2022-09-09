@@ -1,3 +1,4 @@
+import React from 'react'
 import './CheckBlock.scss'
 import BlockComponentLayout from '../../BlockComponentLayout/BlockComponentLayout'
 import camera from '../../../common/icons/dashboard/camera.png'

@@ -1,3 +1,4 @@
+import React from 'react'
 import './BlockComponentLayout.scss'
 
 const BlockComponentLayout = ({children}) => {

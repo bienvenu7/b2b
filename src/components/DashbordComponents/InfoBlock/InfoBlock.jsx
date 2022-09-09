@@ -1,3 +1,4 @@
+import React from 'react'
 import './InfoBlock.scss'
 import BlockComponentLayout from '../../BlockComponentLayout/BlockComponentLayout'
 import persons from '../../../common/icons/dashboard/persons.png'

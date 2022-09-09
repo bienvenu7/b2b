@@ -1,3 +1,4 @@
+import React from 'react'
 import { useSelector } from "react-redux";
 import { takeBalance } from "../../redux/selectors/authRequest-selectors";
 import { useEffect } from "react";

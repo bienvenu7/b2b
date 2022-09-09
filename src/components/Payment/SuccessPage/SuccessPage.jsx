@@ -1,3 +1,4 @@
+import React from 'react'
 import { useNavigate } from "react-router-dom";
 import logo from "../../../common/images/logo-for-mobile.png";
 import Header from "../Header/Header";

@@ -1,3 +1,4 @@
+import React from 'react'
 import "./Auth.scss";
 import logo from "../../common/icons/logo.png";
 import background from "../../common/images/auth-background-left.png";

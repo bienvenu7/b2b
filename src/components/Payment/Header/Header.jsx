@@ -1,3 +1,4 @@
+import React from 'react'
 import logo from "../../../common/images/logo-for-mobile.png";
 
 const Header = (props) => {

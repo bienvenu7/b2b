@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Formik, Form } from 'formik'
 import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
 import { getCategoryError, getCosts, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
-import React from "react"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 import { pushTotal, removePreviewPackage, setCategoryError, setTotalPackage } from "../../../redux/reducers/payment-reducer"

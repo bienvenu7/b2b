@@ -1,3 +1,4 @@
+import React from 'react'
 import { Navigate } from "react-router-dom";
 import ForgotPassword from "../components/Auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "../components/Auth/ResetPassword/ResetPassword";
