@@ -1,6 +1,7 @@
 @import '../../scss/vars';
 
 .block {
+  box-sizing: border-box;
   position: relative;
   padding: 15px 12px;
   width: 100%;

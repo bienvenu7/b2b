@@ -41,7 +41,7 @@ const DashboardPage = () => {
               })
             }            
           </div>
-          <AuthenticBlock/>
+          {/* <AuthenticBlock/> */}
         </div>
       </PersonalAreaLayout>
     </div>

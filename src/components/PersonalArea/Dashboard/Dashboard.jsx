@@ -17,7 +17,6 @@ const Dashboard = (props) => {
   //temp
 
   return (
-    <>
       <div className="dashboard-container fixed">
         <div className="dashboard-wrapper">
           <div className="dashboard__elem">
@@ -138,7 +137,6 @@ const Dashboard = (props) => {
           <SvgSelector id="cross-icon" />
         </label>
       </div>
-    </>
   );
 };
 
