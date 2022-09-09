@@ -1,3 +1,4 @@
+import React from 'react'
 import './AuthenticBlock.scss'
 import BlockComponentLayout from '../../BlockComponentLayout/BlockComponentLayout'
 

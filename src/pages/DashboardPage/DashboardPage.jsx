@@ -1,3 +1,4 @@
+import React from 'react'
 import './DashboardPage.scss'
 import PersonalAreaLayout from '../../components/PersonalArea/PersonalAreaLayout'
 import InfoBlock from '../../components/DashbordComponents/InfoBlock/InfoBlock'

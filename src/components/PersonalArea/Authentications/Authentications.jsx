@@ -1,3 +1,4 @@
+import React from 'react'
 import PersonalAreaLayout from "../PersonalAreaLayout";
 import SvgSelector from "../../../common/icons/SvgSelector";
 import "./Authentications.scss";

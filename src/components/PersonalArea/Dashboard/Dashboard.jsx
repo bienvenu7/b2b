@@ -1,4 +1,5 @@
 import SvgSelector from "../../../common/icons/SvgSelector";
+import React from 'react'
 import "./Dashboard.scss";
 import storeLogo from "../../../common/images/logo-of-store.png";
 import dashboardIcon from "../../../common/images/dashboard-icon.png";

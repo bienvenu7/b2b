@@ -1,7 +1,7 @@
 import PersonalAreaLayout from "../PersonalAreaLayout";
 import "./PhotoRequests.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   takeAnglesList,
   takeProducts,
