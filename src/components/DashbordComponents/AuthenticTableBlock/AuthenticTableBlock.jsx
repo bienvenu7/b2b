@@ -9,8 +9,17 @@ const AuthenticTableBlock = () => {
   const { pathname } = useLocation();
   console.log(pathname);
   const [searchValue, setSearchValue] = useState();
+  const [filterValues, setFilterValues] = useState(null);
   const [titleTable, setTitleTable] = useState("");
   const [isFilter, setIsFilter] = useState(false);
+
+  const mainOptions = [
+    { value: "BRAND", label: "Brand name" },
+    { value: "MODEL", label: "Model name" },
+    { value: "CATEGORY", label: "Item category" },
+    { value: "OUTCOME", label: "Outcome" },
+    { value: "LAST_UPDATE", label: "Last update" },
+  ];
 
   useEffect(() => {
     if (pathname === "/dashboard") {
