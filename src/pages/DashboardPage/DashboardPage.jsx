@@ -2,7 +2,8 @@ import './DashboardPage.scss'
 import PersonalAreaLayout from '../../components/PersonalArea/PersonalAreaLayout'
 import InfoBlock from '../../components/DashbordComponents/InfoBlock/InfoBlock'
 import CheckBlock from '../../components/DashbordComponents/CheckBlock/CheckBlock'
-import AuthenticBlock from '../../components/DashbordComponents/AuthenticBlock/AuthenticBlock'
+import AuthenticInfoBlock from '../../components/DashbordComponents/AuthenticInfoBlock/AuthenticInfoBlock'
+import AuthenticTableBlock from '../../components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock'
 import camera from '../../common/icons/dashboard/camera.png'
 import checkmark from '../../common/icons/dashboard/checkmark.png'
 
@@ -41,7 +42,8 @@ const DashboardPage = () => {
               })
             }            
           </div>
-          <AuthenticBlock/>
+          <AuthenticInfoBlock/>
+          <AuthenticTableBlock/>
         </div>
       </PersonalAreaLayout>
     </div>
