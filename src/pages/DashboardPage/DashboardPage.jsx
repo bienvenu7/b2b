@@ -32,16 +32,16 @@ const DashboardPage = () => {
   return (
     <div className='top'>
       <PersonalAreaLayout>
-        <div className='content'>
+        <div className='dashboard-page__content'>
           <InfoBlock/>
-          <div className='second-block'>
+          <div className='dashboard-page__second-block'>
             {
               contentChekedBlock.map((block) => {
                 return <CheckBlock image={block.image} textTop={block.textTop} numberTop={block.numberTop} textBottom={block.textBottom} numberBottom={block.numberBottom} />
               })
             }            
           </div>
-          {/* <AuthenticBlock/> */}
+          <AuthenticBlock/>
         </div>
       </PersonalAreaLayout>
     </div>

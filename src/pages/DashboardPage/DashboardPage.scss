@@ -9,13 +9,15 @@
   }
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+.dashboard-page {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
 
-.second-block {
-  display: flex;
-  gap: 30px;
+  &__second-block {
+    display: flex;
+    gap: 30px;
+  }
 }
