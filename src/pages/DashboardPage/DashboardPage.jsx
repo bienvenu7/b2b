@@ -8,11 +8,6 @@ import camera from '../../common/icons/dashboard/camera.png'
 import checkmark from '../../common/icons/dashboard/checkmark.png'
 
 const DashboardPage = () => {
-  const textTop = "Completed authentications"
-  const numberTop = "911"
-  const textBottom = "in the past day"
-  const numberBottom = "+30"
-
   const contentChekedBlock = [
     {
       textTop: "Completed authentications",

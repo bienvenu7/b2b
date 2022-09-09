@@ -1,31 +1,49 @@
-import './AuthenticTableBlock.scss'
-import BlockComponentLayout from '../../BlockComponentLayout/BlockComponentLayout'
+import "./AuthenticTableBlock.scss";
+import cn from 'classnames'
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import SvgSelector from "../../../common/icons/SvgSelector";
+import BlockComponentLayout from "../../BlockComponentLayout/BlockComponentLayout";
+
 
 const AuthenticTableBlock = () => {
+  const {pathname} = useLocation()
+  console.log(pathname)
+  const [searchValue, setSearchValue] = useState()
+  const [titleTable, setTitleTable] = useState("")
+
+  useEffect(() => {
+    if (pathname === '/dashboard') {
+      setTitleTable("In progress authentications")
+    }
+  }, [])
+
+  const handleSearch = () => {
+    alert("клик по кнопке поиска")
+  }
+  const handleFilter = () => {
+    alert("что-то должно произойти при потере фокуса")
+  }
+
   return (
     <BlockComponentLayout>
-      <div className='authentic-info-block__container'>
-        <div className='authentic-info-block__content-block'>
-          <h3 className='authentic-info-block__title_big'>Authentic score = 75%</h3>
-          <p className='authentic-info-block__text_big'>Most of your items are authentic yet there is still room for impovement!</p>
-          <button className='authentic-info-block__button_dark'>Learn how to improve the score</button>
-        </div>
-        <div className='authentic-info-block__content-block'>
-          <div className='authentic-info-block__cards-block'>
-            <div className='authentic-info-block__cards-block__item'>
-              <h3 className='authentic-info-block__title_little'>Authentic items spotted: 75</h3>
-              <p className='authentic-info-block__text_little'>Your most common authentic items are Gucci bags and Saint Laurent shoes!</p>
-            </div>
-            <div className='authentic-info-block__cards-block__item'>
-              <h3 className='authentic-info-block__title_little'>Fake items spotted: 25</h3>
-              <p className='authentic-info-block__text_little'>Your most common fake items are Prada bags and Dior t-shirts!</p>
-            </div>
+      <>
+        <div className="authent-table__navigaton">
+          <div className="authent-table__navigaton__label">{titleTable}</div>
+          <input
+            className="authent-table__navigaton__search"
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search"
+            onBlur={handleSearch}
+          />
+          <div className="authent-table__navigaton__filter" onClick={handleFilter}>
+            <SvgSelector id="filter-icon" />
           </div>
-          <button className='authentic-info-block__button_light'>See all verified items</button>
         </div>
-      </div>
+        
+      </>
     </BlockComponentLayout>
-  )
-}
+  );
+};
 
-export default AuthenticTableBlock
+export default AuthenticTableBlock;
