@@ -1,3 +1,4 @@
+import React from 'react'
 import "../Payment.scss";
 import logo from "../../../common/images/logo-for-mobile.png";
 import SvgSelector from "../../../common/icons/SvgSelector";

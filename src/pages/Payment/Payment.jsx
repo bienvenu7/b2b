@@ -1,3 +1,4 @@
+import React from 'react'
 import Header from "../../components/Payment/Header/Header";
 import SvgSelector from "../../common/icons/SvgSelector";
 import Navigation from "../../components/Navigation/Navigation";

@@ -1,3 +1,4 @@
+import React from 'react'
 import { components } from "react-select";
 import SvgSelector from "../icons/SvgSelector";
 

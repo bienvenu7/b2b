@@ -1,3 +1,5 @@
+import React from 'react'
+
 const SvgSelector = (props) => {
     switch (props.id) {
         case 'arrowsDown':

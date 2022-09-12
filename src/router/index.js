@@ -1,3 +1,4 @@
+import React from 'react'
 import { Navigate } from "react-router-dom";
 import ForgotPassword from "../components/Auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "../components/Auth/ResetPassword/ResetPassword";
@@ -13,9 +14,9 @@ import Authentications from "../components/PersonalArea/Authentications/Authenti
 import Card from "../components/PersonalArea/Card/Card";
 import PhotoRequests from "../components/PersonalArea/PhotoRequests/PhotoRequests";
 import TopUpBundle from "../pages/TopUpBundle/TopUpBundle";
-import Dashboard from "../components/Dashbord/Dashboard";
 import Billing from "../components/PersonalArea/billing/Billing";
 import ConfirmEmail from "../components/Auth/ConfirmEmail/ConfirmEmail";
+import DashboardPage from "../pages/DashboardPage/DashboardPage";
 
 export const publicRoutes = [
   { path: "/signin", component: <Signin /> },
@@ -36,6 +37,7 @@ export const privateRoutes = [
     path: "authentications/in-progress",
     component: <Authentications var={"progress"} />,
   },
+  { path: "dashboard", component: <DashboardPage />},
   { path: "photo-requests/:page", component: <PhotoRequests /> },
   { path: "request/:id", component: <Card /> },
   { path: "payment", component: <TopUpBundle /> },
@@ -44,8 +46,6 @@ export const privateRoutes = [
   { path: "success-order", component: <SuccessPageOrder /> },
   { path: "authentication-request", component: <AuthenticationRequest /> },
   { path: "pay", component: <Payment /> },
-
-  { path: "home", component: <Dashboard /> },
   { path: "billing-history", component: <Billing /> },
 
   //{path: 'payment-new', component: <TopUpBundle/>}

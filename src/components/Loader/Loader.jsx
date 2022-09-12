@@ -1,3 +1,4 @@
+import React from 'react'
 import "./Loader.scss";
 
 const Loader = () => {
@@ -5,7 +6,7 @@ const Loader = () => {
     <>
       <div className="loader-container">
         <div className="loader-wrapper">
-          <div class="loader">Loading...</div>
+          <div className="loader">Loading...</div>
         </div>
       </div>
     </>

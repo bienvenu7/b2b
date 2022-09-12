@@ -1,0 +1,23 @@
+@import '../../scss/vars';
+
+
+.top {
+  margin-top: 54px;
+
+  @include for-phone-only {
+    margin-top: 0;
+  }
+}
+
+.dashboard-page {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__second-block {
+    display: flex;
+    gap: 30px;
+  }
+}

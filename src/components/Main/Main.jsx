@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getIsAuth } from "../../redux/selectors/auth-selectors";
@@ -27,6 +27,9 @@ const Main = () => {
         >
           Logout
         </button>
+        <button onClick={() => {navigate("/dashboard")}}>
+          Dashboard
+        </button>
         <div
           style={{
             display: "flex",
@@ -41,7 +44,7 @@ const Main = () => {
           <button onClick={() => navigate("/authentications/completed")}>
             All authentication
           </button>
-          <button onClick={() => navigate("/home")}>Main dashboard</button>
+          {/* <button onClick={() => navigate("/home")}>Main dashboard</button> */}
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import SvgSelector from "../../common/icons/SvgSelector";
 import Navigation from "../Navigation/Navigation";
