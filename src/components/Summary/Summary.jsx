@@ -4,10 +4,15 @@ import { getUserTariffPackages,getCosts, getPrice } from "../../redux/selectors/
 
 import {pushTotal, removePreviewPackage, updateVolumePackage} from '../../redux/reducers/payment-reducer'
 import './Summary.scss'
-import { getPriceThunk } from "../../redux/thunks/payment-thunk"
+import { getCartTotalThunk, getPriceThunk } from "../../redux/thunks/payment-thunk"
+import { useEffect } from "react"
 
 
 const Summary = (props) =>{
+
+    const [count, setCount] = useState(false)
+
+    const cart = useSelector(getUserTariffPackages)
 
     const dispatch = useDispatch()
     const packages = useSelector(getUserTariffPackages)
@@ -15,6 +20,21 @@ const Summary = (props) =>{
     const totalPrice = useSelector(getPrice)
     console.log(totalPrice)
     console.log(cost)
+
+    // const updatPrice = (data) => {
+    //     setTimeout(() => {
+    //         dispatch(getCartTotalThunk(data));
+    //       }, 1000)
+    // }
+
+    useEffect(() => {
+        const data = {
+            userTariffPackages: cart
+        }
+        dispatch(getCartTotalThunk(data))
+
+        console.log(count)
+    }, [count])
 
 
     return(
@@ -36,6 +56,7 @@ const Summary = (props) =>{
                         }>-</button>
                         <div className="summary__elem-cost">{cost && cost[index] && cost[index]/100 + ' X ' + el.volume}</div>
                         <button onClick={() => {
+                            setCount(true)
                             dispatch(updateVolumePackage({index: index, volume: el.volume + 1}));
                         }}>+</button>
                     </div>

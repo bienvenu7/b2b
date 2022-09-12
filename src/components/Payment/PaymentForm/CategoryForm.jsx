@@ -93,8 +93,8 @@ const CategoryForm = (props) => {
         const pack = {productType: productType, volume: volume, answerTime: value}
         setAnswerTime(value)
         dispatch(updateHoursPackage({index: packageEditNumber,hours: value}))
-        dispatch(getPriceThunk(pack))
-        props.cartTotal(data)
+        // dispatch(getPriceThunk(pack))
+        // props.cartTotal(data)
         setErrorForAnswerTime(null)
     }
 

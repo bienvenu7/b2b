@@ -8,7 +8,7 @@ import {
 import Balance from "../../Balance/Balance";
 import Summary from "../../Summary/Summary";
 
-const RigthSide = ({ toogle }) => {
+const RigthSide = ({ toogle, cartTotal }) => {
   const packages = useSelector(getUserTariffPackages);
   const total = useSelector(getCartTotal);
 
@@ -18,7 +18,7 @@ const RigthSide = ({ toogle }) => {
       {/* {console.log(total)} */}
       {packages.length > 0 && (
         <div style={{ margin: "84px 0" }}>
-          <Summary />
+          <Summary cartTotal={cartTotal} />
         </div>
       )}
       <div className="top_up_bundle__summary-wrapper"></div>

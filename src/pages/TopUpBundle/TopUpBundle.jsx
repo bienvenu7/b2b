@@ -112,6 +112,7 @@ const TopUpBundle = (props) => {
         </div>
         <RigthSide
           toogle={{ add: btnAddToogleClick, pay: btnPayToogleClick }}
+          cartTotal={calcCartTotal}
         />
       </div>
     </>
