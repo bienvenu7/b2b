@@ -1,7 +1,7 @@
 import React from 'react'
 import PersonalAreaLayout from "../PersonalAreaLayout";
 import SvgSelector from "../../../common/icons/SvgSelector";
-// import "./Authentications.scss";
+import "./Authentications.scss";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
@@ -23,6 +23,7 @@ import Select from "react-select";
 import FilterSelect from "./FilterSelect";
 import Loader from "../../Loader/Loader";
 const Authentications = (props) => {
+  
   const location = useLocation();
 
   const PageSize = 8;
@@ -50,6 +51,7 @@ const Authentications = (props) => {
   const [page, setPage] = useState(null);
 
   const [dataFilter, setDataFilter] = useState({});
+  
 
   useEffect(() => {
     setPage(

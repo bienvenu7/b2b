@@ -52,6 +52,10 @@ const Authentications = (props) => {
   const [dataFilter, setDataFilter] = useState({});
 
   useEffect(() => {
+    props.var ? setDataFilter(...props) : setDataFilter({var: "progress"})
+  }, [])
+
+  useEffect(() => {
     setPage(
       props.var === "completed"
         ? "complete"
@@ -334,7 +338,7 @@ const Authentications = (props) => {
     navigate("../luxury-store/authentications/photo-requests");
 
   if (page === null) {
-    return <></>;
+    return <div>Хйуня</div>;
   } else {
     return (
       
