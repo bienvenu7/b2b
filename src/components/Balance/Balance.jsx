@@ -10,10 +10,11 @@ const Balance = (props) => {
   const balance = useSelector(takeBalance);
   useEffect(() => {}, [balance]);
   const {pathname} = useLocation()
-  console.log(pathname)
+  // console.log(pathname)
 
   return (
     <>
+    {/* {console.log(balance)} */}
       <div className="balance-container">
         <div className="balance-title">Your authentication balance</div>
         <hr />

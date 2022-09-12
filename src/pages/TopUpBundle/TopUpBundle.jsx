@@ -20,6 +20,7 @@ import Header from "../../components/Payment/Header/Header";
 import Header1 from "../../components/Header/Header";
 import Navigation from "../../components/Navigation/Navigation";
 import SvgSelector from "../../common/icons/SvgSelector";
+import PersonalAreaLayout from "../../components/PersonalArea/PersonalAreaLayout";
 
 const TopUpBundle = (props) => {
   const dispatch = useDispatch();
@@ -99,6 +100,7 @@ const TopUpBundle = (props) => {
               <h1>Authentification bundle</h1>
               <SvgSelector id="burger" />
             </div>
+            <div className="mobile-nav"><PersonalAreaLayout/></div>
           </div>
           <Header />
           <PaymentForm
