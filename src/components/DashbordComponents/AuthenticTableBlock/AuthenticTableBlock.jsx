@@ -51,17 +51,24 @@ const Authentications = (props) => {
 
   const [dataFilter, setDataFilter] = useState({});
 
-  useEffect(() => {
-    props.var ? setDataFilter(...props) : setDataFilter({var: "progress"})
-  }, [])
+  // Было
+  // useEffect(() => {
+  //   setPage(
+  //     props.var === "completed"
+  //       ? "complete"
+  //       : props.var === "progress" && "progress"
+  //   );
+  // });
 
+  // Стало
   useEffect(() => {
     setPage(
       props.var === "completed"
         ? "complete"
-        : props.var === "progress" && "progress"
+        : "progress"
     );
   });
+  console.log(page)
 
   useEffect(() => {
     resultStatuses !== null &&
