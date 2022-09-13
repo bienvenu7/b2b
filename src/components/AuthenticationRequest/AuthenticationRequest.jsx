@@ -59,6 +59,7 @@ const AuthenticationRequest = () => {
   const [productTypeValue, setProductTypeValue] = useState(null);
   const [brandValue, setBrandValue] = useState();
   const [errorMessage, setErrorMessage] = useState("")
+  const [checkValid, setCheckValid] = useState(false)
   const [brandSelectorKey, setBrandSelectorKey] = useState(0);
   const status = useSelector(getStatusCode);
   const [errors, setErrorsForForm] = useState({
@@ -81,25 +82,49 @@ const AuthenticationRequest = () => {
 
   const optionsBrands = [];
 
+  function valid () {
+    for (let key in errors) {
+      if(errors[key] === null) {
+        setCheckValid(false)
+        break
+      }
+      console.log("не зашло в условия проверки инпута")
+      setCheckValid(true)
+    }
+
+    for (let i = 0 ; i < photoFiles.length; i++) {
+      if(photoFiles[i].file === "" && photoFiles[i].necessity === 1) {
+        console.log("проверка фото")
+        setCheckValid(false)
+        break
+      }
+      console.log("не зашло в условия проверки фото")
+      setCheckValid(true)
+    }
+  }
+
   const handleChangeCategory = (e) => {
     dispatch(getProductTypePropThunk(e.value));
     setProductTypeValue(e.type);
     setSelectedCategory(e.key);
     setPhotoFiles([]);
     setBrandSelectorKey(brandSelectorKey + 1);
-    errors.category && setErrorsForForm({ ...errors, category: null });
+    errors.category && setErrorsForForm({ ...errors, category: true });
     postErrors.authrequest && dispatch(setErrors(null));
+    valid()
   };
 
   function handleChangeBrand(e) {
     setBrandValue(e.brand);
     setSelectedBrand(e.key);
-    errors.brand && setErrorsForForm({ ...errors, brand: null });
+    errors.brand && setErrorsForForm({ ...errors, brand: true });
+    valid()
   }
 
   function handleChangeModelType(e) {
     setModelTypeValue(e.target.value);
-    errors.typeModel && setErrorsForForm({ ...errors, typeModel: null });
+    errors.typeModel && setErrorsForForm({ ...errors, typeModel: true });
+    valid()
   }
 
   useEffect(() => {
@@ -170,45 +195,50 @@ const AuthenticationRequest = () => {
       certificateNeeded: certCheck,
       answerTime: answerTime,
     });
-    setButtonState(false);
-    let onlineOrder = {};
-    if (!brandValue) {
-      !productTypeValue
-        ? setErrorsForForm({
+    setButtonState(false); // кнопка  в состояние неактивной
+    let onlineOrder = {}; // пустой объект, для чего?
+    if (!brandValue) {  // если brandValue - false
+      !productTypeValue  // дополнительно проверить productTypeValue - false
+        ? setErrorsForForm({ // если productTypeValue - false
             ...errors,
             category: "Please select",
             brand: "Please select",
           })
-        : setErrorsForForm({ ...errors, brand: "Please select" });
+        : setErrorsForForm({ ...errors, brand: "Please select" }); // иначе 
     }
-    if (modelTypeValue == "") {
-      if (!brandValue) {
-        !productTypeValue
-          ? setErrorsForForm({
+
+
+    if (modelTypeValue == "") { // дополнительно проверить modelTypeValue, что там пустая строка
+      if (!brandValue) {  // если brandValue - false
+        !productTypeValue  // дополнительно проверить productTypeValue - false
+          ? setErrorsForForm({  // если productTypeValue - false
               ...errors,
               category: "Please select",
               brand: "Please select",
               typeModel: "Please fill",
             })
-          : setErrorsForForm({
+          : setErrorsForForm({ // иначе 
               ...errors,
               brand: "Please select",
               typeModel: "Please fill",
             });
-      } else {
+      } else { // иначе если в productTypeValue - true
         setErrorsForForm({ ...errors, typeModel: "Please fill" });
       }
-      setButtonState(true);
-      return;
-    } else {
-      if (!brandValue) {
+      setButtonState(true); // в любом случае выполнить
+      return; // и выйти из функции
+    } else { // иначе если modelTypeValue не пустая строка
+      if (!brandValue) { // и brandValue - false
         setButtonState(true);
-        return;
+        return; // выйти из функции
       }
     }
-    if (photoFiles.find((el) => el.file == "" && el.necessity == 1)) {
-      const reqBlank =  photoFiles.filter((el) => el.necessity == 1)
-      const inputBlank = photoFiles.filter((el) => el.file == "" && el.necessity == 1)      
+
+
+    //  блок, который определяет, поля с обязательными полями все пустые или частично
+    if (photoFiles.find((el) => el.file == "" && el.necessity == 1)) { // если есть хоть один элемент в маассиве photoFilesБ который соотвествует условиям 
+      const reqBlank =  photoFiles.filter((el) => el.necessity == 1) // получить все элементы el.necessity == 1
+      const inputBlank = photoFiles.filter((el) => el.file == "" && el.necessity == 1) // получить все элементы el.file == "" && el.necessity == 1
       setPhotoFiles(
         photoFiles.map((el, index) =>
           el.file == "" && el.necessity == 1 ? { ...el, error: true } : el
@@ -220,12 +250,16 @@ const AuthenticationRequest = () => {
       if(reqBlank.length > inputBlank.length) setErrorMessage("One or more of the required photos are missing, please make sure you upload them!")
       return;
     }
+
+    // если заказ пустой
     if (!order) {
-      const response = await dispatch(createOrderThunk());
-      onlineOrder = response;
+      const response = await dispatch(createOrderThunk()); // создать этот заказ
+      onlineOrder = response; // записать его в пустой объект, который создавался раннее
     }
+
+    // создается объект data
     const data = {
-      order: !order ? onlineOrder : order,
+      order: !order ? onlineOrder : order, // исли через useSelect получен пустой объект, записать onlineOrder, который возможно тоже пустой, иначе - запсиать данные из useSelect
       productType: productTypeValue,
       brand: brandValue,
       modelName: modelTypeValue,
@@ -233,17 +267,20 @@ const AuthenticationRequest = () => {
       certificateNeeded: certCheck,
       answerTime: answerTime,
     };
-    const photosCount = photoFiles.filter((el) => el.file !== "").length;
 
-    const response = await dispatch(createProductThunk(data));
+
+    const photosCount = photoFiles.filter((el) => el.file !== "").length; // длинна photoFiles с загруженными фотографиями
+
+    const response = await dispatch(createProductThunk(data)); // отправляется заказ
+
     const response1 =
-      response !== true
-        ? await photoFiles
-            .filter((el) => el.file !== "")
-            .map(
+      response !== true // если ответ неудачный
+        ? await photoFiles // пробегаюсь по массиву
+            .filter((el) => el.file !== "") // фильтрую объекты, где в полях el.file !== "" - не пустые строки
+            .map( // этот отфильрованный объект ...
               (el, index) =>
-                el.file !== "" &&
-                dispatch(
+                el.file !== "" &&  // проверяю, что JS в предыдущей хуйне понял меня верно...
+                dispatch( // делаю диспатч и что-то записываю
                   uploadPhotoForProductThunk(
                     {
                       productId: response.data.id,
@@ -255,9 +292,11 @@ const AuthenticationRequest = () => {
                   )
                 )
             )
-        : setButtonState(true);
-    response1 && setButtonState(true);
-    if (status) {
+        : setButtonState(true); // иначе кнопка отправки в исходном состоянии
+    response1 && setButtonState(true); // после всей хуйни проверю response1 === true и на всякий случай кнопку в исходное состояние
+
+
+    if (status) { // проверяю статус кода какого-то запроса и выполняю следующие дейсвтия
       setAnswerTime(24);
       setModelTypeValue("");
       setSupplierTypeValue("");
@@ -398,11 +437,14 @@ const AuthenticationRequest = () => {
                             <div className='auth_request__form__photo-container'>
                                 {productTypeValue && photoFiles.map((el, index) =>
                                     <div key={index} className={`auth_request__form__photo-elem ${index}`}>
-                                        {el.imagePreviewUrl !== '' ?
+                                        {el.imagePreviewUrl !== '' ? (
+                                          <>
                                             <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${el.imagePreviewUrl})` }}>
                                                 <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                             </label>
-                                            : <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'auth_request__form__photo-photolabel required' : 'auth_request__form__photo-photolabel'}>
+                                            <button className="auth_request__form__photo-button" onClick={()=> deleteImage(index)}>удалить</button>
+                                          </>
+                                            ): <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'auth_request__form__photo-photolabel required' : 'auth_request__form__photo-photolabel'}>
                                                 <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                             </label>}
                                         <div className='auth_request__form__photo-name'>{el.angleName}</div>
@@ -427,10 +469,8 @@ const AuthenticationRequest = () => {
                                     <div className='auth_request__form__footer__info__h2-value'>{answerTime} hours</div>
                                 </div>
                             </div>
-                            <div className='auth_request__form__footer__button-wrapper' onClick={() => buttonState && handlePost()}>
-
-                                <div className={buttonState ? 'auth_request__form__footer__button-elem' : 'auth_request__form__footer__button-elem disabled'}>Submit</div>
-                            </div>
+                            {checkValid && <button className='auth_request__form__footer__button-wrapper' type="submit">Submit</button>}
+                            {!checkValid && <button className='auth_request__form__footer__button-wrapper-disabled' type="submit" disabled>Submit</button>}
 
                         </div>
                     </div>
