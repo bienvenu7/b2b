@@ -88,10 +88,23 @@ const AuthenticationRequest = () => {
         setCheckValid(false)
         break
       }
-      console.log("не зашло в условия")
+      console.log("не зашло в условия проверки инпута")
+      setCheckValid(true)
+    }
+
+    for (let i = 0 ; i < photoFiles.length; i++) {
+      if(photoFiles[i].file === "" && photoFiles[i].necessity === 1) {
+        console.log("проверка фото")
+        setCheckValid(false)
+        break
+      }
+      console.log("не зашло в условия проверки фото")
       setCheckValid(true)
     }
   }
+
+  console.log(checkValid)
+  console.log(photoFiles)
 
   const handleChangeCategory = (e) => {
     console.log(e)
@@ -345,7 +358,8 @@ const AuthenticationRequest = () => {
       );
     };
     reader.readAsDataURL(file);
-    checkNecessity();
+    // checkNecessity();
+    valid()
   }
 
   if (status == 201) {
