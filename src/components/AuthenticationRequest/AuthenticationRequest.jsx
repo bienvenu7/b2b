@@ -103,9 +103,6 @@ const AuthenticationRequest = () => {
     }
   }
 
-  console.log(checkValid)
-  console.log(photoFiles)
-
   const handleChangeCategory = (e) => {
     console.log(e)
     dispatch(getProductTypePropThunk(e.value));
@@ -487,11 +484,10 @@ const AuthenticationRequest = () => {
                                 <div className={success ? 'auth_request__form__footer__button-elem' : 'auth_request__form__footer__button-elem disabled'}>Submit</div>
 
                             </div> */}
-                            <div className='auth_request__form__footer__button-wrapper'>
-                                {checkValid && <button className= 'auth_request__form__footer__button-elem' type="submit">Submit</button>}
-                                {!checkValid && <button className= 'auth_request__form__footer__button-elem ' type="submit" disabled>Submit</button>}
-                            </div>
 
+                            {checkValid && <button className='auth_request__form__footer__button-wrapper' type="submit">Submit</button>}
+                            {!checkValid && <button className='auth_request__form__footer__button-wrapper-disabled' type="submit" disabled>Submit</button>}
+                           
                         </div>
                     </div>
                 </form>
@@ -499,6 +495,9 @@ const AuthenticationRequest = () => {
         </div>
     </>
 )
+
+{/* {checkValid && <button className= 'auth_request__form__footer__button-elem' type="submit">Submit</button>}
+                                {!checkValid && <button className= 'auth_request__form__footer__button-elem ' type="submit" disabled>Submit</button>} */}
 
   // return (
   //   <>
