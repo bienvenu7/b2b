@@ -312,6 +312,7 @@ const AuthenticationRequest = () => {
         item.key == index ? { ...item, file: '', imagePreviewUrl:'', format: false } : item
       )
     );
+    valid()
   }
   function handleImageChange(e) {
     e.preventDefault();
@@ -348,6 +349,7 @@ const AuthenticationRequest = () => {
     };
     reader.readAsDataURL(file);
     checkNecessity();
+    valid()
   }
 
   if (status == 201) {
@@ -455,7 +457,7 @@ const AuthenticationRequest = () => {
                     </div>
                     <div className="auth_request__form__footer">
                     {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
-                        <div className='auth_request__form__footer-wrapper'>
+                        <form className='auth_request__form__footer-wrapper'>
                         
                             <div className='auth_request__form__footer__info'>
                                 
@@ -472,7 +474,7 @@ const AuthenticationRequest = () => {
                             {checkValid && <button className='auth_request__form__footer__button-wrapper' type="submit">Submit</button>}
                             {!checkValid && <button className='auth_request__form__footer__button-wrapper-disabled' type="submit" disabled>Submit</button>}
 
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
