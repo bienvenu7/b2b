@@ -8,6 +8,8 @@ import "./Header.scss";
 
 //icon header
 import header_icon from "../../common/icons/logoMobile.png";
+import { logoutThunk } from "../../redux/thunks/auth-thunk";
+import { useDispatch } from "react-redux";
 
 const Header = (props) => {
   const params = useParams();
@@ -17,6 +19,8 @@ const Header = (props) => {
   //for notifications
   const [showNotif, setShowNotif] = useState(false);
   const cardRef = useRef();
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const handle = (event) =>
@@ -65,8 +69,9 @@ const Header = (props) => {
       <div className="header-container">
         <div className="header-wrapper">
           <Navigation
-            hrefs={[{ label: "Luxury store" }, { label: "Authentication" }]}
+            hrefs={[{ label: "Luxury store" }, { label: "Authentification" }]}
           />
+          <div className="right-nav">
           <label
             style={{ cursor: "pointer" }}
             onClick={() =>
@@ -77,6 +82,8 @@ const Header = (props) => {
           >
             <SvgSelector id="bell" />
           </label>
+          <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
+          </div>
         </div>
         <div className="header-wrapper mobile">
           <div className="mobile_header-label">

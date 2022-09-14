@@ -33,10 +33,6 @@ const TopUpBundle = (props) => {
 
   const [timerPrice, setTimerPrice] = useState(false);
   const [timerCart, setTimerCart] = useState(false);
-    
-
-    //trying
-    const [add, setAdd] = useState(null)
 
   useEffect(() => {
     isAuth && dispatch(getProductTypesThunk(1, 1000));
@@ -59,6 +55,7 @@ const TopUpBundle = (props) => {
   };
 
   const calcCartTotal = (data) => {
+    // dispatch(getCartTotalThunk(data));
     clearTimeout(timerCart);
     setTimerCart(
       setTimeout(() => {

@@ -9,6 +9,7 @@ import { loginThunk } from "../../../redux/thunks/auth-thunk";
 import AuthLayout from "../AuthLayout";
 import mobileLogo from "../../../common/images/logo-for-mobile.png";
 import "../Auth.scss";
+import Loader from '../../Loader/Loader';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ const SignIn = () => {
 
   return (
     <>
+    {isLoading ? <Loader/> :
       <AuthLayout>
         <div className="auth__content-promo"></div>
         <div className="auth__content-form">
@@ -176,7 +178,7 @@ const SignIn = () => {
             </div>
           </div>
         </div>
-      </AuthLayout>
+      </AuthLayout>}
     </>
   );
 };

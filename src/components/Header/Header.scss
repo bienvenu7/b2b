@@ -19,6 +19,12 @@
         @include for-phone-only{
             display: none;
         }
+
+        .right-nav {
+            display: flex;
+            gap: 12px;
+        }
+
         &.mobile{
             display: none;
             @include for-phone-only{

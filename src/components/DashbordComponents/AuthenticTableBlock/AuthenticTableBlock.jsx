@@ -379,11 +379,11 @@ const Authentications = (props) => {
                 </div>
                 {page === "progress" ? (
                   <div className="authent__nav-label">
-                    In progress authentications
+                    In progress authentifications
                   </div>
                 ) : (
                   <div className="authent__nav-label">
-                    Completed authentications
+                    Completed authentifications
                   </div>
                 )}
                 <div className="authent__nav-search_icon">

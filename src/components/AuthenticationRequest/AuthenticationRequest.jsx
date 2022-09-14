@@ -461,9 +461,9 @@ const AuthenticationRequest = () => {
                         
                             <div className='auth_request__form__footer__info'>
                                 
-                                <div className='auth_request__form__footer__info__h1'>Authentication summary</div>
+                                <div className='auth_request__form__footer__info__h1'>Summary</div>
                                 <div className='auth_request__form__footer__info__h2'>
-                                    <div className='auth_request__form__footer__info__h2-label'>Authentication requests</div>
+                                    <div className='auth_request__form__footer__info__h2-label'>Authentification requests</div>
                                     <div className='auth_request__form__footer__info__h2-value'>1</div>
                                 </div>
                                 <div className='auth_request__form__footer__info__h2'>

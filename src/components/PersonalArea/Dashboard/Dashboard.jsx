@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { takeBalance } from "../../../redux/selectors/authRequest-selectors";
 import { getProductsThunk } from "../../../redux/thunks/product-thunk";
+import { logoutThunk } from "../../../redux/thunks/auth-thunk";
 
 const Dashboard = (props) => {
   const navigate = useNavigate();
@@ -30,10 +31,11 @@ const Dashboard = (props) => {
               </div>
               <div className="dashboard__elem__top__icon-wrapper">
                 <div className="dashboard__elem__top__icon-elem">
-                  <img src={dashboardIcon} alt="" />
+                  {/* <img src={dashboardIcon} alt="" /> */}
                 </div>
                 <div className="dashboard__elem__top__icon-elem">
                   <SvgSelector id="bell" />
+                  <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
                 </div>
               </div>
             </div>
@@ -48,11 +50,11 @@ const Dashboard = (props) => {
             className="dashboard__elem__auth_balance__balance-button mobile"
             onClick={() => navigate("../authentication-request")}
           >
-            New authentication
+            New authentification
           </div>
           <div className="dashboard__elem__auth_balance-wrapper">
             <div className="dashboard__elem__auth_balance-label">
-              Authentication balance <SvgSelector id="arrow" />
+              Authentification balance <SvgSelector id="arrow" />
             </div>
             <div className="dashboard__elem__auth_balance__balance-wrapper">
               {balance.length > 0 &&
@@ -86,7 +88,7 @@ const Dashboard = (props) => {
                     className="dashboard__elem__auth_balance__balance-button"
                     onClick={() => navigate("../authentication-request")}
                   >
-                    New authentication
+                    New authentification
                   </button>
                 ) : (
                   <div
@@ -102,7 +104,7 @@ const Dashboard = (props) => {
           </div>
           <div className="dashboard__elem__authentications-wrapper">
             <div className="dashboard__elem__authentications-label">
-              Authentication <SvgSelector id="arrow" />
+              Authentification <SvgSelector id="arrow" />
             </div>
             <div className="dashboard__elem__authentications-control__elements">
               <div
@@ -110,7 +112,7 @@ const Dashboard = (props) => {
                 onClick={() => navigate("../authentications/completed")}
               >
                 <SvgSelector id="check-icon" />
-                All authentication
+                All authentifications
               </div>
               <div
                 className="dashboard__elem__authentications-control__elem-wrapper"

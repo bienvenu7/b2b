@@ -93,8 +93,8 @@ const CategoryForm = (props) => {
         const pack = {productType: productType, volume: volume, answerTime: value}
         setAnswerTime(value)
         dispatch(updateHoursPackage({index: packageEditNumber,hours: value}))
-        // dispatch(getPriceThunk(pack))
-        // props.cartTotal(data)
+        dispatch(getPriceThunk(pack))
+        props.cartTotal(data)
         setErrorForAnswerTime(null)
     }
 
@@ -104,11 +104,18 @@ const CategoryForm = (props) => {
 
     }, [props.but])
 
+    
+
+    useEffect(() => {
+        // const index = cart.findIndex((i) => i.answerTime === '')
+        dispatch(updateHoursPackage({index: packageEditNumber, hours: 24}))
+    },[packageEditNumber, dispatch])
+
     useEffect(() => {
         const data = {
             userTariffPackages: cart
         }
-        cart.length > 0 && props.cartTotal(data)
+        props.cartTotal(data)
     }, [cart])
 
     let but = props.but
@@ -123,7 +130,7 @@ const CategoryForm = (props) => {
             dispatch(pushTotal(cost.package))
             setVolume(1)
         }
-        formik.values.hours = '0'
+        // formik.values.hours = '0'
         handleClose()
     }
 
@@ -132,11 +139,12 @@ const CategoryForm = (props) => {
         setSelectedValue('')
         setProductTypeVar(null)
         setVolume(1)
+        setAnswerTime(24)
     }
 
     return (<>
         <Formik
-            initialValues={{ hours: '0', typeOfShoes: '' }}
+            initialValues={{ hours: answerTime.toString(), typeOfShoes: '' }}
             validate={values => {
 
             }}
@@ -145,6 +153,8 @@ const CategoryForm = (props) => {
             onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(false);
             }}
+            // enableReinitialize={true}
+            
         >
             {(props2) => (<Form className="payment__form" onSubmit={props2.handleSubmit} onChange={props2.change}>
                 <div className="payment__form-block-container first">
