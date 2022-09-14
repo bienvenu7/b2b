@@ -10,10 +10,11 @@ const Balance = (props) => {
   const balance = useSelector(takeBalance);
   useEffect(() => {}, [balance]);
   const {pathname} = useLocation()
-  console.log(pathname)
+  // console.log(pathname)
 
   return (
     <>
+    {/* {console.log(balance)} */}
       <div className="balance-container">
         <div className="balance-title">Your authentication balance</div>
         <hr />
@@ -44,7 +45,7 @@ const Balance = (props) => {
         )}
         { pathname === "/authentication-request" && balance.length > 0 && (
           <div className="balance__buttons-wrapper">
-            <button className="balance-button top-button" onClick={() => navigate("../payment")}>Top up now</button>
+            <button className="balance-button top-button" onClick={() => navigate("/payment")}>Top up now</button>
           </div>
         )}
       </div>

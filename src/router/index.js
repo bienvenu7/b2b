@@ -5,7 +5,6 @@ import ResetPassword from "../components/Auth/ResetPassword/ResetPassword";
 import Signin from "../components/Auth/Signin/Signin";
 import SignUp from "../components/Auth/Signup/Signup";
 import AuthenticationRequest from "../components/AuthenticationRequest/AuthenticationRequest";
-import Main from "../components/Main/Main";
 import Payment from "../pages/Payment/Payment";
 import PaymentFirst from "../components/Payment/PaymentFirst/PaymentFirst";
 import SuccessPage from "../components/Payment/SuccessPage/SuccessPage";
@@ -28,7 +27,7 @@ export const publicRoutes = [
 
 export const privateRoutes = [
   { path: "", component: <Navigate to="main" /> },
-  { path: "main", component: <Main /> },
+  { path: "main", component: <DashboardPage /> },
   {
     path: "authentications/completed",
     component: <Authentications var={"completed"} />,

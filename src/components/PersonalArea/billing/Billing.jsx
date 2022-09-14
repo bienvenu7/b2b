@@ -39,7 +39,7 @@ const infos = [
 
 const Billing = () => {
   return (
-    <>
+    <div className="top">
       <PersonalAreaLayout>
         <div className="billing-container">
           <div className="billing-header">Payment History</div>
@@ -58,7 +58,7 @@ const Billing = () => {
           </div>
         </div>
       </PersonalAreaLayout>
-    </>
+    </div>
   );
 };
 export default Billing;

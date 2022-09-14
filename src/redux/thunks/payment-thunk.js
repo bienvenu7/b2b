@@ -33,7 +33,7 @@ export const getCartTotalThunk = (data) => async (dispatch) => {
 };
 
 export const getPriceThunk = (data) => async (dispatch) => {
-  console.log(data);
+  // console.log(data);
   if (data == null) {
     const response = await getPrice(data);
     response.status === 200 &&
