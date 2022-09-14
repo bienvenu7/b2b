@@ -34,8 +34,6 @@ const CategoryForm = (props) => {
         { value: { name: 'wallets', types: { single: productTypes[5] } }, label: "Wallets" },
         { value: { name: 'hypeShoes', types: { sneakers: productTypes[0], other: productTypes[2] } }, label: 'Hype shoes' },
         { value: { name: 'luxuryShoes', types: { sneakers: productTypes[1], other: productTypes[3] } }, label: 'Luxury shoes' },
-        { value: { name: 'jewellery', types: { single: productTypes[7] } }, label: 'Jewellery' },
-        { value: { name: 'watches', types: { single: productTypes[8] } }, label: 'Watches' },
     ]
 
     const [selectedValue, setSelectedValue] = useState('');
