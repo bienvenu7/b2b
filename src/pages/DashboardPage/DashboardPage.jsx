@@ -8,6 +8,7 @@ import AuthenticTableBlock from '../../components/DashbordComponents/AuthenticTa
 import camera from '../../common/icons/dashboard/camera.png'
 import checkmark from '../../common/icons/dashboard/checkmark.png'
 import CheckBlockMobile from '../../components/DashbordComponents/CheckBlockMobile/CheckBlockMobile'
+import AuthenticMobile from '../../components/DashbordComponents/AuthenticInMobile/AuthenticMobile'
 
 const DashboardPage = () => {
   const contentChekedBlock = [
@@ -45,6 +46,7 @@ const DashboardPage = () => {
 
         <div className='dashboard-page__content-mobile'>
           <CheckBlockMobile image={checkmark}/>
+          <AuthenticMobile/>
         </div>
       </PersonalAreaLayout>
     </div>
