@@ -23,12 +23,13 @@ const Header = (props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const handle = (event) =>
+    const handle = (event) => {
       !cardRef.current.contains(event.target) && setShowNotif(false);
 
-    document.addEventListener("mousedown", handle);
+    document.addEventListener("mousedown", handle)}
 
     return () => document.addEventListener("mousedown", handle);
+    
   });
 
   useEffect(() => {}, [params.page]);
