@@ -429,7 +429,7 @@ const AuthenticationRequest = () => {
                                 </div>
                             </div>
                             <div className='auth_request__form-container-wrapper second'>
-                                <AuthBalance mt={0} />
+                                <Balance mt={0} />
                             </div>
                         </div>
                         <div className='auth_request__form-container second'>

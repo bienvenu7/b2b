@@ -45,7 +45,7 @@ const Balance = (props) => {
         )}
         { pathname === "/authentication-request" && balance.length > 0 && (
           <div className="balance__buttons-wrapper">
-            <button className="balance-button top-button" onClick={() => navigate("../payment")}>Top up now</button>
+            <button className="balance-button top-button" onClick={() => navigate("/payment")}>Top up now</button>
           </div>
         )}
       </div>
