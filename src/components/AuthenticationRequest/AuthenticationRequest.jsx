@@ -457,7 +457,7 @@ const AuthenticationRequest = () => {
                     </div>
                     <div className="auth_request__form__footer">
                     {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
-                        <form className='auth_request__form__footer-wrapper'>
+                        <form className='auth_request__form__footer-wrapper' onSubmit={handlePost}>
                         
                             <div className='auth_request__form__footer__info'>
                                 
