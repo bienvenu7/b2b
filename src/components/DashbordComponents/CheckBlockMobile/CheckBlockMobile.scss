@@ -13,14 +13,39 @@
     justify-content: center;
     align-items: center;
   }
-}
 
-.top-block {
-  & p {
-    margin: 0;
-    text-align: right;
+  &__top-block {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__bottom-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: rgba(65, 65, 65, 0.6)
+  }
+
+  &__number {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
   }
 }
+
+
 
 .bottom-block {
   & p {
