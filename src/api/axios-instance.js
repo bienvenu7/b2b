@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export const instance = axios.create({
 
-  baseURL: "http://business.legitgrails.com/api"//"http://3.8.69.175:90",
+  baseURL: "https://business.legitgrails.com/api"//"http://3.8.69.175:90",
 })
 
 
