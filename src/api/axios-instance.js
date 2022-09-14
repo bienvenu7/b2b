@@ -7,6 +7,6 @@ export const instance = axios.create({
 })
 
 
-// http://business.legitgrails.com/api - ИСПОЛЬЗОВАТЬ ЭТО!!!!!
+// https://business.legitgrails.com/api - ИСПОЛЬЗОВАТЬ ЭТО!!!!!
 // https://b2b-portal-dev.herokuapp.com/ api для тестовых данных
 // http://3.8.69.175:90 настоящий бэкенд

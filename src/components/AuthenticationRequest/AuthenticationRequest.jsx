@@ -62,7 +62,7 @@ const AuthenticationRequest = () => {
   const [checkValid, setCheckValid] = useState(false)
   const [brandSelectorKey, setBrandSelectorKey] = useState(0);
   const status = useSelector(getStatusCode);
-  const [errors, setErrorsForForm] = useState({
+  const [errors, setErrorsForm] = useState({
     category: null,
     brand: null,
     typeModel: null,
@@ -84,24 +84,28 @@ const AuthenticationRequest = () => {
 
   function valid () {
     for (let key in errors) {
+      console.log(errors[key])
       if(errors[key] === null) {
+        
         setCheckValid(false)
         break
       }
       console.log("не зашло в условия проверки инпута")
       setCheckValid(true)
     }
-
-    for (let i = 0 ; i < photoFiles.length; i++) {
-      if(photoFiles[i].file === "" && photoFiles[i].necessity === 1) {
-        console.log("проверка фото")
-        setCheckValid(false)
-        break
-      }
-      console.log("не зашло в условия проверки фото")
-      setCheckValid(true)
-    }
+    // for (let i = 0 ; i < photoFiles.length; i++) {
+    //   if(photoFiles[i].file === "" && photoFiles[i].necessity === 1) {
+    //     console.log("проверка фото")
+    //     setCheckValid(false)
+    //     break
+    //   }
+    //   console.log("не зашло в условия проверки фото")
+    //   setCheckValid(true)
+    // }
   }
+
+  console.log(checkValid)
+  console.log(errors)
 
   const handleChangeCategory = (e) => {
     dispatch(getProductTypePropThunk(e.value));
@@ -109,7 +113,7 @@ const AuthenticationRequest = () => {
     setSelectedCategory(e.key);
     setPhotoFiles([]);
     setBrandSelectorKey(brandSelectorKey + 1);
-    errors.category && setErrorsForForm({ ...errors, category: true });
+    setErrorsForm({ ...errors, category: true });
     postErrors.authrequest && dispatch(setErrors(null));
     valid()
   };
@@ -117,16 +121,16 @@ const AuthenticationRequest = () => {
   function handleChangeBrand(e) {
     setBrandValue(e.brand);
     setSelectedBrand(e.key);
-    errors.brand && setErrorsForForm({ ...errors, brand: true });
+    setErrorsForm({ ...errors, brand: true });
     valid()
   }
 
   function handleChangeModelType(e) {
     setModelTypeValue(e.target.value);
-    errors.typeModel && setErrorsForForm({ ...errors, typeModel: true });
+    setErrorsForm({ ...errors, typeModel: true });
     valid()
   }
-
+ 
   useEffect(() => {
     setPhotoFiles(
       angles.map(
@@ -199,31 +203,31 @@ const AuthenticationRequest = () => {
     let onlineOrder = {}; // пустой объект, для чего?
     if (!brandValue) {  // если brandValue - false
       !productTypeValue  // дополнительно проверить productTypeValue - false
-        ? setErrorsForForm({ // если productTypeValue - false
+        ? setErrorsForm({ // если productTypeValue - false
             ...errors,
             category: "Please select",
             brand: "Please select",
           })
-        : setErrorsForForm({ ...errors, brand: "Please select" }); // иначе 
+        : setErrorsForm({ ...errors, brand: "Please select" }); // иначе 
     }
 
 
     if (modelTypeValue == "") { // дополнительно проверить modelTypeValue, что там пустая строка
       if (!brandValue) {  // если brandValue - false
         !productTypeValue  // дополнительно проверить productTypeValue - false
-          ? setErrorsForForm({  // если productTypeValue - false
+          ? setErrorsForm({  // если productTypeValue - false
               ...errors,
               category: "Please select",
               brand: "Please select",
               typeModel: "Please fill",
             })
-          : setErrorsForForm({ // иначе 
+          : setErrorsForm({ // иначе 
               ...errors,
               brand: "Please select",
               typeModel: "Please fill",
             });
       } else { // иначе если в productTypeValue - true
-        setErrorsForForm({ ...errors, typeModel: "Please fill" });
+        setErrorsForm({ ...errors, typeModel: "Please fill" });
       }
       setButtonState(true); // в любом случае выполнить
       return; // и выйти из функции
@@ -312,7 +316,7 @@ const AuthenticationRequest = () => {
         item.key == index ? { ...item, file: '', imagePreviewUrl:'', format: false } : item
       )
     );
-    valid()
+    // valid()
   }
   function handleImageChange(e) {
     e.preventDefault();
@@ -349,7 +353,7 @@ const AuthenticationRequest = () => {
     };
     reader.readAsDataURL(file);
     checkNecessity();
-    valid()
+    // valid()
   }
 
   if (status == 201) {
@@ -379,7 +383,7 @@ const AuthenticationRequest = () => {
                 <div className="auth_request__logo">
                     <img src={logo} className='auth_request__logo-image' />
                 </div>
-                <div className="auth_request__form">
+                <form className="auth_request__form">
                     <div className="auth_request__form-wrapper">
 
                         <div className='auth_request__form-container first'>
@@ -457,7 +461,7 @@ const AuthenticationRequest = () => {
                     </div>
                     <div className="auth_request__form__footer">
                     {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
-                        <form className='auth_request__form__footer-wrapper' onSubmit={handlePost}>
+                        <div className='auth_request__form__footer-wrapper' onSubmit={handlePost}>
                         
                             <div className='auth_request__form__footer__info'>
                                 
@@ -474,9 +478,9 @@ const AuthenticationRequest = () => {
                             {checkValid && <button className='auth_request__form__footer__button-wrapper' type="submit">Submit</button>}
                             {!checkValid && <button className='auth_request__form__footer__button-wrapper-disabled' type="submit" disabled>Submit</button>}
 
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </>

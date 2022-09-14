@@ -340,6 +340,7 @@ const Authentications = (props) => {
         ),
     });
   }, []);
+  console.log(currentTableData)
 
   params.page === "photo-requests" &&
     navigate("../luxury-store/authentications/photo-requests");
