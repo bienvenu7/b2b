@@ -8,7 +8,7 @@ import { regThunk } from "../../../redux/thunks/auth-thunk";
 import AuthLayout from "../AuthLayout";
 import SvgSelector from "../../../common/icons/SvgSelector";
 import mobileLogo from "../../../common/images/logo-for-mobile.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,11 @@ const SignUp = () => {
   const postErrors = useSelector(getPostErrors);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null)
+
+  useEffect(() => {
+    setMessage(null)
+  }, [])
 
   const validate = (values) => {
     const errors = {};
@@ -58,9 +63,10 @@ const SignUp = () => {
       } else if (values.company === "Company Name*") {
         console.log();
       }
-      const response = await dispatch(regThunk(values));
-      response === "access" && navigate("/main");
+      const response = dispatch(regThunk(values));
+      response === "access" && setMessage("We have sent a confirmation email to you! Please check your inbox");
       setIsLoading(false);
+      
     },
   });
 
@@ -196,6 +202,8 @@ const SignUp = () => {
               </div>
             ) : null}
 
+            {message && <div className='auth__success-text'> {message} </div>}
+
             <button
               className="auth__form-submit"
               type="submit"
@@ -203,6 +211,7 @@ const SignUp = () => {
             >
               Sign Up
             </button>
+            
           </form>
           <div className="auth__form__bottom">
             <div className="auth__form__bottom-message">
@@ -216,6 +225,7 @@ const SignUp = () => {
             >
               Sign in
             </div>
+            
           </div>
         </div>
       </div>
