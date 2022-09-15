@@ -27,26 +27,21 @@ const Summary = (props) =>{
     //       }, 1000)
     // }
 
-    useEffect(() => {
-        const data = {
-            userTariffPackages: cart
-        }
-        dispatch(getCartTotalThunk(data))
-
-        console.log(count)
-    }, [count])
-
+    // useEffect(() => {
+    //     const data = {
+    //         userTariffPackages: cart
+    //     }
+    //     cart.length && dispatch(getCartTotalThunk(data))
+    // }, [cart])
 
     return(
         <>
         {console.log(packages)}
         {packages.length > 0 && <div className="summary-container">
-            {packages[0].productType !== '' && <div className="summary-title">Summary</div>}
+            {<div className="summary-title">Summary</div>}
                 {packages.map((el,index)=>el.productType !== '' && <div key={index} className='summary__elem-wrapper'>
                     <div className="box">
-                        <button onClick={() => { dispatch(removePreviewPackage());
-                            cost.splice(index, 1)
-                        }}>remove</button>
+                        <button onClick={() => { dispatch(removePreviewPackage())}}>remove</button>
                         <div className="summary__elem-name">{el.productType.publicName} bundle</div>
                         {el.answerTime !== "" && <span>{el.answerTime} h</span>}
                     </div>

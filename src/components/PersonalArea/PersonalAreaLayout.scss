@@ -6,6 +6,7 @@
     margin-top: 65px;
     // margin-left: 28px;
     max-width: 1022px;
+    min-width: 415px;
 
     @include for-phone-only {
         margin: 65px 0 0 0;
@@ -30,7 +31,8 @@
             left: 0;
             top: 0;
             z-index: 101;
-            .dashboard__cross-container{
+
+            .dashboard__cross-container {
                 width: 20%;
             }
         }

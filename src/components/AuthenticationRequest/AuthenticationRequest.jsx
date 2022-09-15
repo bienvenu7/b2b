@@ -62,7 +62,7 @@ const AuthenticationRequest = () => {
   const [checkValid, setCheckValid] = useState(false)
   const [brandSelectorKey, setBrandSelectorKey] = useState(0);
   const status = useSelector(getStatusCode);
-  const [errors, setErrorsForForm] = useState({
+  const [errors, setErrorsForm] = useState({
     category: null,
     brand: null,
     typeModel: null,
@@ -84,24 +84,28 @@ const AuthenticationRequest = () => {
 
   function valid () {
     for (let key in errors) {
+      console.log(errors[key])
       if(errors[key] === null) {
+        
         setCheckValid(false)
         break
       }
       console.log("не зашло в условия проверки инпута")
       setCheckValid(true)
     }
-
-    for (let i = 0 ; i < photoFiles.length; i++) {
-      if(photoFiles[i].file === "" && photoFiles[i].necessity === 1) {
-        console.log("проверка фото")
-        setCheckValid(false)
-        break
-      }
-      console.log("не зашло в условия проверки фото")
-      setCheckValid(true)
-    }
+    // for (let i = 0 ; i < photoFiles.length; i++) {
+    //   if(photoFiles[i].file === "" && photoFiles[i].necessity === 1) {
+    //     console.log("проверка фото")
+    //     setCheckValid(false)
+    //     break
+    //   }
+    //   console.log("не зашло в условия проверки фото")
+    //   setCheckValid(true)
+    // }
   }
+
+  console.log(checkValid)
+  console.log(errors)
 
   const handleChangeCategory = (e) => {
     dispatch(getProductTypePropThunk(e.value));
@@ -109,7 +113,7 @@ const AuthenticationRequest = () => {
     setSelectedCategory(e.key);
     setPhotoFiles([]);
     setBrandSelectorKey(brandSelectorKey + 1);
-    errors.category && setErrorsForForm({ ...errors, category: true });
+    setErrorsForm({ ...errors, category: true });
     postErrors.authrequest && dispatch(setErrors(null));
     valid()
   };
@@ -117,16 +121,16 @@ const AuthenticationRequest = () => {
   function handleChangeBrand(e) {
     setBrandValue(e.brand);
     setSelectedBrand(e.key);
-    errors.brand && setErrorsForForm({ ...errors, brand: true });
+    setErrorsForm({ ...errors, brand: true });
     valid()
   }
 
   function handleChangeModelType(e) {
     setModelTypeValue(e.target.value);
-    errors.typeModel && setErrorsForForm({ ...errors, typeModel: true });
+    setErrorsForm({ ...errors, typeModel: true });
     valid()
   }
-
+ 
   useEffect(() => {
     setPhotoFiles(
       angles.map(
@@ -199,31 +203,31 @@ const AuthenticationRequest = () => {
     let onlineOrder = {}; // пустой объект, для чего?
     if (!brandValue) {  // если brandValue - false
       !productTypeValue  // дополнительно проверить productTypeValue - false
-        ? setErrorsForForm({ // если productTypeValue - false
+        ? setErrorsForm({ // если productTypeValue - false
             ...errors,
             category: "Please select",
             brand: "Please select",
           })
-        : setErrorsForForm({ ...errors, brand: "Please select" }); // иначе 
+        : setErrorsForm({ ...errors, brand: "Please select" }); // иначе 
     }
 
 
     if (modelTypeValue == "") { // дополнительно проверить modelTypeValue, что там пустая строка
       if (!brandValue) {  // если brandValue - false
         !productTypeValue  // дополнительно проверить productTypeValue - false
-          ? setErrorsForForm({  // если productTypeValue - false
+          ? setErrorsForm({  // если productTypeValue - false
               ...errors,
               category: "Please select",
               brand: "Please select",
               typeModel: "Please fill",
             })
-          : setErrorsForForm({ // иначе 
+          : setErrorsForm({ // иначе 
               ...errors,
               brand: "Please select",
               typeModel: "Please fill",
             });
       } else { // иначе если в productTypeValue - true
-        setErrorsForForm({ ...errors, typeModel: "Please fill" });
+        setErrorsForm({ ...errors, typeModel: "Please fill" });
       }
       setButtonState(true); // в любом случае выполнить
       return; // и выйти из функции
@@ -312,7 +316,7 @@ const AuthenticationRequest = () => {
         item.key == index ? { ...item, file: '', imagePreviewUrl:'', format: false } : item
       )
     );
-    valid()
+    // valid()
   }
   function handleImageChange(e) {
     e.preventDefault();
@@ -349,7 +353,7 @@ const AuthenticationRequest = () => {
     };
     reader.readAsDataURL(file);
     checkNecessity();
-    valid()
+    // valid()
   }
 
   if (status == 201) {
@@ -379,7 +383,7 @@ const AuthenticationRequest = () => {
                 <div className="auth_request__logo">
                     <img src={logo} className='auth_request__logo-image' />
                 </div>
-                <div className="auth_request__form">
+                <form className="auth_request__form">
                     <div className="auth_request__form-wrapper">
 
                         <div className='auth_request__form-container first'>
@@ -457,13 +461,13 @@ const AuthenticationRequest = () => {
                     </div>
                     <div className="auth_request__form__footer">
                     {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
-                        <form className='auth_request__form__footer-wrapper' onSubmit={handlePost}>
+                        <div className='auth_request__form__footer-wrapper' onSubmit={handlePost}>
                         
                             <div className='auth_request__form__footer__info'>
                                 
-                                <div className='auth_request__form__footer__info__h1'>Authentication summary</div>
+                                <div className='auth_request__form__footer__info__h1'>Summary</div>
                                 <div className='auth_request__form__footer__info__h2'>
-                                    <div className='auth_request__form__footer__info__h2-label'>Authentication requests</div>
+                                    <div className='auth_request__form__footer__info__h2-label'>Authentification requests</div>
                                     <div className='auth_request__form__footer__info__h2-value'>1</div>
                                 </div>
                                 <div className='auth_request__form__footer__info__h2'>
@@ -474,289 +478,13 @@ const AuthenticationRequest = () => {
                             {checkValid && <button className='auth_request__form__footer__button-wrapper' type="submit">Submit</button>}
                             {!checkValid && <button className='auth_request__form__footer__button-wrapper-disabled' type="submit" disabled>Submit</button>}
 
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </>
 )
-
-  // return (
-  //   <>
-  //     <MobileHeader label="Authentication request" />
-  //     <div className="auth_request__wrapper">
-  //       <div className="auth_request__nav">
-  //         <div className="auth_request__nav-bar">
-  //           <Navigation
-  //             hrefs={[
-  //               { label: "Luxury store" },
-  //               { label: "New authentification" },
-  //             ]}
-  //           />
-  //           <div className="auth_request__nav-label">
-  //             Authentification request
-  //           </div>
-  //         </div>
-  //         <div className="auth_request__nav-bell">
-  //           <SvgSelector id="bell" />
-  //         </div>
-  //       </div>
-  //       {/* <Header /> */}
-  //       <div className="auth_request__container">
-  //         <div className="auth_request__logo">
-  //           <img src={logo} className="auth_request__logo-image" />
-  //         </div>
-  //         <div className="auth_request__form">
-  //           <div className="auth_request__form-wrapper">
-  //             <div className="auth_request__form-container first">
-  //               <div className="auth_request__form-container-wrapper first">
-  //                 <div className="auth_request__form-heading">
-  //                   Authentification request
-  //                 </div>
-  //                 <div className="auth_request__form__elem">
-  //                   <div className="auth_request__form__elem-label">
-  //                     Choose the category
-  //                     <div className="btn">
-  //                       {/*<button className={({answerTime}) => answerTime==12 ? 'active' : ''} onClick={()=>setAnswerTime(12)}>12 hours</button>
-  //                                               <button className={({answerTime}) => answerTime==24 ? 'active' : ''} onClick={()=>setAnswerTime(24)}>24 hours</button>*/}
-  //                       <div className="auth_request__form-radio_btn">
-  //                         <input
-  //                           type="radio"
-  //                           name="hours"
-  //                           value="12"
-  //                           id="12h"
-  //                         />
-  //                         <label
-  //                           htmlFor="12h"
-  //                           onClick={() => setAnswerTime(12)}
-  //                         >
-  //                           12 hours
-  //                         </label>
-  //                       </div>
-  //                       <div className="auth_request__form-radio_btn">
-  //                         <input
-  //                           type="radio"
-  //                           name="hours"
-  //                           checked
-  //                           value="24"
-  //                           id="24h"
-  //                         />
-  //                         <label
-  //                           htmlFor="24h"
-  //                           onClick={() => setAnswerTime(24)}
-  //                           value="24"
-  //                         >
-  //                           24 hours
-  //                         </label>
-  //                       </div>
-  //                     </div>
-  //                   </div>
-  //                   <Select
-  //                     key={productEditNumber}
-  //                     components={{ DropdownIndicator }}
-  //                     options={options}
-  //                     classNamePrefix="custom-select"
-  //                     placeholder="Please select the category"
-  //                     onChange={handleChangeCategory}
-  //                   />
-  //                   {errors.category && (
-  //                     <div className="auth_request__form__elem-error">
-  //                       {errors.category}
-  //                     </div>
-  //                   )}
-  //                 </div>
-  //                 <div className="auth_request__form-elem">
-  //                   <div className="auth_request__form__elem-label">
-  //                     Choose the brand
-  //                   </div>
-  //                   <Select
-  //                     key={brandSelectorKey}
-  //                     components={{ DropdownIndicator }}
-  //                     options={optionsBrands}
-  //                     classNamePrefix="custom-select"
-  //                     placeholder="Please select the brand"
-  //                     onChange={handleChangeBrand}
-  //                   />
-  //                   {errors.brand && (
-  //                     <div className="auth_request__form__elem-error">
-  //                       {errors.brand}
-  //                     </div>
-  //                   )}
-  //                 </div>
-  //                 <div className="auth_request__form__elem">
-  //                   <input
-  //                     type="checkbox"
-  //                     className="custom-checkbox"
-  //                     id="certificate"
-  //                     name="certificate"
-  //                     checked={certCheck}
-  //                     onChange={() => setCertCheck(!certCheck)}
-  //                   />
-  //                   <label htmlFor="certificate" id="forCert">
-  //                     Include certificate
-  //                   </label>
-  //                 </div>
-  //                 {certCheck && (
-  //                   <div className="auth_request__form__elem">
-  //                     <div className="auth_request__form__radio-group">
-  //                       <div className="auth_request__form__radio-button">
-  //                         Upload logo
-  //                       </div>
-  //                       <div className="auth_request__form__radio-button">
-  //                         Use existing one
-  //                       </div>
-  //                     </div>
-  //                   </div>
-  //                 )}
-  //                 <div className="auth_request__form__elem">
-  //                   <div className="auth_request__form__elem-label">
-  //                     Additional details
-  //                   </div>
-  //                   <div className="auth_request__form__elem-input-wrapper">
-  //                     <input
-  //                       className="auth_request__form__elem-input"
-  //                       placeholder="Type model name here"
-  //                       value={modelTypeValue}
-  //                       onChange={handleChangeModelType}
-  //                     />
-  //                     {errors.typeModel && (
-  //                       <div className="auth_request__form__elem-error">
-  //                         {errors.typeModel}
-  //                       </div>
-  //                     )}
-  //                     <input
-  //                       className="auth_request__form__elem-input"
-  //                       placeholder="Type supplier name here (optional)"
-  //                       value={supplierTypeValue}
-  //                       onChange={(e) => setSupplierTypeValue(e.target.value)}
-  //                     />
-  //                   </div>
-  //                 </div>
-  //               </div>
-  //               <div className="auth_request__form-container-wrapper second">
-  //                 {/* <AuthBalance mt={0} /> */}
-  //                 <Balance />
-  //               </div>
-  //             </div>
-  //             <div className="auth_request__form-container second">
-  //               <div
-  //                 className="auth_request__form__elem-label"
-  //                 id="photo_block_label"
-  //               >
-  //                 Upload photos
-  //               </div>
-  //               {photoError && (
-  //                 <div className="auth_request__form-desc">
-  //                   {errorMessage}
-  //                 </div>
-  //               )}
-
-  //               <div className="auth_request__form__photo-container">
-  //                 {productTypeValue &&
-  //                   photoFiles.map((el, index) => (
-  //                     <div
-  //                       key={index}
-  //                       className={`auth_request__form__photo-elem ${index}`}
-  //                     >
-  //                       {el.imagePreviewUrl !== "" ? (
-  //                         <>
-  //                           <label
-  //                             htmlFor={`photo-${index}`}
-  //                             className="auth_request__form__photo-photolabel"
-  //                             style={{ background: `url(${el.imagePreviewUrl})` }}
-  //                           >
-  //                             <input
-  //                               className={`auth_request__form__photo-fileInput ${index}`}
-  //                               accept=".png,.jpg,.jpeg"
-  //                               type="file"
-  //                               onChange={handleImageChange}
-  //                               id={`photo-${index}`}
-  //                             />
-  //                           </label>
-  //                           <button className="auth_request__form__photo-button" onClick={()=> deleteImage(index)}>удалить</button>
-  //                         </>
-                          
-  //                       ) : (
-  //                         <label
-  //                           htmlFor={`photo-${index}`}
-  //                           className={
-  //                             el.necessity == 1
-  //                               ? "auth_request__form__photo-photolabel required"
-  //                               : "auth_request__form__photo-photolabel"
-  //                           }
-  //                         >
-  //                           <input
-  //                             className={`auth_request__form__photo-fileInput ${index}`}
-  //                             accept=".png,.jpg,.jpeg"
-  //                             type="file"
-  //                             onChange={handleImageChange}
-  //                             id={`photo-${index}`}
-  //                           />
-  //                         </label>
-  //                       )}
-  //                       <div className="auth_request__form__photo-name">
-  //                         {el.angleName}
-  //                       </div>
-  //                       {el.format !== null && el.format !== true && (
-  //                         <div className="auth_request__form__photo-error">
-  //                           Format is not available
-  //                         </div>
-  //                       )}
-  //                     </div>
-  //                   ))}
-  //               </div>
-  //             </div>
-  //           </div>
-  //           <div className="auth_request__form__footer">
-  //             {postErrors.authrequest && (
-  //               <div className="auth_request__form__footer-error">
-  //                 {postErrors.authrequest}
-  //               </div>
-  //             )}
-  //             <div className="auth_request__form__footer-wrapper">
-  //               <div className="auth_request__form__footer__info">
-  //                 <div className="auth_request__form__footer__info__h1">
-  //                   Authentication summary
-  //                 </div>
-  //                 <div className="auth_request__form__footer__info__h2">
-  //                   <div className="auth_request__form__footer__info__h2-label">
-  //                     Authentication requests
-  //                   </div>
-  //                   <div className="auth_request__form__footer__info__h2-value">
-  //                     1
-  //                   </div>
-  //                 </div>
-  //                 <div className="auth_request__form__footer__info__h2">
-  //                   <div className="auth_request__form__footer__info__h2-label">
-  //                     Answer time
-  //                   </div>
-  //                   <div className="auth_request__form__footer__info__h2-value">
-  //                     {answerTime} hours
-  //                   </div>
-  //                 </div>
-  //               </div>
-  //               <div
-  //                 className="auth_request__form__footer__button-wrapper"
-  //                 onClick={() => buttonState && handlePost()}
-  //               >
-  //                 <div
-  //                   className={
-  //                     buttonState
-  //                       ? "auth_request__form__footer__button-elem"
-  //                       : "auth_request__form__footer__button-elem disabled"
-  //                   }
-  //                 >
-  //                   Submit
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </>
-  // );
 };
 
 export default React.memo(AuthenticationRequest);

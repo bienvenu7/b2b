@@ -1,9 +1,11 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
 export const setAuth = createAction("SET_AUTH");
+export const setRegister = createAction("SET_REGISTER")
 
 const initialState = {
   isAuth: false,
+  isRegister: false,
   user: {
     id: null,
     email: null,
@@ -16,7 +18,8 @@ const initialState = {
 };
 
 const authReducer = createReducer(initialState, (builder) => {
-  builder.addCase("SET_AUTH", (state = initialState, action) => {
+  builder
+  .addCase("SET_AUTH", (state = initialState, action) => {
     if (action.payload != null) {
       state.isAuth = true;
       /*state.user.email = action.payload.email
@@ -37,7 +40,10 @@ const authReducer = createReducer(initialState, (builder) => {
       state.user.createdAt = null;
       state.user.role = null;
     }
-  });
+  })
+  .addCase("SET_REGISTER", (state = initialState) => {
+    state.isRegister = true
+  })
 });
 
 export default authReducer;

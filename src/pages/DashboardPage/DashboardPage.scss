@@ -11,9 +11,26 @@
 
 .dashboard-page {
   &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    &-desctop {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      @include for-phone-only {
+        display: none;
+      }
+    }
+
+    &-mobile {
+      display: none;
+      padding: 0px 10px 10px;
+      width: 100%;
+
+      @include for-phone-only {
+        display: block;
+      }
+    }
+
   }
 
   &__second-block {

@@ -24,7 +24,7 @@ const NotFoundPage = () => {
           <div
             className="notFoundPage__button"
             onClick={() => {
-              isAuth ? navigate("../main") : navigate("../auth/signin");
+              isAuth ? navigate("../dashboard") : navigate("../auth/signin");
             }}
           >
             Go to dashboard

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // import PersonalAreaLayout from "../PersonalAreaLayout";
 import SvgSelector from "../../../common/icons/SvgSelector";
 import "./AuthenticTableBlock.scss";
@@ -18,11 +18,12 @@ import {
   getProductsThunk,
 } from "../../../redux/thunks/product-thunk";
 import { setProducts } from "../../../redux/reducers/product-reducer";
-import Paginator from "../../Paginator/Paginator"
+import Paginator from "../../Paginator/Paginator";
 import Select from "react-select";
-import FilterSelect from '../../PersonalArea/Authentications/FilterSelect'
+import FilterSelect from "../../PersonalArea/Authentications/FilterSelect";
 import Loader from "../../Loader/Loader";
-const Authentications = (props) => {
+import BlockComponentLayout from "../../BlockComponentLayout/BlockComponentLayout";
+const AuthenticTableBlock = (props) => {
   const location = useLocation();
 
   const PageSize = 8;
@@ -62,13 +63,9 @@ const Authentications = (props) => {
 
   // Стало
   useEffect(() => {
-    setPage(
-      props.var === "completed"
-        ? "complete"
-        : "progress"
-    );
+    setPage(props.var === "completed" ? "complete" : "progress");
   });
-  console.log(page)
+  console.log(page);
 
   useEffect(() => {
     resultStatuses !== null &&
@@ -109,7 +106,7 @@ const Authentications = (props) => {
       sort: "createdAt:DESC",
     };
     dispatch(setProducts(null));
-    dispatch(getProductsThunk(data));//
+    dispatch(getProductsThunk(data)); //
     filterMode && handleFilter();
   }
 
@@ -340,6 +337,7 @@ const Authentications = (props) => {
         ),
     });
   }, []);
+  console.log(currentTableData);
 
   params.page === "photo-requests" &&
     navigate("../luxury-store/authentications/photo-requests");
@@ -348,115 +346,9 @@ const Authentications = (props) => {
     return <div>Хйуня</div>;
   } else {
     return (
-      
-          <div className="authent-container">
-            {/* <div className="authent__buttons-wrapper desktop">
-              <div
-                className={
-                  page !== "complete"
-                    ? `authent__buttons-elem`
-                    : `authent__buttons-elem selected`
-                }
-                onClick={onCompletedClick}
-              >
-                Completed
-              </div>
-              <div
-                className={
-                  page !== "progress"
-                    ? `authent__buttons-elem`
-                    : `authent__buttons-elem selected`
-                }
-                onClick={onProgressClick}
-              >
-                In progress
-              </div>
-            </div> */}
-            <div className="authent-wrapper">
-              <div className="authent__nav-wrapper">
-                <div className="authent__nav-sort">
-                  <SvgSelector id="sort-icon" />
-                </div>
-                {page === "progress" ? (
-                  <div className="authent__nav-label">
-                    In progress authentications
-                  </div>
-                ) : (
-                  <div className="authent__nav-label">
-                    Completed authentications
-                  </div>
-                )}
-                <div className="authent__nav-search_icon">
-                  <SvgSelector id="search-icon" onClick={handleSearch} />
-                </div>
-                <input
-                  className="authent__nav-search"
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  placeholder="Search"
-                  onBlur={handleSearch}
-                />
-                <div className="authent__nav__buttons-wrapper">
-                  <div
-                    className="authent__nav__buttons__elem-wrapper"
-                    onClick={handleFilter}
-                  >
-                    <SvgSelector id="filter-icon" />
-                  </div>
-                </div>
-              </div>
-              {filterMode && (
-                <div className="authent__filter-wrapper">
-                  <div className="authent__filter__elems-wrapper">
-                    {filterValues &&
-                      filterValues.map((el, index) => (
-                        <div key={index} className="authent__filter__elem">
-                          <FilterSelect
-                            key={index}
-                            index={index}
-                            mainOptions={mainOptions}
-                            handleChange={handleChange}
-                            length={filterValues.length}
-                          />
-                          {selectedFilter &&
-                          selectedFilter[index] &&
-                          selectedFilter[index].value &&
-                          selectedFilter[index].value === "MODEL" ? (
-                            <input
-                              type="text"
-                              placeholder="model"
-                              onChange={setModelNameValue}
-                              onBlur={(e) =>
-                                subHandleChange({ value: e.target.value })
-                              }
-                            />
-                          ) : (
-                            selectedFilter && (
-                              <Select
-                                key={secondSelectIndex}
-                                onChange={subHandleChange}
-                                classNamePrefix="custom-select__dashboard"
-                                placeholder="Select filter"
-                                options={options && options}
-                              />
-                            )
-                          )}
-                          {/*filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>*/}
-                        </div>
-                      ))}
-                    <button
-                      onClick={() => {
-                        setSelectedFilter(null);
-                        handleFilter();
-                      }}
-                    >
-                      Clear
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* mobile buttons */}
-              <div className="authent__buttons-wrapper mobile">
+      <BlockComponentLayout>
+        
+          {/* <div className="authent__buttons-wrapper desktop">
                 <div
                   className={
                     page !== "complete"
@@ -477,227 +369,334 @@ const Authentications = (props) => {
                 >
                   In progress
                 </div>
+              </div> */}
+          <>
+            <div className="authent__nav-wrapper">
+              <div className="authent__nav-sort">
+                <SvgSelector id="sort-icon" />
               </div>
-
-              {page === "complete" && (
-                <div className="authent__table">
-                  <div className="authent__table__label-wrapper">
-                    <div className="authent__table__label__elems-wrapper">
-                      <div className="authent__table__label__elem-checkbox">
-                        <input
-                          type="checkbox"
-                          className="custom-checkbox__table"
-                          id="check"
-                        />
-                        <label htmlFor="check" />
-                      </div>
-                      <div className="authent__table__label__elem-category">
-                        Item category
-                      </div>
-                    </div>
-                    <div className="authent__table__label__elems-wrapper">
-                      <div className="authent__table__label__elems-brand">
-                        Brand
-                      </div>
-                      <div className="authent__table__label__elems-model">
-                        Model name
-                      </div>
-                      <div className="authent__table__label__elems-outcome">
-                        Outcome
-                      </div>
-                      <div
-                        className={`authent__table__label__elems-date${
-                          !sortData ? " arrow-up" : ""
-                        }`}
-                        onClick={() => handleSort(sortData)}
-                      >
-                        Submission date <SvgSelector id="down-arrow-icon" />
-                      </div>
-                      <div className="authent__table__label__elems-pdf">
-                        Pdf certificate
-                      </div>
-                    </div>
-                  </div>
-                  {currentTableData ? (
-                    currentTableData.map((el, index) => (
-                      <div key={index} className="authent__table__elem">
-                        <div className="authent__table__elems-wrapper">
-                          <div className="authent__table__elem-checkbox">
-                            <input
-                              key={index}
-                              type="checkbox"
-                              className="custom-checkbox__table"
-                              id={`check-for-elem-${index}`}
-                            />
-                            <label htmlFor={`check-for-elem-${index}`} />
-                          </div>
-                          <div
-                            className="authent__table__elem__category"
-                            onClick={() =>
-                              navigate(`/request/${el.id}`, {
-                                state: { page: currentPage, var: page },
-                              })
-                            }
-                          >
-                            <div
-                              className="authent__table__elem__category-image"
-                              style={{
-                                background: `url(${getPhotoUrl(el.files)})`,
-                              }}
-                            >
-                              {/*<img src={el.image} alt="" />*/}
-                            </div>
-                            <div className="authent__table__elem__category-label">
-                              {el.productType.publicName}
-                            </div>
-                            <div className="authent__table__elem__category-number">
-                              #{el.publicId}
-                            </div>
-                            <div className="authent__table__elem__category-date">
-                              {getDate(el.createdAt, "mobile")}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="authent__table__elems-wrapper">
-                          <div className="authent__table__elem-brand">
-                            {el.brand.publicName}
-                          </div>
-                          <div className="authent__table__elem-model">
-                            {el.modelName}
-                          </div>
-                          <div className="authent__table__elem-outcome">
-                            {el.checkStatus}
-                          </div>
-                          <div className="authent__table__elem-date">
-                            {getDate(el.createdAt, "desktop")}
-                          </div>
-                          {el.certificateAvailable ? (
-                            <a
-                              className="authent__table__elem-pdf"
-                              href={getCertificateLink(el)}
-                            >
-                              View
-                            </a>
-                          ) : (
-                            <div
-                              className="authent__table__elem-pdf"
-                              onClick={() => addCertificate(el)}
-                            >
-                              Add
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <Loader />
-                  )}
+              {page === "progress" ? (
+                <div className="authent__nav-label">
+                  In progress authentifications
+                </div>
+              ) : (
+                <div className="authent__nav-label">
+                  Completed authentifications
                 </div>
               )}
-
-              {page !== "complete" && (
-                <div className="authent__table">
-                  <div className="authent__table__label-wrapper">
-                    <div className="authent__table__label__elems-wrapper">
-                      <div className="authent__table__label__elem-category">
-                        Item category
-                      </div>
-                    </div>
-                    <div className="authent__table__label__elems-wrapper">
-                      <div className="authent__table__label__elems-brand">
-                        Brand
-                      </div>
-                      <div className="authent__table__label__elems-model">
-                        Model name
-                      </div>
-                      <div className="authent__table__label__elems-status">
-                        Status
-                      </div>
-                      <div className="authent__table__label__elems-answer">
-                        Answer time
-                      </div>
-                      <div
-                        className={`authent__table__label__elems-date${
-                          !sortData ? " arrow-up" : ""
-                        }`}
-                        onClick={() => handleSort(sortData)}
-                      >
-                        Submission date <SvgSelector id="down-arrow-icon" />
-                      </div>
-                    </div>
-                  </div>
-                  {currentTableData ? (
-                    currentTableData.map((el, index) => (
-                      <div key={index} className="authent__table__elem">
-                        <div className="authent__table__elems-wrapper">
-                          <div
-                            className="authent__table__elem__category"
-                            onClick={() =>
-                              navigate(`../request/${el.id}`, {
-                                state: { page: currentPage, var: page },
-                              })
-                            }
-                          >
-                            <div
-                              className="authent__table__elem__category-image"
-                              style={{
-                                background: `url(${getPhotoUrl(el.files)})`,
-                              }}
-                            >
-                              {/*<img src={el.image} alt="" />*/}
-                            </div>
-                            <div className="authent__table__elem__category-label">
-                              {el.productType.publicName}
-                            </div>
-                            <div className="authent__table__elem__category-number">
-                              #{el.publicId}
-                            </div>
-                            <div className="authent__table__elem__category-date">
-                              {getDate(el.createdAt, "mobile")}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="authent__table__elems-wrapper">
-                          <div className="authent__table__elem-brand">
-                            {el.brand.publicName}
-                          </div>
-                          <div className="authent__table__elem-model">
-                            {el.modelName}
-                          </div>
-                          <div className="authent__table__elem-status">
-                            {el.resultStatus.publicName}
-                          </div>
-                          <div className="authent__table__elem-answer">
-                            {el.answerTime} hours
-                          </div>
-                          <div className="authent__table__elem-date">
-                            {new Date(el.createdAt).getDate() +
-                              "/" +
-                              (Number(new Date(el.createdAt).getMonth()) + 1) +
-                              "/" +
-                              new Date(el.createdAt).getFullYear()}
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <Loader />
-                  )}
+              <div className="authent__nav-search_icon">
+                <SvgSelector id="search-icon" onClick={handleSearch} />
+              </div>
+              <input
+                className="authent__nav-search"
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search"
+                onBlur={handleSearch}
+              />
+              <div className="authent__nav__buttons-wrapper">
+                <div
+                  className="authent__nav__buttons__elem-wrapper"
+                  onClick={handleFilter}
+                >
+                  <SvgSelector id="filter-icon" />
                 </div>
-              )}
-              {products && currentTableData && (
-                <Paginator
-                  className="pagination-bar"
-                  currentPage={currentPage}
-                  totalCount={products.length}
-                  pageSize={PageSize}
-                  onPageChange={(page) => setCurrentPage(page)}
-                />
-              )}
+              </div>
             </div>
-          </div>
+            {filterMode && (
+              <div className="authent__filter-wrapper">
+                <div className="authent__filter__elems-wrapper">
+                  {filterValues &&
+                    filterValues.map((el, index) => (
+                      <div key={index} className="authent__filter__elem">
+                        <FilterSelect
+                          key={index}
+                          index={index}
+                          mainOptions={mainOptions}
+                          handleChange={handleChange}
+                          length={filterValues.length}
+                        />
+                        {selectedFilter &&
+                        selectedFilter[index] &&
+                        selectedFilter[index].value &&
+                        selectedFilter[index].value === "MODEL" ? (
+                          <input
+                            type="text"
+                            placeholder="model"
+                            onChange={setModelNameValue}
+                            onBlur={(e) =>
+                              subHandleChange({ value: e.target.value })
+                            }
+                          />
+                        ) : (
+                          selectedFilter && (
+                            <Select
+                              key={secondSelectIndex}
+                              onChange={subHandleChange}
+                              classNamePrefix="custom-select__dashboard"
+                              placeholder="Select filter"
+                              options={options && options}
+                            />
+                          )
+                        )}
+                        {/*filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>*/}
+                      </div>
+                    ))}
+                  <button
+                    onClick={() => {
+                      setSelectedFilter(null);
+                      handleFilter();
+                    }}
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* mobile buttons */}
+            <div className="authent__buttons-wrapper mobile">
+              <div
+                className={
+                  page !== "complete"
+                    ? `authent__buttons-elem`
+                    : `authent__buttons-elem selected`
+                }
+                onClick={onCompletedClick}
+              >
+                Completed
+              </div>
+              <div
+                className={
+                  page !== "progress"
+                    ? `authent__buttons-elem`
+                    : `authent__buttons-elem selected`
+                }
+                onClick={onProgressClick}
+              >
+                In progress
+              </div>
+            </div>
+
+            {page === "complete" && (
+              <div className="authent__table">
+                <div className="authent__table__label-wrapper">
+                  <div className="authent__table__label__elems-wrapper">
+                    <div className="authent__table__label__elem-checkbox">
+                      <input
+                        type="checkbox"
+                        className="custom-checkbox__table"
+                        id="check"
+                      />
+                      <label htmlFor="check" />
+                    </div>
+                    <div className="authent__table__label__elem-category">
+                      Item category
+                    </div>
+                  </div>
+                  <div className="authent__table__label__elems-wrapper">
+                    <div className="authent__table__label__elems-brand">
+                      Brand
+                    </div>
+                    <div className="authent__table__label__elems-model">
+                      Model name
+                    </div>
+                    <div className="authent__table__label__elems-outcome">
+                      Outcome
+                    </div>
+                    <div
+                      className={`authent__table__label__elems-date${
+                        !sortData ? " arrow-up" : ""
+                      }`}
+                      onClick={() => handleSort(sortData)}
+                    >
+                      Submission date <SvgSelector id="down-arrow-icon" />
+                    </div>
+                    <div className="authent__table__label__elems-pdf">
+                      Pdf certificate
+                    </div>
+                  </div>
+                </div>
+                {currentTableData ? (
+                  currentTableData.map((el, index) => (
+                    <div key={index} className="authent__table__elem">
+                      <div className="authent__table__elems-wrapper">
+                        <div className="authent__table__elem-checkbox">
+                          <input
+                            key={index}
+                            type="checkbox"
+                            className="custom-checkbox__table"
+                            id={`check-for-elem-${index}`}
+                          />
+                          <label htmlFor={`check-for-elem-${index}`} />
+                        </div>
+                        <div
+                          className="authent__table__elem__category"
+                          onClick={() =>
+                            navigate(`/request/${el.id}`, {
+                              state: { page: currentPage, var: page },
+                            })
+                          }
+                        >
+                          <div
+                            className="authent__table__elem__category-image"
+                            style={{
+                              background: `url(${getPhotoUrl(el.files)})`,
+                            }}
+                          >
+                            {/*<img src={el.image} alt="" />*/}
+                          </div>
+                          <div className="authent__table__elem__category-label">
+                            {el.productType.publicName}
+                          </div>
+                          <div className="authent__table__elem__category-number">
+                            #{el.publicId}
+                          </div>
+                          <div className="authent__table__elem__category-date">
+                            {getDate(el.createdAt, "mobile")}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="authent__table__elems-wrapper">
+                        <div className="authent__table__elem-brand">
+                          {el.brand.publicName}
+                        </div>
+                        <div className="authent__table__elem-model">
+                          {el.modelName}
+                        </div>
+                        <div className="authent__table__elem-outcome">
+                          {el.checkStatus}
+                        </div>
+                        <div className="authent__table__elem-date">
+                          {getDate(el.createdAt, "desktop")}
+                        </div>
+                        {el.certificateAvailable ? (
+                          <a
+                            className="authent__table__elem-pdf"
+                            href={getCertificateLink(el)}
+                          >
+                            View
+                          </a>
+                        ) : (
+                          <div
+                            className="authent__table__elem-pdf"
+                            onClick={() => addCertificate(el)}
+                          >
+                            Add
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <Loader />
+                )}
+              </div>
+            )}
+
+            {page !== "complete" && (
+              <div className="authent__table">
+                <div className="authent__table__label-wrapper">
+                  <div className="authent__table__label__elems-wrapper">
+                    <div className="authent__table__label__elem-category">
+                      Item category
+                    </div>
+                  </div>
+                  <div className="authent__table__label__elems-wrapper">
+                    <div className="authent__table__label__elems-brand">
+                      Brand
+                    </div>
+                    <div className="authent__table__label__elems-model">
+                      Model name
+                    </div>
+                    <div className="authent__table__label__elems-status">
+                      Status
+                    </div>
+                    <div className="authent__table__label__elems-answer">
+                      Answer time
+                    </div>
+                    <div
+                      className={`authent__table__label__elems-date${
+                        !sortData ? " arrow-up" : ""
+                      }`}
+                      onClick={() => handleSort(sortData)}
+                    >
+                      Submission date <SvgSelector id="down-arrow-icon" />
+                    </div>
+                  </div>
+                </div>
+                {currentTableData ? (
+                  currentTableData.map((el, index) => (
+                    <div key={index} className="authent__table__elem">
+                      <div className="authent__table__elems-wrapper">
+                        <div
+                          className="authent__table__elem__category"
+                          onClick={() =>
+                            navigate(`../request/${el.id}`, {
+                              state: { page: currentPage, var: page },
+                            })
+                          }
+                        >
+                          <div
+                            className="authent__table__elem__category-image"
+                            style={{
+                              background: `url(${getPhotoUrl(el.files)})`,
+                            }}
+                          >
+                            {/*<img src={el.image} alt="" />*/}
+                          </div>
+                          <div className="authent__table__elem__category-label">
+                            {el.productType.publicName}
+                          </div>
+                          <div className="authent__table__elem__category-number">
+                            #{el.publicId}
+                          </div>
+                          <div className="authent__table__elem__category-date">
+                            {getDate(el.createdAt, "mobile")}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="authent__table__elems-wrapper">
+                        <div className="authent__table__elem-brand">
+                          {el.brand.publicName}
+                        </div>
+                        <div className="authent__table__elem-model">
+                          {el.modelName}
+                        </div>
+                        <div className="authent__table__elem-status">
+                          {el.resultStatus.publicName}
+                        </div>
+                        <div className="authent__table__elem-answer">
+                          {el.answerTime} hours
+                        </div>
+                        <div className="authent__table__elem-date">
+                          {new Date(el.createdAt).getDate() +
+                            "/" +
+                            (Number(new Date(el.createdAt).getMonth()) + 1) +
+                            "/" +
+                            new Date(el.createdAt).getFullYear()}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <Loader />
+                )}
+              </div>
+            )}
+            {products && currentTableData && (
+              <Paginator
+                className="pagination-bar"
+                currentPage={currentPage}
+                totalCount={products.length}
+                pageSize={PageSize}
+                onPageChange={(page) => setCurrentPage(page)}
+              />
+            )}
+          </>
+        
+      </BlockComponentLayout>
     );
   }
 };
 
-export default Authentications;
+export default AuthenticTableBlock;

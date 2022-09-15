@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import SvgSelector from "../../common/icons/SvgSelector";
+import { getUser } from "../../redux/selectors/auth-selectors";
 import Navigation from "../Navigation/Navigation";
 
 import Notification from "../../components/PersonalArea/notifications/Notifications";
@@ -8,15 +9,21 @@ import "./Header.scss";
 
 //icon header
 import header_icon from "../../common/icons/logoMobile.png";
+import { logoutThunk } from "../../redux/thunks/auth-thunk";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = (props) => {
   const params = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
+  const {pathname, state} = useLocation();
+  console.log(pathname)
 
   //for notifications
   const [showNotif, setShowNotif] = useState(false);
   const cardRef = useRef();
+
+  const dispatch = useDispatch()
+  const user = useSelector(getUser)
 
   useEffect(() => {
     const handle = (event) => {
@@ -30,19 +37,29 @@ const Header = (props) => {
 
   useEffect(() => {}, [params.page]);
 
+
+  // Хардкод путей для хлебных крошек
+  let path
+  if(pathname ==='/photo-requests/all') path = "Photo requests"
+  if(pathname ==='/dashboard') path = "Dashboard"
+  if(pathname ==='/authentication-request') path = "Authentication request"
+  if(pathname ==='/authentications/completed') path = "Completed authentifications"
+  if(pathname ==='/authentications/in-progress') path = "In progress authentifications"
+  if(pathname ==='/billing-history') path = "Billing history"
+
   function goBack() {
-    if (location.state && location.state.var !== "photo-requests") {
+    if (state && state.var !== "photo-requests") {
       navigate(
         `../authentications/${
-          location.state.var === "progress" ? "in-progress" : "completed"
+          state.var === "progress" ? "in-progress" : "completed"
         }`,
-        { state: { page: location.state.page, var: location.state.var } }
+        { state: { page: state.page, var: state.var } }
       );
     } else {
       navigate(`../photo-requests/all`, {
         state: {
-          page: location.state && location.state.page,
-          var: location.state && location.state.var,
+          page: state && state.page,
+          var: state && state.var,
         },
       });
     }
@@ -66,8 +83,9 @@ const Header = (props) => {
       <div className="header-container">
         <div className="header-wrapper">
           <Navigation
-            hrefs={[{ label: "Luxury store" }, { label: "Authentication" }]}
+            hrefs={[{ label: `${user.companyName}` }, { label: `${path}` }]}
           />
+          <div className="right-nav">
           <label
             style={{ cursor: "pointer" }}
             onClick={() =>
@@ -78,6 +96,8 @@ const Header = (props) => {
           >
             <SvgSelector id="bell" />
           </label>
+          <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
+          </div>
         </div>
         <div className="header-wrapper mobile">
           <div className="mobile_header-label">

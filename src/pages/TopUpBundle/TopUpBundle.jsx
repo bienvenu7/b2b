@@ -10,7 +10,7 @@ import {
   getPriceThunk,
 } from "../../redux/thunks/payment-thunk";
 import { getProductTypesThunk } from "../../redux/thunks/product-thunk";
-import { getIsAuth } from "../../redux/selectors/auth-selectors";
+import { getIsAuth, getUser } from "../../redux/selectors/auth-selectors";
 import Balance from "../../components/Balance/Balance";
 import "./TopUpBundle.scss";
 import Summary from "../../components/Summary/Summary";
@@ -27,16 +27,13 @@ const TopUpBundle = (props) => {
   const packages = useSelector(getUserTariffPackages);
   const total = useSelector(getCartTotal);
   const isAuth = useSelector(getIsAuth);
+  const user = useSelector(getUser)
 
   const [addButState, setAddButState] = useState(false);
   const [payButState, setPayButState] = useState(false);
 
   const [timerPrice, setTimerPrice] = useState(false);
   const [timerCart, setTimerCart] = useState(false);
-    
-
-    //trying
-    const [add, setAdd] = useState(null)
 
   useEffect(() => {
     isAuth && dispatch(getProductTypesThunk(1, 1000));
@@ -59,6 +56,7 @@ const TopUpBundle = (props) => {
   };
 
   const calcCartTotal = (data) => {
+    // dispatch(getCartTotalThunk(data));
     clearTimeout(timerCart);
     setTimerCart(
       setTimeout(() => {
@@ -92,7 +90,7 @@ const TopUpBundle = (props) => {
           <div className="top_up_bundle__left-nav">
             <Navigation
               hrefs={[
-                { label: "Luxury store" },
+                { label: `${user.companyName}` },
                 { label: "Authentication Bundle" },
               ]}
             />

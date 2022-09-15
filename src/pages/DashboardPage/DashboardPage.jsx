@@ -7,6 +7,8 @@ import AuthenticInfoBlock from '../../components/DashbordComponents/AuthenticInf
 import AuthenticTableBlock from '../../components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock'
 import camera from '../../common/icons/dashboard/camera.png'
 import checkmark from '../../common/icons/dashboard/checkmark.png'
+import CheckBlockMobile from '../../components/DashbordComponents/CheckBlockMobile/CheckBlockMobile'
+import AuthenticMobile from '../../components/DashbordComponents/AuthenticInMobile/AuthenticMobile'
 
 const DashboardPage = () => {
   const contentChekedBlock = [
@@ -29,7 +31,7 @@ const DashboardPage = () => {
   return (
     <div className='top'>
       <PersonalAreaLayout>
-        <div className='dashboard-page__content'>
+        <div className='dashboard-page__content-desctop'>
           <InfoBlock/>
           <div className='dashboard-page__second-block'>
             {
@@ -39,6 +41,12 @@ const DashboardPage = () => {
             }            
           </div>
           <AuthenticInfoBlock/>
+          <AuthenticTableBlock/>
+        </div>
+
+        <div className='dashboard-page__content-mobile'>
+          <CheckBlockMobile image={checkmark}/>
+          <AuthenticMobile/>
           <AuthenticTableBlock/>
         </div>
       </PersonalAreaLayout>
