@@ -47,6 +47,7 @@ const DashboardPage = () => {
         <div className='dashboard-page__content-mobile'>
           <CheckBlockMobile image={checkmark}/>
           <AuthenticMobile/>
+          <AuthenticTableBlock/>
         </div>
       </PersonalAreaLayout>
     </div>
