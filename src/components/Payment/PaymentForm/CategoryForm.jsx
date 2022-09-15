@@ -130,7 +130,7 @@ const CategoryForm = (props) => {
             dispatch(pushTotal(cost.package))
             setVolume(1)
         }
-        formik.values.hours = '0'
+        formik.values.hours = '24'
         handleClose()
     }
 

@@ -83,7 +83,7 @@ const Header = (props) => {
           >
             <SvgSelector id="bell" />
           </label>
-          <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
+          <div style={{cursor: 'pointer'}} onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
           </div>
         </div>
         <div className="header-wrapper mobile">

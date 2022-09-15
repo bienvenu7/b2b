@@ -85,7 +85,8 @@
             margin: auto;
 
             @include for-phone-only {
-                max-width: calc(100vw - 42px);
+                max-width: calc(100vw - 36px);
+                margin-left: 18px;
             }
 
             &.first {

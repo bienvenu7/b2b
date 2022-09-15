@@ -215,7 +215,7 @@ const Card = (props) => {
                 </div>
                 <div className="card__info__content">
                   <div className="card__info__content-label">
-                    Authentication summary
+                    Authentification summary
                   </div>
                   <div className="card__info__content-wrapper">
                     <div className="card__info__content-brand">
