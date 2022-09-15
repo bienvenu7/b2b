@@ -15,7 +15,7 @@
     max-width: 776px;
 
     @include for-phone-only {
-      margin: 10px auto;
+      margin-top: 10px;
     }
 
   }
@@ -44,7 +44,6 @@
       display: flex;
       gap: 16px;
       padding-left: 24px;
-      padding-bottom: 24px;
       color: $c_b;
 
       &.mobile {
@@ -158,15 +157,14 @@
       gap: 12px;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      // padding: 29px 29px 32px 29px;
+      padding: 29px 29px 32px 29px;
 
       @include for-phone-only {
         gap: 11px;
         padding: 11px 8px;
         border-top: 1px solid #F0F2F5;
         border-bottom: 1px solid #F0F2F5;
-        // margin-top: -40px;
+        margin-top: -40px;
       }
     }
 
@@ -196,7 +194,7 @@
     }
 
     &-search {
-      // width: 697px;
+      width: 697px;
       height: 32px;
       border: 1px solid #7B809A;
       border-radius: 8px;
@@ -204,7 +202,7 @@
       flex: 2;
 
       @include for-phone-only {
-        // width: 90vw;
+        width: 90vw;
         background: #EFEFF4;
         border-radius: 10px;
         border: 0;
@@ -264,9 +262,8 @@
   }
 
   &__table {
-    width: 100%;
-    // max-width: calc(776px - 56px);
-    // padding: 0 28px;
+    max-width: calc(776px - 56px);
+    padding: 0 28px;
 
     @include for-phone-only {
       padding: 0;
@@ -275,9 +272,7 @@
     &__label {
       &-wrapper {
         display: flex;
-        // max-width: calc(776px - 56px);
-        padding-left: 10px;
-        padding-right: 10px;
+        max-width: calc(776px - 56px);
         padding-bottom: 9px;
         border-bottom: 1px solid $c_gray2;
         justify-content: space-between;
@@ -297,7 +292,6 @@
       }
 
       &__elem {
-
         &-checkbox {}
 
         &-category {
@@ -376,8 +370,7 @@
 
     &__elem {
       display: flex;
-      padding: 10px;
-      // padding: 12px 44px 14px 31px;
+      padding: 12px 44px 14px 31px;
       justify-content: space-between;
       border-bottom: 1px solid #F0F2F5;
       font-family: 'Roboto';
@@ -386,8 +379,8 @@
       font-size: 14px;
       line-height: 140%;
       color: #7B809A;
-      // max-width: calc(776px - 56px);
-      // padding-left: 0;
+      max-width: calc(776px - 56px);
+      padding-left: 0;
 
       @include for-phone-only {
         justify-content: flex-start;
