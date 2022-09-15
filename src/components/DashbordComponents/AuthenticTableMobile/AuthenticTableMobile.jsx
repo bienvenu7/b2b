@@ -1,7 +1,7 @@
 import React from 'react'
 // import PersonalAreaLayout from "../PersonalAreaLayout";
 import SvgSelector from "../../../common/icons/SvgSelector";
-import "./AuthenticTableBlock.scss";
+import "./AuthenticTableMobile.scss";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
@@ -22,7 +22,7 @@ import Paginator from "../../Paginator/Paginator"
 import Select from "react-select";
 import FilterSelect from '../../PersonalArea/Authentications/FilterSelect'
 import Loader from "../../Loader/Loader";
-const AuthenticTableBlock = (props) => {
+const AuthenticTableMobile = (props) => {
   const location = useLocation();
 
   const PageSize = 8;
@@ -701,4 +701,4 @@ const AuthenticTableBlock = (props) => {
   }
 };
 
-export default AuthenticTableBlock;
+export default AuthenticTableMobile;
