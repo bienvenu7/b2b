@@ -6,7 +6,7 @@ import {
   forgotPassword,
   confirmEmail,
 } from "../../api/auth/auth-api";
-import { setAuth } from "../reducers/auth-reducer";
+import { setAuth, setRegister } from "../reducers/auth-reducer";
 import Cookies from "js-cookie";
 import { setErrors, setStatusCode } from "../reducers/app-reducer";
 
@@ -26,6 +26,7 @@ export const regThunk = (data) => async (dispatch) => {
     };
     if (response.status === 201) {
       await dispatch(loginThunk(loginData));
+      dispatch(setRegister())
       return "access";
     }
   } catch (error) {

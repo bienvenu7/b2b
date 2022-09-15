@@ -20,7 +20,7 @@ const SuccessPage = () => {
                     just click on the <p id="target">New authentications</p> tab in the side menu.</div>
                 <div className="payment__success__buttons-wrapper">
                     <div className="payment__success__buttons-elem" onClick={() => navigate('../authentication-request')}>Start authentication</div>
-                    <div className="payment__success__buttons-elem">View all authentications</div>
+                    <div className="payment__success__buttons-elem" onClick={() => navigate('../authentications/completed')}>View all authentications</div>
                 </div>
             </div>
         </div>

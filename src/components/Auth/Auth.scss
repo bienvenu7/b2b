@@ -3,9 +3,10 @@
 @import '../../scss/vars';
 
 .auth {
-    &-container{
+    &-container {
         width: 100%;
     }
+
     &__background {
         display: flex;
         height: 100%;
@@ -26,10 +27,11 @@
     }
 
     &__main-container {
-    max-width: 1321px;
-    margin: 0 auto;
-    height: 100vh;
-        @include for-phone-only{
+        max-width: 1321px;
+        margin: 0 auto;
+        height: 100vh;
+
+        @include for-phone-only {
             padding: 0;
             background-color: #E5E5E5;
         }
@@ -107,14 +109,16 @@
         }
 
         &-promo {
-            @include for-phone-only{
+            @include for-phone-only {
                 display: none;
             }
-            &-elem{
-                &:not(:last-child){
+
+            &-elem {
+                &:not(:last-child) {
                     margin-bottom: 52px;
                 }
-                .promo-h1{
+
+                .promo-h1 {
                     font-family: 'Montserrat';
                     font-style: normal;
                     font-weight: 700;
@@ -122,11 +126,13 @@
                     line-height: 43px;
                     color: #FFFFFF;
                     display: flex;
-                    .check{
+
+                    .check {
                         margin-right: 14px;
                     }
                 }
-                .promo-h2{
+
+                .promo-h2 {
                     font-family: 'Montserrat';
                     font-style: normal;
                     font-weight: 400;
@@ -143,7 +149,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            @include for-phone-only{
+
+            @include for-phone-only {
                 width: 100vw;
             }
 
@@ -218,14 +225,17 @@
                     border-radius: 8px;
                     height: 22px;
                     padding: 11px 0 11px 16px;
-                    &:focus-visible{
+
+                    &:focus-visible {
                         outline: none;
                     }
-                    &.invalid{
+
+                    &.invalid {
                         outline-width: 1.5px;
                         outline-style: solid;
                         outline-color: red;
                     }
+
                     @include for-phone-only {
                         font-size: 16px;
                     }
@@ -237,6 +247,7 @@
                     &-rememberMe {
                         display: flex;
                         margin-top: 16px;
+
                         input {
                             display: none;
                         }
@@ -319,9 +330,11 @@
                     height: 40px;
                     margin-top: 42px;
                     cursor: pointer;
-                    &:disabled{
+
+                    &:disabled {
                         background-color: #5D5F62;
                     }
+
                     @include for-phone-only {
                         font-size: 18px;
                         border-radius: 4px;
@@ -385,5 +398,15 @@
                 }
             }
         }
+    }
+
+    &__success-text {
+        margin-top: 15px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 140%;
+        color: $c_g;
     }
 }

@@ -345,9 +345,9 @@
                 font-family: 'Roboto';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 20px;
+                font-size: 19px;
                 line-height: 140%;
-                color: $c_b;
+                color: #000000;
 
                 @include for-phone-only {
                     font-weight: 500;

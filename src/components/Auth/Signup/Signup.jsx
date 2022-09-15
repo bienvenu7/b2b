@@ -4,19 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setErrors } from "../../../redux/reducers/app-reducer";
 import { getPostErrors } from "../../../redux/selectors/app-selectors";
+import { getIsRegister } from '../../../redux/selectors/auth-selectors';
 import { regThunk } from "../../../redux/thunks/auth-thunk";
 import AuthLayout from "../AuthLayout";
 import SvgSelector from "../../../common/icons/SvgSelector";
 import mobileLogo from "../../../common/images/logo-for-mobile.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const postErrors = useSelector(getPostErrors);
+  const isRegister = useSelector(getIsRegister)
 
   const [isLoading, setIsLoading] = useState(false);
+  const message = "We have sent a confirmation email to you! Please check your inbox"
+
+  
 
   const validate = (values) => {
     const errors = {};
@@ -58,11 +63,13 @@ const SignUp = () => {
       } else if (values.company === "Company Name*") {
         console.log();
       }
-      const response = await dispatch(regThunk(values));
-      response === "access" && navigate("/main");
+      const response = dispatch(regThunk(values));
+      
       setIsLoading(false);
+      
     },
   });
+  console.log(isRegister)
 
   return (
     <AuthLayout>
@@ -196,6 +203,8 @@ const SignUp = () => {
               </div>
             ) : null}
 
+            {isRegister && <div className='auth__success-text'> {message} </div>}
+
             <button
               className="auth__form-submit"
               type="submit"
@@ -203,6 +212,7 @@ const SignUp = () => {
             >
               Sign Up
             </button>
+            
           </form>
           <div className="auth__form__bottom">
             <div className="auth__form__bottom-message">
@@ -216,6 +226,7 @@ const SignUp = () => {
             >
               Sign in
             </div>
+            
           </div>
         </div>
       </div>
