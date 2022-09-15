@@ -15,7 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 const Header = (props) => {
   const params = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
+  const {pathname, state} = useLocation();
+  console.log(pathname)
 
   //for notifications
   const [showNotif, setShowNotif] = useState(false);
@@ -36,19 +37,29 @@ const Header = (props) => {
 
   useEffect(() => {}, [params.page]);
 
+
+  // Хардкод путей для хлебных крошек
+  let path
+  if(pathname ==='/photo-requests/all') path = "Photo requests"
+  if(pathname ==='/dashboard') path = "Dashboard"
+  if(pathname ==='/authentication-request') path = "Authentication request"
+  if(pathname ==='/authentications/completed') path = "Completed authentifications"
+  if(pathname ==='/authentications/in-progress') path = "In progress authentifications"
+  if(pathname ==='/billing-history') path = "Billing history"
+
   function goBack() {
-    if (location.state && location.state.var !== "photo-requests") {
+    if (state && state.var !== "photo-requests") {
       navigate(
         `../authentications/${
-          location.state.var === "progress" ? "in-progress" : "completed"
+          state.var === "progress" ? "in-progress" : "completed"
         }`,
-        { state: { page: location.state.page, var: location.state.var } }
+        { state: { page: state.page, var: state.var } }
       );
     } else {
       navigate(`../photo-requests/all`, {
         state: {
-          page: location.state && location.state.page,
-          var: location.state && location.state.var,
+          page: state && state.page,
+          var: state && state.var,
         },
       });
     }
@@ -72,7 +83,7 @@ const Header = (props) => {
       <div className="header-container">
         <div className="header-wrapper">
           <Navigation
-            hrefs={[{ label: `${user.companyName}` }, { label: "Authentification" }]}
+            hrefs={[{ label: `${user.companyName}` }, { label: `${path}` }]}
           />
           <div className="right-nav">
           <label

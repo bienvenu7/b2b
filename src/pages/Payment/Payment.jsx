@@ -12,6 +12,7 @@ import {
   getTotalPackage,
   getUserTariffPackages,
 } from "../../redux/selectors/payment-selectors";
+import { getUser } from '../../redux/selectors/auth-selectors';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
@@ -31,6 +32,7 @@ const Payment = () => {
   const total = useSelector(getCartTotal);
   const invoiceLink = useSelector(getInvoiceLink);
   const userTariffPackages = useSelector(getUserTariffPackages);
+  const user = useSelector(getUser)
 
   const setPayMethod = (e) => {
     setMethod(e.target.value);
@@ -87,7 +89,7 @@ const Payment = () => {
         <div className="payment_page__form">
           
           <div className="top_up_bundle__left-nav">
-                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'Authentication Bundle' }]}/>
+                    <Navigation hrefs={[{ label: `${user.companyName}` }, { label: 'Authentication Bundle' }]}/>
                     <div className="top_up_bundle__left-mobile">
                         <h1>Authentification bundle</h1>
                         <SvgSelector id='burger'/>
