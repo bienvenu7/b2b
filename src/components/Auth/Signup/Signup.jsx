@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setErrors } from "../../../redux/reducers/app-reducer";
 import { getPostErrors } from "../../../redux/selectors/app-selectors";
+import { getIsRegister } from '../../../redux/selectors/auth-selectors';
 import { regThunk } from "../../../redux/thunks/auth-thunk";
 import AuthLayout from "../AuthLayout";
 import SvgSelector from "../../../common/icons/SvgSelector";
@@ -15,13 +16,12 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const postErrors = useSelector(getPostErrors);
+  const isRegister = useSelector(getIsRegister)
 
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState(null)
+  const message = "We have sent a confirmation email to you! Please check your inbox"
 
-  useEffect(() => {
-    setMessage(null)
-  }, [])
+  
 
   const validate = (values) => {
     const errors = {};
@@ -64,11 +64,12 @@ const SignUp = () => {
         console.log();
       }
       const response = dispatch(regThunk(values));
-      response === "access" && setMessage("We have sent a confirmation email to you! Please check your inbox");
+      
       setIsLoading(false);
       
     },
   });
+  console.log(isRegister)
 
   return (
     <AuthLayout>
@@ -202,7 +203,7 @@ const SignUp = () => {
               </div>
             ) : null}
 
-            {message && <div className='auth__success-text'> {message} </div>}
+            {isRegister && <div className='auth__success-text'> {message} </div>}
 
             <button
               className="auth__form-submit"
