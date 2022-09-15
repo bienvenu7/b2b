@@ -16,6 +16,7 @@ import TopUpBundle from "../pages/TopUpBundle/TopUpBundle";
 import Billing from "../components/PersonalArea/billing/Billing";
 import ConfirmEmail from "../components/Auth/ConfirmEmail/ConfirmEmail";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
+import AuthenticTableBlock from '../components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock';
 
 export const publicRoutes = [
   { path: "/signin", component: <Signin /> },
