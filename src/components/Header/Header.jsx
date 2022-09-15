@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import SvgSelector from "../../common/icons/SvgSelector";
+import { getUser } from "../../redux/selectors/auth-selectors";
 import Navigation from "../Navigation/Navigation";
 
 import Notification from "../../components/PersonalArea/notifications/Notifications";
@@ -9,7 +10,7 @@ import "./Header.scss";
 //icon header
 import header_icon from "../../common/icons/logoMobile.png";
 import { logoutThunk } from "../../redux/thunks/auth-thunk";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = (props) => {
   const params = useParams();
@@ -21,6 +22,7 @@ const Header = (props) => {
   const cardRef = useRef();
 
   const dispatch = useDispatch()
+  const user = useSelector(getUser)
 
   useEffect(() => {
     const handle = (event) => {
@@ -70,7 +72,7 @@ const Header = (props) => {
       <div className="header-container">
         <div className="header-wrapper">
           <Navigation
-            hrefs={[{ label: "Luxury store" }, { label: "Authentification" }]}
+            hrefs={[{ label: `${user.companyName}` }, { label: "Authentification" }]}
           />
           <div className="right-nav">
           <label

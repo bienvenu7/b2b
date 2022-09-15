@@ -9,7 +9,7 @@ const Navigation = (props) => {
   return (
     <>
       <div className="header__nav">
-        <div className="header__nav__home" onClick={() => navigate("../main")}>
+        <div className="header__nav__home" onClick={() => navigate("../dashboard")}>
           <SvgSelector id="home" />
         </div>
         {props.hrefs &&

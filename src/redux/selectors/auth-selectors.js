@@ -9,3 +9,6 @@ export const getIsRegister = (state) => {
 export const getUserId = (state) => {
   return state.auth.user.id;
 };
+export const getUser = (state) => {
+  return state.auth.user
+}
