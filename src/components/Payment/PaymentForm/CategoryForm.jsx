@@ -1,4 +1,4 @@
-import { Formik, Field, Form } from "formik"
+import { Formik, Field, Form, useFormik } from "formik"
 import React, { useState, useEffect } from "react"
 import * as NumericInput from 'react-numeric-input'
 import { useDispatch, useSelector } from "react-redux"
@@ -130,7 +130,7 @@ const CategoryForm = (props) => {
             dispatch(pushTotal(cost.package))
             setVolume(1)
         }
-        formik.values.hours = '0'
+        // formik.values.hours = '0'
         handleClose()
     }
 
@@ -145,18 +145,22 @@ const CategoryForm = (props) => {
     return (<>
         <Formik
             initialValues={{ hours: answerTime.toString(), typeOfShoes: '' }}
-            validate={values => {
+            // validate={values => {
 
-            }}
-            change={() => {
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-                setSubmitting(false);
+            // }}
+            // change={() => {
+            // }}
+            onSubmit={(values, {setSubmitting, resetForm}) => {
+                setTimeout(() => {
+                    alert(values)
+                    resetForm();
+                    setSubmitting(false);
+                }, 1000)
             }}
             // enableReinitialize={true}
             
         >
-            {(props2) => (<Form className="payment__form" onSubmit={props2.handleSubmit} onChange={props2.change}>
+            {(props2) => (<Form className="payment__form" onSubmit={but && props2.handleSubmit}>
                 <div className="payment__form-block-container first">
                 {productType !== null && <><div className="payment__form-current_package_state-wrapper">
                         <div onClick={handleClose}><SvgSelector id='xmark' /></div>
