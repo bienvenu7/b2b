@@ -28,7 +28,7 @@ export const publicRoutes = [
 
 export const privateRoutes = [
   { path: "", component: <Navigate to="dashboard" /> },
-  // { path: "main", component: <DashboardPage /> },
+  { path: "main", component: <DashboardPage /> },
   {
     path: "authentications/completed",
     component: <Authentications var={"completed"} />,

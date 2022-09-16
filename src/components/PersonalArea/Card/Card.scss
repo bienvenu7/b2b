@@ -9,7 +9,9 @@
         width: 600px;
         @include for-phone-only{
             gap: 0;
-            max-width: calc(100vw - 23px);
+            max-width: 100vw;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 
