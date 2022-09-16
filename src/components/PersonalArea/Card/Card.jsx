@@ -169,6 +169,7 @@ const Card = (props) => {
         />
       )}
       {product !== null ? (
+        <div className="top">
         <PersonalAreaLayout>
           {product !== null && (
             <div className="card-container">
@@ -376,6 +377,7 @@ const Card = (props) => {
             </div>
           )}
         </PersonalAreaLayout>
+        </div>
       ) : (
         <Loader />
       )}
