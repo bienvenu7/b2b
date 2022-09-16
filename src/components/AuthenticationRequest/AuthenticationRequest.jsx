@@ -371,8 +371,8 @@ const AuthenticationRequest = () => {
         <div className="auth_request__wrapper">
             {/* <div className="auth_request__nav">
                 <div className='auth_request__nav-bar'>
-                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentification' }]} />
-                    <div className='auth_request__nav-label'>Authentification request</div>
+                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentication' }]} />
+                    <div className='auth_request__nav-label'>authentication request</div>
                 </div>
                 <div className='auth_request__nav-bell'><SvgSelector id='bell' /></div>
 
@@ -389,7 +389,7 @@ const AuthenticationRequest = () => {
                         <div className='auth_request__form-container first'>
 
                             <div className='auth_request__form-container-wrapper first'>
-                                <div className='auth_request__form-heading'>Authentification request</div>
+                                <div className='auth_request__form-heading'>authentication request</div>
                                 <div className='auth_request__form__elem'>
                                     <div className='auth_request__form__elem-label'>Choose the category
                                         <div className='btn'>
@@ -467,7 +467,7 @@ const AuthenticationRequest = () => {
                                 
                                 <div className='auth_request__form__footer__info__h1'>Summary</div>
                                 <div className='auth_request__form__footer__info__h2'>
-                                    <div className='auth_request__form__footer__info__h2-label'>Authentification requests</div>
+                                    <div className='auth_request__form__footer__info__h2-label'>authentication requests</div>
                                     <div className='auth_request__form__footer__info__h2-value'>1</div>
                                 </div>
                                 <div className='auth_request__form__footer__info__h2'>

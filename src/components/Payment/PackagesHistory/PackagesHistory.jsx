@@ -13,7 +13,7 @@ const PackagesHistory = () => {
             el.productType !== "" && (
               <div key={index} className="packages-wrapper">
                 <div className="packages__label">
-                  Authentification bundle #{index + 1}
+                  authentication bundle #{index + 1}
                 </div>
                 <div className="packages__elem">
                   <div className="packages__elem__category">

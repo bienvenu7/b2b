@@ -50,11 +50,11 @@ const Dashboard = (props) => {
             className="dashboard__elem__auth_balance__balance-button mobile"
             onClick={() => navigate("../authentication-request")}
           >
-            New authentification
+            New authentication
           </div>
           <div className="dashboard__elem__auth_balance-wrapper">
             <div className="dashboard__elem__auth_balance-label">
-              Authentification balance <SvgSelector id="arrow" />
+              authentication balance <SvgSelector id="arrow" />
             </div>
             <div className="dashboard__elem__auth_balance__balance-wrapper">
               {balance.length > 0 &&
@@ -88,7 +88,7 @@ const Dashboard = (props) => {
                     className="dashboard__elem__auth_balance__balance-button"
                     onClick={() => navigate("../authentication-request")}
                   >
-                    New authentification
+                    New authentication
                   </button>
                 ) : (
                   <div
@@ -104,7 +104,7 @@ const Dashboard = (props) => {
           </div>
           <div className="dashboard__elem__authentications-wrapper">
             <div className="dashboard__elem__authentications-label">
-              Authentification <SvgSelector id="arrow" />
+              authentication <SvgSelector id="arrow" />
             </div>
             <div className="dashboard__elem__authentications-control__elements">
               <div
@@ -112,7 +112,7 @@ const Dashboard = (props) => {
                 onClick={() => navigate("../authentications/completed")}
               >
                 <SvgSelector id="check-icon" />
-                All authentifications
+                All authentications
               </div>
               <div
                 className="dashboard__elem__authentications-control__elem-wrapper"
