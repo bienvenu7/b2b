@@ -8,8 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { takeBalance } from "../../../redux/selectors/authRequest-selectors";
 import { getProductsThunk } from "../../../redux/thunks/product-thunk";
 import { logoutThunk } from "../../../redux/thunks/auth-thunk";
+import logo_img from '../../../common/images/logo-for-mobile.png'
+import { useState } from "react";
 
 const Dashboard = (props) => {
+  const [show, setShow] = useState(true)
+  const [show1, setShow1] = useState(true)
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,6 +33,7 @@ const Dashboard = (props) => {
               </div>
               <div className="dashboard__elem__top-label">
                 Luxury store <SvgSelector id="arrow" />
+                <img onClick={() => navigate("../dashboard")} src={dashboardIcon} alt="" />
               </div>
               <div className="dashboard__elem__top__icon-wrapper">
                 <div className="dashboard__elem__top__icon-elem">
@@ -39,7 +45,7 @@ const Dashboard = (props) => {
                 </div>
               </div>
             </div>
-            <div className="dashboard__elem__child-wrapper">
+            <div onClick={() => navigate("../dashboard")} className="dashboard__elem__child-wrapper">
               <div className="dashboard__elem__child-img">
                 <img src={dashboardIcon} alt="" />
               </div>
@@ -54,9 +60,9 @@ const Dashboard = (props) => {
           </div>
           <div className="dashboard__elem__auth_balance-wrapper">
             <div className="dashboard__elem__auth_balance-label">
-              authentication balance <SvgSelector id="arrow" />
+              authentication balance <div onClick={() => setShow1(!show1)}><SvgSelector id="arrow" /></div>
             </div>
-            <div className="dashboard__elem__auth_balance__balance-wrapper">
+            {show1 && <div className="dashboard__elem__auth_balance__balance-wrapper">
               {balance.length > 0 &&
                 balance.map((el, index) => (
                   <div
@@ -100,13 +106,13 @@ const Dashboard = (props) => {
                     )
               }
               
-            </div>
+            </div>}
           </div>
           <div className="dashboard__elem__authentications-wrapper">
             <div className="dashboard__elem__authentications-label">
-              authentication <SvgSelector id="arrow" />
+              authentication <div onClick={() => setShow(!show)}><SvgSelector id="arrow" /></div>
             </div>
-            <div className="dashboard__elem__authentications-control__elements">
+            { show && <div className="dashboard__elem__authentications-control__elements">
               <div
                 className="dashboard__elem__authentications-control__elem-wrapper"
                 onClick={() => navigate("../authentications/completed")}
@@ -121,7 +127,7 @@ const Dashboard = (props) => {
                 <SvgSelector id="camera-icon" />
                 Photo requests
               </div>
-            </div>
+            </div>}
           </div>
           <div className="dashboard__elem__tools-wrapper">
             <div className="dashboard__elem__tools-label">Tools</div>
@@ -134,6 +140,21 @@ const Dashboard = (props) => {
                 Billing
               </div>
             </div>
+          </div>
+          <div className="dashboard__elem__tools-wrapper two">
+            <div className="dashboard__elem__tools-label">Tools</div>
+            <div className="dashboard__elem__tools-control__elements">
+              <div
+                onClick={() => navigate("../billing-history")}
+                className="dashboard__elem__tools-control__elem-wrapper"
+              >
+                <SvgSelector id="card-icon" />
+                Get help
+              </div>
+            </div>
+          </div>
+          <div className="fixed-image">
+            <img src={logo_img} alt="" />
           </div>
         </div>
         <label htmlFor="dashboard-open" className="dashboard__cross-container">

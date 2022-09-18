@@ -57,6 +57,19 @@
             width: 100%;
             overflow-x: hidden;
         }
+
+        .fixed-image {
+            display: none;
+
+            @include for-phone-only {
+                display: block;
+                position: fixed;
+                bottom: 16px;
+                left: 108px;
+                width: 84px;
+                height: 62px;
+            }
+        }
     }
 
     &__elem {
@@ -134,6 +147,13 @@
                 svg{
                     @include for-phone-only{
                         display: none;
+                    }
+                }
+
+                img {
+                    display: none;
+                    @include for-phone-only {
+                        display: block;
                     }
                 }
             }
@@ -264,33 +284,33 @@
                     line-height: 140%;
                     grid-area: count;
                     width: 40px;
-    display: flex;
-    justify-content: flex-end;
-    @include for-phone-only{
-        font-family: 'SF Pro Display Medium';
-font-style: normal;
-font-weight: 300;
-font-size: 16px;
-line-height: 19px;
-color: #656565
-    }
+                    display: flex;
+                    justify-content: flex-end;
+                    @include for-phone-only{
+                        font-family: 'SF Pro Display Medium';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: #656565
+                    }
                 }
                 &-answer{
                     font-family: "Roboto";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 140%;
-    border-radius: 4px;
-    background: #CBAD73;
-    color: #FFFFFF;
-    padding: 0 8px;
-    max-height: 19.58px;
-    display: flex;
-    white-space: nowrap;
-    @include for-phone-only{
-        display: none;
-    }
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 140%;
+                    border-radius: 4px;
+                    background: #CBAD73;
+                    color: #FFFFFF;
+                    padding: 0 8px;
+                    max-height: 19.58px;
+                    display: flex;
+                    white-space: nowrap;
+                    @include for-phone-only{
+                        display: none;
+                    }
                 }
 
                 &-button {
@@ -323,27 +343,27 @@ color: #656565
                     }
                     &:not(:last-child){
                         font-family: 'Roboto';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 140%;
-@include for-phone-only{
-    margin-top: 20px;
-    font-size: 18px;
-}
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 140%;
+                        @include for-phone-only{
+                            margin-top: 20px;
+                            font-size: 18px;
+                        }
                     }
                     &.mobile{
                         display: none;
                         @include for-phone-only{
                             display: flex;
                             color: $c_w;
-                        background: $c_g;
-                        font-family: 'Roboto';
-font-style: normal;
-font-weight: 700;
-font-size: 18px;
-line-height: 140%;
-margin: 0;
+                            background: $c_g;
+                            font-family: 'Roboto';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 18px;
+                            line-height: 140%;
+                            margin: 0;
                         }
                     }
                     
@@ -420,6 +440,14 @@ margin: 0;
         &__tools{
             &-wrapper{
                 margin-top: 18px;
+
+                &.two {
+                    display: none;
+
+                    @include for-phone-only{
+                        display: block;
+                    }
+                }
             }
             &-label{
                 font-family: 'Roboto';
