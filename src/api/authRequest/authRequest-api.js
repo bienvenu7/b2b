@@ -1,9 +1,6 @@
 import * as axios from "axios";
 import Cookies from "js-cookie";
-
-const instance = axios.create({
-  baseURL: "https://b2b-portal-dev.herokuapp.com/",
-});
+import {instance} from "../axios-instance";
 
 export const getBrands = (id) => {
   return instance.get(`product-types/${id}`, {
