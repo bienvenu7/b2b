@@ -55,7 +55,7 @@ const SignIn = () => {
     onSubmit: async (values) => {
       setIsLoading(true);
       const response = await dispatch(loginThunk(values));
-      response === "access" && navigate("/main");
+      response === "access" && navigate("/dashboard");
       setIsLoading(false);
     },
   });
