@@ -21,6 +21,9 @@ const Dashboard = (props) => {
   const balance = useSelector(takeBalance);
   // const balance = [];
 
+  //get current path
+  // console.log(window.location.pathname)
+
   //temp
 
   return (
@@ -64,7 +67,7 @@ const Dashboard = (props) => {
             </div>
             {show1 && <div className="dashboard__elem__auth_balance__balance-wrapper">
               {balance.length > 0 &&
-                balance.map((el, index) => (
+                balance.filter(item => item.volume > 0).map((el, index) => (
                   <div
                     key={index}
                     className="dashboard__elem__auth_balance__balance__elem"
@@ -88,7 +91,20 @@ const Dashboard = (props) => {
               >
                 Top up now
               </div> */}
-              {
+              <div
+                    className="dashboard__elem__auth_balance__balance-button"
+                    onClick={() => navigate("../payment")}
+                  >
+                    Top up now
+              </div>
+              <div
+                className="dashboard__elem__auth_balance__balance-button"
+                onClick={() => navigate("../authentication-request")}
+              >
+                New authentication
+              </div>
+              
+              {/* {
                 balance.length > 0 ? (
                   <button
                     className="dashboard__elem__auth_balance__balance-button"
@@ -104,7 +120,7 @@ const Dashboard = (props) => {
                     Top up now
                   </div>
                     )
-              }
+              } */}
               
             </div>}
           </div>

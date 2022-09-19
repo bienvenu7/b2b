@@ -16,7 +16,7 @@ export const postInvoiceThunk = (obj) => async (dispatch) => {
     const data = {
       ...obj,
       successUrl: host + "/success",
-      cancelUrl: window.location.href,
+      cancelUrl: host + "/unsuccess",
     };
 
     const response = await postInvoices(data);

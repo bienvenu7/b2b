@@ -41,6 +41,7 @@ const Payment = () => {
   const postInvoice = async () => {
     if (totalPackage !== {} && method) {
       setButtonState(false);
+      
       const data =
         userTariffPackages.length > 0
           ? {
@@ -59,6 +60,7 @@ const Payment = () => {
       const response = await dispatch(postInvoiceThunk(data));
       response === true && setButtonState(true);
       console.log(data);
+      method === "paypal" && navigate("../pending-payment");
     }
   };
 

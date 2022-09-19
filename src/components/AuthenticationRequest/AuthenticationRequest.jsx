@@ -104,8 +104,8 @@ const AuthenticationRequest = () => {
     // }
   }
 
-  console.log(checkValid)
-  console.log(errors)
+  // console.log(checkValid)
+  // console.log(errors)
 
   const handleChangeCategory = (e) => {
     dispatch(getProductTypePropThunk(e.value));
@@ -190,6 +190,7 @@ const AuthenticationRequest = () => {
   }
 
   const handlePost = async () => {
+
     console.log("data", {
       order,
       productType: productTypeValue,
@@ -383,7 +384,10 @@ const AuthenticationRequest = () => {
                 <div className="auth_request__logo">
                     <img src={logo} className='auth_request__logo-image' />
                 </div>
-                <form className="auth_request__form">
+                <form onSubmit={(event) => {
+                          event.preventDefault();
+                          handlePost()}} 
+                className="auth_request__form">
                     <div className="auth_request__form-wrapper">
 
                         <div className='auth_request__form-container first'>
@@ -461,7 +465,7 @@ const AuthenticationRequest = () => {
                     </div>
                     <div className="auth_request__form__footer">
                     {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
-                        <div className='auth_request__form__footer-wrapper' onSubmit={handlePost}>
+                        <div className='auth_request__form__footer-wrapper'>
                         
                             <div className='auth_request__form__footer__info'>
                                 
