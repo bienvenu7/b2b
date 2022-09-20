@@ -8,7 +8,7 @@ import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 import { getPriceThunk } from "../../../redux/thunks/payment-thunk"
-import { getCategoryError, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
+import {getCategoryError, getCosts, getPrice, getUserTariffPackages} from "../../../redux/selectors/payment-selectors"
 import SvgSelector from "../../../common/icons/SvgSelector"
 
 const CategoryForm = (props) => {

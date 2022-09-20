@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/axios-instance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axios-instance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/RightSide/RightSide.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/RightSide/RightSide.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" afterDir="false" />
-    </list>
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,8 +67,16 @@
       <workItem from="1663339618670" duration="709000" />
       <workItem from="1663568570938" duration="13980000" />
       <workItem from="1663654210637" duration="28000" />
-      <workItem from="1663680511960" duration="879000" />
+      <workItem from="1663680511960" duration="1338000" />
     </task>
+    <task id="LOCAL-00001" summary="merge">
+      <created>1663682461026</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663682461026</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,5 +92,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
 </project>
