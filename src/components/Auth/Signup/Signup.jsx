@@ -10,18 +10,31 @@ import AuthLayout from "../AuthLayout";
 import SvgSelector from "../../../common/icons/SvgSelector";
 import mobileLogo from "../../../common/images/logo-for-mobile.png";
 import { useState, useEffect } from "react";
+import { useSnackbar } from 'react-simple-snackbar';
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const postErrors = useSelector(getPostErrors);
-  const isRegister = useSelector(getIsRegister)
+  const isRegister = useSelector(getIsRegister);
+  
+  const options = {
+    position: 'bottom-right',
+  }
+  const [openSnackbar, closeSnackbar] = useSnackbar(options); 
+  const [first,setFitst] = useState(false);
+
+  useEffect(()=>{
+    
+    if(first && postErrors.signup)
+      openSnackbar(postErrors.signup, [5000])
+      setFitst(true); 
+      
+  },[postErrors.signup])
 
   const [isLoading, setIsLoading] = useState(false);
   const message = "We have sent a confirmation email to you! Please check your inbox"
-
-  
 
   const validate = (values) => {
     const errors = {};
@@ -180,9 +193,6 @@ const SignUp = () => {
                 {formik.errors.email}
               </div>
             ) : null}
-            {postErrors && postErrors.signup ? (
-              <div className="auth__form-errorMessage">{postErrors.signup}</div>
-            ) : null}
             <input
               className={
                 formik.touched.password && formik.errors.password
@@ -205,13 +215,13 @@ const SignUp = () => {
 
             {isRegister && <div className='auth__success-text'> {message} </div>}
 
-            <button
-              className="auth__form-submit"
-              type="submit"
-              disabled={isLoading}
-            >
-              Sign Up
-            </button>
+              <button
+                className="auth__form-submit"
+                type="submit"
+                disabled={isLoading}
+              >
+                Sign Up
+              </button>
             
           </form>
           <div className="auth__form__bottom">

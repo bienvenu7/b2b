@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setErrors } from "../../../redux/reducers/app-reducer";
@@ -10,18 +10,34 @@ import AuthLayout from "../AuthLayout";
 import mobileLogo from "../../../common/images/logo-for-mobile.png";
 import "../Auth.scss";
 import Loader from '../../Loader/Loader';
+import { useSnackbar } from 'react-simple-snackbar';
 
 const SignIn = () => {
   const dispatch = useDispatch();
 
-  const postErrors = useSelector(getPostErrors).signin;
+  const postErrors = useSelector(getPostErrors);
 
   const [switchBtn, setState] = useState("switch-btn");
   const [isLoading, setIsLoading] = useState(false);
 
+  const options = {
+    position: 'bottom-right',
+  }
+  const [openSnackbar, closeSnackbar] = useSnackbar(options); 
+  const [first,setFitst] = useState(false);
+
+  useEffect(()=>{
+    console.log(postErrors, 'check2')
+    if(first && postErrors.signin) 
+      openSnackbar(postErrors.signin, [5000])
+      setFitst(true); 
+  },[postErrors.signin])
+
   const setSwitchState = (switchState) => {
     !switchState ? setState("switch-btn switch-on") : setState("switch-btn");
   };
+
+  console.log(openSnackbar, 'checkoutOne')
 
   const navigate = useNavigate();
 

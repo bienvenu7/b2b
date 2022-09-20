@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setErrors } from "../../../redux/reducers/app-reducer";
@@ -8,6 +8,7 @@ import { getPostErrors } from "../../../redux/selectors/app-selectors";
 import { forgotEmailThunk } from "../../../redux/thunks/auth-thunk";
 import AuthLayout from "../AuthLayout";
 import mobileLogo from "../../../common/images/logo-for-mobile.png";
+import { useSnackbar } from 'react-simple-snackbar';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -17,6 +18,19 @@ const ForgotPassword = () => {
 
   const [send, setSendState] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const options = {
+    position: 'bottom-right',
+  }
+  const [openSnackbar, closeSnackbar] = useSnackbar(options); 
+  const [first,setFitst] = useState(false);
+
+  useEffect(()=>{
+    
+    if(first && postErrors.forgot)
+      openSnackbar(postErrors.forgot, [5000])
+      setFitst(true); 
+  },[postErrors.forgot])
 
   const validate = (values) => {
     const errors = {};
@@ -78,9 +92,6 @@ const ForgotPassword = () => {
                 {formik.errors.email}
               </div>
             ) : null}
-            {postErrors.forgot ? (
-              <div className="auth__form-errorMessage">Email not exists</div>
-            ) : null}
 
             <button
               className="auth__form-submit"
@@ -93,7 +104,7 @@ const ForgotPassword = () => {
           <div className="auth__form__bottom">
             <div className="wrapper">
               {send && (
-                <div className="auth__form__bottom-message">
+                <div className="auth__form__bottom-signin-message">
                   We’ve sent you the reset instruction!
                 </div>
               )}
