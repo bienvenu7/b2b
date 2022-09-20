@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge" />
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +74,7 @@
       <workItem from="1663339618670" duration="709000" />
       <workItem from="1663568570938" duration="13980000" />
       <workItem from="1663654210637" duration="28000" />
-      <workItem from="1663680511960" duration="1338000" />
+      <workItem from="1663680511960" duration="3375000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
@@ -76,7 +83,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663682461026</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="merge">
+      <created>1663682842755</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663682842755</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
