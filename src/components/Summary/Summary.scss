@@ -21,21 +21,12 @@
     &__elem {
         &-wrapper {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
 
             .box {
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 gap: 4px;
-
-                button {
-                    padding: 2px 5px;
-                    background: transparent;
-                    color: #CBAD73;
-                    border: solid 1px #CBAD73;
-                    border-radius: 4px;
-                    width: 80px;
-                }
 
                 span {
                     padding: 2px 5px;
@@ -43,6 +34,14 @@
                     color: #fff;
                     border-radius: 4px;
                 }
+            }
+            button {
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 5px;
+                font-size: 17px;
+                font-weight: 800;
             }
         }
 
@@ -52,14 +51,26 @@
             font-weight: 700;
             font-size: 13.8958px;
             line-height: 140%;
+            display: block;
         }
 
         &-cost {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 13.8958px;
-            line-height: 140%;
+            display: block;
+            display: flex;
+            p{
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 13.8958px;
+                line-height: 190%;
+                vertical-align:center
+            }
+            p{
+                margin-right: 10px;
+            }
+            span{
+                // margin-left: 10px;
+            }
         }
     }
 }

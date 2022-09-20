@@ -8,6 +8,10 @@ export const postInvoices = (data) => {
 };
 
 export const cartTotal = (data) => {
+  let temparr = data.userTariffPackages.filter((e) => e.productType != '')
+  data.userTariffPackages = temparr
+  
+
   return instance.post("invoices/get-cart-total", data, {
     headers: { Authorization: "Bearer " + Cookies.get("jwt") },
   });

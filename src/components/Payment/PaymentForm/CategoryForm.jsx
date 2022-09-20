@@ -27,6 +27,7 @@ const CategoryForm = (props) => {
     const [productType, setProductType] = useState(null)
     const [productTypeVar, setProductTypeVar] = useState(null)
     const [options, setOptions] = useState([])
+    const costsArrey = useSelector(getCosts)
 
     const specialNames = ['SNEAKERS_HYPE','SNEAKERS_LUXURY','OTHER_SHOES_HYPE','OTHER_SHOES_LUXURY'];
 
@@ -99,6 +100,7 @@ const CategoryForm = (props) => {
         }else{
             // dispatch(updateCurrentPackage({index: checked, volume: e.value}))
             dispatch(updateVolumePackage({index: checked, volume: packages[checked].volume + 1}))
+
             const data = {productType: packages[checked].productType, volume: packages[checked].volume, answerTime: packages[checked].answerTime}
             dispatch(getPriceThunk(data))
             // console.log('je suis deja present')
@@ -111,6 +113,9 @@ const CategoryForm = (props) => {
     }
 
     const handleChangeForNumeric = (e) => {
+        let temppackage = {package:cost.package,cart:cart.length,costsArrey:costsArrey.length}
+        dispatch(pushTotal(temppackage))//костыль
+        console.log({mypackage:cost.package,productTypes:cart,cost:cost});
         setVolume(e)
         dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
         const data = {productType: productType, volume: e, answerTime: answerTime}
@@ -208,7 +213,7 @@ const CategoryForm = (props) => {
         >
             {(props2) => (<Form className="payment__form" onSubmit={but && props2.handleSubmit}>
                 <div className="payment__form-block-container first">
-                {productType !== null && <><div className="payment__form-current_package_state-wrapper">
+                    {/* {productType !== null && <><div className="payment__form-current_package_state-wrapper"> //костыль
                         <div onClick={handleClose}><SvgSelector id='xmark' /></div>
                         <div className="payment__form-current_package_state" >
                             <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName
@@ -216,7 +221,7 @@ const CategoryForm = (props) => {
                             <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
                         </div>
                     </div>
-                    </>}
+                    </>} */}
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=> handleChange(e, props2.values.typeOfShoes)} />
 

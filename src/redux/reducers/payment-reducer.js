@@ -1,4 +1,5 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createAction, createReducer, current } from "@reduxjs/toolkit";
+
 
 export const addCategory = createAction("ADD_CATEGORY");
 export const setTotal = createAction("SET_TOTAL");
@@ -60,14 +61,26 @@ const paymentReducer = createReducer(initialState, (builder) => {
       state.cart.totalPackage = action.payload;
     })
     .addCase("PUSH_TOTAL", (state = initialState, action) => {
-      if (action.payload == null) {
+      // console.log("PUSH_TOTAL",action);
+      // console.log("PUSH_TOTAL",action.payload.cart, action.payload.costsArrey);
+      if(action.payload.cart > action.payload.costsArrey){
+        console.log("PUSH_TOTAL",'add');
+        if (action.payload.package == null) {
         state.cart.costs = [];
       } else {
-        state.cart.costs.push(action.payload);
+        state.cart.costs.push(action.payload.package);
       }
+      }
+      
     })
     .addCase("REMOVE_PREVIEW_PACKAGE", (state = initialState, action) => {
+      console.log('REMOVE_PREVIEW_PACKAGE',action);
+      console.log('REMOVE_PREVIEW_PACKAGE',current(state));
+      // console.log('REMOVE_PREVIEW_PACKAGE',initialState);
+
+      // state.cart.userTariffPackages= []
       state.cart.userTariffPackages.splice(action.payload, 1);
+      state.cart.costs.splice(action.payload, 1);
     })
     .addCase("UPDATE_PACKAGE", (state = initialState, action) => {
       if (action.payload != null) {
@@ -88,6 +101,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
         action.payload.volume;
     })
     .addCase("INIT_PACKAGE", (state = initialState, action) => {
+      console.log({action:action});
       state.cart.userTariffPackages.push({
         productType: "",
         answerTime: "",

@@ -5,7 +5,7 @@ import storeLogo from "../../../common/images/logo-of-store.png";
 import dashboardIcon from "../../../common/images/dashboard-icon.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { takeBalance } from "../../../redux/selectors/authRequest-selectors";
+import { takeBalance,companyname } from "../../../redux/selectors/authRequest-selectors";
 import { getProductsThunk } from "../../../redux/thunks/product-thunk";
 import { logoutThunk } from "../../../redux/thunks/auth-thunk";
 
@@ -14,6 +14,8 @@ const Dashboard = (props) => {
   const dispatch = useDispatch();
 
   const balance = useSelector(takeBalance);
+  const companyName = useSelector(companyname);
+  // console.log(companyName);
   // const balance = [];
 
   //temp
@@ -27,7 +29,7 @@ const Dashboard = (props) => {
                 <img alt="" src={storeLogo} />
               </div>
               <div className="dashboard__elem__top-label">
-                Luxury store <SvgSelector id="arrow" />
+                {companyName} <SvgSelector id="arrow" />
               </div>
               <div className="dashboard__elem__top__icon-wrapper">
                 <div className="dashboard__elem__top__icon-elem">
