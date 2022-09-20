@@ -8,6 +8,10 @@
         @include for-phone-only {
             z-index: 10;
         }
+        @include for-tablet-landscape-up {
+            width: 100vw;
+            padding: 0px 0px;
+        }
     }
     &-wrapper{
         display: flex;
@@ -18,6 +22,11 @@
         position: relative;
         @include for-phone-only{
             display: none;
+            margin: 0vw 0vw !important;
+        }
+        @include for-tablet-landscape-up {
+            width: 80vw;
+            margin: 0 5vw;
         }
 
         .right-nav {
@@ -29,7 +38,7 @@
             display: none;
             @include for-phone-only{
                 display: flex;
-                border-bottom: 0.25px solid #656565;;
+                border-bottom: 1px solid rgba(101, 101, 101, 0.5);
                 height: 73px;
                 padding: 0;
                 position: fixed;

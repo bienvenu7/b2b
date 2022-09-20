@@ -59,7 +59,7 @@ export const loginThunk = (data) => async (dispatch) => {
         error.response &&
         error.response.data &&
         error.response.data.message
-          ? error.response.data.message[0]
+          ? error.response.data.message
           : error.response.data.errors && error.response.data.errors.password
           ? error.response.data.errors.password
           : null,
@@ -91,15 +91,16 @@ export const forgotEmailThunk = (data) => async (dispatch) => {
     await forgotEmail(data);
     return true;
   } catch (error) {
+    const dataResponse = error.response.data;
+    // console.log({dataResponse})
     const data = {
       page: "forgot",
-      error:
-        error.response &&
+      error: dataResponse.message?dataResponse.message:( error.response &&
         error.response.data &&
         error.response.data.errors &&
         error.response.data.errors.email
           ? error.response.data.errors.email
-          : null,
+          : null),
     };
     dispatch(setErrors(data));
     return false;
