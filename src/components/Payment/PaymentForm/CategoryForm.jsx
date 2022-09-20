@@ -8,7 +8,7 @@ import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 import { getPriceThunk } from "../../../redux/thunks/payment-thunk"
-import { getCategoryError, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
+import { getCategoryError, getPrice, getUserTariffPackages,getCosts } from "../../../redux/selectors/payment-selectors"
 import SvgSelector from "../../../common/icons/SvgSelector"
 
 const CategoryForm = (props) => {
@@ -26,6 +26,7 @@ const CategoryForm = (props) => {
     const [answerTime, setAnswerTime]=useState(24)
     const [productType, setProductType] = useState(null)
     const [productTypeVar, setProductTypeVar] = useState(null)
+    const costsArrey = useSelector(getCosts)
 
 
 
@@ -44,15 +45,17 @@ const CategoryForm = (props) => {
 
         const checked = packages.findIndex((item) => e.label === item.productType.publicName || 'Sneakers: Hype' === item.productType.publicName );
         // console.log(checked)
-
+        // console.log({formik:formik,cost:cost,value:e.value})
         if(checked < 0) {
             setSelectedValue(e.value);
             dispatch(setCategoryError(null))
             updateType(e.value, formik)
-            // console.log(e)
+            // dispatch(pushTotal(cost.package))
+            
         }else{
             // dispatch(updateCurrentPackage({index: checked, volume: e.value}))
             dispatch(updateVolumePackage({index: checked, volume: packages[checked].volume + 1}))
+            
             const data = {productType: packages[checked].productType, volume: packages[checked].volume, answerTime: packages[checked].answerTime}
             dispatch(getPriceThunk(data))
             // console.log('je suis deja present')
@@ -65,6 +68,9 @@ const CategoryForm = (props) => {
     }
 
     const handleChangeForNumeric = (e) => {
+        let temppackage = {package:cost.package,cart:cart.length,costsArrey:costsArrey.length}
+        dispatch(pushTotal(temppackage))//костыль
+        console.log({mypackage:cost.package,productTypes:cart,cost:cost});
         setVolume(e)
         dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
         const data = {productType: productType, volume: e, answerTime: answerTime}
@@ -97,8 +103,10 @@ const CategoryForm = (props) => {
         props.cartTotal(data)
         setErrorForAnswerTime(null)
     }
-
-    cart.length < 1 && dispatch(initPackage(userId))
+    // useEffect(() => {
+        cart.length < 1 && dispatch(initPackage(userId))
+    // },[])
+    
 
     useEffect(() => {
 
@@ -162,7 +170,7 @@ const CategoryForm = (props) => {
         >
             {(props2) => (<Form className="payment__form" onSubmit={but && props2.handleSubmit}>
                 <div className="payment__form-block-container first">
-                {productType !== null && <><div className="payment__form-current_package_state-wrapper">
+                {/* {productType !== null && <><div className="payment__form-current_package_state-wrapper"> //костыль
                         <div onClick={handleClose}><SvgSelector id='xmark' /></div>
                         <div className="payment__form-current_package_state" >
                             <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName 
@@ -170,7 +178,7 @@ const CategoryForm = (props) => {
                             <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
                         </div>
                     </div>                   
-                    </>}
+                    </>} */}
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=> handleChange(e, props2.values.typeOfShoes)} />
 

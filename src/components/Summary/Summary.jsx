@@ -41,11 +41,13 @@ const Summary = (props) =>{
             {<div className="summary-title">Summary</div>}
                 {packages.map((el,index)=>el.productType !== '' && <div key={index} className='summary__elem-wrapper'>
                     <div className="box">
-                        <button onClick={() => { dispatch(removePreviewPackage())}}>remove</button>
+                        
                         <div className="summary__elem-name">{el.productType.publicName} bundle</div>
-                        {el.answerTime !== "" && <span>{el.answerTime} h</span>}
+                        {cost && <div className="summary__elem-cost"><p>{cost[index] && '$'+cost[index]/100 + ' X ' + el.volume}</p>{el.answerTime !== "" && <span>{el.answerTime} h</span>}</div>}
+                        
                     </div>
-                    <div className="box">
+                    <button onClick={() => dispatch(removePreviewPackage(index))}>X</button>
+                    {/* <div className="box">
                         <button onClick={() => 
                             el.volume > 1 && dispatch(updateVolumePackage({index: index, volume: el.volume - 1}))
                         }>-</button>
@@ -54,7 +56,7 @@ const Summary = (props) =>{
                             setCount(true)
                             dispatch(updateVolumePackage({index: index, volume: el.volume + 1}));
                         }}>+</button>
-                    </div>
+                    </div> */}
                     </div>)}
         </div>}
         </>

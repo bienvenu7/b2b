@@ -177,7 +177,7 @@ const CategoryForm = (props) => {
             <div className="payment__form-block-container first">
               {productType !== null && (
                 <>
-                  <div className="payment__form-current_package_state-wrapper">
+                  {/* <div className="payment__form-current_package_state-wrapper"> //костыль
                     <div onClick={handleClose}>
                       <SvgSelector id="xmark" />
                     </div>
@@ -195,7 +195,7 @@ const CategoryForm = (props) => {
                         ${cost.package / 100}&nbsp;x&nbsp;{volume}
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/*<hr style={{background: '#E1E1E1',
                         height: '0.7px',
                         border: '0',

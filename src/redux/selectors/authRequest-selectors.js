@@ -13,3 +13,7 @@ export const takeBalance = (state) => {
 export const takeAngles = (state) => {
   return state.authRequest.angles;
 };
+
+export const companyname = (state) => {
+  return state.auth.user.companyName
+};
