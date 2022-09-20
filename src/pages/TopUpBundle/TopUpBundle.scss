@@ -127,6 +127,9 @@
             border-radius: 2.86473px;
             border: 0;
             color: $c_w;
+            &[disabled] {
+                background-color: #fff;
+            }
             &:first-child {
                 border: 1px;
                 color: $c_g;
