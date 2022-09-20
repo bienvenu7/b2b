@@ -114,6 +114,7 @@
                 min-width: 30px;
                 overflow: hidden;
                 border-radius: 50%;
+                margin-top: 20px;
 
                 img {
                     width: 100%;
@@ -137,6 +138,7 @@
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
+                margin-top: 25px;
                 @include for-phone-only{
                     font-family: 'SF Pro Display Medium';
                     font-style: normal;
@@ -206,6 +208,7 @@
                 justify-content: space-between;
                 padding-bottom: 10px;
                 align-items: center;
+
                 @include for-phone-only{
                     border: 0;
                     font-family: 'SF Pro Display Medium';
@@ -214,6 +217,8 @@
                     font-size: 22px;
                     line-height: 26px;
                     text-transform: none;
+                    padding-bottom: 0;
+                    margin-bottom: -15px;
                 }
                 svg {
                     margin-right: 17px;
@@ -235,6 +240,8 @@
                 &-wrapper{
                     @include for-phone-only{
                         padding-right: 49px;
+                        padding-left: 20px;
+                        padding-top: 13px;
                     }
                 }
                 &__elem {
@@ -366,6 +373,7 @@
                             font-size: 18px;
                             line-height: 140%;
                             margin: 0;
+                            margin-top: 14px;
                         }
                     }
                     
@@ -405,7 +413,8 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    width: 267px;
+                    min-width: 267px;
+                    padding-bottom: 0;
                 }
             }
             &-control{

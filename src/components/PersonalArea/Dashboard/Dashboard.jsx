@@ -55,15 +55,9 @@ const Dashboard = (props) => {
               <div className="dashboard__elem__child__label">Dashboard</div>
             </div>
           </div>
-          <div
-            className="dashboard__elem__auth_balance__balance-button mobile"
-            onClick={() => navigate("../authentication-request")}
-          >
-            New authentication
-          </div>
           <div className="dashboard__elem__auth_balance-wrapper">
             <div className="dashboard__elem__auth_balance-label">
-              authentication balance <div onClick={() => setShow1(!show1)}><SvgSelector id="arrow" /></div>
+              Authentication balance <div onClick={() => setShow1(!show1)}><SvgSelector id={show1 ? "arrow" : "arrow-rotate"} /></div>
             </div>
             {show1 && <div className="dashboard__elem__auth_balance__balance-wrapper">
               {balance.length > 0 &&
@@ -126,7 +120,7 @@ const Dashboard = (props) => {
           </div>
           <div className="dashboard__elem__authentications-wrapper">
             <div className="dashboard__elem__authentications-label">
-              authentication <div onClick={() => setShow(!show)}><SvgSelector id="arrow" /></div>
+              Authentication <div onClick={() => setShow(!show)}><SvgSelector id={show ? "arrow" : "arrow-rotate"} /></div>
             </div>
             { show && <div className="dashboard__elem__authentications-control__elements">
               <div
@@ -168,6 +162,12 @@ const Dashboard = (props) => {
                 Get help
               </div>
             </div>
+          </div>
+          <div
+            className="dashboard__elem__auth_balance__balance-button mobile"
+            onClick={() => navigate("../authentication-request")}
+          >
+            New authentication
           </div>
           <div className="fixed-image">
             <img src={logo_img} alt="" />

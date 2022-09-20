@@ -4,7 +4,7 @@ import SvgSelector from '../../../common/icons/SvgSelector'
 import Header from '../../Header/Header'
 
 
-import logo from '../../../common/images/logo-for-mobile.png'
+import logo from '../../../common/images/601.svg'
 import { useNavigate } from 'react-router-dom'
 
 const Unsuccess = () => {
