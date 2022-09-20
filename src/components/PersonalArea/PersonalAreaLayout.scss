@@ -6,11 +6,17 @@
     margin-top: 65px;
     // margin-left: 28px;
     max-width: 1022px;
-    min-width: 415px;
+    min-width: min-content;
 
     @include for-phone-only {
-        margin: 65px 0 0 0;
+        margin: 74px 0 0 0;
         overflow: hidden;
+    }
+    @include for-tablet-portrait-up {
+        width: 100vw;
+    }
+    @include for-tablet-landscape-up {
+        width: 100vw;
     }
 }
 
