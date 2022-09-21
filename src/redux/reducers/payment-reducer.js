@@ -43,6 +43,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase("SET_TOTAL", (state = initialState, action) => {
+      console.log({'total':action});
       state.cart.total = action.payload;
     })
     .addCase("SET_INVOICE_LINK", (state = initialState, action) => {
@@ -58,6 +59,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
       state.cart.price.certificate = action.payload;
     })
     .addCase("SET_TOTAL_PACKAGE", (state = initialState, action) => {
+      console.log({'SET_TOTAL_PACKAGE':action});
       state.cart.totalPackage = action.payload;
     })
     .addCase("PUSH_TOTAL", (state = initialState, action) => {
