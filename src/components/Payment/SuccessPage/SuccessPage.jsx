@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import logo from '../../../common/images/logo-for-mobile.png'
+import logo from '../../../common/images/601.svg'
 import Navigation from '../../Navigation/Navigation'
 import Header from '../../Header/Header'
 import SvgSelector from '../../../common/icons/SvgSelector'

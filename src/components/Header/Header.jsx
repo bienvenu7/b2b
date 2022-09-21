@@ -43,8 +43,8 @@ const Header = (props) => {
   if(pathname ==='/photo-requests/all') path = "Photo requests"
   if(pathname ==='/dashboard') path = "Dashboard"
   if(pathname ==='/authentication-request') path = "Authentication request"
-  if(pathname ==='/authentications/completed') path = "Completed authentifications"
-  if(pathname ==='/authentications/in-progress') path = "In progress authentifications"
+  if(pathname ==='/authentications/completed') path = "Completed authentications"
+  if(pathname ==='/authentications/in-progress') path = "In progress authentications"
   if(pathname ==='/billing-history') path = "Billing history"
 
   function goBack() {

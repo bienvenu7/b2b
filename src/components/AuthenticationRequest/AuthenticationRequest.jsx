@@ -104,8 +104,8 @@ const AuthenticationRequest = () => {
     // }
   }
 
-  console.log(checkValid)
-  console.log(errors)
+  // console.log(checkValid)
+  // console.log(errors)
 
   const handleChangeCategory = (e) => {
     dispatch(getProductTypePropThunk(e.value));
@@ -190,6 +190,7 @@ const AuthenticationRequest = () => {
   }
 
   const handlePost = async () => {
+
     console.log("data", {
       order,
       productType: productTypeValue,
@@ -371,8 +372,8 @@ const AuthenticationRequest = () => {
         <div className="auth_request__wrapper">
             {/* <div className="auth_request__nav">
                 <div className='auth_request__nav-bar'>
-                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentification' }]} />
-                    <div className='auth_request__nav-label'>Authentification request</div>
+                    <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentication' }]} />
+                    <div className='auth_request__nav-label'>authentication request</div>
                 </div>
                 <div className='auth_request__nav-bell'><SvgSelector id='bell' /></div>
 
@@ -383,13 +384,16 @@ const AuthenticationRequest = () => {
                 <div className="auth_request__logo">
                     <img src={logo} className='auth_request__logo-image' />
                 </div>
-                <form className="auth_request__form">
+                <form onSubmit={(event) => {
+                          event.preventDefault();
+                          handlePost()}} 
+                className="auth_request__form">
                     <div className="auth_request__form-wrapper">
 
                         <div className='auth_request__form-container first'>
 
                             <div className='auth_request__form-container-wrapper first'>
-                                <div className='auth_request__form-heading'>Authentification request</div>
+                                <div className='auth_request__form-heading'>authentication request</div>
                                 <div className='auth_request__form__elem'>
                                     <div className='auth_request__form__elem-label'>Choose the category
                                         <div className='btn'>
@@ -461,13 +465,13 @@ const AuthenticationRequest = () => {
                     </div>
                     <div className="auth_request__form__footer">
                     {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
-                        <div className='auth_request__form__footer-wrapper' onSubmit={handlePost}>
+                        <div className='auth_request__form__footer-wrapper'>
                         
                             <div className='auth_request__form__footer__info'>
                                 
                                 <div className='auth_request__form__footer__info__h1'>Summary</div>
                                 <div className='auth_request__form__footer__info__h2'>
-                                    <div className='auth_request__form__footer__info__h2-label'>Authentification requests</div>
+                                    <div className='auth_request__form__footer__info__h2-label'>authentication requests</div>
                                     <div className='auth_request__form__footer__info__h2-value'>1</div>
                                 </div>
                                 <div className='auth_request__form__footer__info__h2'>

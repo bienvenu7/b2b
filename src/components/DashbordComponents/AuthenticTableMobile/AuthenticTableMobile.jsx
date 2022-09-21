@@ -380,11 +380,11 @@ const AuthenticTableMobile = (props) => {
                 </div>
                 {page === "progress" ? (
                   <div className="authent__nav-label">
-                    In progress authentifications
+                    In progress authentications
                   </div>
                 ) : (
                   <div className="authent__nav-label">
-                    Completed authentifications
+                    Completed authentications
                   </div>
                 )}
                 <div className="authent__nav-search_icon">
