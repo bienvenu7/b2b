@@ -9,6 +9,7 @@ Modal.setAppElement("#root");
 
 const UploadPhotoModal = (props) => {
   console.log(props);
+  console.log(props.closeModal);
   function reloadWindow(){
     // window.location.reload()
   }
@@ -113,7 +114,7 @@ const UploadPhotoModal = (props) => {
           )
         )
     );
-    window.location.reload()
+    
   }
 
   return (
@@ -122,7 +123,7 @@ const UploadPhotoModal = (props) => {
         <Modal
           isOpen={props.isOpen}
           onAfterOpen={afterOpenModal}
-          onRequestClose={reloadWindow}
+          onRequestClose={props.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
