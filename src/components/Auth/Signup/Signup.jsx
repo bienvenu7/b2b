@@ -69,16 +69,16 @@ const SignUp = () => {
       rememberMe: false,
     },
     validate,
-    onSubmit: async (values) => {
+    onSubmit: async (values, {resetForm}) => {
       setIsLoading(true);
       if (values.email === "Email Address*") {
         formik.errors.company = "Please fill in your company";
       } else if (values.company === "Company Name*") {
       }
       const response = dispatch(regThunk(values));
+      resetForm({})
       
       setIsLoading(false);
-      
     },
   });
   // console.log(isRegister)
@@ -138,10 +138,6 @@ const SignUp = () => {
               type="text"
               placeholder="Company Name*"
               onChange={formik.handleChange}
-              onBlur={() => {
-                formik.values.company === "" &&
-                  formik.setFieldValue("company", "Company Name*");
-              }}
               value={formik.values.company}
               onClick={() => {
                 formik.values.company === "Company Name*" &&
@@ -212,7 +208,7 @@ const SignUp = () => {
               </div>
             ) : null}
 
-            {isRegister && <div className='auth__success-text'> {message} </div>}
+            {isRegister && <div className='auth__success-text'> {message} </div>} 
 
               <button
                 className="auth__form-submit"

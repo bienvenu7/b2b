@@ -9,49 +9,70 @@ import camera from '../../common/icons/dashboard/camera.png'
 import checkmark from '../../common/icons/dashboard/checkmark.png'
 import CheckBlockMobile from '../../components/DashbordComponents/CheckBlockMobile/CheckBlockMobile'
 import AuthenticMobile from '../../components/DashbordComponents/AuthenticInMobile/AuthenticMobile'
+import { completedAuthentification } from '../../api/authRequest/authRequest-api'
+import { useEffect, useState } from 'react'
 
 const DashboardPage = () => {
-  const contentChekedBlock = [
+
+  const [contentChecked, setContentChecked] = useState([
     {
+      key: 1,
       textTop: "Completed authentications",
-      numberTop: "911",
+      numberTop: 0,
       textBottom: "in the past day",
       numberBottom: "+30",
       image: checkmark,
     },
     {
+      key: 2,
       textTop: "Orders that require additional photos",
-      numberTop: "200",
+      numberTop: 0,
       textBottom: "in the past day",
       numberBottom: "+30",
       image: camera,
-    },
-  ]
+    }
+  ])
+
+  const [someData, setSomeData] = useState({
+    completed: 0,
+    updateNeeded: 0,
+    authentic: 0
+  })
+
+  var first = someData.completed
+  var second = someData.updateNeeded
+
+  useEffect(() => {
+    completedAuthentification().then((r) => {
+      setSomeData(r.data)
+    })
+  }, []);
 
   return (
     <div className='top'>
       <PersonalAreaLayout>
+
         <div className='dashboard-page__content-desctop'>
-          <InfoBlock/>
+          <InfoBlock />
           <div className='dashboard-page__second-block'>
-            {
-              contentChekedBlock.map((block) => {
-                return <CheckBlock image={block.image} textTop={block.textTop} numberTop={block.numberTop} textBottom={block.textBottom} numberBottom={block.numberBottom} />
-              })
-            }            
+            { 
+              contentChecked.map((key, i) =>
+                <CheckBlock image={key.image} textTop={key.textTop} numberTop={i === 1 ? second : first} textBottom={key.textBottom} numberBottom={key.numberBottom} key={i} />
+              )
+            }
           </div>
-          <AuthenticInfoBlock/>
-          <AuthenticTableBlock/>
+          <AuthenticInfoBlock />
+          <AuthenticTableBlock />
         </div>
 
         <div className='dashboard-page__content-mobile'>
-          <CheckBlockMobile image={checkmark}/>
-          <AuthenticMobile/>
-          <AuthenticTableBlock/>
+          <CheckBlockMobile image={checkmark} />
+          <AuthenticMobile />
+          <AuthenticTableBlock />
         </div>
       </PersonalAreaLayout>
     </div>
-    
+
   )
 }
 
