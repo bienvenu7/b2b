@@ -11,7 +11,7 @@ const BlockComponentLayout = ({children}) => {
   const [size, setSize] = useState(false)
 
   useEffect (() => {
-    window.innerWidth <= 375 && setSize(!size);
+    window.innerWidth <= 520 && setSize(!size);
   }, [])
 
   console.log(size)

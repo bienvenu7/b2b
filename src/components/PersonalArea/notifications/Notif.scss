@@ -11,6 +11,10 @@
         display: flex;
         justify-content: flex-end;
         background: transparent;
+
+        @include for-phone-only {
+            position: static;
+        }
     }
 
     &-messages {
@@ -23,6 +27,19 @@
         display: grid;
         grid-template-columns: repeat(1, calc(800px - 25px));
         gap: 14px;
+
+        @include for-phone-only {
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 322px;
+            height: auto;
+            align-items: center;
+            justify-content: center;
+            overflow: scroll;
+            padding-left: 30px;
+        }
     }
 }
 
@@ -41,8 +58,18 @@
         margin-left: 25px;
         // margin: auto;
 
+        @include for-phone-only {
+            margin-left: 0;
+            max-height: 160px;
+            padding: 17px 13px 13px 13px;
+        }
+
         &:nth-child(1) {
             margin-top: 29px;
+
+            @include for-phone-only {
+                margin-top: 0;
+            }
         }
 
         &:nth-last-child(1) {
@@ -57,6 +84,15 @@
         font-size: 19px;
         line-height: 140%;
         color: $c_b;
+
+        @include for-phone-only {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 140%;
+            width: 100%;
+        }
     }
 
     &-text {
@@ -87,6 +123,10 @@
         font-size: 15px;
         line-height: 140%;
         color: $c_w;
+
+        @include for-phone-only {
+            width: 292px;
+        }
     }
 
     
