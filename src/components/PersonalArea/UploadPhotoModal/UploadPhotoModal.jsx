@@ -100,7 +100,7 @@ const UploadPhotoModal = (props) => {
   }
 
   async function handlePost() {
-    window.location.reload()
+    
     console.log(photoFiles);
     const response = await photoFiles.map(
       (el, index) =>
@@ -113,6 +113,7 @@ const UploadPhotoModal = (props) => {
           )
         )
     );
+    window.location.reload()
   }
 
   return (
