@@ -33,7 +33,9 @@ const Summary = (props) =>{
     //     }
     //     cart.length && dispatch(getCartTotalThunk(data))
     // }, [cart])
-
+    function delhendler(index){
+        dispatch(removePreviewPackage(index))
+    }
     return(
         <>
         {console.log(packages)}
@@ -46,7 +48,7 @@ const Summary = (props) =>{
                         {cost && <div className="summary__elem-cost"><p>{cost[index] && '$'+cost[index]/100 + ' X ' + el.volume}</p>{el.answerTime !== "" && <span>{el.answerTime} h</span>}</div>}
                         
                     </div>
-                    <button onClick={() => dispatch(removePreviewPackage(index))}>X</button>
+                    <button onClick={() =>delhendler(index)}>X</button>
                     {/* <div className="box">
                         <button onClick={() => 
                             el.volume > 1 && dispatch(updateVolumePackage({index: index, volume: el.volume - 1}))

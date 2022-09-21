@@ -8,6 +8,11 @@ import { uploadPhotoForProductThunk } from "../../../redux/thunks/authRequest-th
 Modal.setAppElement("#root");
 
 const UploadPhotoModal = (props) => {
+  console.log(props);
+  function reloadWindow(){
+    // window.location.reload()
+  }
+  
   const dispatch = useDispatch();
 
   const customStyles = {
@@ -95,6 +100,7 @@ const UploadPhotoModal = (props) => {
   }
 
   async function handlePost() {
+    window.location.reload()
     console.log(photoFiles);
     const response = await photoFiles.map(
       (el, index) =>
@@ -115,7 +121,7 @@ const UploadPhotoModal = (props) => {
         <Modal
           isOpen={props.isOpen}
           onAfterOpen={afterOpenModal}
-          onRequestClose={props.closeModal}
+          onRequestClose={reloadWindow}
           style={customStyles}
           contentLabel="Example Modal"
         >
