@@ -17,5 +17,12 @@
     // box-shadow: none;
   }
 
+  &.resize {
+    margin-left: 17px;
+    margin-right: 17px;
+    width: auto;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
 
 }
