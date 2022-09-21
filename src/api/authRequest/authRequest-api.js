@@ -41,3 +41,9 @@ export const uploadPhotoForProduct = (data) => {
     headers: { Authorization: "Bearer " + Cookies.get("jwt") },
   });
 };
+
+export const completedAuthentification = () => {
+  return instance.get("products/get-dashboard", {
+    headers: { Authorization: "Bearer " + Cookies.get("jwt") },
+  });
+} ;

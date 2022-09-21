@@ -25,6 +25,14 @@ const UploadPhotoModal = (props) => {
 
   const [photoFiles, setPhotoFiles] = useState([]);
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
   }
@@ -123,6 +131,240 @@ const UploadPhotoModal = (props) => {
           <div className="modal__photo-container">
             <div className="modal__photo-wrapper">
               {photoFiles.length > 0 &&
+                photoFiles.map((el, index) => (
+                  <div key={index} className={`modal__photo-elem ${index}`}>
+                    {el.imagePreviewUrl !== "" ? (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="modal__photo-previewImg"
+                        style={{ background: `url(${el.imagePreviewUrl})` }}
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    ) : (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="auth_request__form__photo-photolabel required"
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    )}
+                    <div className="modal__photo-name">{el.angleName}</div>
+                    {el.format !== null && el.format !== true && (
+                      <div className="modal__photo-error">
+                        Format is not available
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {photoFiles.length > 0 &&
+                photoFiles.map((el, index) => (
+                  <div key={index} className={`modal__photo-elem ${index}`}>
+                    {el.imagePreviewUrl !== "" ? (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="modal__photo-previewImg"
+                        style={{ background: `url(${el.imagePreviewUrl})` }}
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    ) : (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="auth_request__form__photo-photolabel required"
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    )}
+                    <div className="modal__photo-name">{el.angleName}</div>
+                    {el.format !== null && el.format !== true && (
+                      <div className="modal__photo-error">
+                        Format is not available
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {photoFiles.length > 0 &&
+                photoFiles.map((el, index) => (
+                  <div key={index} className={`modal__photo-elem ${index}`}>
+                    {el.imagePreviewUrl !== "" ? (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="modal__photo-previewImg"
+                        style={{ background: `url(${el.imagePreviewUrl})` }}
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    ) : (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="auth_request__form__photo-photolabel required"
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    )}
+                    <div className="modal__photo-name">{el.angleName}</div>
+                    {el.format !== null && el.format !== true && (
+                      <div className="modal__photo-error">
+                        Format is not available
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {photoFiles.length > 0 &&
+                photoFiles.map((el, index) => (
+                  <div key={index} className={`modal__photo-elem ${index}`}>
+                    {el.imagePreviewUrl !== "" ? (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="modal__photo-previewImg"
+                        style={{ background: `url(${el.imagePreviewUrl})` }}
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    ) : (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="auth_request__form__photo-photolabel required"
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    )}
+                    <div className="modal__photo-name">{el.angleName}</div>
+                    {el.format !== null && el.format !== true && (
+                      <div className="modal__photo-error">
+                        Format is not available
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {photoFiles.length > 0 &&
+                photoFiles.map((el, index) => (
+                  <div key={index} className={`modal__photo-elem ${index}`}>
+                    {el.imagePreviewUrl !== "" ? (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="modal__photo-previewImg"
+                        style={{ background: `url(${el.imagePreviewUrl})` }}
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    ) : (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="auth_request__form__photo-photolabel required"
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    )}
+                    <div className="modal__photo-name">{el.angleName}</div>
+                    {el.format !== null && el.format !== true && (
+                      <div className="modal__photo-error">
+                        Format is not available
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {photoFiles.length > 0 &&
+                photoFiles.map((el, index) => (
+                  <div key={index} className={`modal__photo-elem ${index}`}>
+                    {el.imagePreviewUrl !== "" ? (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="modal__photo-previewImg"
+                        style={{ background: `url(${el.imagePreviewUrl})` }}
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    ) : (
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="auth_request__form__photo-photolabel required"
+                      >
+                        <input
+                          className={`modal__photo-fileInput ${index}`}
+                          accept=".heic,.png,.heif,.jpg,.jpeg"
+                          type="file"
+                          onChange={handleImageChange}
+                          id={`photo-${index}`}
+                        />
+                      </label>
+                    )}
+                    <div className="modal__photo-name">{el.angleName}</div>
+                    {el.format !== null && el.format !== true && (
+                      <div className="modal__photo-error">
+                        Format is not available
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {photoFiles.length > 0 &&
                 photoFiles.map((el, index) => (
                   <div key={index} className={`modal__photo-elem ${index}`}>
                     {el.imagePreviewUrl !== "" ? (
