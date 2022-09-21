@@ -16,7 +16,7 @@ export const postInvoiceThunk = (obj) => async (dispatch) => {
     const data = {
       ...obj,
       successUrl: host + "/success",
-      cancelUrl: window.location.href,
+      cancelUrl: host + "/unsuccess",
     };
 
     const response = await postInvoices(data);
@@ -39,6 +39,7 @@ export const getPriceThunk = (data) => async (dispatch) => {
     response.status === 200 &&
       dispatch(setPriceForCertificate(response.data.certificate));
   } else {
+    console.log({test:data.productType})
     const response = await getPrice({
       id: data.productType.id,
       volume: data.volume,

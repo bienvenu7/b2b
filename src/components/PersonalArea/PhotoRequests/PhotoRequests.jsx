@@ -37,13 +37,13 @@ const PhotoRequests = (props) => {
           .split(",")
           .map((el) => anglesList.find((elem) => elem.clickupId === el));
         const total =
-          arr.length > 2
+          arr.length >= 2
             ? arr.map((el, index) =>
                 el !== undefined
                   ? index < 1
-                    ? el.publicName + ", "
+                    ? el.publicName 
                     : index === 1
-                    ? el.publicName + ` and ${arr.length - 2} more`
+                    ? ` and ${arr.length - 1} more`
                     : ""
                   : null
               )
@@ -69,10 +69,9 @@ const PhotoRequests = (props) => {
   }
 
   function getPhotoUrl(files) {
-    if (!files.length) return "/_blank.png";
-    return process.env.NODE_ENV !== "production"
-      ? "/mockimage.png"
-      : "/assets" + (files.length > 0 && files[1].path) + "/" + files[1].name;
+      if(typeof files != 'object' )
+          return '';
+      return files[0].path
   }
 
   const [isOpen, setIsOpen] = useState(false);

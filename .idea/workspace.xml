@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="">
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
+      <change afterPath="$PROJECT_DIR$/src/common/images/601.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/PendingPay.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/Unsuccess.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/authRequest/authRequest-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authRequest/authRequest-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/axios-instance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axios-instance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/icons/SvgSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/icons/SvgSelector.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/PackagesHistory/PackagesHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PackagesHistory/PackagesHistory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPageOrder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPageOrder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Payment/Payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Payment/Payment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,18 +42,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Projects/b2blgfront&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PhpStorm 2022.1.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Projects/b2blgfront",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2022.1.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -69,7 +86,25 @@
       <workItem from="1662547768705" duration="5095000" />
       <workItem from="1663140183689" duration="1471000" />
       <workItem from="1663339618670" duration="709000" />
+      <workItem from="1663568570938" duration="13980000" />
+      <workItem from="1663654210637" duration="28000" />
+      <workItem from="1663680511960" duration="6929000" />
     </task>
+    <task id="LOCAL-00001" summary="merge">
+      <created>1663682461026</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663682461026</updated>
+    </task>
+    <task id="LOCAL-00002" summary="merge">
+      <created>1663682842755</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663682842755</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,5 +120,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
 </project>

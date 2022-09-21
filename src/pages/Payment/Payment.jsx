@@ -41,6 +41,7 @@ const Payment = () => {
   const postInvoice = async () => {
     if (totalPackage !== {} && method) {
       setButtonState(false);
+      
       const data =
         userTariffPackages.length > 0
           ? {
@@ -59,6 +60,7 @@ const Payment = () => {
       const response = await dispatch(postInvoiceThunk(data));
       response === true && setButtonState(true);
       console.log(data);
+      method === "paypal" && navigate("../pending-payment");
     }
   };
 
@@ -91,7 +93,7 @@ const Payment = () => {
           <div className="top_up_bundle__left-nav">
                     <Navigation hrefs={[{ label: `${user.companyName}` }, { label: 'Authentication Bundle' }]}/>
                     <div className="top_up_bundle__left-mobile">
-                        <h1>Authentification bundle</h1>
+                        <h1>authentication bundle</h1>
                         <SvgSelector id='burger'/>
                     </div>
                     <div className="mobile-nav"><PersonalAreaLayout/></div>

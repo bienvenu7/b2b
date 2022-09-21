@@ -38,10 +38,7 @@ const Card = (props) => {
   const [width, height] = useWindowSize();
 
   function getPhotoUrl(file) {
-    //const domain = 'https://b2b-portal-dev.herokuapp.com'
-    return process.env.NODE_ENV !== "production"
-      ? "/mockimage.png"
-      : "/assets" + file.path + "/" + file.name;
+    return file.path;
   }
 
   function getDate(str, version) {
@@ -216,7 +213,7 @@ const Card = (props) => {
                 </div>
                 <div className="card__info__content">
                   <div className="card__info__content-label">
-                    Authentification summary
+                    authentication summary
                   </div>
                   <div className="card__info__content-wrapper">
                     <div className="card__info__content-brand">

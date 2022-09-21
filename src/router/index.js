@@ -17,6 +17,8 @@ import Billing from "../components/PersonalArea/billing/Billing";
 import ConfirmEmail from "../components/Auth/ConfirmEmail/ConfirmEmail";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import AuthenticTableBlock from '../components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock';
+import PendingPay from '../components/Payment/SuccessPage/PendingPay';
+import Unsuccess from '../components/Payment/SuccessPage/Unsuccess';
 
 export const publicRoutes = [
   { path: "/signin", component: <Signin /> },
@@ -43,6 +45,8 @@ export const privateRoutes = [
   { path: "payment", component: <TopUpBundle /> },
   { path: "payment-first", component: <Payment /> },
   { path: "success", component: <SuccessPage /> },
+  { path: "pending-payment", component: <PendingPay/> },
+  { path: "unsuccess", component: <Unsuccess/> },
   { path: "success-order", component: <SuccessPageOrder /> },
   { path: "authentication-request", component: <AuthenticationRequest /> },
   { path: "pay", component: <Payment /> },

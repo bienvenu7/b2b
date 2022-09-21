@@ -8,7 +8,7 @@ import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 import { getPriceThunk } from "../../../redux/thunks/payment-thunk"
-import { getCategoryError, getPrice, getUserTariffPackages,getCosts } from "../../../redux/selectors/payment-selectors"
+import {getCategoryError, getCosts, getPrice, getUserTariffPackages} from "../../../redux/selectors/payment-selectors"
 import SvgSelector from "../../../common/icons/SvgSelector"
 
 const CategoryForm = (props) => {
@@ -26,11 +26,57 @@ const CategoryForm = (props) => {
     const [answerTime, setAnswerTime]=useState(24)
     const [productType, setProductType] = useState(null)
     const [productTypeVar, setProductTypeVar] = useState(null)
+    const [options, setOptions] = useState([])
     const costsArrey = useSelector(getCosts)
 
+    const specialNames = ['SNEAKERS_HYPE','SNEAKERS_LUXURY','OTHER_SHOES_HYPE','OTHER_SHOES_LUXURY'];
 
+    useEffect(()=>{
+        let list = productTypes.filter((item)=>{
+            return specialNames.indexOf(item.name)===-1
+        }).map((item)=>{
+            return {
+                value: {
+                    name: item.name,
+                    types: { single: item }
+                },
+                label: item.publicName,
+            }
+        });
+        list.push({ value: { name: 'hypeShoes', types: { sneakers: productTypes.find(item=>item.name=="SNEAKERS_HYPE"), other: productTypes.find(item=>item.name=="OTHER_SHOES_HYP") } }, label: 'Hype shoes' });
+        list.push({ value: { name: 'luxuryShoes', types: { sneakers: productTypes.find(item=>item.name=="SNEAKERS_LUXURY"), other: productTypes.find(item=>item.name=="OTHER_SHOES_LUXURY") } }, label: 'Luxury shoes' });
+        setOptions(list);
 
-    const options = [
+        console.log({options,productTypes,options2:[
+                { value: { name: 'bags', types: { single: productTypes[4] } }, label: "Bags" },
+                { value: { name: 'wallets', types: { single: productTypes[5] } }, label: "Wallets" },
+                { value: { name: 'hypeShoes', types: { sneakers: productTypes[0], other: productTypes[2] } }, label: 'Hype shoes' },
+                { value: { name: 'luxuryShoes', types: { sneakers: productTypes[1], other: productTypes[3] } }, label: 'Luxury shoes' },
+                { value: { name: 'jewellery', types: { single: productTypes[7] } }, label: 'Jewellery' },
+                { value: { name: 'watches', types: { single: productTypes[8] } }, label: 'Watches' },
+            ]})
+    },[productTypes])
+
+    /*
+    * {
+    "id": "ec10993d-8e1b-42a6-9e61-65a6e2c2e292",
+    "name": "SNEAKERS_HYPE",
+    "publicName": "Sneakers: Hype",
+    "productTypeAngles": [
+        {
+            "id": "ecf5f972-c009-4311-8f75-43e4463b2dda",
+            "necessity": 1,
+            "forCertificate": null,
+            "angle": { "id": "e534fd63-5311-4ce6-855d-d6cbdbe38290", "name": "INSOLE_BACK_SIDE", "publicName": "Insole (back side)", "clickupId": "797d7378-528e-466c-9794-c1b5b67ad4e2", "__entity": "Angle" },
+            "__entity": "ProductTypeAngle"
+        },
+    ],
+    "__entity": "ProductType"
+}
+
+    * */
+
+    const options2 = [
         { value: { name: 'bags', types: { single: productTypes[4] } }, label: "Bags" },
         { value: { name: 'wallets', types: { single: productTypes[5] } }, label: "Wallets" },
         { value: { name: 'hypeShoes', types: { sneakers: productTypes[0], other: productTypes[2] } }, label: 'Hype shoes' },
@@ -45,17 +91,16 @@ const CategoryForm = (props) => {
 
         const checked = packages.findIndex((item) => e.label === item.productType.publicName || 'Sneakers: Hype' === item.productType.publicName );
         // console.log(checked)
-        // console.log({formik:formik,cost:cost,value:e.value})
+
         if(checked < 0) {
             setSelectedValue(e.value);
             dispatch(setCategoryError(null))
             updateType(e.value, formik)
-            // dispatch(pushTotal(cost.package))
-            
+            // console.log(e)
         }else{
             // dispatch(updateCurrentPackage({index: checked, volume: e.value}))
             dispatch(updateVolumePackage({index: checked, volume: packages[checked].volume + 1}))
-            
+
             const data = {productType: packages[checked].productType, volume: packages[checked].volume, answerTime: packages[checked].answerTime}
             dispatch(getPriceThunk(data))
             // console.log('je suis deja present')
@@ -92,7 +137,7 @@ const CategoryForm = (props) => {
             const data = {productType: type, volume: volume, answerTime: answerTime}
             dispatch(getPriceThunk(data))
         }
-        
+
     }
 
     const updateHours = (value, data) =>{
@@ -103,16 +148,14 @@ const CategoryForm = (props) => {
         props.cartTotal(data)
         setErrorForAnswerTime(null)
     }
-    // useEffect(() => {
-        cart.length < 1 && dispatch(initPackage(userId))
-    // },[])
-    
+
+    cart.length < 1 && dispatch(initPackage(userId))
 
     useEffect(() => {
 
     }, [props.but])
 
-    
+
 
     useEffect(() => {
         // const index = cart.findIndex((i) => i.answerTime === '')
@@ -166,23 +209,23 @@ const CategoryForm = (props) => {
                 }, 1000)
             }}
             // enableReinitialize={true}
-            
+
         >
             {(props2) => (<Form className="payment__form" onSubmit={but && props2.handleSubmit}>
                 <div className="payment__form-block-container first">
-                {/* {productType !== null && <><div className="payment__form-current_package_state-wrapper"> //костыль
+                    {/* {productType !== null && <><div className="payment__form-current_package_state-wrapper"> //костыль
                         <div onClick={handleClose}><SvgSelector id='xmark' /></div>
                         <div className="payment__form-current_package_state" >
-                            <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName 
+                            <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName
                             : productTypeVar ? productTypeVar === 'sneakers' ? selectedValue.types.sneakers.publicName : selectedValue.types.other.publicName : '' }</div>
                             <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
                         </div>
-                    </div>                   
+                    </div>
                     </>} */}
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=> handleChange(e, props2.values.typeOfShoes)} />
 
-                    {(selectedValue.name === 'hypeShoes' || selectedValue.name === "luxuryShoes") && <div className="payment__form-elem shoes-vars">
+                    {(specialNames.indexOf(selectedValue.name)===-1) && <div className="payment__form-elem shoes-vars">
                         <label htmlFor="types" className="payment__form-label">Choose the shoes type</label>
 
                         <div className="payment__form-radio_btn_types-container">

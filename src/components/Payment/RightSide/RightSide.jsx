@@ -29,6 +29,7 @@ const RigthSide = ({ toogle, cartTotal }) => {
       <div className="top_up_bundle__buttons-wrapper">
         <button
           className="top_up_bundle__buttons-button"
+          disabled
           onClick={() => toogle.add !== null && toogle.add()}
         >
           Add another category

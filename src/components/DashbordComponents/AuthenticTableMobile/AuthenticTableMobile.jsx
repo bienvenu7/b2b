@@ -148,9 +148,9 @@ const AuthenticTableMobile = (props) => {
   }
 
   function getPhotoUrl(files) {
-    return process.env.NODE_ENV !== "production"
-      ? "/mockimage.png"
-      : "/assets" + files.length > 0 && files[0].path + "/" + files[0].name;
+    if(typeof files != 'object' )
+      return '';
+    return files[0].path
   }
 
   async function addCertificate(el) {
@@ -380,11 +380,11 @@ const AuthenticTableMobile = (props) => {
                 </div>
                 {page === "progress" ? (
                   <div className="authent__nav-label">
-                    In progress authentifications
+                    In progress authentications
                   </div>
                 ) : (
                   <div className="authent__nav-label">
-                    Completed authentifications
+                    Completed authentications
                   </div>
                 )}
                 <div className="authent__nav-search_icon">

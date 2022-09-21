@@ -15,6 +15,8 @@ import {
   takeCheckStatuses,
 } from "./redux/selectors/product-selectors";
 import AppRouter from "./components/AppRouter";
+import SnackbarProvider from 'react-simple-snackbar';
+import { useSnackbar } from 'react-simple-snackbar'
 
 function App() {
   const dispatch = useDispatch();
@@ -38,9 +40,11 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <AppRouter />
-    </div>
+    <SnackbarProvider>
+      <div className="App">
+        <AppRouter />
+      </div>
+    </SnackbarProvider>
   );
 }
 

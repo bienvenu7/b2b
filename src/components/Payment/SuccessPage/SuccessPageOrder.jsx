@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import SvgSelector from '../../../common/icons/SvgSelector'
-import logo from '../../../common/images/logo-for-mobile.png'
+import logo from '../../../common/images/601.svg'
 import { getBalanceThunk } from '../../../redux/thunks/authRequest-thunk'
 import Header from '../../Header/Header'
 
