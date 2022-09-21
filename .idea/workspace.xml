@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
-      <change afterPath="$PROJECT_DIR$/src/common/images/601.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/PendingPay.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/Unsuccess.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/icons/SvgSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/icons/SvgSelector.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PackagesHistory/PackagesHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PackagesHistory/PackagesHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPageOrder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPageOrder.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Payment/Payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Payment/Payment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +70,7 @@
       <workItem from="1663339618670" duration="709000" />
       <workItem from="1663568570938" duration="13980000" />
       <workItem from="1663654210637" duration="28000" />
-      <workItem from="1663680511960" duration="6929000" />
+      <workItem from="1663680511960" duration="11711000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>

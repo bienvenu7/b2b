@@ -126,9 +126,8 @@ const PhotoRequests = (props) => {
                                 <div className="photo_requests__table__label__elem-date">Submission date</div>
                                 <div className="photo_requests__table__label__elem-required">Required photos</div>
                             </div>
-                            {products !== null && products.map((el, index) =>
+                            {products !== null && products.filter((el)=>el.reasons !== null).map((el, index) =>
                                 <div key={index} className="photo_requests__table__elem">
-                                    {console.log(el.files)}
                                     <div className="photo_requests__table__elem__category" onClick={() => navigate(`../request/${el.id}`)}>
                                         <div className="photo_requests__table__elem__category-image" style={{ background: `url(${getPhotoUrl(el.files)})` }}></div>
                                         <div className="photo_requests__table__elem__category-button" onClick={()=>openModal(el)}>Upload photos</div>

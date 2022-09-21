@@ -55,7 +55,7 @@ const Payment = (props) => {
   };
 
   const getPrice = (data) => {
-    dispatch(getPriceThunk(data));
+    dispatch(getPriceThunk(data,'pay1'));
   };
   
   // Оставить на ПАМЯТЬ!!!

@@ -84,13 +84,13 @@ const AuthenticationRequest = () => {
 
   function valid () {
     for (let key in errors) {
-      console.log(errors[key])
+      // console.log(errors[key])
       if(errors[key] === null) {
         
         setCheckValid(false)
         break
       }
-      console.log("не зашло в условия проверки инпута")
+      // console.log("не зашло в условия проверки инпута")
       setCheckValid(true)
     }
     // for (let i = 0 ; i < photoFiles.length; i++) {
@@ -191,15 +191,15 @@ const AuthenticationRequest = () => {
 
   const handlePost = async () => {
 
-    console.log("data", {
-      order,
-      productType: productTypeValue,
-      brand: brandValue,
-      modelName: modelTypeValue,
-      supplier: supplierTypeValue,
-      certificateNeeded: certCheck,
-      answerTime: answerTime,
-    });
+    // console.log("data", {
+    //   order,
+    //   productType: productTypeValue,
+    //   brand: brandValue,
+    //   modelName: modelTypeValue,
+    //   supplier: supplierTypeValue,
+    //   certificateNeeded: certCheck,
+    //   answerTime: answerTime,
+    // });
     setButtonState(false); // кнопка  в состояние неактивной
     let onlineOrder = {}; // пустой объект, для чего?
     if (!brandValue) {  // если brandValue - false

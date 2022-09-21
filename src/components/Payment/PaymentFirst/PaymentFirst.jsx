@@ -53,7 +53,7 @@ const PaymentFirst = (props) => {
             };
       const response = await dispatch(postInvoiceThunk(data));
       response === true && setButtonState(true);
-      console.log(data);
+      // console.log(data);
     }
   };
 

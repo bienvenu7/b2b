@@ -43,6 +43,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase("SET_TOTAL", (state = initialState, action) => {
+      console.log({'total':action});
       state.cart.total = action.payload;
     })
     .addCase("SET_INVOICE_LINK", (state = initialState, action) => {
@@ -58,13 +59,14 @@ const paymentReducer = createReducer(initialState, (builder) => {
       state.cart.price.certificate = action.payload;
     })
     .addCase("SET_TOTAL_PACKAGE", (state = initialState, action) => {
+      console.log({'SET_TOTAL_PACKAGE':action});
       state.cart.totalPackage = action.payload;
     })
     .addCase("PUSH_TOTAL", (state = initialState, action) => {
       // console.log("PUSH_TOTAL",action);
       // console.log("PUSH_TOTAL",action.payload.cart, action.payload.costsArrey);
       if(action.payload.cart > action.payload.costsArrey){
-        console.log("PUSH_TOTAL",'add');
+        // console.log("PUSH_TOTAL",'add');
         if (action.payload.package == null) {
         state.cart.costs = [];
       } else {
@@ -74,8 +76,8 @@ const paymentReducer = createReducer(initialState, (builder) => {
       
     })
     .addCase("REMOVE_PREVIEW_PACKAGE", (state = initialState, action) => {
-      console.log('REMOVE_PREVIEW_PACKAGE',action);
-      console.log('REMOVE_PREVIEW_PACKAGE',current(state));
+      // console.log('REMOVE_PREVIEW_PACKAGE',action);
+      // console.log('REMOVE_PREVIEW_PACKAGE',current(state));
       // console.log('REMOVE_PREVIEW_PACKAGE',initialState);
 
       // state.cart.userTariffPackages= []
@@ -101,7 +103,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
         action.payload.volume;
     })
     .addCase("INIT_PACKAGE", (state = initialState, action) => {
-      console.log({action:action});
+      // console.log({action:action});
       state.cart.userTariffPackages.push({
         productType: "",
         answerTime: "",

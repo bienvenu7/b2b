@@ -95,7 +95,8 @@ const UploadPhotoModal = (props) => {
   }
 
   async function handlePost() {
-    console.log(photoFiles);
+
+    // console.log(photoFiles);
     const response = await photoFiles.map(
       (el, index) =>
         el.file !== "" &&
@@ -107,6 +108,7 @@ const UploadPhotoModal = (props) => {
           )
         )
     );
+    // window.location.reload()
   }
 
   return (
@@ -115,7 +117,6 @@ const UploadPhotoModal = (props) => {
         <Modal
           isOpen={props.isOpen}
           onAfterOpen={afterOpenModal}
-          onRequestClose={props.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
