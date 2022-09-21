@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/UploadPhotoModal/UploadPhotoModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/UploadPhotoModal/UploadPhotoModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Summary/Summary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Summary/Summary.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/payment-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/payment-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +70,7 @@
       <workItem from="1663339618670" duration="709000" />
       <workItem from="1663568570938" duration="13980000" />
       <workItem from="1663654210637" duration="28000" />
-      <workItem from="1663680511960" duration="11214000" />
+      <workItem from="1663680511960" duration="11711000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
