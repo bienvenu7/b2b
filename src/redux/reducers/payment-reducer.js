@@ -76,7 +76,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
       
     })
     .addCase("REMOVE_PREVIEW_PACKAGE", (state = initialState, action) => {
-      // console.log('REMOVE_PREVIEW_PACKAGE',action);
+      console.log('REMOVE_PREVIEW_PACKAGE',current(state));
       // console.log('REMOVE_PREVIEW_PACKAGE',current(state));
       // console.log('REMOVE_PREVIEW_PACKAGE',initialState);
 

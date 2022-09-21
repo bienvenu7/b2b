@@ -18,6 +18,7 @@ const Summary = (props) =>{
     const packages = useSelector(getUserTariffPackages)
     const cost = useSelector(getCosts)
     const totalPrice = useSelector(getPrice)
+    
     // console.log(totalPrice)
     // console.log(cost)
 
@@ -35,6 +36,8 @@ const Summary = (props) =>{
     // }, [cart])
     function delhendler(index){
         dispatch(removePreviewPackage(index))
+        // const data = {productType: productType, volume: e, answerTime: answerTime}
+        // props.getPrice(data)
     }
     return(
         <>
