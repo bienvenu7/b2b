@@ -23,8 +23,8 @@
 
     &-mobile {
       display: none;
-      padding: 0px 10px 10px;
-      width: 100%;
+      // padding: 0px 10px 10px;
+      max-width: 100vw;
 
       @include for-phone-only {
         display: block;

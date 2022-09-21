@@ -340,7 +340,7 @@ const AuthenticTableBlock = (props) => {
   console.log(currentTableData);
 
   params.page === "photo-requests" &&
-    navigate("../luxury-store/authentications/photo-requests");
+    navigate("../luxury-store/authentications/photo-requests"); 
 
   if (page === null) {
     return <div>Хйуня</div>;
@@ -371,7 +371,7 @@ const AuthenticTableBlock = (props) => {
                 </div>
               </div> */}
           <>
-            <div className="authent__nav-wrapper">
+            <div className="authent__nav-wrapper" style={window.location.pathname === "/dashboard" ? {marginTop: '-15px'} : {marginTop: '0px'}}>
               <div className="authent__nav-sort">
                 <SvgSelector id="sort-icon" />
               </div>
@@ -454,7 +454,7 @@ const AuthenticTableBlock = (props) => {
             )}
 
             {/* mobile buttons */}
-            <div className="authent__buttons-wrapper mobile">
+            {window.location.pathname !== "/dashboard" && <div className="authent__buttons-wrapper mobile">
               <div
                 className={
                   page !== "complete"
@@ -475,7 +475,7 @@ const AuthenticTableBlock = (props) => {
               >
                 In progress
               </div>
-            </div>
+            </div>}
 
             {page === "complete" && (
               <div className="authent__table">
