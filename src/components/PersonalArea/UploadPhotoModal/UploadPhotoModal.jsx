@@ -113,8 +113,11 @@ const UploadPhotoModal = (props) => {
             index
           )
         )
-    );
-    
+    )
+
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000)
   }
 
   return (

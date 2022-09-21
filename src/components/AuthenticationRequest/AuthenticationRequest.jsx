@@ -76,6 +76,7 @@ const AuthenticationRequest = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
 
   const [photoFiles, setPhotoFiles] = useState([]);
+  console.log({photoFiles:photoFiles});
   // const [options, setOptions] = useState([])
 
   const options = [];
@@ -446,19 +447,20 @@ const AuthenticationRequest = () => {
 
                             <div className='auth_request__form__photo-container'>
                                 {productTypeValue && photoFiles.map((el, index) =>
+                                
                                     <div key={index} className={`auth_request__form__photo-elem ${index}`}>
                                         {el.imagePreviewUrl !== '' ? (
                                           <>
                                             <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${el.imagePreviewUrl})` }}>
                                                 <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                             </label>
-                                            <button className="auth_request__form__photo-button" onClick={()=> deleteImage(index)}>удалить</button>
+                                            <button className="auth_request__form__photo-button" onClick={()=> deleteImage(index)}>Х</button>
                                           </>
                                             ): <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'auth_request__form__photo-photolabel required' : 'auth_request__form__photo-photolabel'}>
                                                 <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
                                             </label>}
                                         <div className='auth_request__form__photo-name'>{el.angleName}</div>
-                                        {el.format !== null && el.format !== true && <div className='auth_request__form__photo-error'>Format is not available</div>}
+                                        {el.format !== false && el.format !== null && el.format !== true && <div className='auth_request__form__photo-error'>Format is not available</div>}
                                     </div>)}
                             </div>
                         </div>

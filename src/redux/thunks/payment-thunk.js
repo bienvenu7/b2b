@@ -16,7 +16,7 @@ export const postInvoiceThunk = (obj) => async (dispatch) => {
     const data = {
       ...obj,
       successUrl: host + "/success",
-      cancelUrl: host + "/unsuccess",
+      cancelUrl: window.location.href,
     };
 
     const response = await postInvoices(data);
@@ -28,6 +28,7 @@ export const postInvoiceThunk = (obj) => async (dispatch) => {
 };
 
 export const getCartTotalThunk = (data) => async (dispatch) => {
+  
   const response = await cartTotal(data);
   response.status === 201 && dispatch(setTotal(response.data.total));
 };
@@ -39,7 +40,6 @@ export const getPriceThunk = (data) => async (dispatch) => {
     response.status === 200 &&
       dispatch(setPriceForCertificate(response.data.certificate));
   } else {
-    console.log({test:data.productType})
     const response = await getPrice({
       id: data.productType.id,
       volume: data.volume,
