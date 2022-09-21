@@ -82,6 +82,7 @@ const CategoryForm = (props) => {
     const handleChange = (e, formik) => {
 
         const checked = packages.findIndex((item) => e.label === item.productType.publicName || 'Sneakers: Hype' === item.productType.publicName );
+        // console.log(checked)
 
         if(checked < 0) {
             setSelectedValue(e.value);
@@ -93,7 +94,7 @@ const CategoryForm = (props) => {
             dispatch(updateVolumePackage({index: checked, volume: packages[checked].volume + 1}))
 
             const data = {productType: packages[checked].productType, volume: packages[checked].volume, answerTime: packages[checked].answerTime}
-            dispatch(getPriceThunk(data,'categ1'))
+            dispatch(getPriceThunk(data))
             // console.log('je suis deja present')
         }
 
@@ -101,12 +102,13 @@ const CategoryForm = (props) => {
         // setSelectedValue(e.value);
         // dispatch(setCategoryError(null))
         // updateType(e.value, formik)
+        let temppackage = {package:cost.package,cart:cart.length,costsArrey:costsArrey.length}
+        dispatch(pushTotal(temppackage))//костыль
+        console.log({temppackage:temppackage, cost:cost,e:e, formik:formik,productType:productType,checked:checked,packages:packages});
     }
 
     const handleChangeForNumeric = (e) => {
-        let temppackage = {package:cost.package,cart:cart.length,costsArrey:costsArrey.length}
-        dispatch(pushTotal(temppackage))//костыль
-        // console.log({mypackage:cost.package,productTypes:cart,cost:cost});
+
         setVolume(e)
         dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
         const data = {productType: productType, volume: e, answerTime: answerTime}
@@ -123,11 +125,10 @@ const CategoryForm = (props) => {
             } else if (e.name === 'luxuryShoes') {
                 typeOfShoes === 'sneakers' ? type = e.types.sneakers : type = e.types.other
             }
-
             e.value !== 3 && dispatch(updateTypePackage({index: packageEditNumber, type: type}))
             setProductType(type)
             const data = {productType: type, volume: volume, answerTime: answerTime}
-            dispatch(getPriceThunk(data,'categ2'))
+            dispatch(getPriceThunk(data))
         }
 
     }
@@ -136,7 +137,7 @@ const CategoryForm = (props) => {
         const pack = {productType: productType, volume: volume, answerTime: value}
         setAnswerTime(value)
         dispatch(updateHoursPackage({index: packageEditNumber,hours: value}))
-        dispatch(getPriceThunk(pack,'categ3'))
+        dispatch(getPriceThunk(pack))
         props.cartTotal(data)
         setErrorForAnswerTime(null)
     }

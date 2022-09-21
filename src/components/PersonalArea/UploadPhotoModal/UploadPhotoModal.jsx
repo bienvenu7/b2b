@@ -9,6 +9,7 @@ Modal.setAppElement("#root");
 
 const UploadPhotoModal = (props) => {
   console.log(props);
+  console.log(props.closeModal);
   function reloadWindow(){
     // window.location.reload()
   }
@@ -112,8 +113,11 @@ const UploadPhotoModal = (props) => {
             index
           )
         )
-    );
+    )
 
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000)
   }
 
   return (
