@@ -27,7 +27,7 @@ const SignIn = () => {
   const [first,setFitst] = useState(false);
 
   useEffect(()=>{
-    console.log(postErrors, 'check2')
+    // console.log(postErrors, 'check2')
     if(first && postErrors.signin) 
       openSnackbar(postErrors.signin, [5000])
       setFitst(true); 
@@ -37,7 +37,7 @@ const SignIn = () => {
     !switchState ? setState("switch-btn switch-on") : setState("switch-btn");
   };
 
-  console.log(openSnackbar, 'checkoutOne')
+  // console.log(openSnackbar, 'checkoutOne')
 
   const navigate = useNavigate();
 

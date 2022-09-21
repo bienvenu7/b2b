@@ -16,7 +16,7 @@ const Header = (props) => {
   const params = useParams();
   const navigate = useNavigate();
   const {pathname, state} = useLocation();
-  console.log(pathname)
+  // console.log(pathname)
 
   //for notifications
   const [showNotif, setShowNotif] = useState(false);

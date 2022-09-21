@@ -26,7 +26,7 @@ export const createOrderThunk = () => async (dispatch) => {
     dispatch(initOrder(response.data));
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -35,7 +35,7 @@ export const createProductThunk = (data) => async (dispatch) => {
     const response = await createProduct(data);
     return response;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     dispatch(
       setErrors({
         page: "authrequest",
@@ -67,7 +67,7 @@ export const getBalanceThunk = () => async (dispatch) => {
       return next.data;
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 

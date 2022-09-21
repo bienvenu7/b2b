@@ -95,7 +95,7 @@ const UploadPhotoModal = (props) => {
   }
 
   async function handlePost() {
-    console.log(photoFiles);
+    // console.log(photoFiles);
     const response = await photoFiles.map(
       (el, index) =>
         el.file !== "" &&

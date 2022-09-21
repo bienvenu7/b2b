@@ -18,8 +18,8 @@ const Summary = (props) =>{
     const packages = useSelector(getUserTariffPackages)
     const cost = useSelector(getCosts)
     const totalPrice = useSelector(getPrice)
-    console.log(totalPrice)
-    console.log(cost)
+    // console.log(totalPrice)
+    // console.log(cost)
 
     // const updatPrice = (data) => {
     //     setTimeout(() => {
@@ -36,7 +36,6 @@ const Summary = (props) =>{
 
     return(
         <>
-        {console.log(packages)}
         {packages.length > 0 && <div className="summary-container">
             {<div className="summary-title">Summary</div>}
                 {packages.map((el,index)=>el.productType !== '' && <div key={index} className='summary__elem-wrapper'>

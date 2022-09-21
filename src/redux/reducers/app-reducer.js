@@ -55,7 +55,7 @@ const appReducer = createReducer(initialState, (builder) => {
             };
             break;
           case "upload-photos":
-            console.log({ ...state.post.errors });
+            // console.log({ ...state.post.errors });
             state.post.errors = {
               ...state.post.errors,
               uploadPhotos: [action.payload.error],

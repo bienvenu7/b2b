@@ -64,7 +64,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
       // console.log("PUSH_TOTAL",action);
       // console.log("PUSH_TOTAL",action.payload.cart, action.payload.costsArrey);
       if(action.payload.cart > action.payload.costsArrey){
-        console.log("PUSH_TOTAL",'add');
+        // console.log("PUSH_TOTAL",'add');
         if (action.payload.package == null) {
         state.cart.costs = [];
       } else {
@@ -74,8 +74,8 @@ const paymentReducer = createReducer(initialState, (builder) => {
       
     })
     .addCase("REMOVE_PREVIEW_PACKAGE", (state = initialState, action) => {
-      console.log('REMOVE_PREVIEW_PACKAGE',action);
-      console.log('REMOVE_PREVIEW_PACKAGE',current(state));
+      // console.log('REMOVE_PREVIEW_PACKAGE',action);
+      // console.log('REMOVE_PREVIEW_PACKAGE',current(state));
       // console.log('REMOVE_PREVIEW_PACKAGE',initialState);
 
       // state.cart.userTariffPackages= []
@@ -101,7 +101,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
         action.payload.volume;
     })
     .addCase("INIT_PACKAGE", (state = initialState, action) => {
-      console.log({action:action});
+      // console.log({action:action});
       state.cart.userTariffPackages.push({
         productType: "",
         answerTime: "",

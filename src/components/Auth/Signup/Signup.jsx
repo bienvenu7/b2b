@@ -74,7 +74,6 @@ const SignUp = () => {
       if (values.email === "Email Address*") {
         formik.errors.company = "Please fill in your company";
       } else if (values.company === "Company Name*") {
-        console.log();
       }
       const response = dispatch(regThunk(values));
       
@@ -82,7 +81,7 @@ const SignUp = () => {
       
     },
   });
-  console.log(isRegister)
+  // console.log(isRegister)
 
   return (
     <AuthLayout>

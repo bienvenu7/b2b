@@ -59,7 +59,7 @@ const Payment = () => {
             };
       const response = await dispatch(postInvoiceThunk(data));
       response === true && setButtonState(true);
-      console.log(data);
+      // console.log(data);
       method === "paypal" && navigate("../pending-payment");
     }
   };

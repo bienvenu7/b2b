@@ -43,18 +43,10 @@ const CategoryForm = (props) => {
                 label: item.publicName,
             }
         });
-        list.push({ value: { name: 'hypeShoes', types: { sneakers: productTypes.find(item=>item.name=="SNEAKERS_HYPE"), other: productTypes.find(item=>item.name=="OTHER_SHOES_HYP") } }, label: 'Hype shoes' });
+        list.push({ value: { name: 'hypeShoes', types: { sneakers: productTypes.find(item=>item.name=="SNEAKERS_HYPE"), other: productTypes.find(item=>item.name=="OTHER_SHOES_HYPE") } }, label: 'Hype shoes' });
         list.push({ value: { name: 'luxuryShoes', types: { sneakers: productTypes.find(item=>item.name=="SNEAKERS_LUXURY"), other: productTypes.find(item=>item.name=="OTHER_SHOES_LUXURY") } }, label: 'Luxury shoes' });
         setOptions(list);
 
-        console.log({options,productTypes,options2:[
-                { value: { name: 'bags', types: { single: productTypes[4] } }, label: "Bags" },
-                { value: { name: 'wallets', types: { single: productTypes[5] } }, label: "Wallets" },
-                { value: { name: 'hypeShoes', types: { sneakers: productTypes[0], other: productTypes[2] } }, label: 'Hype shoes' },
-                { value: { name: 'luxuryShoes', types: { sneakers: productTypes[1], other: productTypes[3] } }, label: 'Luxury shoes' },
-                { value: { name: 'jewellery', types: { single: productTypes[7] } }, label: 'Jewellery' },
-                { value: { name: 'watches', types: { single: productTypes[8] } }, label: 'Watches' },
-            ]})
     },[productTypes])
 
     /*
@@ -90,7 +82,6 @@ const CategoryForm = (props) => {
     const handleChange = (e, formik) => {
 
         const checked = packages.findIndex((item) => e.label === item.productType.publicName || 'Sneakers: Hype' === item.productType.publicName );
-        // console.log(checked)
 
         if(checked < 0) {
             setSelectedValue(e.value);
@@ -102,7 +93,7 @@ const CategoryForm = (props) => {
             dispatch(updateVolumePackage({index: checked, volume: packages[checked].volume + 1}))
 
             const data = {productType: packages[checked].productType, volume: packages[checked].volume, answerTime: packages[checked].answerTime}
-            dispatch(getPriceThunk(data))
+            dispatch(getPriceThunk(data,'categ1'))
             // console.log('je suis deja present')
         }
 
@@ -115,7 +106,7 @@ const CategoryForm = (props) => {
     const handleChangeForNumeric = (e) => {
         let temppackage = {package:cost.package,cart:cart.length,costsArrey:costsArrey.length}
         dispatch(pushTotal(temppackage))//костыль
-        console.log({mypackage:cost.package,productTypes:cart,cost:cost});
+        // console.log({mypackage:cost.package,productTypes:cart,cost:cost});
         setVolume(e)
         dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
         const data = {productType: productType, volume: e, answerTime: answerTime}
@@ -132,10 +123,11 @@ const CategoryForm = (props) => {
             } else if (e.name === 'luxuryShoes') {
                 typeOfShoes === 'sneakers' ? type = e.types.sneakers : type = e.types.other
             }
+
             e.value !== 3 && dispatch(updateTypePackage({index: packageEditNumber, type: type}))
             setProductType(type)
             const data = {productType: type, volume: volume, answerTime: answerTime}
-            dispatch(getPriceThunk(data))
+            dispatch(getPriceThunk(data,'categ2'))
         }
 
     }
@@ -144,7 +136,7 @@ const CategoryForm = (props) => {
         const pack = {productType: productType, volume: volume, answerTime: value}
         setAnswerTime(value)
         dispatch(updateHoursPackage({index: packageEditNumber,hours: value}))
-        dispatch(getPriceThunk(pack))
+        dispatch(getPriceThunk(pack,'categ3'))
         props.cartTotal(data)
         setErrorForAnswerTime(null)
     }
@@ -225,7 +217,7 @@ const CategoryForm = (props) => {
                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=> handleChange(e, props2.values.typeOfShoes)} />
 
-                    {(specialNames.indexOf(selectedValue.name)===-1) && <div className="payment__form-elem shoes-vars">
+                    {(['hypeShoes','luxuryShoes'].indexOf(selectedValue.name)!==-1) && <div className="payment__form-elem shoes-vars">
                         <label htmlFor="types" className="payment__form-label">Choose the shoes type</label>
 
                         <div className="payment__form-radio_btn_types-container">
