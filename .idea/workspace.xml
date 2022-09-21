@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
-      <change afterPath="$PROJECT_DIR$/src/components/AppRouter.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/authRequest/authRequest-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authRequest/authRequest-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppRouter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppRouter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/Signup/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Signup/Signup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BlockComponentLayout/BlockComponentLayout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BlockComponentLayout/BlockComponentLayout.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticInfoBlock/AuthenticInfoBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticInfoBlock/AuthenticInfoBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/PersonalAreaLayout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/PersonalAreaLayout.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/UploadPhotoModal/UploadPhotoModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/UploadPhotoModal/UploadPhotoModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/UploadPhotoModal/UploadPhotoModal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/UploadPhotoModal/UploadPhotoModal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/billing/Billing.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/billing/Billing.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DashboardPage/DashboardPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DashboardPage/DashboardPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DashboardPage/DashboardPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DashboardPage/DashboardPage.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +84,7 @@
       <workItem from="1663568570938" duration="13980000" />
       <workItem from="1663654210637" duration="28000" />
       <workItem from="1663680511960" duration="15500000" />
-      <workItem from="1663777227202" duration="1539000" />
+      <workItem from="1663777227202" duration="2865000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
@@ -126,22 +131,22 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="92" y="92" width="1736" height="848" key="DiffContextDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1663778778354" />
-    <state width="1877" height="279" key="GridCell.Tab.0.bottom" timestamp="1663778329587">
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom" timestamp="1663778862609">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1663778329587" />
-    <state width="1877" height="279" key="GridCell.Tab.0.center" timestamp="1663778329587">
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1663778862609" />
+    <state width="1877" height="279" key="GridCell.Tab.0.center" timestamp="1663778862609">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="279" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1663778329587" />
-    <state width="1877" height="279" key="GridCell.Tab.0.left" timestamp="1663778329587">
+    <state width="1877" height="279" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1663778862609" />
+    <state width="1877" height="279" key="GridCell.Tab.0.left" timestamp="1663778862609">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="279" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1663778329587" />
-    <state width="1877" height="279" key="GridCell.Tab.0.right" timestamp="1663778329587">
+    <state width="1877" height="279" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1663778862609" />
+    <state width="1877" height="279" key="GridCell.Tab.0.right" timestamp="1663778862609">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="279" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1663778329587" />
+    <state width="1877" height="279" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1663778862609" />
     <state width="1877" height="344" key="GridCell.Tab.1.bottom" timestamp="1663778175396">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -198,5 +203,9 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="598" y="277" key="MultipleFileMergeDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1663778774498" />
+    <state x="667" y="249" width="585" height="534" key="find.popup" timestamp="1663780077650">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="667" y="249" width="585" height="534" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1663780077650" />
   </component>
 </project>
