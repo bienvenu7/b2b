@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { getIsAuth } from "../redux/selectors/auth-selectors";
 import { publicRoutes, privateRoutes } from "../router";
 import NotFoundPage from "./NotFoundPage/NotFound";
+import "../components/AppRouter.scss"
 
 const AppRouter = () => {
   const isAuth = useSelector(getIsAuth);
@@ -13,7 +14,6 @@ const AppRouter = () => {
       {isAuth ? (
         <div
           className="container"
-          style={{ width: "1170px", display: "flex", justifyContent: "center" }}
         >
           <Routes>
             {privateRoutes.map((el) => (

@@ -1,0 +1,15 @@
+@import '../../src/scss/vars';
+
+.container {
+    width: 1170px;
+    display: flex;
+    justify-content: center;
+
+    @include for-tablet-portrait-up {
+        width: 100vw;
+    }
+
+    @include for-tablet-landscape-up {
+        width: 100vw;
+    }
+}
