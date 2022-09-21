@@ -15,7 +15,8 @@
     max-width: 776px;
 
     @include for-phone-only {
-      margin: 10px auto;
+      // margin: 10px auto;
+      margin-top: -46px;
     }
 
   }
@@ -164,9 +165,9 @@
       @include for-phone-only {
         gap: 11px;
         padding: 11px 8px;
-        border-top: 1px solid #F0F2F5;
+        // border-top: 1px solid #F0F2F5;
         border-bottom: 1px solid #F0F2F5;
-        // margin-top: -40px;
+        margin-top: 0px;
       }
     }
 
