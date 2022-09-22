@@ -1,5 +1,9 @@
 @import '../../scss/vars';
 
+.personal_area-container {
+    margin: 0px;
+}
+
 .content-wrapper {
     display: flex;
     gap: 22px;
@@ -9,14 +13,16 @@
     min-width: min-content;
 
     @include for-phone-only {
-        margin: 74px 0 0 0;
+        margin: 74px 0 0 0 !important;
         overflow: hidden;
     }
     @include for-tablet-portrait-up {
         width: 100vw;
+        margin: 65px 5vw 0vw 5vw;
     }
     @include for-tablet-landscape-up {
         width: 100vw;
+        margin: 65px 5vw 0vw 5vw;
     }
 }
 

@@ -102,13 +102,13 @@ const CategoryForm = (props) => {
         // setSelectedValue(e.value);
         // dispatch(setCategoryError(null))
         // updateType(e.value, formik)
-        let temppackage = {package:cost.package,cart:cart.length,costsArrey:costsArrey.length}
-        dispatch(pushTotal(temppackage))//костыль
-        console.log({temppackage:temppackage, cost:cost,e:e, formik:formik,productType:productType,checked:checked,packages:packages});
+        
     }
 
     const handleChangeForNumeric = (e) => {
-
+        let temppackage = {package:cost.package,cart:cart.length,costsArrey:costsArrey.length}
+        dispatch(pushTotal(temppackage))//костыль
+        // console.log({temppackage:temppackage, cost:cost,e:e, formik:formik,productType:productType,checked:checked,packages:packages});
         setVolume(e)
         dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
         const data = {productType: productType, volume: e, answerTime: answerTime}

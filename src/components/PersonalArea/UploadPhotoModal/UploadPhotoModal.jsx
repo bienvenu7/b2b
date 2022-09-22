@@ -31,6 +31,14 @@ const UploadPhotoModal = (props) => {
 
   const [photoFiles, setPhotoFiles] = useState([]);
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
   }
