@@ -22,6 +22,14 @@ const CertificatesForm = (props) => {
   const cost = useSelector(getPrice)
   const costs = useSelector(getCosts)
 
+  // const [sum, setSum]  = useState(0);
+  //  useEffect(() => {
+  //   userTariffPackages.filter(i => i.productType !== '' ).map(e => setSum( sum + e.volume))
+  //  }, [])
+  
+
+  // console.log(sum)
+
   let but = props.but
 
   //temp info
