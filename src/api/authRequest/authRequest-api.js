@@ -47,3 +47,9 @@ export const completedAuthentification = () => {
     headers: { Authorization: "Bearer " + Cookies.get("jwt") },
   });
 } ;
+
+export const billingInfo = () => {
+  return instance.get("invoices", {
+    headers: { Authorization: "Bearer " + Cookies.get("jwt") },
+  });
+};

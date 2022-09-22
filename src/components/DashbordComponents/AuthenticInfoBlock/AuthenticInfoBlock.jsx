@@ -20,7 +20,7 @@ const AuthenticInfoBlock = () => {
   console.log(authenticScore, 'check out one')
 
   useEffect(() => {
-    completedAuthentification().then((r) => {
+    completedAuthentification().then((r) => { 
       setSomeData(r.data)
     })
   }, []);
