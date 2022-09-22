@@ -64,8 +64,7 @@ const AuthenticTableBlock = (props) => {
   // Стало
   useEffect(() => {
     setPage(props.var === "completed" ? "complete" : "progress");
-  },[]);
-  console.log(page);
+  });
 
   useEffect(() => {
     resultStatuses !== null &&
