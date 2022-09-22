@@ -11,7 +11,7 @@ import { useEffect } from "react"
 const Summary = (props) =>{
 
     const [count, setCount] = useState(false)
-
+    const [kostyl,setKostyl] = useState(false)
     const cart = useSelector(getUserTariffPackages)
 
     const dispatch = useDispatch()
@@ -36,9 +36,19 @@ const Summary = (props) =>{
     // }, [cart])
     function delhendler(index){
         dispatch(removePreviewPackage(index))
+        setKostyl(true)
+        // console.log(packages);
         // const data = {productType: productType, volume: e, answerTime: answerTime}
         // props.getPrice(data)
     }
+    useEffect(()=>{
+        if(kostyl){
+        console.log()
+        dispatch(pushTotal(packages));
+        setKostyl(false)
+        
+    }
+    },[packages])
     return(
         <>
         {packages.length > 0 && <div className="summary-container">
