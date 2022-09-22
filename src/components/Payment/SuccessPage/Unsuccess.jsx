@@ -18,7 +18,7 @@ const Unsuccess = () => {
                 <div className='top'><Header/></div>
                 <div className='payment__success__logo'><img alt='' className='logoImage' src={logo} /></div>
                 <div className="payment__success__message-h1">Payment unsuccessful!</div>
-                <div className="payment__success__message-h2">Your bundle authentication order was unsuccessful!</div>
+                <div className="payment__success__message-h2">Unfortunately your payment did not go through, please try again</div>
                 {/* <div className="payment__success__message-h2 last-child">нужен текст получше</div> */}
                 <div className="payment__success__buttons-wrapper">
                     <div className="payment__success__buttons-elem" onClick={() => navigate('../payment')}>Try Again</div>
