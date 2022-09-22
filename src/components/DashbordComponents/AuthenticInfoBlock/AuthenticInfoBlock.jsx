@@ -14,13 +14,13 @@ const AuthenticInfoBlock = () => {
   var first = someData.completed
   var second = someData.updateNeeded
   var third = someData.authentic
-  var authenticScore = third / first * 100
+  var authenticScore = (Math.round((third / first * 100) * 100) / 100) || 0
   var fakeItems = first - third
 
-  console.log(authenticScore,'check out one')
+  console.log(authenticScore, 'check out one')
 
   useEffect(() => {
-    completedAuthentification().then((r) => {
+    completedAuthentification().then((r) => { 
       setSomeData(r.data)
     })
   }, []);

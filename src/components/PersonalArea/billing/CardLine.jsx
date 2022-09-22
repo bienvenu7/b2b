@@ -3,16 +3,16 @@ import React from "react";
 import icon from "../../../common/images/download.png";
 import "./Billing.scss";
 
-const CardLine = ({ item }) => {
+const CardLine = (props) => {
   return (
     <div className="billing-card">
       <div className="billing-info">
-        <div className="billing-date">{item.date}</div>
-        <div className="billing-reference">{item.reference}</div>
-        <div className="billing-method">{item.method}</div>
-        <div className="billing-price">{item.price}</div>
+        <div className="billing-date">{props.date}</div>
+        <div className="billing-reference">{props.reference}</div>
+        <div className="billing-method">{props.method}</div>
+        <div className="billing-price">{props.price}</div>
       </div>
-      <div className="billing-download">
+      <div className="billing-download" onClick={() => window.open(props.source)} >
         <img src={icon} />
       </div>
     </div>

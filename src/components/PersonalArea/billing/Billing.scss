@@ -191,6 +191,8 @@
     }
     &-reference {
         width: 146px;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
     &-method {
         width: 72px;

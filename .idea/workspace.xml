@@ -21,7 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/authRequest/authRequest-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authRequest/authRequest-api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticInfoBlock/AuthenticInfoBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticInfoBlock/AuthenticInfoBlock.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/billing/Billing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/billing/Billing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/billing/Billing.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/billing/Billing.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/billing/CardLine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/billing/CardLine.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

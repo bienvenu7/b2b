@@ -23,6 +23,8 @@ import Select from "react-select";
 import FilterSelect from "../../PersonalArea/Authentications/FilterSelect";
 import Loader from "../../Loader/Loader";
 import BlockComponentLayout from "../../BlockComponentLayout/BlockComponentLayout";
+import moment from "moment/moment";
+
 const AuthenticTableBlock = (props) => {
   const location = useLocation();
 
@@ -271,30 +273,7 @@ const AuthenticTableBlock = (props) => {
     }
   }
 
-  function getDate(data, version) {
-    const date = new Date(data);
-    if (version === "desktop") {
-      return (
-        date.getDate() +
-        "/" +
-        Number(date.getMonth() + 1) +
-        "/" +
-        date.getFullYear()
-      );
-    } else if (version === "mobile") {
-      return (
-        date.getHours() +
-        ":" +
-        date.getMinutes() +
-        "·" +
-        date.getDate() +
-        "/" +
-        Number(date.getMonth() + 1) +
-        "/" +
-        date.getFullYear()
-      );
-    }
-  }
+  var dataFixed = () => moment().format('DD/MM/YYYY')
 
   useEffect(() => {
     searchValue && searchValue !== ""
@@ -551,7 +530,7 @@ const AuthenticTableBlock = (props) => {
                             #{el.publicId}
                           </div>
                           <div className="authent__table__elem__category-date">
-                            {getDate(el.createdAt, "mobile")}
+                            {dataFixed(el.createdAt, "mobile")}
                           </div>
                         </div>
                       </div>
@@ -566,7 +545,7 @@ const AuthenticTableBlock = (props) => {
                           {el.checkStatus}
                         </div>
                         <div className="authent__table__elem-date">
-                          {getDate(el.createdAt, "desktop")}
+                          {dataFixed(el.createdAt, "desktop")}
                         </div>
                         {el.certificateAvailable ? (
                           <a
@@ -650,7 +629,7 @@ const AuthenticTableBlock = (props) => {
                             #{el.publicId}
                           </div>
                           <div className="authent__table__elem__category-date">
-                            {getDate(el.createdAt, "mobile")}
+                            {dataFixed(el.createdAt, "mobile")}
                           </div>
                         </div>
                       </div>

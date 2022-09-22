@@ -4,40 +4,25 @@ import PersonalAreaLayout from "../PersonalAreaLayout";
 import "./Billing.scss";
 import CardLine from "./CardLine";
 
-const infos = [
-  {
-    date: "02/04/2022",
-    reference: "190201092881781",
-    method: "PayPal",
-    price: "$200.00",
-  },
-  {
-    date: "02/04/2022",
-    reference: "190201092881781",
-    method: "Stripe",
-    price: "$200.00",
-  },
-  {
-    date: "02/04/2022",
-    reference: "190201092881781",
-    method: "Stripe",
-    price: "$200.00",
-  },
-  {
-    date: "02/04/2022",
-    reference: "190201092881781",
-    method: "Stripe",
-    price: "$200.00",
-  },
-  {
-    date: "02/04/2022",
-    reference: "190201092881781",
-    method: "PayPal",
-    price: "$200.00",
-  },
-];
+import { billingInfo } from "../../../api/authRequest/authRequest-api";
+import { useEffect, useState } from 'react';
+import moment from "moment/moment";
 
 const Billing = () => {
+
+  const [someData, setSomeData] = useState({
+    invoices: [],
+  })
+  var dataFixed = () => moment().format('DD/MM/YYYY')
+
+  console.log(someData)
+
+  useEffect(() => {
+    billingInfo().then((r) => {
+      setSomeData(r.data)
+    })
+  }, []);
+
   return (
     <div className="top">
       <PersonalAreaLayout>
@@ -50,9 +35,9 @@ const Billing = () => {
               <div className="billing-method">Method</div>
               <div className="billing-price">price</div>
             </div>
-            {infos.map((info, index) => (
-              <div key={index} className="billing-table-cards">
-                <CardLine item={info} />
+            {someData.invoices.map((key, i) => (
+              <div key={i} className="billing-table-cards">
+                <CardLine date={dataFixed(key.createdAt)} reference={key.paymentSystemInvoiceId} method={key.paymentSystem} price={key.amount} source={key.paymentSystemInvoiceLink} />
               </div>
             ))}
           </div>
