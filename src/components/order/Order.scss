@@ -1,0 +1,155 @@
+@import '../../scss/vars';
+
+.order {
+    &__full-container {
+        height: 100vh;
+        width: auto;
+
+        @include for-phone-only {
+            max-width: 100vw;
+            overflow-x: hidden;
+            height: auto;
+            height: auto;
+        }
+    }
+
+    &__container {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        justify-content: center;
+    }
+
+    &__image {
+        margin-top: 44px;
+        height: 100px;
+        width: 100px;
+        align-self: center;
+
+        @include for-phone-only {
+            display: none;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 19px;
+
+        h1 {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 140%;
+            color: #000000;
+
+            @include for-phone-only {
+                width: 100%;
+                font-family: 'SF Pro Text';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 24px;
+                padding: 17px 0 22px 17px;
+                border-bottom: 0.25px solid #656565;
+            }
+        }
+    }
+
+    &__header-details {
+        display: grid;
+        grid-template-columns: repeat(2, 108px);
+        gap: 19px;
+
+        @include for-phone-only {
+            padding-left: 17px;
+            padding-right: 17px;
+            padding-bottom: 22px;
+            width: 100vw;
+            border-bottom: 0.25px solid #656565;
+        }
+
+        h3 {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 17.1049px;
+            line-height: 140%;
+
+            @include for-phone-only {
+                font-family: 'SF Pro Display';
+                font-style: normal;
+                font-weight: 800;
+                font-size: 18px;
+                line-height: 21px;
+            }
+        }
+
+        span {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 17.1049px;
+            line-height: 140%;
+
+            @include for-phone-only {
+                font-family: 'SF Pro Display';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 21px;
+            }    
+        }
+    }
+
+    &__upload {
+        display: grid;
+        grid-template-columns: repeat(8, 112px);
+        gap: 13px;
+
+        @include for-phone-only {
+            grid-template-columns: repeat(3, 105px);
+            gap: 12px;
+            padding-left: 15px;
+        }
+    }
+
+    &__text {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 17.1049px;
+        line-height: 140%;
+        color: #292929;
+        margin-top: 14px;
+        margin-bottom: 20px;
+
+        @include for-phone-only {
+            margin-top: 21px;
+            margin-bottom: 21px;
+            padding-left: 17px;
+            padding-right: 17px;
+            width: 100vw;
+
+        }
+
+        &.second {
+            margin-top: 48px;
+
+            @include for-phone-only {
+                margin-top: 54px;
+                border-top: 0.25px solid #656565;
+                padding-top: 21px;
+                width: 100vw;
+            }
+        }
+    }
+}
