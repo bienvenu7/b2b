@@ -777,8 +777,8 @@
             }
 
             .top {
-                margin-top: 54px;
-                margin-bottom: 130px;
+                margin-top: 58px;
+                // margin-bottom: 130px;
 
                 @include for-phone-only {
                     display: none;
@@ -792,9 +792,10 @@
         }
 
         &__logo {
-            width: 190px;
+            width: 84px;
             height: 141px;
-            margin-bottom: 68px;
+            margin-top: 59px;
+            // margin-bottom: 50px;
 
             img {
                 width: 100%;
@@ -814,7 +815,7 @@
                 font-size: 40px;
                 line-height: 140%;
                 text-transform: uppercase;
-                margin-bottom: 51px;
+                margin-bottom: 23px;
 
                 @include for-phone-only {
                     display: none;
@@ -841,8 +842,8 @@
                 }
 
                 &.last-child {
-                    max-width: 1000px;
-                    margin-top: 34px;
+                    max-width: 900px;
+                    margin-top: 0;
 
                     #target {
                         display: contents;
@@ -869,11 +870,11 @@
 
         &__buttons {
             &-wrapper {
-                margin-top: 112px;
+                margin-top: 38px;
                 gap: 31px;
                 display: flex;
                 flex-direction: column;
-                padding-bottom: 50px;
+                // padding-bottom: 50px;
 
                 @include for-phone-only {
                     margin-top: 65px;
