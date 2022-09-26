@@ -343,10 +343,18 @@
             width: 567px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 14px;
 
             @include for-phone-only {
                 width: calc(100vw - 42px);
+            }
+
+            .btn {
+                margin-top: 6px;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
             }
 
             &-label {
@@ -426,8 +434,8 @@
         &-radio_btn {
 
             display: flex;
-            width: 100%;
             justify-content: center;
+            margin-right: 10px;
 
             input[type=radio] {
                 display: none;
@@ -453,6 +461,7 @@
                 justify-content: center;
                 align-items: center;
                 height: 20px;
+                padding: 8px 22px;
 
                 @include for-phone-only {
                     border-color: $c_g;
@@ -508,7 +517,7 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
-            margin-top: 42px;
+            margin-top: 25px;
 
             @include for-phone-only {
                 max-width: calc(100vw - 42px);
