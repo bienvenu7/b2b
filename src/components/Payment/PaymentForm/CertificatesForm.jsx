@@ -166,7 +166,9 @@ const CertificatesForm = (props) => {
               {selectedValue === 'choose' &&
                   <div className="payment__form-elem number-wrapper" id="cert_count">
                     <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
-                    <div className="payment__form-elem info">${cost.certificate / 100}&nbsp;per certificate</div></div>}
+                    <div className="payment__form-elem info">${cost.certificate / 100}&nbsp;per certificate</div>
+                    <div className="payment__form-elem info">${(cost.certificate / 100) * volume}&nbsp; total</div>
+                  </div>}  
               <div className="payment__form-elem number-wrapper">
               </div>
             </div>

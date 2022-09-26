@@ -401,11 +401,11 @@ const AuthenticationRequest = () => {
                                             {/*<button className={({answerTime}) => answerTime==12 ? 'active' : ''} onClick={()=>setAnswerTime(12)}>12 hours</button>
                                             <button className={({answerTime}) => answerTime==24 ? 'active' : ''} onClick={()=>setAnswerTime(24)}>24 hours</button>*/}
                                             <div className="auth_request__form-radio_btn">
-                                                <input type="radio" name="hours" value="12" id="12h" />
+                                                <input type="radio" name="hours" checked={answerTime == 12 ? true :false} value="12" id="12h" />
                                                 <label htmlFor="12h" onClick={()=>setAnswerTime(12)}>12 hours</label>
                                             </div>
                                             <div className="auth_request__form-radio_btn">
-                                                <input type="radio" name="hours" checked value="24" id="24h"/>
+                                                <input type="radio" name="hours" checked={answerTime == 24 ? true :false} value="24" id="24h"/>
                                                 <label htmlFor="24h" onClick={()=>setAnswerTime(24)} value="24">24 hours</label>
                                             </div>
                                         </div>
