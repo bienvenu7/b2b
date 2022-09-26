@@ -266,12 +266,19 @@ const AuthenticTableBlock = (props) => {
   //
 
   function getCertificateLink(product) {
+    // let dates = product.files.map(el => el.createdAt)
+    // console.log({productdates1:dates});
+    // dates.sort(function(a,b){
+    //   return new Date(a) - new Date(b);
+    // });
+    // console.log({productdates2:dates});
     const file = product.files.find((el) => el.feature === "certificate");
-    if (process.env.NODE_ENV !== "production") {
-      return "/app/files";
-    } else {
-      return file.path + "/" + file.name;
-    }
+    // console.log({product:file});
+    // if (process.env.NODE_ENV !== "production") {
+      // return "/app/files";
+    // } else {
+      return file.path;
+    // }
   }
 
   var dataFixed = () => moment().format('DD/MM/YYYY')
@@ -534,8 +541,6 @@ const AuthenticTableBlock = (props) => {
                             {dataFixed(el.createdAt, "mobile")}
                           </div>
                         </div>
-                      </div>
-                      <div className="authent__table__elems-wrapper">
                         <div className="authent__table__elem-brand">
                           {el.brand.publicName}
                         </div>
@@ -633,8 +638,6 @@ const AuthenticTableBlock = (props) => {
                             {dataFixed(el.createdAt, "mobile")}
                           </div>
                         </div>
-                      </div>
-                      <div className="authent__table__elems-wrapper">
                         <div className="authent__table__elem-brand">
                           {el.brand.publicName}
                         </div>
