@@ -5,7 +5,7 @@ import storeLogo from "../../../common/images/logo-of-store.png";
 import dashboardIcon from "../../../common/images/dashboard-icon.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { takeBalance, companyname } from "../../../redux/selectors/authRequest-selectors";
+import { takeBalance,companyname } from "../../../redux/selectors/authRequest-selectors";
 import { getProductsThunk } from "../../../redux/thunks/product-thunk";
 import { logoutThunk } from "../../../redux/thunks/auth-thunk";
 import logo_img from '../../../common/images/logo-for-mobile.png'
@@ -32,25 +32,11 @@ const Dashboard = (props) => {
     <>
     {showNotif && <MobileNotif setShowNotif={setShowNotif}/>}
       <div className="dashboard-container fixed">
-        <div className="dashboard-wrapper">
-          <div className="dashboard__elem">
-            <div className="dashboard__elem__top-wrapper">
-              <div className="dashboard__elem__top-img">
-                <img alt="" src={storeLogo} />
-              </div>
-              <div className="dashboard__elem__top-label">
-                Luxury store <SvgSelector id="arrow" />
-                <img onClick={() => navigate("../dashboard")} src={dashboardIcon} alt="" />
-              </div>
-              <div className="dashboard__elem__top__icon-wrapper">
-                <div className="dashboard__elem__top__icon-elem">
-                  {/* <img src={dashboardIcon} alt="" /> */}
-                </div>
-                <div className="dashboard__elem__top__icon-elem">
-                  <div onClick={() => setShowNotif(!showNotif)}><SvgSelector  id="bell" /></div>
-                  <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
-                </div>
-              </div>
+      <div className="dashboard-wrapper">
+        <div className="dashboard__elem">
+          <div className="dashboard__elem__top-wrapper">
+            <div className="dashboard__elem__top-img">
+              <img alt="" src={storeLogo} />
             </div>
             <div className="dashboard__elem__top-label">
               {companyName} <SvgSelector id="arrow" />
@@ -61,7 +47,7 @@ const Dashboard = (props) => {
                 {/* <img src={dashboardIcon} alt="" /> */}
               </div>
               <div className="dashboard__elem__top__icon-elem">
-                <SvgSelector id="bell" />
+                <div onClick={() => setShowNotif(!showNotif)}><SvgSelector  id="bell" /></div>
                 <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
               </div>
             </div>
@@ -193,7 +179,11 @@ const Dashboard = (props) => {
           </div>
         </div>
       </div>
-    </>  
+      <label htmlFor="dashboard-open" className="dashboard__cross-container">
+        <SvgSelector id="cross-icon" />
+      </label>
+    </div>
+    </>
   );
 };
 

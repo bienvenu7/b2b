@@ -37,7 +37,7 @@ const Billing = () => {
             </div>
             {someData.invoices.map((key, i) => (
               <div key={i} className="billing-table-cards">
-                <CardLine date={dataFixed(key.createdAt)} reference={key.paymentSystemInvoiceId} method={key.paymentSystem} price={'$'+ (key.amount / 100)} source={key.paymentSystemInvoiceLink} />
+                <CardLine date={dataFixed(key.createdAt)} reference={key.paymentSystemInvoiceId} method={key.paymentMethodId} price={'$'+ (key.amount / 100)} source={key.paymentSystemInvoiceLink} />
               </div>
             ))}
           </div>

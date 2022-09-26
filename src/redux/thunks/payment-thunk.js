@@ -32,14 +32,13 @@ export const getCartTotalThunk = (data) => async (dispatch) => {
   response.status === 201 && dispatch(setTotal(response.data.total));
 };
 
-export const getPriceThunk = (data,who) => async (dispatch) => {
-  console.log({who});
+export const getPriceThunk = (data) => async (dispatch) => {
+  // console.log(data);
   if (data == null) {
     const response = await getPrice(data);
     response.status === 200 &&
       dispatch(setPriceForCertificate(response.data.certificate));
-  } else {// if(data.productType)
-    console.log({data})
+  } else {
     const response = await getPrice({
       id: data.productType.id,
       volume: data.volume,

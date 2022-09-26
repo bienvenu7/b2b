@@ -82,8 +82,10 @@ export const uploadPhotoForProductThunk =
         if (idx + 1 === count) {
           dispatch(setStatusCode(response.status));
         }
+        // window.location.reload()
       })
       .catch(() => {
         dispatch(setErrors({ page: "upload-photos", error: { index: idx } }));
-      });
+      })
+      
   };
