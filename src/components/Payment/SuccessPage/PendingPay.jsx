@@ -17,7 +17,7 @@ const PendingPay = () => {
                 <div className='top'><Header/></div>
                 <div className='payment__success__logo'><img alt='' className='logoImage' src={logo} /></div>
                 <div className="payment__success__message-h1">payment pending</div>
-                <div className="payment__success__message-h2">Please finalise your payment with your chosen gateway!</div>
+                <div className="payment__success__message-h2">We have sent the payment to your Paypal account. Please go to your <br/>Paypal to finish the purchase of the chosen authentications</div>
                 {/* <div className="payment__success__message-h2 last-child">нужен текст получше</div> */}
                 {/* <div className="payment__success__buttons-wrapper">
                     <div className="payment__success__buttons-elem" onClick={() => navigate('../authentication-request')}>Start authentication</div>
