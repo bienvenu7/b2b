@@ -240,6 +240,10 @@ const CategoryForm = (props) => {
                     <label htmlFor="hours" className="payment__form-label">Choose answer time</label>
                     <div className="payment__form-elem hours">
                         <div className="payment__form-radio_btn">
+                            <Field type="radio" name="hours" value="2" id="2h" />
+                            <label htmlFor="2h" onClick={()=>updateHours(2, cart)}>2 hours</label>
+                        </div>
+                        <div className="payment__form-radio_btn">
                             <Field type="radio" name="hours" value="12" id="12h" />
                             <label htmlFor="12h" onClick={()=>updateHours(12, cart)}>12 hours</label>
                         </div>
