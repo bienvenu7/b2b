@@ -141,6 +141,7 @@
                 display: flex;
                 gap: 25px;
                 padding-top: 17px;
+
                 @include for-phone-only {
                     flex-wrap: wrap;
                 }
@@ -200,7 +201,7 @@
                 }
 
                 &:hover {
-                    background-color: rgba(203, 173, 115, 0.54)  !important;
+                    background-color: rgba(203, 173, 115, 0.54) !important;
                 }
             }
         }
@@ -209,7 +210,7 @@
             padding: 21px 87px 26px 108px;
 
             @include for-phone-only {
-                padding: 0 23px;//0 23px
+                padding: 0 23px; //0 23px
             }
 
             &.first {
@@ -221,6 +222,7 @@
             }
 
             &.second {
+                height: 100px;
 
                 .custom-select__control {
                     width: 340px;
@@ -245,6 +247,7 @@
         }
 
         &-wrapper {
+
             //max-width: 800px;
             @include for-phone-only {
                 width: 100vw;
@@ -409,13 +412,14 @@
                 gap: 5px;
 
                 @include for-phone-only {
-                    gap: initial;//20px
+                    gap: initial; //20px
                 }
             }
 
             &__hours-wrapper {
                 display: flex;
                 flex-direction: column;
+
                 @include for-phone-only {
                     width: 100%;
                 }
