@@ -6,6 +6,8 @@ import { getNotification } from "../../../api/notifications/notifications-api";
 
 import "./Notif.scss";
 import { useEffect } from "react";
+import { takeProducts } from "../../../redux/selectors/product-selectors";
+import { useSelector } from "react-redux";
 
 const notifs = [
   {
@@ -34,6 +36,10 @@ const Notification = () => {
 
   const [notifications, setNotifications] = useState([])
 
+  const product = useSelector(takeProducts);
+
+  console.log(product)
+
   useEffect(() => {
     getNotifs()
   }, [])
@@ -50,10 +56,10 @@ const Notification = () => {
 
   return (
     <div className="notif-container">
-      {console.log(notifications)}
+      {/* {console.log(notifications)} */}
       <div className="notif-messages">
         {notifications.notifications?.map((notification, index) => (
-          <CardNotif key={index} item={notification} />
+          <CardNotif key={index} product={product} item={notification} />
         ))}
       </div>
     </div>
