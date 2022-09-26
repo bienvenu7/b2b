@@ -6,14 +6,14 @@ const CardNotif = ({ item, product }) => {
 
   const newArray = product.filter((p) => p.id === item.productId)
 
-  // console.log(newArray)
+  console.log(newArray)
 
   return (
     <div className="card-content">
-      {/* {console.log(item)} */}
+      {console.log(item)}
       <div className="card-title">{item.title}</div>
       <div className="card-text">{item.text}</div>
-      {newArray.reasons !== '' & newArray.systemStatus === 'AWAIT_PHOTOS' ? <button className="card-btn">Add more photos</button> : ''}
+      {newArray?.reasons !== null & newArray?.systemStatus === 'AWAIT_PHOTOS' ? <button className="card-btn">Add more photos</button> : ''}
     </div>
   );
 };

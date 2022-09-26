@@ -2,35 +2,13 @@ import React, { useState } from "react";
 
 import CardNotif from "./CardNotif";
 
-import { getNotification } from "../../../api/notifications/notifications-api";
+import { getNotification } from "../../api/notifications/notifications-api";
 
 import "./Notif.scss";
 import { useEffect } from "react";
-import { takeProducts } from "../../../redux/selectors/product-selectors";
+import { takeProducts } from "../../redux/selectors/product-selectors";
 import { useSelector } from "react-redux";
 
-const notifs = [
-  {
-    title: "#19920 more photos are needed",
-    text: "Please add more photos for us to finalise the authentication!",
-  },
-  {
-    title: "#19920 more photos are needed",
-    text: "Please add more photos for us to finalise the authentication!",
-  },
-  {
-    title: "#19920 more photos are needed",
-    text: "Please add more photos for us to finalise the authentication!",
-  },
-  {
-    title: "#19920 more photos are needed",
-    text: "Please add more photos for us to finalise the authentication!",
-  },
-  {
-    title: "#19920 more photos are needed",
-    text: "Please add more photos for us to finalise the authentication!",
-  },
-];
 
 const Notification = () => {
 

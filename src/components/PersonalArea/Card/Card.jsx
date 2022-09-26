@@ -24,6 +24,9 @@ const Card = (props) => {
   const location = useLocation();
 
   const product = useSelector(takeProduct);
+
+  console.log(product)
+
   const anglesList = useSelector(takeAnglesList);
 
   const [editMode, setEditMode] = useState(false);

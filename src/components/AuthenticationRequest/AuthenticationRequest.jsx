@@ -85,7 +85,7 @@ const AuthenticationRequest = () => {
   function valid () {
     for (let key in errors) {
       console.log(errors[key])
-      if(errors[key] === null) {
+      if(errors[key] === null && photoFiles.length < 2) {
         
         setCheckValid(false)
         break
@@ -442,7 +442,7 @@ const AuthenticationRequest = () => {
                         </div>
                         <div className='auth_request__form-container second'>
                             <div className='auth_request__form__elem-label' id='photo_block_label'>Upload photos</div>
-                            {photoError && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
+                            {productTypeValue && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
 
                             <div className='auth_request__form__photo-container'>
                                 {productTypeValue && photoFiles.map((el, index) =>

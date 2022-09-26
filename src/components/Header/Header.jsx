@@ -4,7 +4,7 @@ import SvgSelector from "../../common/icons/SvgSelector";
 import { getUser } from "../../redux/selectors/auth-selectors";
 import Navigation from "../Navigation/Navigation";
 
-import Notification from "../../components/PersonalArea/notifications/Notifications";
+import Notification from "../notifications/Notifications";
 import "./Header.scss";
 
 //icon header
@@ -16,7 +16,7 @@ const Header = (props) => {
   const params = useParams();
   const navigate = useNavigate();
   const {pathname, state} = useLocation();
-  console.log(pathname)
+  // console.log(pathname)
 
   //for notifications
   const [showNotif, setShowNotif] = useState(false);
