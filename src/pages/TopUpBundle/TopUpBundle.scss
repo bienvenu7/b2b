@@ -88,10 +88,16 @@
 
             @include for-phone-only {
                 display: block;
-                border: 1px solid red;
                 padding-bottom: 30px;
             }
         }
+    }
+
+    &__payment-block {
+        width: 323px;
+        margin: auto;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 
     &__total {
