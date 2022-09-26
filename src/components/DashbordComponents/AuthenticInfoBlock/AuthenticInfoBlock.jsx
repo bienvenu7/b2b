@@ -3,27 +3,7 @@ import BlockComponentLayout from '../../BlockComponentLayout/BlockComponentLayou
 import { completedAuthentification } from '../../../api/authRequest/authRequest-api'
 import { useEffect, useState } from 'react'
 
-const AuthenticInfoBlock = () => {
-
-  const [someData, setSomeData] = useState({
-    completed: 0,
-    updateNeeded: 0,
-    authentic: 0
-  })
-  //use state
-  var first = someData.completed
-  var second = someData.updateNeeded
-  var third = someData.authentic
-  var authenticScore = (Math.round((third / first * 100) * 100) / 100) || 0
-  var fakeItems = first - third
-
-  console.log(authenticScore, 'check out one')
-
-  useEffect(() => {
-    completedAuthentification().then((r) => { 
-      setSomeData(r.data)
-    })
-  }, []);
+const AuthenticInfoBlock = ({ authenticScore, authenticItems, fakeItems }) => {
 
   return (
     <BlockComponentLayout>
@@ -36,7 +16,7 @@ const AuthenticInfoBlock = () => {
         <div className='authentic-info-block__content-block'>
           <div className='authentic-info-block__cards-block'>
             <div className='authentic-info-block__cards-block__item'>
-              <h3 className='authentic-info-block__title_little'>Authentic items spotted: {third}</h3>
+              <h3 className='authentic-info-block__title_little'>Authentic items spotted: {authenticItems}</h3>
               <p className='authentic-info-block__text_little'>Your most common authentic items are Gucci bags and Saint Laurent shoes!</p>
             </div>
             <div className='authentic-info-block__cards-block__item'>

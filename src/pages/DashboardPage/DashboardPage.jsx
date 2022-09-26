@@ -41,6 +41,10 @@ const DashboardPage = () => {
 
   var first = someData.completed
   var second = someData.updateNeeded
+  var third = someData.authentic
+  var percentage = (Math.round((third / first * 100) * 100) / 100) || 0
+  var fake = first - third
+
 
   useEffect(() => {
     completedAuthentification().then((r) => {
@@ -55,19 +59,19 @@ const DashboardPage = () => {
         <div className='dashboard-page__content-desctop'>
           <InfoBlock />
           <div className='dashboard-page__second-block'>
-            { 
+            {
               contentChecked.map((key, i) =>
                 <CheckBlock image={key.image} textTop={key.textTop} numberTop={i === 1 ? second : first} textBottom={key.textBottom} numberBottom={key.numberBottom} key={i} />
               )
             }
           </div>
-          <AuthenticInfoBlock />
+          <AuthenticInfoBlock authenticScore={percentage} authenticItems={third} fakeItems={fake} />
           <AuthenticTableBlock />
         </div>
 
         <div className='dashboard-page__content-mobile'>
-          <CheckBlockMobile image={checkmark} />
-          <AuthenticMobile />
+          <CheckBlockMobile image={checkmark} completed={first} additional={second} />
+          <AuthenticMobile authenticScore={percentage} />
           <AuthenticTableBlock />
         </div>
       </PersonalAreaLayout>

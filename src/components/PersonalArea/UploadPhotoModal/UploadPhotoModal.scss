@@ -20,15 +20,13 @@
         }
         &-wrapper{
             display: flex;
-            flex-direction: column;
-            max-height: 150px;
-            overflow: auto;
-            gap: 20px;
+            flex-wrap: wrap;
         }
         
 
         &-elem {
-            width: 164px;
+            width: 25%;
+            justify-content: center;
         }
 
         &-name {
@@ -39,6 +37,7 @@
             line-height: 21px;
             text-align: center;
             padding-top: 16px;
+            width: 111px;
         }
 
         &-error{
