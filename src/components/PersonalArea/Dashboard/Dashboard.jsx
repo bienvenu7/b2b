@@ -29,14 +29,6 @@ const Dashboard = (props) => {
   //temp
 
   return (
-<<<<<<< HEAD
-    <div className="dashboard-container fixed">
-      <div className="dashboard-wrapper">
-        <div className="dashboard__elem">
-          <div className="dashboard__elem__top-wrapper">
-            <div className="dashboard__elem__top-img">
-              <img alt="" src={storeLogo} />
-=======
     <>
     {showNotif && <MobileNotif setShowNotif={setShowNotif}/>}
       <div className="dashboard-container fixed">
@@ -59,7 +51,6 @@ const Dashboard = (props) => {
                   <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
                 </div>
               </div>
->>>>>>> 479b243c59e0e71e78ce60f952f359164d980d3f
             </div>
             <div className="dashboard__elem__top-label">
               {companyName} <SvgSelector id="arrow" />
@@ -202,14 +193,7 @@ const Dashboard = (props) => {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      <label htmlFor="dashboard-open" className="dashboard__cross-container">
-        <SvgSelector id="cross-icon" />
-      </label>
-    </div>
-=======
     </>  
->>>>>>> 479b243c59e0e71e78ce60f952f359164d980d3f
   );
 };
 

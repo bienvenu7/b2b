@@ -25,8 +25,11 @@
         
 
         &-elem {
-            width: 25%;
-            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            padding: 0px 6px 6px 6px;
+            justify-content: space-between;
         }
 
         &-name {

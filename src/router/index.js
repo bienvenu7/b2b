@@ -40,19 +40,19 @@ export const privateRoutes = [
     path: "authentications/in-progress",
     component: <Authentications var={"progress"} />,
   },
-  { path: "dashboard", component: <DashboardPage />},
+  { path: "dashboard", component: <DashboardPage /> },
   { path: "photo-requests/:page", component: <PhotoRequests /> },
   { path: "request/:id", component: <Card /> },
   { path: "payment", component: <TopUpBundle /> },
   { path: "payment-first", component: <Payment /> },
   { path: "success", component: <SuccessPage /> },
-  { path: "pending-payment", component: <PendingPay/> },
-  { path: "unsuccess", component: <Unsuccess/> },
+  { path: "pending-payment", component: <PendingPay /> },
+  { path: "unsuccess", component: <Unsuccess /> },
   { path: "success-order", component: <SuccessPageOrder /> },
   { path: "authentication-request", component: <AuthenticationRequest /> },
   { path: "pay", component: <Payment /> },
   { path: "billing-history", component: <Billing /> },
-  {path: "album-private/:id", component: <Order/>}
+  { path: "album-private/:id", component: <Order /> }
 
   //{path: 'payment-new', component: <TopUpBundle/>}
 ];

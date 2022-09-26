@@ -1,14 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { getProduct } from '../../api/product/product-api'
 
 import './Order.scss'
 
 import logo from '../../common/images/601.svg'
 
-const upload = [1, 2, 3, 4, 5, 6, 7, 8]
+const upload = [1, 2, 3, 4, 5, 6, 7]
 
 const Order = () => {
 
     const [photoFiles, setPhotoFiles] = useState([]);
+
+    const [authentication, setAuthentication] = useState({
+      publicId: 0,
+      modelName: 0,
+      supplier: 0,
+      hashPhoto: 0,
+    });
+
+    useEffect(() => {
+      getProduct().then((r) => {
+        authentication(r.data)
+      })
+    }, []);
+
+    console.log(getProduct('3d3f6893-62dd-4e62-9414-2793027ce6f4'), 'id DATA') 
 
     function handleImageChange(e) {
         e.preventDefault();
@@ -43,7 +59,7 @@ const Order = () => {
             )
           );
         };
-        reader.readAsDataURL(file);
+        reader.readAsDataя(file);
         // checkNecessity();
         // valid()
       }

@@ -60,23 +60,7 @@
             padding-top: 18px;
             width: 100%;
             overflow-x: hidden;
-<<<<<<< HEAD
             padding: 18px 14px 16px 14px;
-=======
-        }
-
-        .fixed-image {
-            display: none;
-
-            @include for-phone-only {
-                display: block;
-                position: absolute;
-                bottom: 15px;
-                left: 108px;
-                width: 84px;
-                height: 62px;
-            }
->>>>>>> 479b243c59e0e71e78ce60f952f359164d980d3f
         }
     }
 
@@ -398,13 +382,7 @@
                             font-weight: 700;
                             font-size: 18px;
                             line-height: 140%;
-<<<<<<< HEAD
                             margin: 14px 0px 0px 20px;
-=======
-                            margin: 0;
-                            margin-top: 14px;
-                            margin-bottom: 80px;
->>>>>>> 479b243c59e0e71e78ce60f952f359164d980d3f
                         }
                     }
 
