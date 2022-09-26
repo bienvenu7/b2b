@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +87,7 @@
       <workItem from="1663680511960" duration="15500000" />
       <workItem from="1663777227202" duration="2865000" />
       <workItem from="1663917408047" duration="429000" />
-      <workItem from="1664186438044" duration="1549000" />
+      <workItem from="1664186438044" duration="4156000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
