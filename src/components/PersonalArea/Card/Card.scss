@@ -369,6 +369,7 @@ color: #020202;
                 align-items: center;
                 display: flex;
                 cursor: pointer;
+                text-decoration: none;
 
                 @include for-phone-only{
                     margin: 0 23px;

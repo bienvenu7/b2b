@@ -46,6 +46,9 @@ const Header = (props) => {
   if(pathname ==='/authentications/completed') path = "Completed authentications"
   if(pathname ==='/authentications/in-progress') path = "In progress authentications"
   if(pathname ==='/billing-history') path = "Billing history"
+  if(pathname ==='/pending-payment') path = "Pending payment"
+  if(pathname ==='/success') path = "Success"
+  if(pathname ==='/unsuccess') path = "Unsuccess"
 
   function goBack() {
     if (state && state.var !== "photo-requests") {

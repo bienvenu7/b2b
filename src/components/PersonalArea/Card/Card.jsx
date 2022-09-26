@@ -138,6 +138,23 @@ const Card = (props) => {
   }
   //
 
+  function getCertificateLink(element) {
+    console.log({element:element});
+    // let dates = product.files.map(el => el.createdAt)
+    // console.log({productdates1:dates});
+    // dates.sort(function(a,b){
+    //   return new Date(a) - new Date(b);
+    // });
+    // console.log({productdates2:dates});
+    const file = element.files.find((el) => el.feature === "certificate");
+    console.log({element:file});
+    // if (process.env.NODE_ENV !== "production") {
+      // return "/app/files";
+    // } else {
+      return file.path;
+    // }
+  }
+
   function goBack() {
     if (location.state && location.state.var !== "photo-requests") {
       navigate(
@@ -293,9 +310,9 @@ const Card = (props) => {
                 </div>
                 <div className="mybtn">
                   {product.certificateAvailable ? (
-                    <div className="card__info__content__button certificate">
+                    <a className="card__info__content__button certificate" href={getCertificateLink(product)}>
                       View certificate
-                    </div>
+                    </a>
                   ) : (
                     <div className="card__info__content__button certificate">
                       Get a certificate
