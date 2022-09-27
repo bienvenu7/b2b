@@ -73,7 +73,7 @@
         padding: 17px 0px 17px 55px;
 
         @include for-phone-only {
-            padding-left: 0;
+            padding: 0px 0px 95px 0px;
         }
 
         &_header {
