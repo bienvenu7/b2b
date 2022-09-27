@@ -16,7 +16,7 @@ const Notification = () => {
 
   const product = useSelector(takeProducts);
 
-  console.log(product)
+  // console.log(product)
 
   useEffect(() => {
     getNotifs()

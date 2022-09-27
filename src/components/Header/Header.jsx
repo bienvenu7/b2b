@@ -11,6 +11,7 @@ import "./Header.scss";
 import header_icon from "../../common/icons/logoMobile.png";
 import { logoutThunk } from "../../redux/thunks/auth-thunk";
 import { useDispatch, useSelector } from "react-redux";
+import { takeProducts } from "../../redux/selectors/product-selectors";
 
 const Header = (props) => {
   const params = useParams();
