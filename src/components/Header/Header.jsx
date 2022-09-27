@@ -51,6 +51,8 @@ const Header = (props) => {
   if(pathname === '/pending-payment') path = "Pending payment"
   if(pathname ==='/success') path = "Success"
   if(pathname ==='/unsuccess') path = "Unsuccess"
+  if(pathname.split('/')[1] ==="request") path = "Request"
+  // console.log({pathname:pathname.split('/')[1]}); //маленький костыль
 
   function goBack() {
     if (state && state.var !== "photo-requests") {

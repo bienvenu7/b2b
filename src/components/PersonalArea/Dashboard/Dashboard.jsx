@@ -95,13 +95,19 @@ const Dashboard = (props) => {
             >
               Top up now
             </div>
-            <div
+            {balance.length > 0 ? <div
               className="dashboard__elem__auth_balance__balance-button"
               onClick={() => navigate("../authentication-request")}
             >
               New authentication
             </div>
-
+            :
+            <div
+              className="dashboard__elem__auth_balance__balance-button authenticationdisabled"
+            >
+              New authentication
+            </div>
+            }
             {/* {
                 balance.length > 0 ? (
                   <button
@@ -121,6 +127,7 @@ const Dashboard = (props) => {
               } */}
 
           </div>}
+          {balance.length > 0 ?null:<div className="textdisabled"><span>!</span>Top up to start autentification</div>}
         </div>
         <div className="dashboard__elem__authentications-wrapper">
           <div className="dashboard__elem__authentications-label">

@@ -478,8 +478,8 @@ const AuthenticTableBlock = (props) => {
                     <div className="authent__table__label__elem-category">
                       Item category
                     </div>
-                  </div>
-                  <div className="authent__table__label__elems-wrapper">
+                  {/* </div> */}
+                  {/* <div className="authent__table__label__elems-wrapper"> */}
                     <div className="authent__table__label__elems-brand">
                       Brand
                     </div>
