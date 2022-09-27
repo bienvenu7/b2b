@@ -10,26 +10,23 @@ Modal.setAppElement("#root");
 const UploadPhotoModal = (props) => {
   console.log(props);
   console.log(props.closeModal);
-  function reloadWindow(){
+  function reloadWindow() {
     // window.location.reload()
   }
-  
-  const dispatch = useDispatch();
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
+  const dispatch = useDispatch();
 
   const product = props.elem;
 
   const [photoFiles, setPhotoFiles] = useState([]);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -44,18 +41,18 @@ const UploadPhotoModal = (props) => {
         .map((el) => anglesList.find((elem) => elem.clickupId === el));
       setPhotoFiles(
         angles &&
-          angles.map(
-            (el, index) =>
-              photoFiles.length == 0 && {
-                key: index,
-                file: "",
-                imagePreviewUrl: "",
-                angleId: el.id,
-                error: false,
-                angleName: el.publicName,
-                format: null,
-              }
-          )
+        angles.map(
+          (el, index) =>
+            photoFiles.length == 0 && {
+              key: index,
+              file: "",
+              imagePreviewUrl: "",
+              angleId: el.id,
+              error: false,
+              angleName: el.publicName,
+              format: null,
+            }
+        )
       );
     }
   }
@@ -87,12 +84,12 @@ const UploadPhotoModal = (props) => {
         photoFiles.map((item) =>
           item.key == index
             ? {
-                ...item,
-                file: file,
-                imagePreviewUrl: reader.result,
-                error: false,
-                format: true,
-              }
+              ...item,
+              file: file,
+              imagePreviewUrl: reader.result,
+              error: false,
+              format: true,
+            }
             : item
         )
       );
@@ -101,7 +98,7 @@ const UploadPhotoModal = (props) => {
   }
 
   async function handlePost() {
-    
+
     console.log(photoFiles);
     const response = await photoFiles.map(
       (el, index) =>
@@ -127,8 +124,10 @@ const UploadPhotoModal = (props) => {
           isOpen={props.isOpen}
           onAfterOpen={afterOpenModal}
           onRequestClose={props.closeModal}
-          style={customStyles}
           contentLabel="Example Modal"
+
+          overlayClassName="overlayStyle"
+          className="contentStyle"
         >
           <div className="modal__photo-container">
             <div className="modal__photo-wrapper">
@@ -170,12 +169,14 @@ const UploadPhotoModal = (props) => {
                       </div>
                     )}
                   </div>
+
                 ))}
             </div>
             <div className="modal__photo-submit" onClick={handlePost}>
               Upload
             </div>
           </div>
+
         </Modal>
       )}
     </>

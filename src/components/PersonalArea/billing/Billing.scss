@@ -11,19 +11,16 @@
 
     @include for-tablet-portrait-up {
         width: 100vw;
-        padding: 0px 20px;
     }
 
     @include for-tablet-landscape-up {
         width: 100vw;
-        padding: 0px 20px;
     }
 }
 
 .billing {
     &-container {
-        height: 391px;
-        max-height: fit-content;
+        height: fit-content;
         width: 678px;
         background-color: $c_w;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, .25);
@@ -73,7 +70,7 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        padding-left: 55px;
+        padding: 17px 0px 17px 55px;
 
         @include for-phone-only {
             padding-left: 0;
@@ -86,8 +83,6 @@
             align-items: center;
             justify-content: space-between;
             width: 530px;
-            // padding: 17px 0;
-            padding-top: 17px;
 
             //text
             font-family: 'Roboto';
@@ -183,6 +178,7 @@
 
     &-download {
         color: $c_gray1;
+        cursor: pointer;
         @include for-phone-only {
             padding-right: 17px;
         }
@@ -193,6 +189,8 @@
     }
     &-reference {
         width: 146px;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
     &-method {
         width: 72px;

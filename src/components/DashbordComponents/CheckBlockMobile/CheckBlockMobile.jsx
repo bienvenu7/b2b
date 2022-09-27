@@ -3,7 +3,7 @@ import './CheckBlockMobile.scss'
 import BlockComponentLayout from '../../BlockComponentLayout/BlockComponentLayout'
 import camera from '../../../common/icons/dashboard/camera.png'
 
-const CheckBlockMobile =({image}) => {
+const CheckBlockMobile =({image, completed, additional}) => {
   return (
     <BlockComponentLayout>
       <div className='check-mobile__icon'>
@@ -11,11 +11,11 @@ const CheckBlockMobile =({image}) => {
       </div>
       <div className='check-mobile__top-block'>
         <p className='check-mobile__text'>Completed authentications</p>
-        <p className='check-mobile__number'>900</p>
+        <p className='check-mobile__number'>{completed}</p>
       </div>
       <div className='check-mobile__bottom-block'>
         <p className='check-mobile__text'>Additional photos needed</p>
-        <p className='check-mobile__number'>200</p>
+        <p className='check-mobile__number'>{additional}</p>
       </div>
     </BlockComponentLayout>
   )

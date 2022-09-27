@@ -256,15 +256,15 @@
                     border: 1px solid $c_g;
                     box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
                     border-radius: 4px;
-                    display: block;
-                    margin: 0 auto;
+                    display: flex;
+                    margin: 0px 0px 0px 0px;
                     &>input {
                         display: none;
                         width: 111px;
                         min-height: 100px;
-                        border: 1px solid $c_w;
-                        box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
                         border-radius: 4px;
+                        padding: 0px 0px;
+                        font-size: 2px;
                     }
                 }
             }
@@ -318,7 +318,7 @@
             font-weight: 400;
             font-size: 15.6934px;
             line-height: 140%;
-            color: $c_r;
+            color: rgba(0, 0, 0, 1);
             padding-top: 14px;
             padding-bottom: 14px;
         }
@@ -343,10 +343,18 @@
             width: 567px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 14px;
 
             @include for-phone-only {
                 width: calc(100vw - 42px);
+            }
+
+            .btn {
+                margin-top: 6px;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
             }
 
             &-label {
@@ -426,8 +434,8 @@
         &-radio_btn {
 
             display: flex;
-            width: 100%;
             justify-content: center;
+            margin-right: 10px;
 
             input[type=radio] {
                 display: none;
@@ -453,6 +461,7 @@
                 justify-content: center;
                 align-items: center;
                 height: 20px;
+                padding: 8px 22px;
 
                 @include for-phone-only {
                     border-color: $c_g;
@@ -508,7 +517,7 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
-            margin-top: 42px;
+            margin-top: 25px;
 
             @include for-phone-only {
                 max-width: calc(100vw - 42px);

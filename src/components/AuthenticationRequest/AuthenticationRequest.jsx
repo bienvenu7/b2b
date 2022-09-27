@@ -76,18 +76,18 @@ const AuthenticationRequest = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
 
   const [photoFiles, setPhotoFiles] = useState([]);
-  console.log({photoFiles:photoFiles});
+  console.log({ photoFiles: photoFiles });
   // const [options, setOptions] = useState([])
 
   const options = [];
 
   const optionsBrands = [];
 
-  function valid () {
+  function valid() {
     for (let key in errors) {
       // console.log(errors[key])
-      if(errors[key] === null) {
-        
+      if (errors[key] === null) {
+
         setCheckValid(false)
         break
       }
@@ -131,7 +131,7 @@ const AuthenticationRequest = () => {
     setErrorsForm({ ...errors, typeModel: true });
     valid()
   }
- 
+
   useEffect(() => {
     setPhotoFiles(
       angles.map(
@@ -206,10 +206,10 @@ const AuthenticationRequest = () => {
     if (!brandValue) {  // если brandValue - false
       !productTypeValue  // дополнительно проверить productTypeValue - false
         ? setErrorsForm({ // если productTypeValue - false
-            ...errors,
-            category: "Please select",
-            brand: "Please select",
-          })
+          ...errors,
+          category: "Please select",
+          brand: "Please select",
+        })
         : setErrorsForm({ ...errors, brand: "Please select" }); // иначе 
     }
 
@@ -218,16 +218,16 @@ const AuthenticationRequest = () => {
       if (!brandValue) {  // если brandValue - false
         !productTypeValue  // дополнительно проверить productTypeValue - false
           ? setErrorsForm({  // если productTypeValue - false
-              ...errors,
-              category: "Please select",
-              brand: "Please select",
-              typeModel: "Please fill",
-            })
+            ...errors,
+            category: "Please select",
+            brand: "Please select",
+            typeModel: "Please fill",
+          })
           : setErrorsForm({ // иначе 
-              ...errors,
-              brand: "Please select",
-              typeModel: "Please fill",
-            });
+            ...errors,
+            brand: "Please select",
+            typeModel: "Please fill",
+          });
       } else { // иначе если в productTypeValue - true
         setErrorsForm({ ...errors, typeModel: "Please fill" });
       }
@@ -243,7 +243,7 @@ const AuthenticationRequest = () => {
 
     //  блок, который определяет, поля с обязательными полями все пустые или частично
     if (photoFiles.find((el) => el.file == "" && el.necessity == 1)) { // если есть хоть один элемент в маассиве photoFilesБ который соотвествует условиям 
-      const reqBlank =  photoFiles.filter((el) => el.necessity == 1) // получить все элементы el.necessity == 1
+      const reqBlank = photoFiles.filter((el) => el.necessity == 1) // получить все элементы el.necessity == 1
       const inputBlank = photoFiles.filter((el) => el.file == "" && el.necessity == 1) // получить все элементы el.file == "" && el.necessity == 1
       setPhotoFiles(
         photoFiles.map((el, index) =>
@@ -252,8 +252,8 @@ const AuthenticationRequest = () => {
       );
       setPhotoError(true);
       setButtonState(true);
-      if(reqBlank.length === inputBlank.length) setErrorMessage("It seems you did not upload photos of your item, please upload them before submitting!")
-      if(reqBlank.length > inputBlank.length) setErrorMessage("One or more of the required photos are missing, please make sure you upload them!")
+      if (reqBlank.length === inputBlank.length) setErrorMessage("It seems you did not upload photos of your item, please upload them before submitting!")
+      if (reqBlank.length > inputBlank.length) setErrorMessage("One or more of the required photos are missing, please make sure you upload them!")
       return;
     }
 
@@ -282,22 +282,22 @@ const AuthenticationRequest = () => {
     const response1 =
       response !== true // если ответ неудачный
         ? await photoFiles // пробегаюсь по массиву
-            .filter((el) => el.file !== "") // фильтрую объекты, где в полях el.file !== "" - не пустые строки
-            .map( // этот отфильрованный объект ...
-              (el, index) =>
-                el.file !== "" &&  // проверяю, что JS в предыдущей хуйне понял меня верно...
-                dispatch( // делаю диспатч и что-то записываю
-                  uploadPhotoForProductThunk(
-                    {
-                      productId: response.data.id,
-                      file: el.file,
-                      angleId: el.angleId,
-                    },
-                    photosCount,
-                    index
-                  )
+          .filter((el) => el.file !== "") // фильтрую объекты, где в полях el.file !== "" - не пустые строки
+          .map( // этот отфильрованный объект ...
+            (el, index) =>
+              el.file !== "" &&  // проверяю, что JS в предыдущей хуйне понял меня верно...
+              dispatch( // делаю диспатч и что-то записываю
+                uploadPhotoForProductThunk(
+                  {
+                    productId: response.data.id,
+                    file: el.file,
+                    angleId: el.angleId,
+                  },
+                  photosCount,
+                  index
                 )
-            )
+              )
+          )
         : setButtonState(true); // иначе кнопка отправки в исходном состоянии
     response1 && setButtonState(true); // после всей хуйни проверю response1 === true и на всякий случай кнопку в исходное состояние
 
@@ -315,7 +315,7 @@ const AuthenticationRequest = () => {
   const deleteImage = (index) => {
     setPhotoFiles(
       photoFiles.map((item) =>
-        item.key == index ? { ...item, file: '', imagePreviewUrl:'', format: false } : item
+        item.key == index ? { ...item, file: '', imagePreviewUrl: '', format: false } : item
       )
     );
     // valid()
@@ -343,12 +343,12 @@ const AuthenticationRequest = () => {
         photoFiles.map((item) =>
           item.key == index
             ? {
-                ...item,
-                file: file,
-                imagePreviewUrl: reader.result,
-                error: false,
-                format: true,
-              }
+              ...item,
+              file: file,
+              imagePreviewUrl: reader.result,
+              error: false,
+              format: true,
+            }
             : item
         )
       );
@@ -369,9 +369,9 @@ const AuthenticationRequest = () => {
 
   return (
     <>
-        {/* <MobileHeader label='Authentication request' /> */}
-        <div className="auth_request__wrapper">
-            {/* <div className="auth_request__nav">
+      {/* <MobileHeader label='Authentication request' /> */}
+      <div className="auth_request__wrapper">
+        {/* <div className="auth_request__nav">
                 <div className='auth_request__nav-bar'>
                     <Navigation hrefs={[{ label: 'Luxury store' }, { label: 'New authentication' }]} />
                     <div className='auth_request__nav-label'>authentication request</div>
@@ -379,116 +379,122 @@ const AuthenticationRequest = () => {
                 <div className='auth_request__nav-bell'><SvgSelector id='bell' /></div>
 
             </div> */}
-            <div className='top'><Header /></div>
-            <div className='top-mobile'><PersonalAreaLayout/></div>
-            <div className="auth_request__container">
-                <div className="auth_request__logo">
-                    <img src={logo} className='auth_request__logo-image' />
-                </div>
-                <form onSubmit={(event) => {
-                          event.preventDefault();
-                          handlePost()}} 
-                className="auth_request__form">
-                    <div className="auth_request__form-wrapper">
+        <div className='top'><Header /></div>
+        <div className='top-mobile'><PersonalAreaLayout /></div>
+        <div className="auth_request__container">
+          <div className="auth_request__logo">
+            <img src={logo} className='auth_request__logo-image' />
+          </div>
+          <form onSubmit={(event) => {
+            event.preventDefault();
+            handlePost()
+          }}
+            className="auth_request__form">
+            <div className="auth_request__form-wrapper">
 
-                        <div className='auth_request__form-container first'>
+              <div className='auth_request__form-container first'>
 
-                            <div className='auth_request__form-container-wrapper first'>
-                                <div className='auth_request__form-heading'>authentication request</div>
-                                <div className='auth_request__form__elem'>
-                                    <div className='auth_request__form__elem-label'>Choose the category
-                                        <div className='btn'>
-                                            {/*<button className={({answerTime}) => answerTime==12 ? 'active' : ''} onClick={()=>setAnswerTime(12)}>12 hours</button>
+                <div className='auth_request__form-container-wrapper first'>
+                  <div className='auth_request__form-heading'>authentication request</div>
+                  <div className='auth_request__form__elem'>
+                    <div className='auth_request__form__elem-label'>Choose the category
+
+                    </div>
+                    <Select key={productEditNumber} components={{ DropdownIndicator }} options={options} classNamePrefix="custom-select" placeholder='Please select the category' onChange={handleChangeCategory} />
+                    <div className='btn'>
+                      {/*<button className={({answerTime}) => answerTime==12 ? 'active' : ''} onClick={()=>setAnswerTime(12)}>12 hours</button>
                                             <button className={({answerTime}) => answerTime==24 ? 'active' : ''} onClick={()=>setAnswerTime(24)}>24 hours</button>*/}
-                                            <div className="auth_request__form-radio_btn">
-                                                <input type="radio" name="hours" checked={answerTime == 12 ? true :false} value="12" id="12h" />
-                                                <label htmlFor="12h" onClick={()=>setAnswerTime(12)}>12 hours</label>
-                                            </div>
-                                            <div className="auth_request__form-radio_btn">
-                                                <input type="radio" name="hours" checked={answerTime == 24 ? true :false} value="24" id="24h"/>
-                                                <label htmlFor="24h" onClick={()=>setAnswerTime(24)} value="24">24 hours</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <Select key={productEditNumber} components={{ DropdownIndicator }} options={options} classNamePrefix="custom-select" placeholder='Please select the category' onChange={handleChangeCategory} />
-                                    {errors.category && <div className='auth_request__form__elem-error'>{errors.category}</div>}
-                                </div>
-                                <div className='auth_request__form-elem'>
-                                    <div className='auth_request__form__elem-label'>Choose the brand</div>
-                                    <Select key={brandSelectorKey} components={{ DropdownIndicator }} options={optionsBrands} classNamePrefix='custom-select' placeholder='Please select the brand' onChange={handleChangeBrand} />
-                                    {errors.brand && <div className='auth_request__form__elem-error'>{errors.brand}</div>}
-                                </div>
-                                <div className='auth_request__form__elem'>
-                                    <input type="checkbox" className="custom-checkbox" id="certificate" name="certificate" checked={certCheck} onChange={() => setCertCheck(!certCheck)} />
-                                    <label htmlFor="certificate" id="forCert">Include certificate</label>
-                                </div>
-                                {certCheck && <div className='auth_request__form__elem'>
-                                    <div className='auth_request__form__radio-group'>
-                                        <div className='auth_request__form__radio-button'>Upload logo</div>
-                                        <div className='auth_request__form__radio-button'>Use existing one</div>
-                                    </div>
-                                </div>}
-                                <div className='auth_request__form__elem'>
-                                    <div className='auth_request__form__elem-label'>Additional details</div>
-                                    <div className='auth_request__form__elem-input-wrapper'>
-                                        <input className='auth_request__form__elem-input' placeholder='Type model name here' value={modelTypeValue} onChange={handleChangeModelType} />
-                                        {errors.typeModel && <div className='auth_request__form__elem-error'>{errors.typeModel}</div>}
-                                        <input className='auth_request__form__elem-input' placeholder='Type supplier name here (optional)' value={supplierTypeValue} onChange={(e) => setSupplierTypeValue(e.target.value)} />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='auth_request__form-container-wrapper second'>
-                                <Balance mt={0} />
-                            </div>
-                        </div>
-                        <div className='auth_request__form-container second'>
-                            <div className='auth_request__form__elem-label' id='photo_block_label'>Upload photos</div>
-                            {photoError && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
-
-                            <div className='auth_request__form__photo-container'>
-                                {productTypeValue && photoFiles.map((el, index) =>
-                                
-                                    <div key={index} className={`auth_request__form__photo-elem ${index}`}>
-                                        {el.imagePreviewUrl !== '' ? (
-                                          <>
-                                            <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${el.imagePreviewUrl})` }}>
-                                                <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
-                                            </label>
-                                            <button className="auth_request__form__photo-button" onClick={()=> deleteImage(index)}>Х</button>
-                                          </>
-                                            ): <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'auth_request__form__photo-photolabel required' : 'auth_request__form__photo-photolabel'}>
-                                                <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
-                                            </label>}
-                                        <div className='auth_request__form__photo-name'>{el.angleName}</div>
-                                        {el.format !== false && el.format !== null && el.format !== true && <div className='auth_request__form__photo-error'>Format is not available</div>}
-                                    </div>)}
-                            </div>
-                        </div>
+                      <div className="auth_request__form-radio_btn">
+                        <input type="radio" name="hours" value="2" id="2h" />
+                        <label htmlFor="2h" onClick={() => setAnswerTime(2)}>2 hours</label>
+                      </div>
+                      <div className="auth_request__form-radio_btn">
+                        <input type="radio" name="hours" value="12" id="12h" />
+                        <label htmlFor="12h" onClick={() => setAnswerTime(12)}>12 hours</label>
+                      </div>
+                      <div className="auth_request__form-radio_btn">
+                        <input type="radio" name="hours" value="24" id="24h" />
+                        <label htmlFor="24h" onClick={() => setAnswerTime(24)} value="24">24 hours</label>
+                      </div>
                     </div>
-                    <div className="auth_request__form__footer">
-                    {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
-                        <div className='auth_request__form__footer-wrapper'>
-                        
-                            <div className='auth_request__form__footer__info'>
-                                
-                                <div className='auth_request__form__footer__info__h1'>Summary</div>
-                                <div className='auth_request__form__footer__info__h2'>
-                                    <div className='auth_request__form__footer__info__h2-label'>authentication requests</div>
-                                    <div className='auth_request__form__footer__info__h2-value'>1</div>
-                                </div>
-                                <div className='auth_request__form__footer__info__h2'>
-                                    <div className='auth_request__form__footer__info__h2-label'>Answer time</div>
-                                    <div className='auth_request__form__footer__info__h2-value'>{answerTime} hours</div>
-                                </div>
-                            </div>
-                            {checkValid && <button className='auth_request__form__footer__button-wrapper' type="submit">Submit</button>}
-                            {!checkValid && <button className='auth_request__form__footer__button-wrapper-disabled' type="submit" disabled>Submit</button>}
-
-                        </div>
+                    {errors.category && <div className='auth_request__form__elem-error'>{errors.category}</div>}
+                  </div>
+                  <div className='auth_request__form-elem'>
+                    <div className='auth_request__form__elem-label'>Choose the brand</div>
+                    <Select key={brandSelectorKey} components={{ DropdownIndicator }} options={optionsBrands} classNamePrefix='custom-select' placeholder='Please select the brand' onChange={handleChangeBrand} />
+                    {errors.brand && <div className='auth_request__form__elem-error'>{errors.brand}</div>}
+                  </div>
+                  <div className='auth_request__form__elem'>
+                    <input type="checkbox" className="custom-checkbox" id="certificate" name="certificate" checked={certCheck} onChange={() => setCertCheck(!certCheck)} />
+                    <label htmlFor="certificate" id="forCert">Include certificate</label>
+                  </div>
+                  {certCheck && <div className='auth_request__form__elem'>
+                    <div className='auth_request__form__radio-group'>
+                      <div className='auth_request__form__radio-button'>Upload logo</div>
+                      <div className='auth_request__form__radio-button'>Use existing one</div>
                     </div>
-                </form>
+                  </div>}
+                  <div className='auth_request__form__elem'>
+                    <div className='auth_request__form__elem-label'>Additional details</div>
+                    <div className='auth_request__form__elem-input-wrapper'>
+                      <input className='auth_request__form__elem-input' placeholder='Type model name here' value={modelTypeValue} onChange={handleChangeModelType} />
+                      {errors.typeModel && <div className='auth_request__form__elem-error'>{errors.typeModel}</div>}
+                      <input className='auth_request__form__elem-input' placeholder='Type supplier name here (optional)' value={supplierTypeValue} onChange={(e) => setSupplierTypeValue(e.target.value)} />
+                    </div>
+                  </div>
+                </div>
+                <div className='auth_request__form-container-wrapper second'>
+                  <Balance mt={0} />
+                </div>
+              </div>
+              <div className='auth_request__form-container second'>
+                <div className='auth_request__form__elem-label' id='photo_block_label'>Upload photos</div>
+                {photoError && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
+
+                <div className='auth_request__form__photo-container'>
+                  {productTypeValue && photoFiles.map((el, index) =>
+
+                    <div key={index} className={`auth_request__form__photo-elem ${index}`}>
+                      {el.imagePreviewUrl !== '' ? (
+                        <>
+                          <label htmlFor={`photo-${index}`} className='auth_request__form__photo-previewImg' style={{ background: `url(${el.imagePreviewUrl})` }}>
+                            <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
+                          </label>
+                          <button className="auth_request__form__photo-button" onClick={() => deleteImage(index)}>Х</button>
+                        </>
+                      ) : <label htmlFor={`photo-${index}`} className={el.necessity == 1 ? 'auth_request__form__photo-photolabel required' : 'auth_request__form__photo-photolabel'}>
+                        <input className={`auth_request__form__photo-fileInput ${index}`} accept=".png,.jpg,.jpeg" type="file" onChange={handleImageChange} id={`photo-${index}`} />
+                      </label>}
+                      <div className='auth_request__form__photo-name'>{el.angleName}</div>
+                      {el.format !== false && el.format !== null && el.format !== true && <div className='auth_request__form__photo-error'>Format is not available</div>}
+                    </div>)}
+                </div>
+              </div>
             </div>
+            <div className="auth_request__form__footer">
+              {postErrors.authrequest && <div className='auth_request__form__footer-error'>{postErrors.authrequest}</div>}
+              <div className='auth_request__form__footer-wrapper'>
+
+                <div className='auth_request__form__footer__info'>
+
+                  <div className='auth_request__form__footer__info__h1'>Summary</div>
+                  <div className='auth_request__form__footer__info__h2'>
+                    <div className='auth_request__form__footer__info__h2-label'>authentication requests</div>
+                    <div className='auth_request__form__footer__info__h2-value'>1</div>
+                  </div>
+                  <div className='auth_request__form__footer__info__h2'>
+                    <div className='auth_request__form__footer__info__h2-label'>Answer time</div>
+                    <div className='auth_request__form__footer__info__h2-value'>{answerTime} hours</div>
+                  </div>
+                </div>
+                {checkValid && <button className='auth_request__form__footer__button-wrapper' type="submit">Submit</button>}
+                {!checkValid && <button className='auth_request__form__footer__button-wrapper-disabled' type="submit" disabled>Submit</button>}
+
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
     </>
 )
 };

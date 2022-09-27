@@ -23,6 +23,8 @@ import Select from "react-select";
 import FilterSelect from "../../PersonalArea/Authentications/FilterSelect";
 import Loader from "../../Loader/Loader";
 import BlockComponentLayout from "../../BlockComponentLayout/BlockComponentLayout";
+import moment from "moment/moment";
+
 const AuthenticTableBlock = (props) => {
   const location = useLocation();
 
@@ -66,7 +68,6 @@ const AuthenticTableBlock = (props) => {
     // setPage(props.var === "completed" ? "complete" : "progress"); 
     setPage("complete");//костыль
   });
-  console.log(page);
 
   useEffect(() => {
     resultStatuses !== null &&
@@ -280,30 +281,7 @@ const AuthenticTableBlock = (props) => {
     // }
   }
 
-  function getDate(data, version) {
-    const date = new Date(data);
-    if (version === "desktop") {
-      return (
-        date.getDate() +
-        "/" +
-        Number(date.getMonth() + 1) +
-        "/" +
-        date.getFullYear()
-      );
-    } else if (version === "mobile") {
-      return (
-        date.getHours() +
-        ":" +
-        date.getMinutes() +
-        "·" +
-        date.getDate() +
-        "/" +
-        Number(date.getMonth() + 1) +
-        "/" +
-        date.getFullYear()
-      );
-    }
-  }
+  var dataFixed = () => moment().format('DD/MM/YYYY')
 
   useEffect(() => {
     searchValue && searchValue !== ""
@@ -348,7 +326,7 @@ const AuthenticTableBlock = (props) => {
   console.log(currentTableData);
 
   params.page === "photo-requests" &&
-    navigate("../luxury-store/authentications/photo-requests");
+    navigate("../luxury-store/authentications/photo-requests"); 
 
   if (page === null) {
     return <div>Хйуня</div>;
@@ -379,7 +357,7 @@ const AuthenticTableBlock = (props) => {
                 </div>
               </div> */}
           <>
-            <div className="authent__nav-wrapper">
+            <div className="authent__nav-wrapper" style={window.location.pathname === "/dashboard" ? {marginTop: '-15px'} : {marginTop: '0px'}}>
               <div className="authent__nav-sort">
                 <SvgSelector id="sort-icon" />
               </div>
@@ -462,7 +440,7 @@ const AuthenticTableBlock = (props) => {
             )}
 
             {/* mobile buttons */}
-            <div className="authent__buttons-wrapper mobile">
+            {window.location.pathname !== "/dashboard" && <div className="authent__buttons-wrapper mobile">
               <div
                 className={
                   page !== "complete"
@@ -483,7 +461,7 @@ const AuthenticTableBlock = (props) => {
               >
                 In progress
               </div>
-            </div>
+            </div>}
 
             {page === "complete" && (
               <div className="authent__table">
@@ -560,7 +538,7 @@ const AuthenticTableBlock = (props) => {
                             #{el.publicId}
                           </div>
                           <div className="authent__table__elem__category-date">
-                            {getDate(el.createdAt, "mobile")}
+                            {dataFixed(el.createdAt, "mobile")}
                           </div>
                         </div>
                         <div className="authent__table__elem-brand">
@@ -573,7 +551,7 @@ const AuthenticTableBlock = (props) => {
                           {el.checkStatus}
                         </div>
                         <div className="authent__table__elem-date">
-                          {getDate(el.createdAt, "desktop")}
+                          {dataFixed(el.createdAt, "desktop")}
                         </div>
                         {el.certificateAvailable ? (
                           <a
@@ -657,7 +635,7 @@ const AuthenticTableBlock = (props) => {
                             #{el.publicId}
                           </div>
                           <div className="authent__table__elem__category-date">
-                            {getDate(el.createdAt, "mobile")}
+                            {dataFixed(el.createdAt, "mobile")}
                           </div>
                         </div>
                         <div className="authent__table__elem-brand">

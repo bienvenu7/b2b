@@ -29,6 +29,7 @@ const Card = (props) => {
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
+    console.log(params)
     dispatch(getProductThunk(params.id));
     return () => {
       dispatch(setProduct(null));

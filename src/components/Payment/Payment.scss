@@ -141,6 +141,7 @@
                 display: flex;
                 gap: 25px;
                 padding-top: 17px;
+
                 @include for-phone-only {
                     flex-wrap: wrap;
                 }
@@ -159,8 +160,12 @@
             max-width: 219px !important;
 
             @include for-phone-only {
-                width: 100% !important;
+                width: 50% !important;
                 text-align: left !important;
+                
+                input {
+                    width: 100%;
+                }
             }
 
             b {
@@ -173,7 +178,6 @@
                 box-shadow: none !important;
                 inset: 18px auto 2px 57px !important;
                 background-color: transparent !important;
-
                 i {
                     color: rgba(203, 173, 115, 1) !important;
                 }
@@ -200,7 +204,7 @@
                 }
 
                 &:hover {
-                    background-color: rgba(203, 173, 115, 0.54)  !important;
+                    background-color: rgba(203, 173, 115, 0.54) !important;
                 }
             }
         }
@@ -209,7 +213,7 @@
             padding: 21px 87px 26px 108px;
 
             @include for-phone-only {
-                padding: 0 23px;//0 23px
+                padding: 0 23px; //0 23px
             }
 
             &.first {
@@ -245,6 +249,7 @@
         }
 
         &-wrapper {
+
             //max-width: 800px;
             @include for-phone-only {
                 width: 100vw;
@@ -315,8 +320,8 @@
         &-radio_btn {
 
             display: flex;
-            width: 100%;
             justify-content: center;
+            margin-right: 10px;
 
             input[type=radio] {
                 display: none;
@@ -333,20 +338,25 @@
                 font-size: 14.3237px;
                 line-height: 140%;
                 cursor: pointer;
-                color: #565656;
-                border: 0.841829px solid #CECECE;
+                color: $c_g;
+                border: 0.841829px solid $c_g;
                 border-radius: 6.40351px;
-                width: 167px;
+                width: auto;
+                padding: 0 20px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 38px;
+                white-space: nowrap;
+                height: 20px;
+                padding: 8px 22px;
 
                 @include for-phone-only {
                     border-color: $c_g;
                     border-radius: 4px;
                     color: $c_g;
-                    width: 150px;
+                    padding: 1.5vh 5vw;
+
+                    font-size: 18px;
                 }
             }
 
@@ -409,21 +419,27 @@
                 gap: 5px;
 
                 @include for-phone-only {
-                    gap: initial;//20px
+                    gap: 0px;
+                    margin-bottom: 0px !important;
+                    margin-top: 0px;
+                    height: auto;
+                    width: 80vw;
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    div:first-of-type {
+                        margin-bottom: 10px;
+                    }
                 }
             }
 
             &__hours-wrapper {
                 display: flex;
                 flex-direction: column;
+
                 @include for-phone-only {
                     width: 100%;
-                }
-            }
-
-            &.shoes-vars {
-                @include for-phone-only {
-                    height: 62px;
+                    flex-wrap: wrap;
                 }
 
                 .payment__form-label {
@@ -431,7 +447,14 @@
 
                     @include for-phone-only {
                         margin-top: 21px;
+                        width: fit-content;
                     }
+                }
+            }
+
+            &.shoes-vars {
+                @include for-phone-only {
+                    height: 62px;
                 }
             }
 
@@ -506,6 +529,7 @@
 
                     @include for-phone-only {
                         gap: 15px;
+                        display: flex;
                     }
 
                     &#cert_count {
@@ -536,7 +560,20 @@
             }
 
             &__volume {
-                &-wrapper {}
+                &-wrapper {
+                    .payment__form-label {
+                        margin-top: 26px;
+
+                        @include for-phone-only {
+                            margin-top: 21px;
+                            width: fit-content;
+                        }
+                    }
+
+                    @include for-phone-only {
+                        width: 80vw;
+                    }
+                }
             }
         }
     }
@@ -777,8 +814,8 @@
             }
 
             .top {
-                margin-top: 54px;
-                margin-bottom: 130px;
+                margin-top: 58px;
+                // margin-bottom: 130px;
 
                 @include for-phone-only {
                     display: none;
@@ -792,9 +829,10 @@
         }
 
         &__logo {
-            width: 190px;
+            width: 84px;
             height: 141px;
-            margin-bottom: 68px;
+            margin-top: 59px;
+            // margin-bottom: 50px;
 
             img {
                 width: 100%;
@@ -814,7 +852,7 @@
                 font-size: 40px;
                 line-height: 140%;
                 text-transform: uppercase;
-                margin-bottom: 51px;
+                margin-bottom: 23px;
 
                 @include for-phone-only {
                     display: none;
@@ -841,8 +879,8 @@
                 }
 
                 &.last-child {
-                    max-width: 1000px;
-                    margin-top: 34px;
+                    max-width: 900px;
+                    margin-top: 0;
 
                     #target {
                         display: contents;
@@ -869,11 +907,11 @@
 
         &__buttons {
             &-wrapper {
-                margin-top: 112px;
+                margin-top: 38px;
                 gap: 31px;
                 display: flex;
                 flex-direction: column;
-                padding-bottom: 50px;
+                // padding-bottom: 50px;
 
                 @include for-phone-only {
                     margin-top: 65px;
