@@ -4,10 +4,13 @@ import CardNotif from "./CardNotif";
 
 import { getNotification } from "../../api/notifications/notifications-api";
 
+import { getProductThunk } from "../../redux/thunks/product-thunk";
+
 import "./Notif.scss";
 import { useEffect } from "react";
 import { takeProducts } from "../../redux/selectors/product-selectors";
 import { useSelector } from "react-redux";
+import { getProduct } from "../../api/product/product-api";
 
 
 const Notification = () => {
@@ -21,6 +24,8 @@ const Notification = () => {
   useEffect(() => {
     getNotifs()
   }, [])
+
+  useEffect(() => {}, [product])
 
   const getNotifs = async () => {
     try {

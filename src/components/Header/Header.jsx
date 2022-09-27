@@ -39,6 +39,7 @@ const Header = (props) => {
   useEffect(() => {}, [params.page]);
 
 
+
   // Хардкод путей для хлебных крошек
   let path
   if(pathname ==='/photo-requests/all') path = "Photo requests"
