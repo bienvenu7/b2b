@@ -299,12 +299,16 @@
 
       &__elem {
 
-        &-checkbox {}
+        &-checkbox {
+          
+          width: 50px;
+        }
 
         &-category {
           display: flex;
           align-items: center;
-          width: 130px;
+          width: 150px;
+          
         }
       }
 
@@ -312,37 +316,42 @@
         &-wrapper {
           display: flex;
           align-items: center;
-          gap: 19px;
+          // gap: 19px;
         }
 
         &-brand {
-          display: flex;
+          // display: flex;
           justify-content: center;
-          width: 80px;
+          width: 95px;
+          
         }
 
         &-model {
-          display: flex;
-          justify-content: center;
-          width: 120px;
+          // display: flex;
+          // justify-content: center;
+          width: 155px;
+          
         }
 
         &-outcome {
-          display: flex;
-          justify-content: center;
+          // display: flex;
+          // justify-content: center;
           width: 80px;
+          
         }
 
         &-order {
-          width: 70px;
-          display: flex;
-          justify-content: center;
+          width: 85px;
+          
+          // display: flex;
+          // justify-content: center;
         }
 
         &-date {
-          width: 100px;
-          display: flex;
-          justify-content: center;
+          width: 115px;
+          
+          // display: flex;
+          // justify-content: center;
           white-space: nowrap;
           cursor: pointer;
 
@@ -354,9 +363,10 @@
         }
 
         &-pdf {
-          width: 110px;
-          display: flex;
-          justify-content: center;
+          width: 85px;
+          
+          // display: flex;
+          // justify-content: center;
         }
 
         &-status {
@@ -398,6 +408,8 @@
       }
 
       &-checkbox {
+        width: 50px;
+        
         @include for-phone-only {
           display: none;
         }
@@ -410,6 +422,7 @@
         grid-template-columns: 33px;
         display: grid;
         width: 150px;
+        
         cursor: pointer;
 
         @include for-phone-only {
@@ -476,10 +489,11 @@
       }
 
       &-brand {
-        display: flex;
-        justify-content: center;
-        width: 80px;
-        text-align: center;
+        // display: flex;
+        // justify-content: center;
+        width: 95px;
+        
+        // text-align: center;
 
         @include for-phone-only {
           white-space: nowrap;
@@ -499,9 +513,10 @@
       }
 
       &-model {
-        display: flex;
-        justify-content: center;
-        width: 120px;
+        // display: flex;
+        // justify-content: center;
+        width: 155px;
+        
 
         @include for-phone-only {
           display: none;
@@ -509,9 +524,10 @@
       }
 
       &-outcome {
-        display: flex;
-        justify-content: center;
+        // display: flex;
+        // justify-content: center;
         width: 80px;
+        
 
         @include for-phone-only {
           display: none;
@@ -519,15 +535,17 @@
       }
 
       &-order {
-        width: 70px;
-        display: flex;
-        justify-content: center;
+        width: 85px;
+        
+        // display: flex;
+        // justify-content: center;
       }
 
       &-date {
-        width: 100px;
-        display: flex;
-        justify-content: center;
+        width: 115px;
+        
+        // display: flex;
+        // justify-content: center;
 
         @include for-phone-only {
           display: none;
@@ -536,9 +554,10 @@
 
       &-pdf {
         cursor: pointer;
-        width: 110px;
-        display: flex;
-        justify-content: center;
+        width: 85px;
+        // display: flex;
+        
+        // justify-content: center;
         text-decoration: none;
         color: #7B809A;
 
@@ -587,7 +606,7 @@
     &__elems {
       &-wrapper {
         display: flex;
-        gap: 19px;
+        // gap: 19px;
         align-items: center;
       }
     }

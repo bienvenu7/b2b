@@ -158,8 +158,10 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                margin-bottom: 49px;
-
+                margin-bottom: 50px;
+                @media (max-height:810px) {
+                    margin-bottom: 10px;
+                 }
                 @include for-phone-only {
                     max-width: 300px;
                 }
