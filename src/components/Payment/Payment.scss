@@ -844,7 +844,7 @@
                 font-family: 'Roboto';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 40px;
+                font-size: 28px;
                 line-height: 140%;
                 text-transform: uppercase;
                 margin-bottom: 23px;
@@ -858,7 +858,7 @@
                 font-family: 'Roboto';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 28px;
+                font-size: 18px;
                 line-height: 140%;
                 text-align: center;
                 color: #565656;
@@ -874,7 +874,7 @@
                 }
 
                 &.last-child {
-                    max-width: 900px;
+                    max-width: 600px;
                     margin-top: 0;
 
                     #target {

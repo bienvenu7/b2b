@@ -197,6 +197,12 @@
                 display: grid;
                 grid-template-columns: repeat(8, 111px);
                 gap: 12px;
+
+                @include for-phone-only {
+                    display: grid;
+                    grid-template-columns: repeat(2, auto);
+                    gap: 25px;
+                }
             }
 
             &-name {
@@ -206,9 +212,18 @@
                 // font-family: 'SF Pro Text';
                 font-style: normal;
                 font-weight: 600;
-                font-size: 14;
+                font-size: 14px;
                 line-height: 17px;
                 color: $c_b;
+
+                @include for-phone-only {
+                    min-width: 153px;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 21px;
+                    color: #000000;
+                }
             }
 
             &-elem {
@@ -228,6 +243,11 @@
                 border: 1px dashed $c_b;
                 box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
                 border-radius: 4px;
+
+                @include for-phone-only {
+                    min-width: 153px;
+                    min-height: 125px;
+                }
 
                 input[type=file] {
                     width: 111px;
@@ -321,6 +341,15 @@
             color: rgba(0, 0, 0, 1);
             padding-top: 14px;
             padding-bottom: 14px;
+
+            @include for-phone-only {
+                // font-family: 'SF Pro Display';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                color: #666666;
+            }
         }
 
         &-heading {
@@ -546,6 +575,10 @@
             height: 230px;
             background-color: #F6F6F7;
 
+            @include for-phone-only {
+                border-top: 0.25px solid #656565;
+            }
+
             &-wrapper {
                 width: calc(1170px - 148px);
                 margin: auto;
@@ -558,6 +591,7 @@
                     flex-direction: column;
                     gap: 0;
                     padding-top: 21px;
+                    
                 }
             }
 

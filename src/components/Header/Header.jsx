@@ -4,13 +4,14 @@ import SvgSelector from "../../common/icons/SvgSelector";
 import { getUser } from "../../redux/selectors/auth-selectors";
 import Navigation from "../Navigation/Navigation";
 
-import Notification from "../../components/PersonalArea/notifications/Notifications";
+import Notification from "../notifications/Notifications";
 import "./Header.scss";
 
 //icon header
 import header_icon from "../../common/icons/logoMobile.png";
 import { logoutThunk } from "../../redux/thunks/auth-thunk";
 import { useDispatch, useSelector } from "react-redux";
+import { takeProducts } from "../../redux/selectors/product-selectors";
 
 const Header = (props) => {
   const params = useParams();
@@ -36,6 +37,7 @@ const Header = (props) => {
   });
 
   useEffect(() => {}, [params.page]);
+
 
 
   // Хардкод путей для хлебных крошек

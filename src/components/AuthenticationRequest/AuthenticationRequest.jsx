@@ -76,7 +76,6 @@ const AuthenticationRequest = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
 
   const [photoFiles, setPhotoFiles] = useState([]);
-  console.log({ photoFiles: photoFiles });
   // const [options, setOptions] = useState([])
 
   const options = [];
@@ -91,7 +90,7 @@ const AuthenticationRequest = () => {
         setCheckValid(false)
         break
       }
-      // console.log("не зашло в условия проверки инпута")
+      console.log("не зашло в условия проверки инпута")
       setCheckValid(true)
     }
     // for (let i = 0 ; i < photoFiles.length; i++) {
@@ -192,24 +191,24 @@ const AuthenticationRequest = () => {
 
   const handlePost = async () => {
 
-    // console.log("data", {
-    //   order,
-    //   productType: productTypeValue,
-    //   brand: brandValue,
-    //   modelName: modelTypeValue,
-    //   supplier: supplierTypeValue,
-    //   certificateNeeded: certCheck,
-    //   answerTime: answerTime,
-    // });
+    console.log("data", {
+      order,
+      productType: productTypeValue,
+      brand: brandValue,
+      modelName: modelTypeValue,
+      supplier: supplierTypeValue,
+      certificateNeeded: certCheck,
+      answerTime: answerTime,
+    });
     setButtonState(false); // кнопка  в состояние неактивной
     let onlineOrder = {}; // пустой объект, для чего?
     if (!brandValue) {  // если brandValue - false
       !productTypeValue  // дополнительно проверить productTypeValue - false
         ? setErrorsForm({ // если productTypeValue - false
-          ...errors,
-          category: "Please select",
-          brand: "Please select",
-        })
+            ...errors,
+            category: "Please select",
+            brand: "Please select",
+          })
         : setErrorsForm({ ...errors, brand: "Please select" }); // иначе 
     }
 
@@ -218,16 +217,16 @@ const AuthenticationRequest = () => {
       if (!brandValue) {  // если brandValue - false
         !productTypeValue  // дополнительно проверить productTypeValue - false
           ? setErrorsForm({  // если productTypeValue - false
-            ...errors,
-            category: "Please select",
-            brand: "Please select",
-            typeModel: "Please fill",
-          })
+              ...errors,
+              category: "Please select",
+              brand: "Please select",
+              typeModel: "Please fill",
+            })
           : setErrorsForm({ // иначе 
-            ...errors,
-            brand: "Please select",
-            typeModel: "Please fill",
-          });
+              ...errors,
+              brand: "Please select",
+              typeModel: "Please fill",
+            });
       } else { // иначе если в productTypeValue - true
         setErrorsForm({ ...errors, typeModel: "Please fill" });
       }
@@ -243,7 +242,7 @@ const AuthenticationRequest = () => {
 
     //  блок, который определяет, поля с обязательными полями все пустые или частично
     if (photoFiles.find((el) => el.file == "" && el.necessity == 1)) { // если есть хоть один элемент в маассиве photoFilesБ который соотвествует условиям 
-      const reqBlank = photoFiles.filter((el) => el.necessity == 1) // получить все элементы el.necessity == 1
+      const reqBlank =  photoFiles.filter((el) => el.necessity == 1) // получить все элементы el.necessity == 1
       const inputBlank = photoFiles.filter((el) => el.file == "" && el.necessity == 1) // получить все элементы el.file == "" && el.necessity == 1
       setPhotoFiles(
         photoFiles.map((el, index) =>
@@ -252,8 +251,8 @@ const AuthenticationRequest = () => {
       );
       setPhotoError(true);
       setButtonState(true);
-      if (reqBlank.length === inputBlank.length) setErrorMessage("It seems you did not upload photos of your item, please upload them before submitting!")
-      if (reqBlank.length > inputBlank.length) setErrorMessage("One or more of the required photos are missing, please make sure you upload them!")
+      if(reqBlank.length === inputBlank.length) setErrorMessage("It seems you did not upload photos of your item, please upload them before submitting!")
+      if(reqBlank.length > inputBlank.length) setErrorMessage("One or more of the required photos are missing, please make sure you upload them!")
       return;
     }
 
@@ -449,7 +448,7 @@ const AuthenticationRequest = () => {
               </div>
               <div className='auth_request__form-container second'>
                 <div className='auth_request__form__elem-label' id='photo_block_label'>Upload photos</div>
-                {photoError && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
+                {productTypeValue && <div className='auth_request__form-desc'>Required fields are outlined, please fill them up if details are available</div>}
 
                 <div className='auth_request__form__photo-container'>
                   {productTypeValue && photoFiles.map((el, index) =>
