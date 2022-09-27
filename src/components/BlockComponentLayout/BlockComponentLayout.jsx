@@ -11,17 +11,14 @@ const BlockComponentLayout = ({children}) => {
   const [size, setSize] = useState(false)
 
   useEffect (() => {
-    window.innerWidth <= 520 && setSize(!size);
+    window.innerWidth <= 520 && setSize(true);
   }, [])
 
   console.log(size)
 
   return <div 
-  // style={window.location.pathname === "/dashboard" & size ?
-  // {marginLeft: '17px', marginRight: '17px', width: 'auto', paddingRight: '20px', paddingLeft: '20px'}
-  // :
-  // {marginLeft: '0px', marginRight: '0px', width: 'auto', paddingLeft: '12px', paddingRight: '12px'}}
-  className={window.location.pathname === "/dashboard" & size ? 'block resize' : 'block'}>{children}</div>
+  // style={window.location.pathname !== "dashboard" && {width: '100vw'}}
+  className={window.location.pathname === "/dashboard" ? 'block' : 'block resize'}>{children}</div>
 }
 
 export default BlockComponentLayout

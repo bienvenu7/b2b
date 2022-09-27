@@ -2,6 +2,7 @@ import React from 'react'
 import SvgSelector from '../../../common/icons/SvgSelector'
 import Notification from '../../notifications/Notifications'
 
+
 const MobileNotif = ({setShowNotif}) => {
   return (
     <div className='mobile-notif__wrapper'>
