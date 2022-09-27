@@ -5,6 +5,7 @@
         display: flex;
 
         @include for-phone-only {
+            flex-direction: column;
             max-width: 100vh;
             overflow-y: scroll;
             overflow-x: hidden;
@@ -81,6 +82,22 @@
                 display: none;
             }
         }
+
+        &-mobile {
+            display: none;
+
+            @include for-phone-only {
+                display: block;
+                padding-bottom: 30px;
+            }
+        }
+    }
+
+    &__payment-block {
+        width: 323px;
+        margin: auto;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 
     &__total {
@@ -96,6 +113,10 @@
             max-width: 232px;
             width: 100%;
             margin-bottom: 16px;
+
+            @include for-phone-only {
+                max-width: 323px;
+            }
         }
 
         &-title {}
@@ -113,6 +134,10 @@
             gap: 15px;
             max-width: 232px;
             width: 100%;
+
+            @include for-phone-only {
+                max-width: 323px;
+            }
         }
 
         &-button {
@@ -127,9 +152,11 @@
             border-radius: 2.86473px;
             border: 0;
             color: $c_w;
+
             &[disabled] {
                 background-color: #fff;
             }
+
             &:first-child {
                 border: 1px;
                 color: $c_g;
@@ -138,8 +165,8 @@
             }
         }
     }
-    
-    &__header{
+
+    &__header {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -149,21 +176,24 @@
             display: none;
         }
 
-        &__history{
+        &__history {
             display: flex;
-            &-text{
+
+            &-text {
                 font-family: 'Roboto';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 10.0266px;
                 line-height: 140%;
                 color: $c_g;
-                &.bold{
+
+                &.bold {
                     font-weight: 700;
                 }
             }
         }
-        &-logo{
+
+        &-logo {
             width: 43px;
             height: 32px;
 
@@ -185,9 +215,9 @@
                 width: 100vw;
                 color: rgba(225, 225, 225, 1);
             }
-            
+
         }
-        
+
     }
 
     &-elem {
@@ -207,7 +237,7 @@
             max-height: 36px;
             gap: 0px;
             margin-left: 74px;
-            
+
             &-btn {
                 min-width: 150px;
                 height: 38px;
@@ -228,14 +258,14 @@
     }
 
     // &-second_block-wrapper {
-        
+
     //     @include for-phone-only {
     //         display: flex;
     //         flex-direction: column;
     //         max-width: calc(100vw - 34px);
     //         overflow: hidden;
     //     }
-        
+
     // }
 }
 
@@ -251,6 +281,7 @@
         min-width: 340px;
 
         max-width: calc(100vw - 42px);
+
         @include for-phone-only {
             max-width: inherit;
         }

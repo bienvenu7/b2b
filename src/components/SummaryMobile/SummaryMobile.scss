@@ -1,7 +1,7 @@
 @import '../../scss/vars';
 
 .summary {
-    &-container {
+    &-container-mobile {
         margin: 0 auto;
         width: 232px;
         display: flex;
@@ -13,19 +13,52 @@
         }
     }
 
-    &-title {
+    &__span {
+        padding: 2px 5px;
+        background-color: #CBAD73;
+        color: #fff;
+        border-radius: 4px;
+    }
+
+    &__box-right {
+        display: flex;
+        flex-direction: column;
+        gap: 15px
+    }
+
+    &__box-left {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    &-title-mobile {
         font-family: 'Roboto';
         font-style: normal;
-        font-weight: 700;
-        font-size: 15.6298px;
-        line-height: 140%;
-        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        // text-transform: uppercase;
+    }
+
+    &__elem-cost-mobile {
+        color: #CBAD73;
+    }
+
+    &__button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 17px;
+        font-weight: 800;
     }
 
     &__elem {
-        &-wrapper {
+        &-wrapper-mobile {
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             .box {
                 display: flex;
@@ -53,9 +86,9 @@
         &-name {
             font-family: 'Roboto';
             font-style: normal;
-            font-weight: 700;
-            font-size: 13.8958px;
-            line-height: 140%;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
             display: block;
         }
 

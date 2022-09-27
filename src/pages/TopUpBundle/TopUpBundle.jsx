@@ -16,6 +16,7 @@ import "./TopUpBundle.scss";
 import Summary from "../../components/Summary/Summary";
 import logo from "../../common/images/logo-for-mobile.png";
 import RigthSide from "../../components/Payment/RightSide/RightSide";
+import RigthSideMobile from "../../components/Payment/RightSideMobile/RightSideMobile";
 import Header from "../../components/Payment/Header/Header";
 import Header1 from "../../components/Header/Header";
 import Navigation from "../../components/Navigation/Navigation";
@@ -109,6 +110,10 @@ const TopUpBundle = (props) => {
           />
         </div>
         <RigthSide
+          toogle={{ add: btnAddToogleClick, pay: btnPayToogleClick }}
+          cartTotal={calcCartTotal}
+        />
+        <RigthSideMobile
           toogle={{ add: btnAddToogleClick, pay: btnPayToogleClick }}
           cartTotal={calcCartTotal}
         />
