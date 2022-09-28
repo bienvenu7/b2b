@@ -1,5 +1,5 @@
 import SvgSelector from "../../../common/icons/SvgSelector";
-import React from 'react'
+import React, {useEffect} from 'react'
 import "./Dashboard.scss";
 import storeLogo from "../../../common/images/logo-of-store.png";
 import dashboardIcon from "../../../common/images/dashboard-icon.png";
@@ -17,6 +17,7 @@ const Dashboard = (props) => {
   const [show1, setShow1] = useState(true)
 
   const [showNotif, setShowNotif] = useState(false)
+  const [isLoadedBalance, setIsLoadedBalance] = useState(false)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ const Dashboard = (props) => {
   const companyName = useSelector(companyname);
   // console.log(companyName);
   // const balance = [];
+
+  useEffect(()=>{
+    setIsLoadedBalance(true);
+  },[balance])
 
   //temp
 
@@ -127,7 +132,7 @@ const Dashboard = (props) => {
               } */}
 
           </div>}
-          {balance.length > 0 ?null:<div className="textdisabled"><span>!</span>Top up to start autentification</div>}
+          {balance.length > 0 || isLoadedBalance ?null:<div className="textdisabled"><span>!</span>Top up to start autentification</div>}
         </div>
         <div className="dashboard__elem__authentications-wrapper">
           <div className="dashboard__elem__authentications-label">
