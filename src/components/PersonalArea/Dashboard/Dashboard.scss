@@ -384,6 +384,11 @@
                             line-height: 140%;
                             margin: 14px 0px 0px 20px;
                         }
+                        &.authenticationdisabled{
+                            color:#fff;
+                            background-color: rgb(105, 105, 105);
+                            border: 1px solid rgb(105, 105, 105);
+                        }
                     }
 
                 }
@@ -550,17 +555,20 @@
     }
 }
 .textdisabled{
+    text-align: center;
     // display: none;
     color: red;
     margin-top: 15px;
     font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
     span{
         border-radius: 50%;
         background-color: red;
         color: #fff;
         // padding: 5px;
-        width: 20px;
-        height: 20px;
+        width: 19px;
+        height: 19px;
         font-size: 14px;
         font-weight: 600;
         text-align: center;
@@ -568,6 +576,13 @@
         margin-right: 5px;
     }
    
+}
+@media (max-width: 599px){
+    .textdisabled{
+        padding-right: 49px;
+        padding-left: 20px;
+        padding-top: 13px;
+    }
 }
 .mobile-notif {
     &__wrapper {

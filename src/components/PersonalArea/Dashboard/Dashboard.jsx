@@ -179,12 +179,19 @@ const Dashboard = (props) => {
             </div>
           </div>
         </div>
-        <div
+        {balance.length > 0 ? <div
           className="dashboard__elem__auth_balance__balance-button mobile"
           onClick={() => navigate("../authentication-request")}
         >
           New authentication
         </div>
+        :
+        <div
+          className="dashboard__elem__auth_balance__balance-button mobile authenticationdisabled"
+          onClick={() => navigate("../authentication-request")}
+        >
+          New authentication
+        </div>}
         <div className="dashboard__elem__auth_balance__balance-image-placeholder">
           <div className="fixed-image">
             <img src={logo_img} alt="" />
