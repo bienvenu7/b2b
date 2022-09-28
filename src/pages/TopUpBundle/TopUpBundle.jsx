@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getUserTariffPackages,
   getCartTotal,
+  getUserCertificatePackage
 } from "../../redux/selectors/payment-selectors";
 import PaymentForm from "../../components/Payment/PaymentForm/PaymentForm";
 import {
@@ -25,6 +26,7 @@ import PersonalAreaLayout from "../../components/PersonalArea/PersonalAreaLayout
 const TopUpBundle = (props) => {
   const dispatch = useDispatch();
   const packages = useSelector(getUserTariffPackages);
+  const certificate = useSelector(getUserCertificatePackage);
   const total = useSelector(getCartTotal);
   const isAuth = useSelector(getIsAuth);
   const user = useSelector(getUser)
@@ -39,7 +41,7 @@ const TopUpBundle = (props) => {
     isAuth && dispatch(getProductTypesThunk(1, 1000));
   }, []);
 
-  useEffect(() => {}, [packages.length]);
+  useEffect(() => { }, [packages.length]);
 
   const btnAddToogleClick = () => {
     setAddButState(true);
@@ -55,11 +57,18 @@ const TopUpBundle = (props) => {
     }, 1);
   };
 
-  const calcCartTotal = (data) => {
+  const calcCartTotal = () => {
+    const data = {
+      userTariffPackages: packages,
+      userCertificatePackage: certificate
+    }
+
+    console.log(data, 'check parent')
     // dispatch(getCartTotalThunk(data));
     clearTimeout(timerCart);
     setTimerCart(
       setTimeout(() => {
+        console.log({ data })
         if (data.userTariffPackages) {
           if (data.userTariffPackages.length === 1) {
             if (data.userTariffPackages[0].productType !== "") {
@@ -98,7 +107,7 @@ const TopUpBundle = (props) => {
               <h1>authentication bundle</h1>
               <SvgSelector id="burger" />
             </div>
-            <div className="mobile-nav"><PersonalAreaLayout/></div>
+            <div className="mobile-nav"><PersonalAreaLayout /></div>
           </div>
           <Header />
           <PaymentForm

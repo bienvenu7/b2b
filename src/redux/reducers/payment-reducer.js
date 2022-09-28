@@ -3,6 +3,7 @@ import { createAction, createReducer, current } from "@reduxjs/toolkit";
 
 export const addCategory = createAction("ADD_CATEGORY");
 export const setTotal = createAction("SET_TOTAL");
+export const setCertificate = createAction("SET_CERTIFICATE");
 export const setInvoiceLink = createAction("SET_INVOICE_LINK");
 export const setCategoryError = createAction("SET_ERROR_CATEGORY");
 export const setPrice = createAction("SET_PRICE");
@@ -19,6 +20,7 @@ export const initPackage = createAction("INIT_PACKAGE");
 const initialState = {
   cart: {
     userTariffPackages: [],
+    userCertificatePackage: null,
     total: null,
     costs: [],
     totalPackage: {},
@@ -37,6 +39,9 @@ const initialState = {
 
 const paymentReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase("SET_CERTIFICATE", (state = initialState, action) => {
+      state.cart.userCertificatePackage = action.payload;
+    })
     .addCase("ADD_CATEGORY", (state = initialState, action) => {
       if (action.payload != null) {
         state.cart.userTariffPackages.push(action.payload);
