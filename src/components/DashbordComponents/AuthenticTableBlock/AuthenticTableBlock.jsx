@@ -329,7 +329,7 @@ const AuthenticTableBlock = (props) => {
     navigate("../luxury-store/authentications/photo-requests"); 
 
   if (page === null) {
-    return <div>Хйуня</div>;
+    return <div></div>;
   } else {
     return (
       <BlockComponentLayout>
