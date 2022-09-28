@@ -2,6 +2,10 @@ export const getUserTariffPackages = (state) => {
   return state.payment.cart.userTariffPackages;
 };
 
+export const getUserCertificatePackage = (state) => {
+  return state.payment.cart.userCertificatePackage
+};
+
 export const getCartTotal = (state) => {
   return state.payment.cart.total;
 };

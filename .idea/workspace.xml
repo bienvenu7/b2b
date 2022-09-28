@@ -20,8 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/payment/payment-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/payment/payment-api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CertificatesForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CertificatesForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Summary/Summary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Summary/Summary.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducers/payment-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/payment-reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/selectors/payment-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors/payment-selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +97,7 @@
       <workItem from="1664186438044" duration="7740000" />
       <workItem from="1664258330082" duration="624000" />
       <workItem from="1664290391958" duration="4929000" />
-      <workItem from="1664356095221" duration="1653000" />
+      <workItem from="1664356095221" duration="1960000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>

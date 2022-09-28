@@ -3,10 +3,10 @@ import { Formik, Form } from 'formik'
 import * as NumericInput from "react-numeric-input"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserId } from "../../../redux/selectors/auth-selectors"
-import { getCategoryError, getCosts, getPrice, getUserTariffPackages } from "../../../redux/selectors/payment-selectors"
+import { getCategoryError, getCosts, getPrice, getUserTariffPackages, getUserCertificatePackage } from "../../../redux/selectors/payment-selectors"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
-import { pushTotal, removePreviewPackage, setCategoryError, setTotalPackage } from "../../../redux/reducers/payment-reducer"
+import { pushTotal, removePreviewPackage, setCategoryError, setCertificate, setTotalPackage } from "../../../redux/reducers/payment-reducer"
 import { useNavigate } from "react-router-dom"
 
 const CertificatesForm = (props) => {
@@ -21,12 +21,16 @@ const CertificatesForm = (props) => {
   const categoryError = useSelector(getCategoryError)
   const cost = useSelector(getPrice)
   const costs = useSelector(getCosts)
+  const certificate = useSelector(getUserCertificatePackage)
+  const [initial, setInitial] = useState({ volume: null, userId: null })
+
+  console.log(initial, "inicial")
 
   // const [sum, setSum]  = useState(0);
   //  useEffect(() => {
   //   userTariffPackages.filter(i => i.productType !== '' ).map(e => setSum( sum + e.volume))
   //  }, [])
-  
+
 
   // console.log(sum)
 
@@ -46,48 +50,56 @@ const CertificatesForm = (props) => {
   selectedValue === 'choose' && categoryError != null && dispatch(setCategoryError(null))
 
   // handle onChange event of the dropdown
-  const handleChange = (event) => {    
-    setSelectedValue(event.value);    
+  const handleChange = (event) => {
+    setSelectedValue(event.value);
+    let data = {
+      userTariffPackages: [],
+      userCertificatePackage: null
+    };
     if (event.value === "include") {
-      const data = {
+      data = {
         userTariffPackages: userTariffPackages,
         userCertificatePackage: {
           volume: 1,
           userId: userId,
         },
       };
+      setInitial({volume: 1, userId: userId})
+      dispatch(setCertificate(data.userCertificatePackage))
       props.cartTotal(data);
     } else if (event.value === "notneeded") {
-      const data = {
-        userTariffPackages: userTariffPackages,
-      };
+      data.userTariffPackages = userTariffPackages
+      setInitial({volume: null, userId: null})
+      dispatch(setCertificate(data.userCertificatePackage))
       props.cartTotal(data);
     } else if (event.value === "choose") {
-      const data = {
-        userCertificatePackage: {
-          volume: volume,
-          userId: userId,
-        },
-      };
+      data.userCertificatePackage = {
+        volume: volume,
+        userId: userId,
+      }
       const totalData =
         userTariffPackages &&
-        userTariffPackages.length === 1 &&
-        (userTariffPackages[0].productType === "" ||
-          userTariffPackages[0].answerTime === "")
+          userTariffPackages.length === 1 &&
+          (userTariffPackages[0].productType === "" ||
+            userTariffPackages[0].answerTime === "")
           ? data
           : { ...data, userTariffPackages: userTariffPackages };
+      dispatch(setCertificate(data.userCertificatePackage))
       props.cartTotal(totalData);
+      setInitial({volume: volume, userId: userId})
     }
   };
 
   const handleChangeForNumeric = (e) => {
     setVolume(e)
-    const data = {
+    let data = {
+      userTariffPackages,
       userCertificatePackage: {
         volume: e,
         userId: userId
       }
     }
+    dispatch(setCertificate(data.userCertificatePackage))
     const totalData = userTariffPackages && userTariffPackages.length === 1 && (userTariffPackages[0].productType === '' || userTariffPackages[0].answerTime === '') ? data : { ...data, userTariffPackages: userTariffPackages }
     props.cartTotal(totalData)
   }
@@ -139,6 +151,7 @@ const CertificatesForm = (props) => {
     setSelectedValue('')
     setVolume(1)
 
+
   }
 
   useEffect(() => {
@@ -146,40 +159,40 @@ const CertificatesForm = (props) => {
   }, [props.but])
 
   return (
-      <Formik
-          initialValues={{}}
-          validate={values => {
+    <Formik
+      initialValues={{}}
+      validate={values => {
 
-          }}
-          onChange={() => {
-            // console.log('hello')
-          }}
-          onSubmit={(values, { setSubmitting }) => {
-            setSubmitting(false);
-          }}
-      >
-        {props => (<Form className="payment__form" onChange={props.handleChange} onSubmit={props.handleSubmit}>
-          <div className="payment__form-block-container second">
-            <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
-            <div className="payment__form-elems-wrapper">
-              <div><Select components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} /></div>
-              {selectedValue === 'choose' &&
-                  <div className="payment__form-elem number-wrapper" id="cert_count">
-                    <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
-                    <div className="payment__form-elem info">${cost.certificate / 100}&nbsp;per certificate</div>
+      }}
+      onChange={() => {
+        // console.log('hello')
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        setSubmitting(false);
+      }}
+    >
+      {props => (<Form className="payment__form" onChange={props.handleChange} onSubmit={props.handleSubmit}>
+        <div className="payment__form-block-container second">
+          <label htmlFor="certificates" className="payment__form-label">Authenticity Certificates</label>
+          <div className="payment__form-elems-wrapper">
+            <div><Select components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select option' options={options} onChange={handleChange} /></div>
+            {selectedValue === 'choose' &&
+              <div className="payment__form-elem number-wrapper" id="cert_count">
+                <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
+                <div className="payment__form-elem info">${cost.certificate / 100}&nbsp;per certificate</div>
                     <div className="payment__form-elem info">${(cost.certificate / 100) * volume}&nbsp; total</div>
-                  </div>}  
-              <div className="payment__form-elem number-wrapper">
-              </div>
-            </div>
-            <div className="payment__form-elem upload">
-              <div className="payment__form-elem upload-btn">Upload logo</div>
-              <div className="payment__form-elem upload-info">It will be added to the certificates</div>
+                  </div>}
+            <div className="payment__form-elem number-wrapper">
             </div>
           </div>
-          {but && handlePost(props)}
-        </Form>)}
-      </Formik>
+          <div className="payment__form-elem upload">
+            <div className="payment__form-elem upload-btn">Upload logo</div>
+            <div className="payment__form-elem upload-info">It will be added to the certificates</div>
+          </div>
+        </div>
+        {but && handlePost(props)}
+      </Form>)}
+    </Formik>
   )
 }
 

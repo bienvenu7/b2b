@@ -8,7 +8,7 @@ import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
 import Select from 'react-select'
 import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
 import { getPriceThunk } from "../../../redux/thunks/payment-thunk"
-import {getCategoryError, getCosts, getPrice, getUserTariffPackages} from "../../../redux/selectors/payment-selectors"
+import {getCategoryError, getCosts, getPrice, getUserTariffPackages, getUserCertificatePackage} from "../../../redux/selectors/payment-selectors"
 import SvgSelector from "../../../common/icons/SvgSelector"
 
 const CategoryForm = (props) => {
@@ -20,6 +20,7 @@ const CategoryForm = (props) => {
     const dispatch = useDispatch()
     const userId = useSelector(getUserId)
     const productTypes = useSelector(getTypesOfProduct)
+    const certificatePackage = useSelector(getUserCertificatePackage)
     const cart = useSelector(getUserTariffPackages)
     const categoryError = useSelector(getCategoryError)
     const cost = useSelector(getPrice)
@@ -138,6 +139,7 @@ const CategoryForm = (props) => {
         setAnswerTime(value)
         dispatch(updateHoursPackage({index: packageEditNumber,hours: value}))
         dispatch(getPriceThunk(pack))
+        console.log(data, 'check data')
         props.cartTotal(data)
         setErrorForAnswerTime(null)
     }
@@ -147,7 +149,6 @@ const CategoryForm = (props) => {
     useEffect(() => {
 
     }, [props.but])
-
 
 
     useEffect(() => {
@@ -188,7 +189,7 @@ const CategoryForm = (props) => {
 
     return (<>
         <Formik
-            initialValues={{ hours: answerTime.toString(), typeOfShoes: '' }}
+            initialValues={{ hours: answerTime.toString(), typeOfShoes: '', getUserCertificatePackage: certificatePackage }}
             // validate={values => {
 
             // }}
@@ -241,15 +242,24 @@ const CategoryForm = (props) => {
                     <div className="payment__form-elem hours">
                         <div className="payment__form-radio_btn">
                             <Field type="radio" name="hours" value="2" id="2h" />
-                            <label htmlFor="2h" onClick={()=>updateHours(2, cart)}>2 hours</label>
+                            <label htmlFor="2h" onClick={()=>updateHours(2, {
+                                userTariffPackages: cart,
+                                userCertificatePackage: certificatePackage
+                            })}>2 hours</label>
                         </div>
                         <div className="payment__form-radio_btn">
                             <Field type="radio" name="hours" value="12" id="12h" />
-                            <label htmlFor="12h" onClick={()=>updateHours(12, cart)}>12 hours</label>
+                            <label htmlFor="12h" onClick={()=>updateHours(12, {
+                                userTariffPackages: cart,
+                                userCertificatePackage: certificatePackage
+                            })}>12 hours</label>
                         </div>
                         <div className="payment__form-radio_btn">
                             <Field type="radio" name="hours" value="24" id="24h"/>
-                            <label htmlFor="24h" onClick={()=>updateHours(24, cart)} value="24">24 hours</label>
+                            <label htmlFor="24h" onClick={()=>updateHours(24, {
+                                userTariffPackages: cart,
+                                userCertificatePackage: certificatePackage
+                            })} value="24">24 hours</label>
                         </div>
                         {errorsForAnswerTime != null && <div className="payment__form-errors">{errorsForAnswerTime}</div>}
                     </div>
