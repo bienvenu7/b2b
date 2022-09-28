@@ -225,7 +225,6 @@
             }
 
             &.second {
-                height: 100px;
 
                 .custom-select__control {
                     width: 340px;
@@ -321,8 +320,8 @@
         &-radio_btn {
 
             display: flex;
-            width: 100%;
             justify-content: center;
+            margin-right: 10px;
 
             input[type=radio] {
                 display: none;
@@ -339,20 +338,25 @@
                 font-size: 14.3237px;
                 line-height: 140%;
                 cursor: pointer;
-                color: #565656;
-                border: 0.841829px solid #CECECE;
+                color: $c_g;
+                border: 0.841829px solid $c_g;
                 border-radius: 6.40351px;
-                width: 167px;
+                width: auto;
+                padding: 0 20px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 38px;
+                white-space: nowrap;
+                height: 20px;
+                padding: 8px 22px;
 
                 @include for-phone-only {
                     border-color: $c_g;
                     border-radius: 4px;
                     color: $c_g;
-                    width: 150px;
+                    padding: 1.5vh 5vw;
+
+                    font-size: 18px;
                 }
             }
 
@@ -525,6 +529,7 @@
 
                     @include for-phone-only {
                         gap: 15px;
+                        display: flex;
                     }
 
                     &#cert_count {
@@ -874,7 +879,7 @@
                 }
 
                 &.last-child {
-                    max-width: 600px;
+                    max-width: 900px;
                     margin-top: 0;
 
                     #target {
