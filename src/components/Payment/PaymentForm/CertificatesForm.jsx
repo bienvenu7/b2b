@@ -34,6 +34,14 @@ const CertificatesForm = (props) => {
 
   // console.log(sum)
 
+  useEffect(() => {
+    const data = {
+      userCertificatePackage: certificate
+    }
+    props.cartTotal(data)
+  }, [certificate])
+
+
   let but = props.but
 
   //temp info
