@@ -27,6 +27,7 @@ export const publicRoutes = [
   { path: "/forgot-password", component: <ForgotPassword /> },
   { path: "/password-change/:hash", component: <ResetPassword /> },
   { path: "/confirm-email/:hash", component: <ConfirmEmail /> },
+  { path: "album-private/:id", component: <Order /> }
 ];
 
 export const privateRoutes = [
@@ -52,7 +53,6 @@ export const privateRoutes = [
   { path: "authentication-request", component: <AuthenticationRequest /> },
   { path: "pay", component: <Payment /> },
   { path: "billing-history", component: <Billing /> },
-  { path: "album-private/:id", component: <Order /> }
 
   //{path: 'payment-new', component: <TopUpBundle/>}
 ];
