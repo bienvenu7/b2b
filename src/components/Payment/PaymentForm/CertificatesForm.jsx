@@ -41,6 +41,10 @@ const CertificatesForm = (props) => {
     props.cartTotal(data)
   }, [certificate])
 
+  useEffect(()=>{
+    handleChange()
+  },[userTariffPackages])
+
 
   let but = props.but
 
@@ -58,29 +62,39 @@ const CertificatesForm = (props) => {
   selectedValue === 'choose' && categoryError != null && dispatch(setCategoryError(null))
 
   // handle onChange event of the dropdown
-  const handleChange = (event) => {
-    setSelectedValue(event.value);
+  const handleChange = (event=selectedValue) => {
+    const value = typeof event == 'object' ? event.value : selectedValue
+    
+    setSelectedValue(value);
     let data = {
       userTariffPackages: [],
       userCertificatePackage: null
     };
-    if (event.value === "include") {
+    if (value === "include") {
+      const countPackages = userTariffPackages?userTariffPackages.reduce(
+          (prev, curr) => {
+            console.log({prev})
+            return prev + curr.volume;
+          },
+          0
+      ):0;
+      console.log({countPackages})
       data = {
         userTariffPackages: userTariffPackages,
         userCertificatePackage: {
-          volume: 1,
+          volume: countPackages,
           userId: userId,
         },
       };
       setInitial({volume: 1, userId: userId})
       dispatch(setCertificate(data.userCertificatePackage))
       props.cartTotal(data);
-    } else if (event.value === "notneeded") {
+    } else if (value === "notneeded") {
       data.userTariffPackages = userTariffPackages
       setInitial({volume: null, userId: null})
       dispatch(setCertificate(data.userCertificatePackage))
       props.cartTotal(data);
-    } else if (event.value === "choose") {
+    } else if (value === "choose") {
       data.userCertificatePackage = {
         volume: volume,
         userId: userId,
