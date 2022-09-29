@@ -55,7 +55,7 @@ const Order = () => {
                         <div className='auth_request__form__photo-container'>
                             <div key={index} className='auth_request__form__photo-elem'>
                                 <div className='auth_request__form__photo-photolabel required'>
-                                    <img className='album-image' src={i.path} alt="" />
+                                    <a href={i.path} target={'_blank'}><img className='album-image' src={i.path} alt="" /></a>
                                 </div>
                             </div>
                         </div>

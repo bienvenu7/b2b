@@ -217,7 +217,7 @@
                 color: $c_b;
 
                 @include for-phone-only {
-                    min-width: 153px;
+                    min-width: 105px;
                     font-style: normal;
                     font-weight: 600;
                     font-size: 18px;
@@ -245,7 +245,7 @@
                 border-radius: 4px;
 
                 @include for-phone-only {
-                    min-width: 153px;
+                    min-width: 105px;
                     min-height: 125px;
                 }
 
