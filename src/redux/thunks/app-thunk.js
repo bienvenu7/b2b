@@ -5,12 +5,12 @@ import { getBalanceThunk } from "./authRequest-thunk";
 import { getAnglesListThunk, getResultsStatusesThunk } from "./product-thunk";
 
 export const initialApp = () => (dispatch) => {
+  dispatch(getAnglesListThunk());
   let promise = dispatch(getAuthThunk());
   let promise1 = promise.then(() => {
     if (Cookies.get("jwt")) {
       dispatch(getBalanceThunk());
       dispatch(getResultsStatusesThunk());
-      dispatch(getAnglesListThunk());
     }
   });
   promise1.then(() => {

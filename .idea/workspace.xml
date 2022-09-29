@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/thunks/app-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/app-thunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +93,7 @@
       <workItem from="1664258330082" duration="624000" />
       <workItem from="1664290391958" duration="4929000" />
       <workItem from="1664356095221" duration="2965000" />
-      <workItem from="1664433874919" duration="2878000" />
+      <workItem from="1664433874919" duration="3129000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
