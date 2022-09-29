@@ -77,6 +77,7 @@ export const uploadPhotoForProductThunk =
     formData.append("productId", data.productId);
     formData.append("angleId", data.angleId);
     formData.append("photo", data.file);
+    formData.append("isAdditional", data.isAdditional);
     const response = await uploadPhotoForProduct(formData)
       .then((response) => {
         if (idx + 1 === count) {

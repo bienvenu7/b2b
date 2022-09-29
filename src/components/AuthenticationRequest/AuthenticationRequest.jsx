@@ -291,6 +291,7 @@ const AuthenticationRequest = () => {
                     productId: response.data.id,
                     file: el.file,
                     angleId: el.angleId,
+                    isAdditional: false,
                   },
                   photosCount,
                   index

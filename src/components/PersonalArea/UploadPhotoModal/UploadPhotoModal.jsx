@@ -105,7 +105,7 @@ const UploadPhotoModal = (props) => {
         el.file !== "" &&
         dispatch(
           uploadPhotoForProductThunk(
-            { productId: product.id, file: el.file, angleId: el.angleId },
+            { isAdditional: true,productId: product.id, file: el.file, angleId: el.angleId },
             photoFiles.length,
             index
           )
