@@ -6,6 +6,8 @@ import logo from '../../common/images/601.svg'
 import { getAlbum } from '../../api/album-photo/album'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import {useSelector} from "react-redux";
+import {takeAnglesList} from "../../redux/selectors/product-selectors";
 
 const upload = [1, 2, 3, 4, 5, 6, 7, 8]
 
@@ -22,6 +24,18 @@ const Order = () => {
     useEffect(() => {
         getAlbumPhotos()
     }, [])
+
+    const anglesList = useSelector(takeAnglesList);
+    useEffect(()=>{
+        console.log({anglesList})
+    },[anglesList]);
+
+    const getAnglePublicName = (id) => {
+        if(!anglesList)
+            return '';
+        return anglesList.find(item=>item.id==id).publicName
+    }
+
 
     const getAlbumPhotos = async () => {
         try {
@@ -57,6 +71,7 @@ const Order = () => {
                                 <div className='auth_request__form__photo-photolabel required'>
                                     <a href={i.path} target={'_blank'}><img className='album-image' src={i.path} alt="" /></a>
                                 </div>
+                                <div className='auth_request__form__photo-name'>{getAnglePublicName(i.angleId)}</div>
                             </div>
                         </div>
                     ))}
