@@ -31,8 +31,9 @@ const Order = () => {
     },[anglesList]);
 
     const getAnglePublicName = (id) => {
-        if(!anglesList)
+        if(!anglesList || !id)
             return '';
+        console.log({id,anglesList})
         return anglesList.find(item=>item.id==id).publicName
     }
 
@@ -82,8 +83,9 @@ const Order = () => {
                         <div className='auth_request__form__photo-container'>
                             <div key={i} className={`auth_request__form__photo-elem ${i}`}>
                                 <div className={'auth_request__form__photo-photolabel required'}>
-                                    {/* <input className={`auth_request__form__photo-fileInput ${i}`} accept=".png,.jpg,.jpeg" type="file"/> */}
+                                    <a href={i.path} target={'_blank'}><img className='album-image' src={i.path} alt="" /></a>
                                 </div>
+                                <div className='auth_request__form__photo-name'>{getAnglePublicName(i.angleId)}</div>
                             </div>
                         </div>
                     ))}
