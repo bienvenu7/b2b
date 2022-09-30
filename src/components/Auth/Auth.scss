@@ -235,6 +235,13 @@
                         color:#C8AC79;
                         text-decoration: none;
                     }
+                    .conditionserror{
+                        // border:11px solid red  !important;
+                        // outline:red  !important;
+                        // background: red !important;
+                        box-shadow: 0px 0px 2px 1px rgba(255,0,0,1);
+                        // display: none;
+                    }
                 }
 
                 &-elem {

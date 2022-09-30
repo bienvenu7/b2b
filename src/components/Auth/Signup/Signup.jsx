@@ -217,7 +217,7 @@ const SignUp = () => {
 
             {isRegister && <div className='auth__success-text'> {message} </div>} 
               <div className="termscheckbox">
-                <input type="checkbox" id="conditions" onChange={formik.handleChange} checked={formik.values.conditions}/>
+                <input type="checkbox" class={(formik.touched.conditions && formik.errors.conditions) ? 'conditionserror' : ''} id="conditions" onChange={formik.handleChange} checked={formik.values.conditions}/>
                 <label htmlFor="conditions">I accept <a href="#">Terms and Conditions</a></label>
               </div>
               <button
