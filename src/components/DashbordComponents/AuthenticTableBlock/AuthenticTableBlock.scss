@@ -10,6 +10,7 @@
 }
 
 .authent {
+
   &-container {
     color: $c_o;
     max-width: 776px;
@@ -268,7 +269,16 @@
     width: 100%;
     // max-width: calc(776px - 56px);
     // padding: 0 28px;
-
+    .noorders{
+      text-align: center;
+      font-weight: 600;
+      font-size: 25px;
+      margin: 0 auto;
+      width: 100%;
+      display: block;
+      margin-top: 10px;
+      // background-color: red;
+    }
     @include for-phone-only {
       padding: 0;
     }
@@ -371,15 +381,15 @@
 
         &-status {
           width: 100px;
-          display: flex;
-          justify-content: center;
+          // display: flex;
+          // justify-content: center;
           white-space: nowrap;
         }
 
         &-answer {
           width: 100px;
-          display: flex;
-          justify-content: center;
+          // display: flex;
+          // justify-content: center;
           white-space: nowrap;
         }
       }
@@ -572,8 +582,8 @@
 
       &-status {
         width: 100px;
-        display: flex;
-        justify-content: center;
+        // display: flex;
+        // justify-content: center;
 
         @include for-phone-only {
           white-space: nowrap;
@@ -594,8 +604,8 @@
 
       &-answer {
         width: 100px;
-        display: flex;
-        justify-content: center;
+        // display: flex;
+        // justify-content: center;
 
         @include for-phone-only {
           display: none;

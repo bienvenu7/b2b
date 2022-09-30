@@ -41,7 +41,10 @@ const SignUp = () => {
     if (!values.company || values.company === "Company Name*") {
       errors.company = "Please fill in your company";
     }
-
+    if (!values.conditions) {
+      console.log('Please accept the user agreement');
+      errors.conditions = "Please accept the user agreement";
+    }
     if (!values.password || values.password === "Password*") {
       errors.password = "Please fill in your password";
     } else if (values.password.length < 8) {
@@ -67,6 +70,7 @@ const SignUp = () => {
       role: "",
       number: "",
       rememberMe: false,
+      conditions: false,
     },
     validate,
     onSubmit: async (values, {resetForm}) => {
@@ -82,7 +86,10 @@ const SignUp = () => {
     },
   });
   // console.log(isRegister)
-
+  function setSwitchState(){
+    formik.conditions = !formik.conditions
+  }
+  console.log(formik.values);
   return (
     <AuthLayout>
       <div className="auth__content-promo">
@@ -209,7 +216,10 @@ const SignUp = () => {
             ) : null}
 
             {isRegister && <div className='auth__success-text'> {message} </div>} 
-
+              <div className="termscheckbox">
+                <input type="checkbox" id="conditions" onChange={formik.handleChange} checked={formik.values.conditions}/>
+                <label htmlFor="conditions">I accept <a href="#">Terms and Conditions</a></label>
+              </div>
               <button
                 className="auth__form-submit"
                 type="submit"
