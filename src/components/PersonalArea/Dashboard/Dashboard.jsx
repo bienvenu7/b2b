@@ -17,7 +17,7 @@ const Dashboard = (props) => {
   const [show1, setShow1] = useState(true)
 
   const [showNotif, setShowNotif] = useState(false)
-  const [isLoadedBalance, setIsLoadedBalance] = useState(false)
+  const [timeoutforfetch, settimeoutforfetch] = useState(true)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,11 +26,13 @@ const Dashboard = (props) => {
   const companyName = useSelector(companyname);
   // console.log(companyName);
   // const balance = [];
-
   useEffect(()=>{
-    setIsLoadedBalance(true);
-  },[balance])
-
+  //   balance = null
+  setTimeout(() => {
+    // console.log("Delayed for 1 second.");
+    settimeoutforfetch(false)
+  },2000)
+  },[])
   //temp
 
   return (
@@ -100,7 +102,7 @@ const Dashboard = (props) => {
             >
               Top up now
             </div>
-            {balance.length > 0 ? <div
+            {(timeoutforfetch || balance.length > 0) ? <div
               className="dashboard__elem__auth_balance__balance-button"
               onClick={() => navigate("../authentication-request")}
             >
@@ -114,7 +116,7 @@ const Dashboard = (props) => {
             </div>
             }
             {/* {
-                balance.length > 0 ? (
+                (timeoutforfetch || balance.length > 0) ? (
                   <button
                     className="dashboard__elem__auth_balance__balance-button"
                     onClick={() => navigate("../authentication-request")}
@@ -132,7 +134,7 @@ const Dashboard = (props) => {
               } */}
 
           </div>}
-          {balance.length > 0 || isLoadedBalance ?null:<div className="textdisabled"><span>!</span>Top up to start autentification</div>}
+          {(timeoutforfetch || balance.length > 0) ?null:<div className="textdisabled"><span>!</span>Top up to start autentification</div>}
         </div>
         <div className="dashboard__elem__authentications-wrapper">
           <div className="dashboard__elem__authentications-label">
@@ -179,7 +181,7 @@ const Dashboard = (props) => {
             </div>
           </div>
         </div>
-        {balance.length > 0 ? <div
+        {(timeoutforfetch || balance.length > 0) ? <div
           className="dashboard__elem__auth_balance__balance-button mobile"
           onClick={() => navigate("../authentication-request")}
         >

@@ -216,6 +216,27 @@
                     padding-left: 3px;
                 }
 
+                .termscheckbox{
+                    display:flex;
+                    justify-self: start;
+                    margin-top: 20px;
+                    input{
+                        width: 20px;
+                        height: 20px;
+                        // &:checked{
+                        accent-color: #C8AC79;
+                        border-radius: 0px;
+                        border: 1px solid #C7CCD0;
+                        outline: none;
+                        margin-right: 10px;
+                        // }
+                    }
+                    a{
+                        color:#C8AC79;
+                        text-decoration: none;
+                    }
+                }
+
                 &-elem {
                     font-family: 'Roboto';
                     font-style: normal;

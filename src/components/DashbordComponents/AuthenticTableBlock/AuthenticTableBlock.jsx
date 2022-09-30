@@ -323,7 +323,7 @@ const AuthenticTableBlock = (props) => {
         ),
     });
   }, []);
-  console.log(currentTableData);
+  console.log({currentTableData:currentTableData});
 
   params.page === "photo-requests" &&
     navigate("../luxury-store/authentications/photo-requests"); 
@@ -502,7 +502,13 @@ const AuthenticTableBlock = (props) => {
                     </div>
                   </div>
                 </div>
-                {currentTableData ? (
+                {currentTableData == null ? 
+                (
+                  <Loader />
+                )
+                :
+                currentTableData.length > 0 ?
+                (
                   currentTableData.map((el, index) => (
                     <div key={index} className="authent__table__elem">
                       <div className="authent__table__elems-wrapper">
@@ -571,8 +577,8 @@ const AuthenticTableBlock = (props) => {
                       </div>
                     </div>
                   ))
-                ) : (
-                  <Loader />
+                ):(
+                  <span className='noorders'>No authentications yet</span>
                 )}
               </div>
             )}

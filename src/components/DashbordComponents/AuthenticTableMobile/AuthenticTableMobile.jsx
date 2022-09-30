@@ -340,7 +340,7 @@ const AuthenticTableMobile = (props) => {
         ),
     });
   }, []);
-  console.log(currentTableData)
+  console.log({currentTableData:currentTableData})
 
   params.page === "photo-requests" &&
     navigate("../luxury-store/authentications/photo-requests");
