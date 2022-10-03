@@ -4,6 +4,7 @@ import ForgotPassword from "../components/Auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "../components/Auth/ResetPassword/ResetPassword";
 import Signin from "../components/Auth/Signin/Signin";
 import SignUp from "../components/Auth/Signup/Signup";
+import Conditions from "../components/Auth/Conditions/Conditions";
 import AuthenticationRequest from "../components/AuthenticationRequest/AuthenticationRequest";
 import Payment from "../pages/Payment/Payment";
 import PaymentFirst from "../components/Payment/PaymentFirst/PaymentFirst";
@@ -24,6 +25,7 @@ import Order from '../components/order/Order';
 export const publicRoutes = [
   { path: "/signin", component: <Signin /> },
   { path: "/signup", component: <SignUp /> },
+  { path: "/conditions", component: <Conditions /> },
   { path: "/forgot-password", component: <ForgotPassword /> },
   { path: "/password-change/:hash", component: <ResetPassword /> },
   { path: "/confirm-email/:hash", component: <ConfirmEmail /> },
@@ -33,6 +35,7 @@ export const publicRoutes = [
 export const privateRoutes = [
   { path: "", component: <Navigate to="dashboard" /> },
   { path: "main", component: <DashboardPage /> },
+  { path: "conditions", component: <Conditions /> },
   {
     path: "authentications/completed",
     component: <Authentications var={"completed"} />,

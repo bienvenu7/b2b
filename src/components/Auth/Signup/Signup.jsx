@@ -90,6 +90,15 @@ const SignUp = () => {
     formik.conditions = !formik.conditions
   }
   console.log(formik.values);
+
+  const openInNewTab = url => {
+    let mainurl = window.location.href.split('/')
+    mainurl.pop()
+    mainurl= mainurl.join('/')
+    // console.log(mainurl);
+    window.open(mainurl+url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <AuthLayout>
       <div className="auth__content-promo">
@@ -218,7 +227,11 @@ const SignUp = () => {
             {isRegister && <div className='auth__success-text'> {message} </div>} 
               <div className="termscheckbox">
                 <input type="checkbox" class={(formik.touched.conditions && formik.errors.conditions) ? 'conditionserror' : ''} id="conditions" onChange={formik.handleChange} checked={formik.values.conditions}/>
-                <label htmlFor="conditions">I accept <a href="#">Terms and Conditions</a></label>
+                <label htmlFor="conditions">I accept <a href='/conditions' onClick={(e) => {
+                  e.preventDefault()
+                  openInNewTab('/conditions')
+                }}>Terms and Conditions
+                </a></label>
               </div>
               <button
                 className="auth__form-submit"
