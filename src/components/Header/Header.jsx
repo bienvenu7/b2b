@@ -30,10 +30,10 @@ const Header = (props) => {
     const handle = (event) => {
       !cardRef.current.contains(event.target) && setShowNotif(false);
 
-    document.addEventListener("mousedown", handle)}
+      document.addEventListener("mousedown", handle)}
 
     return () => document.addEventListener("mousedown", handle);
-    
+
   });
 
   useEffect(() => {}, [params.page]);
@@ -57,10 +57,10 @@ const Header = (props) => {
   function goBack() {
     if (state && state.var !== "photo-requests") {
       navigate(
-        `../authentications/${
-          state.var === "progress" ? "in-progress" : "completed"
-        }`,
-        { state: { page: state.page, var: state.var } }
+          `../authentications/${
+              state.var === "progress" ? "in-progress" : "completed"
+          }`,
+          { state: { page: state.page, var: state.var } }
       );
     } else {
       navigate(`../photo-requests/all`, {
@@ -73,54 +73,65 @@ const Header = (props) => {
   }
 
   const title = params.id ? (
-    <div className="label-go_back" onClick={goBack}>
-      <SvgSelector id="yellow-arrow-icon" />
-      All authentications
-    </div>
+      <div className="label-go_back" onClick={goBack}>
+        <SvgSelector id="yellow-arrow-icon" />
+        All authentications
+      </div>
   ) : params.page === "completed" ? (
-    "All authentications"
+      "All authentications"
   ) : params.page === "in-progress" ? (
-    "All authentications"
+      "All authentications"
   ) : (
-    params.page === "all" && "Photo requqests"
+      params.page === "all" && "Photo requqests"
   );
 
+  const titleMap = {
+    "/photo-requests/all": "Photo requests",
+    "/dashboard": "Dashboard",
+    "/authentication-request": "Authentication request",
+    "/authentications/completed": "All authentications",
+    "/billing-history": "Billing",
+    "/payment": "Authentication bundle",
+  };
+
+  const titleName = titleMap[pathname];
+
   return (
-    <>
-      <div className="header-container">
-        <div className="header-wrapper">
-          <Navigation
-            hrefs={[{ label: `${user.companyName}` }, { label: `${path}` }]}
-          />
-          <div className="right-nav">
-          <label
-            style={{ cursor: "pointer" }}
-            onClick={() =>
-              showNotif ? setShowNotif(false) : setShowNotif(true)
-            }
-            htmlFor=""
-            className="hamburger"
-          >
-            <SvgSelector id="bell" />
-          </label>
-          <div style={{cursor: 'pointer'}} onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
+      <>
+        <div className="header-container">
+          <div className="header-wrapper">
+            <Navigation
+                hrefs={[{ label: `${user.companyName}` }, { label: `${path}` }]}
+            />
+            <div className="right-nav">
+              <label
+                  style={{ cursor: "pointer" }}
+                  onClick={() =>
+                      showNotif ? setShowNotif(false) : setShowNotif(true)
+                  }
+                  htmlFor=""
+                  className="hamburger"
+              >
+                <SvgSelector id="bell" />
+              </label>
+              <div style={{cursor: 'pointer'}} onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
+            </div>
+          </div>
+          <div className="header-wrapper mobile">
+            <div className="mobile_header-label">
+              {titleName}
+            </div>
+            <div className="hamburger-menu">
+              <label className="menu__btn" htmlFor="dashboard-open">
+                <span></span>
+              </label>
+            </div>
+          </div>
+          <div ref={cardRef}>
+            {showNotif && <Notification setShow={setShowNotif} />}
           </div>
         </div>
-        <div className="header-wrapper mobile">
-          <div className="mobile_header-label">
-            <img src={header_icon} alt="logo" />
-          </div>
-          <div className="hamburger-menu">
-            <label className="menu__btn" htmlFor="dashboard-open">
-              <span></span>
-            </label>
-          </div>
-        </div>
-        <div ref={cardRef}>
-          {showNotif && <Notification setShow={setShowNotif} />}
-        </div>
-      </div>
-    </>
+      </>
   );
 };
 

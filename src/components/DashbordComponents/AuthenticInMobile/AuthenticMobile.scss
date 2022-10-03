@@ -12,10 +12,10 @@
   }
 
   &__content-block {
-    // padding: 20px
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 10px;
+    padding: 0 36px 0 21px;
   }
 
   &__cards-block {
@@ -71,6 +71,19 @@
       color: rgba(65, 65, 65, 0.6);
     }
   }
+  &__list {
+    margin: 0 0 20px 0;
+    padding: 0 0 0 25px;
+
+    &_img {
+      vertical-align: middle;
+    }
+    &_link {
+      text-decoration: none;
+      color: #CBAD73;
+      font-weight: 700;
+    }
+  }
 
   &__button {
 
@@ -114,3 +127,8 @@
   }
 
 }
+
+
+
+
+
