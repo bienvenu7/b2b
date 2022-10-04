@@ -53,29 +53,28 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <div className='top'>
-      <PersonalAreaLayout>
+      <div className='top'>
+        <PersonalAreaLayout>
 
-        <div className='dashboard-page__content-desctop'>
-          <InfoBlock />
-          <div className='dashboard-page__second-block'>
-            {
-              contentChecked.map((key, i) =>
-                <CheckBlock image={key.image} textTop={key.textTop} numberTop={i === 1 ? second : first} textBottom={key.textBottom} numberBottom={key.numberBottom} key={i} />
-              )
-            }
+          <div className='dashboard-page__content-desctop'>
+            <InfoBlock />
+            <div className='dashboard-page__second-block'>
+              {
+                contentChecked.map((key, i) =>
+                    <CheckBlock image={key.image} textTop={key.textTop} numberTop={i === 1 ? second : first} textBottom={key.textBottom} numberBottom={key.numberBottom} key={i} />
+                )
+              }
+            </div>
+            <AuthenticInfoBlock authenticScore={percentage} authenticItems={third} fakeItems={fake} />
+            <AuthenticTableBlock />
           </div>
-          <AuthenticInfoBlock authenticScore={percentage} authenticItems={third} fakeItems={fake} />
-          <AuthenticTableBlock />
-        </div>
 
-        <div className='dashboard-page__content-mobile'>
-          <CheckBlockMobile image={checkmark} completed={first} additional={second} />
-          <AuthenticMobile authenticScore={percentage} />
-          <AuthenticTableBlock />
-        </div>
-      </PersonalAreaLayout>
-    </div>
+          <div className='dashboard-page__content-mobile'>
+            <CheckBlockMobile image={checkmark} completed={first} additional={second} />
+            <AuthenticMobile authenticScore={percentage} />
+          </div>
+        </PersonalAreaLayout>
+      </div>
 
   )
 }
