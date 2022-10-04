@@ -1,82 +1,211 @@
-import React from 'react'
-import './DashboardPage.scss'
-import PersonalAreaLayout from '../../components/PersonalArea/PersonalAreaLayout'
-import InfoBlock from '../../components/DashbordComponents/InfoBlock/InfoBlock'
-import CheckBlock from '../../components/DashbordComponents/CheckBlock/CheckBlock'
-import AuthenticInfoBlock from '../../components/DashbordComponents/AuthenticInfoBlock/AuthenticInfoBlock'
-import AuthenticTableBlock from '../../components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock'
-import camera from '../../common/icons/dashboard/camera.png'
-import checkmark from '../../common/icons/dashboard/checkmark.png'
-import CheckBlockMobile from '../../components/DashbordComponents/CheckBlockMobile/CheckBlockMobile'
-import AuthenticMobile from '../../components/DashbordComponents/AuthenticInMobile/AuthenticMobile'
-import { completedAuthentification } from '../../api/authRequest/authRequest-api'
-import { useEffect, useState } from 'react'
+import SvgSelector from "../../../common/icons/SvgSelector";
+import React, {useEffect} from 'react'
+import "./Dashboard.scss";
+import storeLogo from "../../../common/images/logo-of-store.png";
+import dashboardIcon from "../../../common/images/dashboard-icon.png";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { takeBalance,companyname } from "../../../redux/selectors/authRequest-selectors";
+import { getProductsThunk } from "../../../redux/thunks/product-thunk";
+import { logoutThunk } from "../../../redux/thunks/auth-thunk";
+import logo_img from '../../../common/images/logo-for-mobile.png'
+import { useState } from "react";
+import MobileNotif from "./MobileNotif";
 
-const DashboardPage = () => {
+const Dashboard = (props) => {
+  const [show, setShow] = useState(true)
+  const [show1, setShow1] = useState(true)
 
-  const [contentChecked, setContentChecked] = useState([
-    {
-      key: 1,
-      textTop: "Completed authentications",
-      numberTop: 0,
-      textBottom: "in the past day",
-      numberBottom: "+30",
-      image: checkmark,
-    },
-    {
-      key: 2,
-      textTop: "Orders that require additional photos",
-      numberTop: 0,
-      textBottom: "in the past day",
-      numberBottom: "+30",
-      image: camera,
-    }
-  ])
+  const [showNotif, setShowNotif] = useState(false)
+  const [timeoutforfetch, settimeoutforfetch] = useState(true)
 
-  const [someData, setSomeData] = useState({
-    completed: 0,
-    updateNeeded: 0,
-    authentic: 0
-  })
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  var first = someData.completed
-  var second = someData.updateNeeded
-  var third = someData.authentic
-  var percentage = (Math.round((third / first * 100) * 100) / 100) || 0
-  var fake = first - third
-
-
-  useEffect(() => {
-    completedAuthentification().then((r) => {
-      setSomeData(r.data)
-    })
-  }, []);
+  const balance = useSelector(takeBalance);
+  const companyName = useSelector(companyname);
+  // console.log(companyName);
+  // const balance = [];
+  useEffect(()=>{
+    //   balance = null
+    setTimeout(() => {
+      // console.log("Delayed for 1 second.");
+      settimeoutforfetch(false)
+    },2000)
+  },[])
+  //temp
 
   return (
-      <div className='top'>
-        <PersonalAreaLayout>
-
-          <div className='dashboard-page__content-desctop'>
-            <InfoBlock />
-            <div className='dashboard-page__second-block'>
-              {
-                contentChecked.map((key, i) =>
-                    <CheckBlock image={key.image} textTop={key.textTop} numberTop={i === 1 ? second : first} textBottom={key.textBottom} numberBottom={key.numberBottom} key={i} />
-                )
-              }
+      <>
+        {showNotif && <MobileNotif setShowNotif={setShowNotif}/>}
+        <div className="dashboard-container fixed">
+          <div className="dashboard-wrapper">
+            <div className="dashboard__elem">
+              <div className="dashboard__elem__top-wrapper">
+                <div className="dashboard__elem__top-img">
+                  <img alt="" src={storeLogo} />
+                </div>
+                <div className="dashboard__elem__top-label">
+                  {companyName} <SvgSelector id="arrow" />
+                  <img onClick={() => navigate("../dashboard")} src={dashboardIcon} alt="" />
+                </div>
+                <div className="dashboard__elem__top__icon-wrapper">
+                  <div className="dashboard__elem__top__icon-elem">
+                    {/* <img src={dashboardIcon} alt="" /> */}
+                  </div>
+                  <div className="dashboard__elem__top__icon-elem">
+                    <div onClick={() => setShowNotif(!showNotif)}><SvgSelector  id="bell" /></div>
+                    <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
+                  </div>
+                </div>
+              </div>
+              <div onClick={() => navigate("../dashboard")} className="dashboard__elem__child-wrapper">
+                <div className="dashboard__elem__child-img">
+                  <img src={dashboardIcon} alt="" />
+                </div>
+                <div className="dashboard__elem__child__label">Dashboard</div>
+              </div>
             </div>
-            <AuthenticInfoBlock authenticScore={percentage} authenticItems={third} fakeItems={fake} />
-            <AuthenticTableBlock />
+            <div className="dashboard__elem__auth_balance-wrapper">
+              <div className="dashboard__elem__auth_balance-label">
+                Authentication balance <div onClick={() => setShow1(!show1)}><SvgSelector id={show1 ? "arrow" : "arrow-rotate"} /></div>
+              </div>
+              {show1 && <div className="dashboard__elem__auth_balance__balance-wrapper">
+                {balance.length > 0 &&
+                balance.filter(item => item.volume > 0).map((el, index) => (
+                    <div
+                        key={index}
+                        className="dashboard__elem__auth_balance__balance__elem"
+                    >
+                      <div className="dashboard__elem__auth_balance__balance-category">
+                        {el.productType.publicName}
+                      </div>
+                      {el.answerTime !== "" && (
+                          <div className="dashboard__elem__auth_balance__balance-answer">
+                            {el.answerTime} h
+                          </div>
+                      )}
+                      <div className="dashboard__elem__auth_balance__balance-count">
+                        {el.volume}
+                      </div>
+                    </div>
+                ))}
+                {/* <div
+                className="dashboard__elem__auth_balance__balance-button"
+                onClick={() => navigate("../payment")}
+              >
+                Top up now
+              </div> */}
+                <div
+                    className="dashboard__elem__auth_balance__balance-button"
+                    onClick={() => navigate("../payment")}
+                >
+                  Top up now
+                </div>
+                {(timeoutforfetch || balance.length > 0) ? <div
+                        className="dashboard__elem__auth_balance__balance-button"
+                        onClick={() => navigate("../authentication-request")}
+                    >
+                      New authentication
+                    </div>
+                    :
+                    <div
+                        className="dashboard__elem__auth_balance__balance-button authenticationdisabled"
+                    >
+                      New authentication
+                    </div>
+                }
+                {/* {
+                (timeoutforfetch || balance.length > 0) ? (
+                  <button
+                    className="dashboard__elem__auth_balance__balance-button"
+                    onClick={() => navigate("../authentication-request")}
+                  >
+                    New authentication
+                  </button>
+                ) : (
+                  <div
+                    className="dashboard__elem__auth_balance__balance-button"
+                    onClick={() => navigate("../payment")}
+                  >
+                    Top up now
+                  </div>
+                    )
+              } */}
+
+              </div>}
+              {(timeoutforfetch || balance.length > 0) ?null:<div className="textdisabled"><span>!</span>Top up to start autentification</div>}
+            </div>
+            <div className="dashboard__elem__authentications-wrapper">
+              <div className="dashboard__elem__authentications-label">
+                Authentication <div onClick={() => setShow(!show)}><SvgSelector id={show ? "arrow" : "arrow-rotate"} /></div>
+              </div>
+              {show && <div className="dashboard__elem__authentications-control__elements">
+                <div
+                    className="dashboard__elem__authentications-control__elem-wrapper"
+                    onClick={() => navigate("../authentications/completed")}
+                >
+                  <SvgSelector id="check-icon" />
+                  All authentications
+                </div>
+                <div
+                    className="dashboard__elem__authentications-control__elem-wrapper"
+                    onClick={() => navigate("../photo-requests/all")}
+                >
+                  <SvgSelector id="camera-icon" />
+                  Photo requests
+                </div>
+              </div>}
+            </div>
+            <div className="dashboard__elem__tools-wrapper">
+              <div className="dashboard__elem__tools-label">Tools</div>
+              <div className="dashboard__elem__tools-control__elements">
+                <div
+                    onClick={() => navigate("../billing-history")}
+                    className="dashboard__elem__tools-control__elem-wrapper"
+                >
+                  <SvgSelector id="card-icon" />
+                  Billing
+                </div>
+              </div>
+            </div>
+            <div className="dashboard__elem__tools-wrapper two">
+              <div className="dashboard__elem__tools-label">Tools</div>
+              <div className="dashboard__elem__tools-control__elements">
+                <div
+                    onClick={() => navigate("../billing-history")}
+                    className="dashboard__elem__tools-control__elem-wrapper"
+                >
+                  <SvgSelector id="card-icon" />
+                  Get help
+                </div>
+              </div>
+            </div>
+            {(timeoutforfetch || balance.length > 0) ? <div
+                    className="dashboard__elem__auth_balance__balance-button mobile"
+                    onClick={() => navigate("../authentication-request")}
+                >
+                  New authentication
+                </div>
+                :
+                <div
+                    className="dashboard__elem__auth_balance__balance-button mobile authenticationdisabled"
+                    onClick={() => navigate("../authentication-request")}
+                >
+                  New authentication
+                </div>}
+            <div className="dashboard__elem__auth_balance__balance-image-placeholder">
+              <div className="fixed-image">
+                <img src={logo_img} alt="" />
+              </div>
+            </div>
           </div>
+          <label htmlFor="dashboard-open" className="dashboard__cross-container">
+            <SvgSelector id="cross-icon" />
+          </label>
+        </div>
+      </>
+  );
+};
 
-          <div className='dashboard-page__content-mobile'>
-            <CheckBlockMobile image={checkmark} completed={first} additional={second} />
-            <AuthenticMobile authenticScore={percentage} />
-          </div>
-        </PersonalAreaLayout>
-      </div>
-
-  )
-}
-
-export default DashboardPage
+export default Dashboard;
