@@ -15,7 +15,7 @@ const RigthSide = ({ toogle, cartTotal }) => {
   return (
     <div className="top_up_bundle__right-wrapper">
       <Balance />
-      {/* {console.log(total)} */}
+      {console.log({total:total})}
       {packages.length > 0 && (
         <div style={{ margin: "84px 0" }}>
           <Summary cartTotal={cartTotal} />

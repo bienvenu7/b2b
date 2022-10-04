@@ -13,12 +13,7 @@ export const cartTotal = (data) => {
     data.userTariffPackages = temparr
   }
   
-  return {
-    status:201,
-    data:{
-      total:'error'
-    }
-  }
+  
   return instance.post("invoices/get-cart-total", data, {
     headers: { Authorization: "Bearer " + Cookies.get("jwt") },
   });
