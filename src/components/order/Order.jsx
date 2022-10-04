@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {useSelector} from "react-redux";
 import {takeAnglesList} from "../../redux/selectors/product-selectors";
+import ModalImage from "react-modal-image";
 
 const upload = [1, 2, 3, 4, 5, 6, 7, 8]
 
@@ -16,7 +17,7 @@ const Order = () => {
     const [album, setAlbum] = useState([])
     const [added, setAdded] = useState([])
     const [uploaded, setUploaded] = useState([])
-
+    console.log({uploaded:uploaded});
     const params = useParams()
 
     console.log(params)
@@ -70,7 +71,8 @@ const Order = () => {
                         <div className='auth_request__form__photo-container'>
                             <div key={index} className='auth_request__form__photo-elem'>
                                 <div className='auth_request__form__photo-photolabel required'>
-                                    <a href={i.path} target={'_blank'}><img className='album-image' src={i.path} alt="" /></a>
+                                    <ModalImage className='album-image' small={i.path} large={i.path}/>
+                                    {/* <a href={i.path} target={'_blank'}><img className='album-image' src={i.path} alt="" /></a> */}
                                 </div>
                                 <div className='auth_request__form__photo-name'>{getAnglePublicName(i.angleId)}</div>
                             </div>

@@ -48,7 +48,7 @@ const paymentReducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase("SET_TOTAL", (state = initialState, action) => {
-      console.log({'total':action});
+      console.log({'settotal':action});
       state.cart.total = action.payload;
     })
     .addCase("SET_INVOICE_LINK", (state = initialState, action) => {

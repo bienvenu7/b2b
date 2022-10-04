@@ -139,8 +139,10 @@
                 max-width: 323px;
             }
         }
-
-        &-button {
+        &-button.buttondsdisabled {
+            // display: none;
+        }
+            &-button {
             cursor: pointer;
             font-family: 'Roboto';
             font-style: normal;
@@ -153,15 +155,18 @@
             border: 0;
             color: $c_w;
 
-            &[disabled] {
-                background-color: #fff;
-            }
+            
 
             &:first-child {
                 border: 1px;
                 color: $c_g;
                 background: hsla(120, 100%, 50%, 0);
                 border: 1px solid $c_g;
+            }
+            &[disabled] {
+                color:#fff;
+                background-color: rgb(105, 105, 105);
+                border: 1px solid rgb(105, 105, 105);
             }
         }
     }

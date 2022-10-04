@@ -19,6 +19,7 @@ const RigthSideMobile = ({ toogle, cartTotal }) => {
   const packages = useSelector(getUserTariffPackages);
   const totalPackage = useSelector(getTotalPackage);
   const total = useSelector(getCartTotal);
+  console.log({total:total});
   const userTariffPackages = useSelector(getUserTariffPackages);
   const invoiceLink = useSelector(getInvoiceLink);
 
@@ -73,7 +74,7 @@ const RigthSideMobile = ({ toogle, cartTotal }) => {
       {/* <div className="top_up_bundle__summary-wrapper"></div> */}
       <div className="top_up_bundle__total-wrapper">
         <div className="top_up_bundle__total-title">Total</div>
-        <div className="top_up_bundle__total-count">${total / 100}</div>
+        <div className="top_up_bundle__total-count">{total=='error'?'To much':`$${total / 100}`}</div>
       </div>
 
       <div className='top_up_bundle__payment-block'>
@@ -108,7 +109,7 @@ const RigthSideMobile = ({ toogle, cartTotal }) => {
           </div>
         </div>
       </div>
-      <div className="top_up_bundle__buttons-wrapper">
+      <div className={(total=='error'?'dn':'')+" top_up_bundle__buttons-wrapper"}>
         <button
           className="top_up_bundle__buttons-button"
           // disabled

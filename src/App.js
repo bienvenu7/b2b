@@ -33,6 +33,7 @@ function App() {
     isAuth && dispatch(getBalanceThunk());
     isAuth && !resultStatuses && dispatch(getResultsStatusesThunk());
     isAuth && !checkStatuses && dispatch(getCheckStatusesThunk());
+    document.title = 'LegitGrails Business Platform';
   }, [isAuth]);
 
   if (!appInit) {

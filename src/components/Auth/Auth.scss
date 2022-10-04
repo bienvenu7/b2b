@@ -53,6 +53,7 @@
         background-color: rgb(255, 255, 255);
         border-radius: 8px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+        z-index: 2;
 
         @include for-phone-only {
             display: none;
@@ -106,6 +107,31 @@
             justify-content: space-between;
             height: 100vh;
             align-items: center;
+        }
+
+        &-conditions{
+            // position: ;
+            box-sizing: border-box;
+            padding: 100px 50px 50px 50px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-color: rgb(229, 229, 229);
+            overflow-y: scroll;
+            // overflow-x: hidden;
+            h3{
+                text-align: center;
+            }
+            pre{
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                text-align: justify;
+            }
+            @include for-phone-only {
+                width: 100%;
+            }
         }
 
         &-promo {
@@ -234,6 +260,13 @@
                     a{
                         color:#C8AC79;
                         text-decoration: none;
+                    }
+                    .conditionserror{
+                        // border:11px solid red  !important;
+                        // outline:red  !important;
+                        // background: red !important;
+                        box-shadow: 0px 0px 2px 1px rgba(255,0,0,1);
+                        // display: none;
                     }
                 }
 

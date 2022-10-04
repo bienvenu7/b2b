@@ -23,10 +23,18 @@ const RigthSide = ({ toogle, cartTotal }) => {
       )}
       <div className="top_up_bundle__summary-wrapper"></div>
       <div className="top_up_bundle__total-wrapper">
-        <div className="top_up_bundle__total-title">Subtotal</div>
-        <div className="top_up_bundle__total-count">${total / 100}</div>
+        
+        {total=='error'?
+        <div className="top_up_bundle__total-title">To much items</div>
+        :
+        <>
+          <div className="top_up_bundle__total-title">Subtotal</div>
+          <div className="top_up_bundle__total-count">${total / 100}</div>
+        </>
+        // <div className="top_up_bundle__total-count">{total=='error'?'To much':`$${total / 100}`}</div>
+      }
       </div>
-      <div className="top_up_bundle__buttons-wrapper">
+      <div className='top_up_bundle__buttons-wrapper'>
         <button
           className="top_up_bundle__buttons-button"
           // disabled
@@ -34,12 +42,14 @@ const RigthSide = ({ toogle, cartTotal }) => {
             toogle.add !== null && toogle.add()
             console.log(toogle.add);
           }}
+          disabled={total=='error'?true:false}
         >
           Add another category
         </button>
         <button
           className="top_up_bundle__buttons-button"
           onClick={() => toogle.pay()}
+          disabled={total=='error'?true:false}
         >
           Proceed to payment
         </button>

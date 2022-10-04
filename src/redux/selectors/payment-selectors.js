@@ -7,6 +7,7 @@ export const getUserCertificatePackage = (state) => {
 };
 
 export const getCartTotal = (state) => {
+  // console.log({total:state});
   return state.payment.cart.total;
 };
 
