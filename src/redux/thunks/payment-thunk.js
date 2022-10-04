@@ -28,10 +28,37 @@ export const postInvoiceThunk = (obj) => async (dispatch) => {
 };
 
 export const getCartTotalThunk = (data) => async (dispatch) => {
+  let temp={data:{
+    total:'error'
+  }}
   
-  const response = await cartTotal(data);
-  console.log({'check cart total':response,sta:response.status})
+
+ /*
+console.log({'check cart total':response,sta:response.status})
+  const response = await cartTotal(data).then((response) => {
+    response.status === 201 && dispatch(setTotal(response.data.total));
+  }).catch((error)=>{
+
+    error.response.status === 400 && dispatch(setTotal({data:{total:'error'}}));
+  })console.log({'check cart total':response,sta:response.status})
+  const response = await cartTotal(data).then((response) => {
+    response.status === 201 && dispatch(setTotal(response.data.total));
+  }).catch((error)=>{
+
+    error.response.status === 400 && dispatch(setTotal({data:{total:'error'}}));
+  })
+ */
+  
+  let response
+  console.log('check cart total')
+try{
+  response = await cartTotal(data);
+  console.log('try',response)
   response.status === 201 && dispatch(setTotal(response.data.total));
+}catch(err){
+  console.log('catch',err.response)
+  err.response.status === 400 && dispatch(setTotal('error'));
+}
 };
 
 export const getPriceThunk = (data) => async (dispatch) => {
