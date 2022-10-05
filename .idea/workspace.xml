@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notifications/CardNotif.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notifications/CardNotif.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notifications/Notif.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notifications/Notif.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +94,7 @@
       <workItem from="1664433874919" duration="4512000" />
       <workItem from="1664440986762" duration="2993000" />
       <workItem from="1664867726913" duration="2207000" />
-      <workItem from="1664971328232" duration="1424000" />
+      <workItem from="1664971328232" duration="2073000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
