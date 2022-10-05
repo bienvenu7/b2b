@@ -148,9 +148,13 @@ const AuthenticTableMobile = (props) => {
   }
 
   function getPhotoUrl(files) {
-    if(typeof files != 'object' )
+    try{
+      if(files.length==0 )
+        return '';
+      return files[0].path
+    }catch(err){
       return '';
-    return files[0].path
+    }
   }
 
   async function addCertificate(el) {

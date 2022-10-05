@@ -12,6 +12,8 @@ const RigthSide = ({ toogle, cartTotal }) => {
   const packages = useSelector(getUserTariffPackages);
   const total = useSelector(getCartTotal);
 
+  
+
   return (
     <div className="top_up_bundle__right-wrapper">
       <Balance />

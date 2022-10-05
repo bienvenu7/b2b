@@ -147,9 +147,13 @@ const AuthenticTableBlock = (props) => {
   }
 
   function getPhotoUrl(files) {
-    if(typeof files != 'object' )
+    try{
+    if(files.length==0 )
       return '';
     return files[0].path
+  }catch(err){
+    return '';
+  }
   }
 
   async function addCertificate(el) {
