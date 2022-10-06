@@ -137,7 +137,7 @@ const Dashboard = (props) => {
               } */}
 
           </div>}
-          {(timeoutforfetch || istotalclear > 0) ?null:<div className="textdisabled"><span>!</span>Top up to start autentification</div>}
+          {(timeoutforfetch || istotalclear > 0) ?null:<div className="textdisabled"><span>!</span>Top up to start authentication</div>}
         </div>
         <div className="dashboard__elem__authentications-wrapper">
           <div className="dashboard__elem__authentications-label">

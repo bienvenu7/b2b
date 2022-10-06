@@ -8,7 +8,8 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {useSelector} from "react-redux";
 import {takeAnglesList} from "../../redux/selectors/product-selectors";
-import ModalImage from "react-modal-image";
+import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+import "lightgallery.js/dist/css/lightgallery.css";
 
 const upload = [1, 2, 3, 4, 5, 6, 7, 8]
 
@@ -65,14 +66,16 @@ const Order = () => {
                         <span>{album.brand}</span>
                     </div>
                 </div>
+                <LightgalleryProvider>
                 {uploaded.length >= 1 && <div className='order__text'>Uploaded Images</div>}
                 {uploaded.length >= 1 &&   <div className="order__upload">
                     {uploaded?.map((i, index) => (
                         <div className='auth_request__form__photo-container'>
                             <div key={index} className='auth_request__form__photo-elem'>
                                 <div className='auth_request__form__photo-photolabel required'>
-                                    <ModalImage className='album-image' small={i.path} large={i.path}/>
-                                    {/* <a href={i.path} target={'_blank'}><img className='album-image' src={i.path} alt="" /></a> */}
+                                    <LightgalleryItem group={'group1'} src={i.path}>
+                                        <img className='album-image' src={i.path} alt="" />
+                                    </LightgalleryItem>
                                 </div>
                                 <div className='auth_request__form__photo-name'>{getAnglePublicName(i.angleId)}</div>
                             </div>
@@ -85,13 +88,16 @@ const Order = () => {
                         <div className='auth_request__form__photo-container'>
                             <div key={i} className={`auth_request__form__photo-elem ${i}`}>
                                 <div className={'auth_request__form__photo-photolabel required'}>
-                                    <a href={i.path} target={'_blank'}><img className='album-image' src={i.path} alt="" /></a>
+                                    <LightgalleryItem group={'group2'} src={i.path}>
+                                        <img className='album-image' src={i.path} alt="" />
+                                    </LightgalleryItem>
                                 </div>
                                 <div className='auth_request__form__photo-name'>{getAnglePublicName(i.angleId)}</div>
                             </div>
                         </div>
                     ))}
                 </div>}
+                </LightgalleryProvider>
             </div>
         </div>
     )
