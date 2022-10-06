@@ -233,6 +233,11 @@ const SignUp = () => {
                 }}>Terms and Conditions
                 </a></label>
               </div>
+              {formik.touched.conditions && formik.errors.conditions ? (
+              <div className="auth__form-errorMessage">
+                  Please confirm the form
+                </div>
+            ) : null}
               <button
                 className="auth__form-submit"
                 type="submit"
