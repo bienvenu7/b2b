@@ -116,6 +116,7 @@ const RigthSideMobile = ({ toogle, cartTotal }) => {
           onClick={() => {
             toogle.add !== null && toogle.add()
             console.log(toogle.add);
+            disabled={total=='error'?true:false}
           }}
         >
           Add another category
@@ -123,9 +124,13 @@ const RigthSideMobile = ({ toogle, cartTotal }) => {
         <button
           className="top_up_bundle__buttons-button"
           onClick={postInvoice}
+          disabled={total=='error'?true:false}
         >
           Proceed to payment
         </button>
+        <div className="top_up_bundle__buttons-sometext">
+        The credits you purchase will be available for one year.
+        </div>
       </div>
     </div>
   );

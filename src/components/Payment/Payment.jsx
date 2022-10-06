@@ -123,6 +123,7 @@ const Payment = (props) => {
             >
               Proceed to payment
             </div>
+            123
           </div>
         </div>
       </div>

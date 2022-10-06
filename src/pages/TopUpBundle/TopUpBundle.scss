@@ -127,6 +127,10 @@
     }
 
     &__buttons {
+        &-sometext{
+            text-align: center;
+            color:#565656
+        }
         &-wrapper {
             margin: auto;
             display: flex;
