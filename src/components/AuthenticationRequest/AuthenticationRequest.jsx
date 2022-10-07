@@ -45,6 +45,8 @@ const AuthenticationRequest = () => {
   const brands = useSelector(takeBrands);
   const order = useSelector(takeOrder);
   const angles = useSelector(takeAngles);
+  // angles = angles.length > 0 ? angles.reverse() : angles
+  console.log({angles:angles});
   const postErrors = useSelector(getPostErrors);
 
   const [productEditNumber, setProductEditNumber] = useState(0);
@@ -59,13 +61,13 @@ const AuthenticationRequest = () => {
   const [productTypeValue, setProductTypeValue] = useState(null);
   const [brandValue, setBrandValue] = useState();
   const [errorMessage, setErrorMessage] = useState("")
+  console.log({errorMessage:errorMessage});
   const [checkValid, setCheckValid] = useState(false)
   const [brandSelectorKey, setBrandSelectorKey] = useState(0);
   const status = useSelector(getStatusCode);
   const [errors, setErrorsForm] = useState({
     category: null,
     brand: null,
-    typeModel: null,
   });
 
   //errors
@@ -81,13 +83,16 @@ const AuthenticationRequest = () => {
   const options = [];
 
   const optionsBrands = [];
-
+  useEffect(()=>{
+    console.log('errorserrorserrorserrorserrorserrors ');
+    valid()
+  })
   function valid() {
     for (let key in errors) {
-      // console.log(errors[key])
+      console.log({errors:errors})
       if (errors[key] === null) {
 
-        setCheckValid(false)
+        // setCheckValid(false)
         break
       }
       console.log("не зашло в условия проверки инпута")
@@ -119,34 +124,36 @@ const AuthenticationRequest = () => {
   };
 
   function handleChangeBrand(e) {
+    console.log({errorsE:e});
     setBrandValue(e.brand);
-    setSelectedBrand(e.key);
+    // setSelectedBrand(e.key);
     setErrorsForm({ ...errors, brand: true });
     valid()
   }
 
   function handleChangeModelType(e) {
     setModelTypeValue(e.target.value);
-    setErrorsForm({ ...errors, typeModel: true });
+    // setErrorsForm({ ...errors, typeModel: true });
     valid()
   }
 
   useEffect(() => {
-    setPhotoFiles(
-      angles.map(
-        (el, index) =>
-          photoFiles.length == 0 && {
-            key: index,
-            file: "",
-            imagePreviewUrl: "",
-            angleId: el.angle.id,
-            necessity: el.necessity,
-            error: false,
-            angleName: el.angle.publicName,
-            format: null,
-          }
-      )
-    );
+    let temparr = angles.map(
+      (el, index) =>
+        photoFiles.length == 0 && {
+          key: index,
+          file: "",
+          imagePreviewUrl: "",
+          angleId: el.angle.id,
+          necessity: el.necessity,
+          error: false,
+          angleName: el.angle.publicName,
+          format: null,
+        }
+    )
+    if(temparr.length > 0){
+    setPhotoFiles(temparr.filter(el => el.necessity == 1).concat(temparr.filter(el => el.necessity !== 1).reverse()));
+  }
   }, [angles]);
 
   const balance = useSelector(takeBalance);
@@ -190,6 +197,22 @@ const AuthenticationRequest = () => {
   }
 
   const handlePost = async () => {
+    console.log({errorMessagephotoFiles:photoFiles});
+
+    if (photoFiles.find((el) => el.file == "" && el.necessity == 1)) { // если есть хоть один элемент в маассиве photoFilesБ который соотвествует условиям 
+      const reqBlank =  photoFiles.filter((el) => el.necessity == 1) // получить все элементы el.necessity == 1
+      const inputBlank = photoFiles.filter((el) => el.file == "" && el.necessity == 1) // получить все элементы el.file == "" && el.necessity == 1
+      setPhotoFiles(
+        photoFiles.map((el, index) =>
+          el.file == "" && el.necessity == 1 ? { ...el, error: true } : el
+        )
+      );
+      setPhotoError(true);
+      setButtonState(true);
+      if(reqBlank.length === inputBlank.length) setErrorMessage("It seems you did not upload photos of your item, please upload them before submitting!")
+      if(reqBlank.length > inputBlank.length) setErrorMessage("One or more of the required photos are missing, please make sure you upload them!")
+      // return;
+    }
 
     console.log("data", {
       order,
@@ -239,23 +262,10 @@ const AuthenticationRequest = () => {
       }
     }
 
-
+    console.log({errorMessage:test});
     //  блок, который определяет, поля с обязательными полями все пустые или частично
-    if (photoFiles.find((el) => el.file == "" && el.necessity == 1)) { // если есть хоть один элемент в маассиве photoFilesБ который соотвествует условиям 
-      const reqBlank =  photoFiles.filter((el) => el.necessity == 1) // получить все элементы el.necessity == 1
-      const inputBlank = photoFiles.filter((el) => el.file == "" && el.necessity == 1) // получить все элементы el.file == "" && el.necessity == 1
-      setPhotoFiles(
-        photoFiles.map((el, index) =>
-          el.file == "" && el.necessity == 1 ? { ...el, error: true } : el
-        )
-      );
-      setPhotoError(true);
-      setButtonState(true);
-      if(reqBlank.length === inputBlank.length) setErrorMessage("It seems you did not upload photos of your item, please upload them before submitting!")
-      if(reqBlank.length > inputBlank.length) setErrorMessage("One or more of the required photos are missing, please make sure you upload them!")
-      return;
-    }
-
+    
+    
     // если заказ пустой
     if (!order) {
       const response = await dispatch(createOrderThunk()); // создать этот заказ
@@ -487,9 +497,12 @@ const AuthenticationRequest = () => {
                     <div className='auth_request__form__footer__info__h2-value'>{answerTime} hours</div>
                   </div>
                 </div>
-                {checkValid && <button className='auth_request__form__footer__button-wrapper' type="submit">Submit</button>}
+                {/*  */}
+                <div className="auth_request__form__footer__button-wrapper">
+                {checkValid && <button className='auth_request__form__footer__button-wrapper-button' type="submit">Submit</button>}
                 {!checkValid && <button className='auth_request__form__footer__button-wrapper-disabled' type="submit" disabled>Submit</button>}
-
+                <p class='auth_request__form__footer__button-wrapper-text'>{errorMessage}</p>
+                </div>
               </div>
             </div>
           </form>

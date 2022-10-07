@@ -322,9 +322,6 @@ const Card = (props) => {
                       Get a certificate
                     </div>
                   )}
-                  <div className="card__info__content__button">
-                    Request help
-                  </div>
                 </div>
               </div>
               <div className="card__details-wrapper">

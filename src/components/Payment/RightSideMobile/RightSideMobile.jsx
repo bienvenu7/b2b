@@ -113,10 +113,10 @@ const RigthSideMobile = ({ toogle, cartTotal }) => {
         <button
           className="top_up_bundle__buttons-button"
           // disabled
+          disabled={total=='error'?true:false}
           onClick={() => {
             toogle.add !== null && toogle.add()
             console.log(toogle.add);
-            disabled={total=='error'?true:false}
           }}
         >
           Add another category
