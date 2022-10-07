@@ -470,7 +470,7 @@ const AuthenticTableBlock = (props) => {
             {page === "complete" && (
               <div className="authent__table">
                 <div className="authent__table__label-wrapper">
-                  <div className="authent__table__label__elems-wrapper">
+                  {/* <div className="authent__table__label__elems-wrapper"> */}
                     <div className="authent__table__label__elem-checkbox">
                       <input
                         type="checkbox"
@@ -505,7 +505,7 @@ const AuthenticTableBlock = (props) => {
                       Pdf certificate
                     </div>
                   </div>
-                </div>
+                {/* </div> */}
                 {currentTableData == null ? 
                 (
                   <Loader />
@@ -590,12 +590,12 @@ const AuthenticTableBlock = (props) => {
             {page !== "complete" && (
               <div className="authent__table">
                 <div className="authent__table__label-wrapper">
-                  <div className="authent__table__label__elems-wrapper">
+                  {/* <div className="authent__table__label__elems-wrapper"> */}
                     <div className="authent__table__label__elem-category">
                       Item category
                     </div>
-                  </div>
-                  <div className="authent__table__label__elems-wrapper">
+                  {/* </div> */}
+                  {/* <div className="authent__table__label__elems-wrapper"> */}
                     <div className="authent__table__label__elems-brand">
                       Brand
                     </div>
@@ -616,7 +616,7 @@ const AuthenticTableBlock = (props) => {
                     >
                       Submission date <SvgSelector id="down-arrow-icon" />
                     </div>
-                  </div>
+                  {/* </div> */}
                 </div>
                 {currentTableData ? (
                   currentTableData.map((el, index) => (

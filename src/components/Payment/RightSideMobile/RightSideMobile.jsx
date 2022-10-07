@@ -25,7 +25,7 @@ const RigthSideMobile = ({ toogle, cartTotal }) => {
 
   const [method, setMethod] = useState();
   const [saveBilling, setSaveBilling] = useState(false);
-
+  console.log({method:method});
   const setPayMethod = (e) => {
     setMethod(e.target.value);
   };
@@ -124,7 +124,7 @@ const RigthSideMobile = ({ toogle, cartTotal }) => {
         <button
           className="top_up_bundle__buttons-button"
           onClick={postInvoice}
-          disabled={total=='error'?true:false}
+          disabled={(total=='error'?true:false)||(method == undefined?true:false)}
         >
           Proceed to payment
         </button>
