@@ -350,7 +350,7 @@ const AuthenticTableMobile = (props) => {
     navigate("../luxury-store/authentications/photo-requests");
 
   if (page === null) {
-    return <div>Хйуня</div>;
+    return <div>Page not found</div>;
   } else {
     return (
       
