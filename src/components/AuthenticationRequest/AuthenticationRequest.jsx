@@ -60,7 +60,7 @@ export const AuthenticationRequest = React.memo(() => {
 
   function valid() {
     for (const key in errors) {
-      if (errors[key] === null) {
+      if (errors[key] == null) {
         setCheckValid(false);
         break;
       }

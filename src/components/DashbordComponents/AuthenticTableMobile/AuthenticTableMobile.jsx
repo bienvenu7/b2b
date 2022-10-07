@@ -142,7 +142,7 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
     setSecondSelectIndex(secondSelectIndex + 1);
     setModelNameValue(null);
     setFilterValues([{ value: '', secondValue: '' }]);
-    if (selectedFilter === null) {
+    if (selectedFilter == null) {
       const arr = [];
       for (let i = 0; i <= idx; i++) {
         i === idx ? arr.push(e) : arr.push({ value: '', label: '' });
@@ -233,7 +233,7 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
 
   params.page === 'photo-requests' && navigate('../luxury-store/authentications/photo-requests');
 
-  if (page === null) {
+  if (page == null) {
     return <div />;
   }
   return (

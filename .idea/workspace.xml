@@ -22,122 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="fix errors dashboard">
-      <change afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/babel.config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codeStyle/codeStyle.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/router/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock 2.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock 2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/album-photo/album.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/album-photo/album.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/auth/auth-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth/auth-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/authRequest/authRequest-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authRequest/authRequest-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/axios-instance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axios-instance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/file/file-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/file/file-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/notifications/notifications-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/notifications/notifications-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/payment/payment-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/payment/payment-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/product/product-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product/product-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/icons/SvgSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/icons/SvgSelector.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/react-select/DropdownIndicator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/react-select/DropdownIndicator.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppRouter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppRouter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/AuthLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/AuthLayout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/Conditions/Conditions.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Conditions/Conditions.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/ConfirmEmail/ConfirmEmail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/ConfirmEmail/ConfirmEmail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/ForgotPassword/ForgotPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/ForgotPassword/ForgotPassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/ResetPassword/ResetPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/ResetPassword/ResetPassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/Signin/Signin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Signin/Signin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/Signup/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Signup/Signup.jsx" afterDir="false" />
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="new branch development">
+      <change beforePath="$PROJECT_DIR$/codeStyle/codeStyle.md" beforeDir="false" afterPath="$PROJECT_DIR$/codeStyle/codeStyle.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Balance/Balance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Balance/Balance.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BlockComponentLayout/BlockComponentLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BlockComponentLayout/BlockComponentLayout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticBlock/AuthenticBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticBlock/AuthenticBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticInMobile/AuthenticMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticInMobile/AuthenticMobile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticInfoBlock/AuthenticInfoBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticInfoBlock/AuthenticInfoBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/CheckBlock/CheckBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/CheckBlock/CheckBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/CheckBlockMobile/CheckBlockMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/CheckBlockMobile/CheckBlockMobile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/InfoBlock/InfoBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/InfoBlock/InfoBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Loader/Loader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Loader/Loader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Mobile/MobileHeader/MobileHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Mobile/MobileHeader/MobileHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navigation/Navigation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation/Navigation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NotFoundPage/NotFound.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NotFoundPage/NotFound.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Paginator/Paginator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Paginator/Paginator.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/AuthBalance/AuthBalance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/AuthBalance/AuthBalance.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PackagesHistory/PackagesHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PackagesHistory/PackagesHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentFirst/PaymentFirst.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentFirst/PaymentFirst.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CertificatesForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CertificatesForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/PaymentForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/PaymentForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentHeader/PaymentHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentHeader/PaymentHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/RightSide/RightSide.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/RightSide/RightSide.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/RightSideMobile/RightSideMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/RightSideMobile/RightSideMobile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/SuccessPage/PendingPay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/PendingPay.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPageOrder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/SuccessPageOrder.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/SuccessPage/Unsuccess.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/SuccessPage/Unsuccess.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/FilterSelect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/FilterSelect.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/MobileNotif.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/MobileNotif.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/PersonalAreaLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/PersonalAreaLayout.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/UploadPhotoModal/UploadPhotoModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/UploadPhotoModal/UploadPhotoModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/billing/Billing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/billing/Billing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/billing/CardLine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/billing/CardLine.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SnackBar/SnackBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SnackBar/SnackBar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SnackBar/SnackBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SnackBar/SnackBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Summary/Summary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Summary/Summary.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SummaryMobile/SummaryMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SummaryMobile/SummaryMobile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notifications/CardNotif.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notifications/CardNotif.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notifications/Notif.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notifications/Notif.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notifications/Notifications.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notifications/Notifications.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/order/Order.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/Order.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/usePagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/usePagination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useWindowSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useWindowSize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DashboardPage/DashboardPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DashboardPage/DashboardPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Payment/Payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Payment/Payment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/app-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/app-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/auth-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/auth-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/authRequest-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/authRequest-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/files-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/files-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/payment-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/payment-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/product-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/product-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/selectors/app-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors/app-selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/selectors/auth-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors/auth-selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/selectors/authRequest-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors/authRequest-selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/selectors/dashboard-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors/dashboard-selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/selectors/files-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors/files-selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/selectors/payment-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors/payment-selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/selectors/product-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/selectors/product-selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/app-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/app-thunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/auth-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/auth-thunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/authRequest-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/authRequest-thunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/files-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/files-thunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/product-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/product-thunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/test.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +114,7 @@
       <recent name="C:\projects\b2b\b2blgfront" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.lint">
+  <component name="RunManager" selected="npm.start">
     <configuration name="format" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -255,9 +147,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.lint" />
         <item itemvalue="npm.format" />
-        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -291,7 +183,7 @@
       <workItem from="1664971328232" duration="2073000" />
       <workItem from="1665051248593" duration="1076000" />
       <workItem from="1665052343979" duration="24657000" />
-      <workItem from="1665128052767" duration="421000" />
+      <workItem from="1665128052767" duration="8992000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
@@ -307,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663682842755</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="new branch development">
+      <created>1665128687717</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1665128687717</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,7 +236,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge" />
+    <MESSAGE value="new branch development" />
+    <option name="LAST_COMMIT_MESSAGE" value="new branch development" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
