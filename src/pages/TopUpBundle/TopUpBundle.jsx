@@ -1,36 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getUserTariffPackages,
-  getCartTotal,
-  getUserCertificatePackage
-} from "../../redux/selectors/payment-selectors";
-import PaymentForm from "../../components/Payment/PaymentForm/PaymentForm";
-import {
-  getCartTotalThunk,
-  getPriceThunk,
-} from "../../redux/thunks/payment-thunk";
-import { getProductTypesThunk } from "../../redux/thunks/product-thunk";
-import { getIsAuth, getUser } from "../../redux/selectors/auth-selectors";
-import Balance from "../../components/Balance/Balance";
-import "./TopUpBundle.scss";
-import Summary from "../../components/Summary/Summary";
-import logo from "../../common/images/logo-for-mobile.png";
-import RigthSide from "../../components/Payment/RightSide/RightSide";
-import RigthSideMobile from "../../components/Payment/RightSideMobile/RightSideMobile";
-import Header from "../../components/Payment/Header/Header";
-import Header1 from "../../components/Header/Header";
-import Navigation from "../../components/Navigation/Navigation";
-import SvgSelector from "../../common/icons/SvgSelector";
-import PersonalAreaLayout from "../../components/PersonalArea/PersonalAreaLayout";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserCertificatePackage, getUserTariffPackages } from '../../redux/selectors/payment-selectors';
+import { PaymentForm } from '../../components/Payment/PaymentForm/PaymentForm';
+import { getCartTotalThunk, getPriceThunk } from '../../redux/thunks/payment-thunk';
+import { getProductTypesThunk } from '../../redux/thunks/product-thunk';
+import { getIsAuth, getUser } from '../../redux/selectors/auth-selectors';
+import './TopUpBundle.scss';
+import { RigthSide } from '../../components/Payment/RightSide/RightSide';
+import { RigthSideMobile } from '../../components/Payment/RightSideMobile/RightSideMobile';
+import { Header } from '../../components/Payment/Header/Header';
+import { Navigation } from '../../components/Navigation/Navigation';
+import { SvgSelector } from '../../common/icons/SvgSelector';
+import { PersonalAreaLayout } from '../../components/PersonalArea/PersonalAreaLayout';
 
-const TopUpBundle = (props) => {
+export const TopUpBundle = () => {
   const dispatch = useDispatch();
   const packages = useSelector(getUserTariffPackages);
   const certificate = useSelector(getUserCertificatePackage);
-  const total = useSelector(getCartTotal);
   const isAuth = useSelector(getIsAuth);
-  const user = useSelector(getUser)
+  const user = useSelector(getUser);
 
   const [addButState, setAddButState] = useState(false);
   const [payButState, setPayButState] = useState(false);
@@ -40,9 +28,10 @@ const TopUpBundle = (props) => {
 
   useEffect(() => {
     isAuth && dispatch(getProductTypesThunk(1, 1000));
-  }, []);
+  }, [isAuth]);
 
-  useEffect(() => { }, [packages.length]);
+  // eslint-disable-next-line no-empty-function
+  useEffect(() => {}, [packages.length]);
 
   const btnAddToogleClick = () => {
     setAddButState(true);
@@ -61,18 +50,15 @@ const TopUpBundle = (props) => {
   const calcCartTotal = () => {
     const data = {
       userTariffPackages: packages,
-      userCertificatePackage: certificate
-    }
+      userCertificatePackage: certificate,
+    };
 
-    console.log(data, 'check parent')
-    // dispatch(getCartTotalThunk(data));
     clearTimeout(timerCart);
     setTimerCart(
       setTimeout(() => {
-        console.log({ data })
         if (data.userTariffPackages) {
           if (data.userTariffPackages.length === 1) {
-            if (data.userTariffPackages[0].productType !== "") {
+            if (data.userTariffPackages[0].productType !== '') {
               dispatch(getCartTotalThunk(data));
             }
           } else if (data.userTariffPackages.length !== 0) {
@@ -81,7 +67,7 @@ const TopUpBundle = (props) => {
         } else {
           dispatch(getCartTotalThunk(data));
         }
-      }, 1000)
+      }, 1000),
     );
   };
 
@@ -90,45 +76,27 @@ const TopUpBundle = (props) => {
     setTimerPrice(
       setTimeout(() => {
         dispatch(getPriceThunk(data));
-      }, 1000)
+      }, 1000),
     );
   };
   return (
-    <>
-      <div className="top_up_bundle-container">
-        <div className="top_up_bundle__left-wrapper">
-          <div className="top_up_bundle__left-nav">
-            <Navigation
-              hrefs={[
-                { label: `${user.companyName}` },
-                { label: "Authentication Bundle" },
-              ]}
-            />
-            <div className="top_up_bundle__left-mobile">
-              <h1>authentication bundle</h1>
-              <SvgSelector id="burger" />
-            </div>
-            <div className="mobile-nav"><PersonalAreaLayout /></div>
+    <div className="top_up_bundle-container">
+      <div className="top_up_bundle__left-wrapper">
+        <div className="top_up_bundle__left-nav">
+          <Navigation hrefs={[{ label: `${user.companyName}` }, { label: 'Authentication Bundle' }]} />
+          <div className="top_up_bundle__left-mobile">
+            <h1>authentication bundle</h1>
+            <SvgSelector id="burger" />
           </div>
-          <Header />
-          <PaymentForm
-            btnAdd={addButState}
-            btnPay={payButState}
-            cartTotal={calcCartTotal}
-            getPrice={getPrice}
-          />
+          <div className="mobile-nav">
+            <PersonalAreaLayout />
+          </div>
         </div>
-        <RigthSide
-          toogle={{ add: btnAddToogleClick, pay: btnPayToogleClick }}
-          cartTotal={calcCartTotal}
-        />
-        <RigthSideMobile
-          toogle={{ add: btnAddToogleClick, pay: btnPayToogleClick }}
-          cartTotal={calcCartTotal}
-        />
+        <Header />
+        <PaymentForm btnAdd={addButState} btnPay={payButState} cartTotal={calcCartTotal} getPrice={getPrice} />
       </div>
-    </>
+      <RigthSide toogle={{ add: btnAddToogleClick, pay: btnPayToogleClick }} cartTotal={calcCartTotal} />
+      <RigthSideMobile toogle={{ add: btnAddToogleClick, pay: btnPayToogleClick }} cartTotal={calcCartTotal} />
+    </div>
   );
 };
-
-export default TopUpBundle;

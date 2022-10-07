@@ -1,20 +1,18 @@
-import React from 'react'
-import { useSelector } from "react-redux";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { getIsAuth } from "../redux/selectors/auth-selectors";
-import { publicRoutes, privateRoutes } from "../router";
-import NotFoundPage from "./NotFoundPage/NotFound";
-import "../components/AppRouter.scss"
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { getIsAuth } from '../redux/selectors/auth-selectors';
+import { privateRoutes, publicRoutes } from '../router';
+import { NotFoundPage } from './NotFoundPage/NotFound';
+import './AppRouter.scss';
 
-const AppRouter = () => {
+export const AppRouter = () => {
   const isAuth = useSelector(getIsAuth);
 
   return (
     <>
-      {isAuth ? (
-        <div
-          className="container"
-        >
+      {isAuth && (
+        <div className="container">
           <Routes>
             {privateRoutes.map((el) => (
               <Route key={el.path} element={el.component} path={el.path} />
@@ -22,7 +20,8 @@ const AppRouter = () => {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
-      ) : (
+      )}
+      {!isAuth && (
         <Routes>
           {publicRoutes.map((el) => (
             <Route key={el.path} element={el.component} path={el.path} />
@@ -33,5 +32,3 @@ const AppRouter = () => {
     </>
   );
 };
-
-export default AppRouter;

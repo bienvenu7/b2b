@@ -1,22 +1,18 @@
-import React from 'react'
-import Select from "react-select";
+import React from 'react';
+import Select from 'react-select';
 
-const FilterSelect = (props) => {
+export const FilterSelect = ({ length, handleChange: clickChange, index, mainOptions }) => {
   function handleChange(e) {
-    props.handleChange(e, props.index, props.length);
+    clickChange(e, index, length);
   }
 
   return (
-    <>
-      <Select
-        key={props.index}
-        options={props.mainOptions}
-        classNamePrefix="custom-select__dashboard"
-        placeholder="Select filter"
-        onChange={(e) => handleChange(e)}
-      />
-    </>
+    <Select
+      key={index}
+      options={mainOptions}
+      classNamePrefix="custom-select__dashboard"
+      placeholder="Select filter"
+      onChange={(e) => handleChange(e)}
+    />
   );
 };
-
-export default FilterSelect;

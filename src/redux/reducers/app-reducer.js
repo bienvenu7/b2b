@@ -1,8 +1,8 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
-export const initializedSuccess = createAction("INITIALIZED_SUCCESS");
-export const setStatusCode = createAction("SET_INFO");
-export const setErrors = createAction("SET_ERRORS");
+export const initializedSuccess = createAction('INITIALIZED_SUCCESS');
+export const setStatusCode = createAction('SET_INFO');
+export const setErrors = createAction('SET_ERRORS');
 
 const initialState = {
   appInitial: false,
@@ -14,47 +14,47 @@ const initialState = {
   },
 };
 
-const appReducer = createReducer(initialState, (builder) => {
+export const appReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase("INITIALIZED_SUCCESS", (state = initialState, action) => {
+    .addCase('INITIALIZED_SUCCESS', (state = initialState) => {
       state.appInitial = true;
     })
-    .addCase("SET_INFO", (state = initialState, action) => {
+    .addCase('SET_INFO', (state = initialState, action) => {
       state.sendInfo = action.payload;
     })
-    .addCase("SET_ERRORS", (state = initialState, action) => {
+    .addCase('SET_ERRORS', (state = initialState, action) => {
       if (action.payload != null) {
-        const page = action.payload.page;
-        state.post.errors = page === "signin" && {
+        const { page } = action.payload;
+        state.post.errors = page === 'signin' && {
           ...state.post.errors,
           signin: action.payload.error,
         };
         switch (page) {
-          case "signin":
+          case 'signin':
             state.post.errors = {
               ...state.post.errors,
               signin: action.payload.error,
             };
             break;
-          case "authrequest":
+          case 'authrequest':
             state.post.errors = {
               ...state.post.errors,
               authrequest: action.payload.error,
             };
             break;
-          case "signup":
+          case 'signup':
             state.post.errors = {
               ...state.post.errors,
               signup: action.payload.error,
             };
             break;
-          case "forgot":
+          case 'forgot':
             state.post.errors = {
               ...state.post.errors,
               forgot: action.payload.error,
             };
             break;
-          case "upload-photos":
+          case 'upload-photos':
             // console.log({ ...state.post.errors });
             state.post.errors = {
               ...state.post.errors,
@@ -68,5 +68,3 @@ const appReducer = createReducer(initialState, (builder) => {
       }
     });
 });
-
-export default appReducer;

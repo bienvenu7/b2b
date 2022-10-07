@@ -15,5 +15,5 @@ export const takeAngles = (state) => {
 };
 
 export const companyname = (state) => {
-  return state.auth.user.companyName
+  return state.auth.user.companyName;
 };
