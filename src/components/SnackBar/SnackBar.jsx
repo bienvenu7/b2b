@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from "react";
-import SnackbarProvider from 'react-simple-snackbar';
-import { useSnackbar } from 'react-simple-snackbar'
-import "./SnackBar.css";
+import React from 'react';
+import { useSnackbar } from 'react-simple-snackbar';
+import './SnackBar.css';
 
-export default function SnackWarning(props) {
-    // const [isExists, setIsExists] = useState(false);
-    const [openSnackbar, closeSnackbar] = useSnackbar(); 
+export const SnackWarning = ({ error }) => {
+  const [openSnackbar] = useSnackbar();
 
-    // useEffect(() => {
-    //     document.title = `You clicked ${isExists} times`;
-    // });
-
-    return (
-        <div 
-        onClick={() => (props.error == true) ? openSnackbar('This is the content of the Snackbar.' , [4000]) : null}>
-            
-        </div>
-    );
-}
+  return (
+    /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+                  jsx-a11y/no-static-element-interactions */
+    <div onClick={() => (error === true ? openSnackbar('This is the content of the Snackbar.', [4000]) : null)} />
+  );
+};

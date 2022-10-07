@@ -1,32 +1,16 @@
-import "./UploadPhotoModal.scss";
-import Modal from "react-modal";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { takeAnglesList } from "../../../redux/selectors/product-selectors";
-import { uploadPhotoForProductThunk } from "../../../redux/thunks/authRequest-thunk";
+import './UploadPhotoModal.scss';
+import Modal from 'react-modal';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { takeAnglesList } from '../../../redux/selectors/product-selectors';
+import { uploadPhotoForProductThunk } from '../../../redux/thunks/authRequest-thunk';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
-const UploadPhotoModal = (props) => {
-  console.log(props);
-  console.log(props.closeModal);
-  function reloadWindow() {
-    // window.location.reload()
-  }
-
+export const UploadPhotoModal = ({ closeModal, elem, isOpen }) => {
   const dispatch = useDispatch();
-
-  const product = props.elem;
-
+  const product = elem;
   const [photoFiles, setPhotoFiles] = useState([]);
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -36,23 +20,21 @@ const UploadPhotoModal = (props) => {
 
   function getReasons(reasons) {
     if (reasons !== null && anglesList !== null) {
-      const angles = reasons
-        .split(",")
-        .map((el) => anglesList.find((elem) => elem.clickupId === el));
+      const angles = reasons.split(',').map((el) => anglesList.find((elem) => elem.clickupId === el));
       setPhotoFiles(
         angles &&
-        angles.map(
-          (el, index) =>
-            photoFiles.length == 0 && {
-              key: index,
-              file: "",
-              imagePreviewUrl: "",
-              angleId: el.id,
-              error: false,
-              angleName: el.publicName,
-              format: null,
-            }
-        )
+          angles.map(
+            (el, index) =>
+              photoFiles.length === 0 && {
+                key: index,
+                file: '',
+                imagePreviewUrl: '',
+                angleId: el.id,
+                error: false,
+                angleName: el.publicName,
+                format: null,
+              },
+          ),
       );
     }
   }
@@ -64,68 +46,64 @@ const UploadPhotoModal = (props) => {
   function handleImageChange(e) {
     e.preventDefault();
 
-    let reader = new FileReader();
-    let file = e.target.files[0];
+    const reader = new FileReader();
+    const file = e.target.files[0];
 
-    let index = e.target.id.split("-")[1];
+    const index = e.target.id.split('-')[1];
 
-    if (
-      !file.name.match(/\.(gif|jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/)
-    ) {
-      setPhotoFiles(
-        photoFiles.map((item) =>
-          item.key == index ? { ...item, format: false } : item
-        )
-      );
+    if (!file.name.match(/\.(gif|jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/)) {
+      setPhotoFiles(photoFiles.map((item) => (item.key === index ? { ...item, format: false } : item)));
       return;
     }
     reader.onloadend = () => {
       setPhotoFiles(
         photoFiles.map((item) =>
-          item.key == index
+          item.key === index
             ? {
-              ...item,
-              file: file,
-              imagePreviewUrl: reader.result,
-              error: false,
-              format: true,
-            }
-            : item
-        )
+                ...item,
+                file,
+                imagePreviewUrl: reader.result,
+                error: false,
+                format: true,
+              }
+            : item,
+        ),
       );
     };
     reader.readAsDataURL(file);
   }
 
   async function handlePost() {
-
-    console.log(photoFiles);
-    const response = await photoFiles.map(
+    await photoFiles.map(
       (el, index) =>
-        el.file !== "" &&
+        el.file !== '' &&
         dispatch(
           uploadPhotoForProductThunk(
-            { isAdditional: true,productId: product.id, file: el.file, angleId: el.angleId },
+            {
+              isAdditional: true,
+              productId: product.id,
+              file: el.file,
+              angleId: el.angleId,
+            },
             photoFiles.length,
-            index
-          )
-        )
-    )
+            index,
+          ),
+        ),
+    );
 
     setTimeout(() => {
-      window.location.reload()
-    }, 1000)
+      window.location.reload();
+    }, 1000);
   }
 
   return (
     <>
       {product && (
         <Modal
-          isOpen={props.isOpen}
+          isOpen={isOpen}
           onAfterOpen={afterOpenModal}
-          onRequestClose={props.closeModal}
+          onRequestClose={closeModal}
           contentLabel="Example Modal"
-
           overlayClassName="overlayStyle"
           className="contentStyle"
         >
@@ -134,7 +112,7 @@ const UploadPhotoModal = (props) => {
               {photoFiles.length > 0 &&
                 photoFiles.map((el, index) => (
                   <div key={index} className={`modal__photo-elem ${index}`}>
-                    {el.imagePreviewUrl !== "" ? (
+                    {el.imagePreviewUrl !== '' ? (
                       <label
                         htmlFor={`photo-${index}`}
                         className="modal__photo-previewImg"
@@ -149,10 +127,7 @@ const UploadPhotoModal = (props) => {
                         />
                       </label>
                     ) : (
-                      <label
-                        htmlFor={`photo-${index}`}
-                        className="auth_request__form__photo-photolabel required"
-                      >
+                      <label htmlFor={`photo-${index}`} className="auth_request__form__photo-photolabel required">
                         <input
                           className={`modal__photo-fileInput ${index}`}
                           accept=".heic,.png,.heif,.jpg,.jpeg"
@@ -164,23 +139,19 @@ const UploadPhotoModal = (props) => {
                     )}
                     <div className="modal__photo-name">{el.angleName}</div>
                     {el.format !== null && el.format !== true && (
-                      <div className="modal__photo-error">
-                        Format is not available
-                      </div>
+                      <div className="modal__photo-error">Format is not available</div>
                     )}
                   </div>
-
                 ))}
             </div>
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+                  jsx-a11y/no-static-element-interactions */}
             <div className="modal__photo-submit" onClick={handlePost}>
               Upload
             </div>
           </div>
-
         </Modal>
       )}
     </>
   );
 };
-
-export default UploadPhotoModal;

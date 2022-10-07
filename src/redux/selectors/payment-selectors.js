@@ -3,11 +3,10 @@ export const getUserTariffPackages = (state) => {
 };
 
 export const getUserCertificatePackage = (state) => {
-  return state.payment.cart.userCertificatePackage
+  return state.payment.cart.userCertificatePackage;
 };
 
 export const getCartTotal = (state) => {
-  // console.log({total:state});
   return state.payment.cart.total;
 };
 

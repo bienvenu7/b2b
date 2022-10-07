@@ -1,15 +1,13 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
-export const setCertificateLink = createAction("SET_CERTIFICATE_LINK");
+export const setCertificateLink = createAction('SET_CERTIFICATE_LINK');
 
 const initialState = {
   certificateLink: [],
 };
 
-const filesReducer = createReducer(initialState, (builder) => {
-  builder.addCase("SET_CERTIFICATE_LINK", (state = initialState, action) => {
+export const filesReducer = createReducer(initialState, (builder) => {
+  builder.addCase('SET_CERTIFICATE_LINK', (state = initialState) => {
     state.certificateLink = true;
   });
 });
-
-export default filesReducer;

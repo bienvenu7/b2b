@@ -1,698 +1,354 @@
-import { Formik, Field, Form, useFormik } from "formik"
-import React, { useState, useEffect } from "react"
-import * as NumericInput from 'react-numeric-input'
-import { useDispatch, useSelector } from "react-redux"
-import {updateCurrentPackage, initPackage, pushTotal, setCategoryError, updateHoursPackage, updateTypePackage, updateVolumePackage } from "../../../redux/reducers/payment-reducer"
-import { getUserId } from "../../../redux/selectors/auth-selectors"
-import { getTypesOfProduct } from "../../../redux/selectors/product-selectors"
-import Select from 'react-select'
-import DropdownIndicator from "../../../common/react-select/DropdownIndicator"
-import { getPriceThunk } from "../../../redux/thunks/payment-thunk"
-import {getCategoryError, getCosts, getPrice, getUserTariffPackages, getUserCertificatePackage} from "../../../redux/selectors/payment-selectors"
-import SvgSelector from "../../../common/icons/SvgSelector"
+import { Field, Form, Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import * as NumericInput from 'react-numeric-input';
+import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
+import {
+  initPackage,
+  pushTotal,
+  setCategoryError,
+  updateHoursPackage,
+  updateTypePackage,
+  updateVolumePackage,
+} from '../../../redux/reducers/payment-reducer';
+import { getUserId } from '../../../redux/selectors/auth-selectors';
+import { getTypesOfProduct } from '../../../redux/selectors/product-selectors';
+import { DropdownIndicator } from '../../../common/react-select/DropdownIndicator';
+import { getPriceThunk } from '../../../redux/thunks/payment-thunk';
+import {
+  getCategoryError,
+  getCosts,
+  getPrice,
+  getUserCertificatePackage,
+  getUserTariffPackages,
+} from '../../../redux/selectors/payment-selectors';
 
-const CategoryForm = (props) => {
+export const CategoryForm = React.memo((props) => {
+  const [volume, setVolume] = useState(1);
+  const [errorsForAnswerTime, setErrorForAnswerTime] = useState(null);
+  const [packageEditNumber, setPackageEdit] = useState(0);
+  const dispatch = useDispatch();
+  const userId = useSelector(getUserId);
+  const productTypes = useSelector(getTypesOfProduct);
+  const certificatePackage = useSelector(getUserCertificatePackage);
+  const cart = useSelector(getUserTariffPackages);
+  const categoryError = useSelector(getCategoryError);
+  const cost = useSelector(getPrice);
+  const [answerTime, setAnswerTime] = useState(24);
+  const [productType, setProductType] = useState(null);
+  const [productTypeVar, setProductTypeVar] = useState(null);
+  const [options, setOptions] = useState([]);
+  const costsArrey = useSelector(getCosts);
+  const packages = useSelector(getUserTariffPackages);
 
-    const [volume, setVolume] = useState(1)
-    const [errorsForAnswerTime, setErrorForAnswerTime] = useState(null)
-    const [packageEditNumber, setPackageEdit] = useState(0)
+  const specialNames = ['SNEAKERS_HYPE', 'SNEAKERS_LUXURY', 'OTHER_SHOES_HYPE', 'OTHER_SHOES_LUXURY'];
 
-    const dispatch = useDispatch()
-    const userId = useSelector(getUserId)
-    const productTypes = useSelector(getTypesOfProduct)
-    const certificatePackage = useSelector(getUserCertificatePackage)
-    const cart = useSelector(getUserTariffPackages)
-    const categoryError = useSelector(getCategoryError)
-    const cost = useSelector(getPrice)
-    const [answerTime, setAnswerTime]=useState(24)
-    const [productType, setProductType] = useState(null)
-    const [productTypeVar, setProductTypeVar] = useState(null)
-    const [options, setOptions] = useState([])
-    const costsArrey = useSelector(getCosts)
-
-    const specialNames = ['SNEAKERS_HYPE','SNEAKERS_LUXURY','OTHER_SHOES_HYPE','OTHER_SHOES_LUXURY'];
-
-    useEffect(()=>{
-        let list = productTypes.filter((item)=>{
-            return specialNames.indexOf(item.name)===-1
-        }).map((item)=>{
-            return {
-                value: {
-                    name: item.name,
-                    types: { single: item }
-                },
-                label: item.publicName,
-            }
-        });
-        list.push({ value: { name: 'hypeShoes', types: { sneakers: productTypes.find(item=>item.name=="SNEAKERS_HYPE"), other: productTypes.find(item=>item.name=="OTHER_SHOES_HYPE") } }, label: 'Hype shoes' });
-        list.push({ value: { name: 'luxuryShoes', types: { sneakers: productTypes.find(item=>item.name=="SNEAKERS_LUXURY"), other: productTypes.find(item=>item.name=="OTHER_SHOES_LUXURY") } }, label: 'Luxury shoes' });
-        setOptions(list);
-
-    },[productTypes])
-
-    /*
-    * {
-    "id": "ec10993d-8e1b-42a6-9e61-65a6e2c2e292",
-    "name": "SNEAKERS_HYPE",
-    "publicName": "Sneakers: Hype",
-    "productTypeAngles": [
-        {
-            "id": "ecf5f972-c009-4311-8f75-43e4463b2dda",
-            "necessity": 1,
-            "forCertificate": null,
-            "angle": { "id": "e534fd63-5311-4ce6-855d-d6cbdbe38290", "name": "INSOLE_BACK_SIDE", "publicName": "Insole (back side)", "clickupId": "797d7378-528e-466c-9794-c1b5b67ad4e2", "__entity": "Angle" },
-            "__entity": "ProductTypeAngle"
+  useEffect(() => {
+    const list = productTypes
+      .filter((item) => {
+        return specialNames.indexOf(item.name) === -1;
+      })
+      .map((item) => {
+        return {
+          value: {
+            name: item.name,
+            types: { single: item },
+          },
+          label: item.publicName,
+        };
+      });
+    list.push({
+      value: {
+        name: 'hypeShoes',
+        types: {
+          sneakers: productTypes.find((item) => item.name === 'SNEAKERS_HYPE'),
+          other: productTypes.find((item) => item.name === 'OTHER_SHOES_HYPE'),
         },
-    ],
-    "__entity": "ProductType"
-}
+      },
+      label: 'Hype shoes',
+    });
+    list.push({
+      value: {
+        name: 'luxuryShoes',
+        types: {
+          sneakers: productTypes.find((item) => item.name === 'SNEAKERS_LUXURY'),
+          other: productTypes.find((item) => item.name === 'OTHER_SHOES_LUXURY'),
+        },
+      },
+      label: 'Luxury shoes',
+    });
+    setOptions(list);
+  }, [productTypes]);
 
-    * */
+  const [selectedValue, setSelectedValue] = useState('');
 
-    const options2 = [
-        { value: { name: 'bags', types: { single: productTypes[4] } }, label: "Bags" },
-        { value: { name: 'wallets', types: { single: productTypes[5] } }, label: "Wallets" },
-        { value: { name: 'hypeShoes', types: { sneakers: productTypes[0], other: productTypes[2] } }, label: 'Hype shoes' },
-        { value: { name: 'luxuryShoes', types: { sneakers: productTypes[1], other: productTypes[3] } }, label: 'Luxury shoes' },
-        { value: { name: 'jewellery', types: { single: productTypes[7] } }, label: 'Jewellery' },
-        { value: { name: 'watches', types: { single: productTypes[8] } }, label: 'Watches' },
-    ]
-
-    const [selectedValue, setSelectedValue] = useState('');
-
-    const handleChange = (e, formik) => {
-
-        const checked = packages.findIndex((item) => e.label === item.productType.publicName || 'Sneakers: Hype' === item.productType.publicName );
-        // console.log(checked)
-
-        if(checked < 0) {
-            setSelectedValue(e.value);
-            dispatch(setCategoryError(null))
-            updateType(e.value, formik)
-            // console.log(e)
-        }else{
-            // dispatch(updateCurrentPackage({index: checked, volume: e.value}))
-            dispatch(updateVolumePackage({index: checked, volume: packages[checked].volume + 1}))
-
-            const data = {productType: packages[checked].productType, volume: packages[checked].volume, answerTime: packages[checked].answerTime}
-            dispatch(getPriceThunk(data))
-            // console.log('je suis deja present')
-        }
-
-        // console.log(e.value)
-        // setSelectedValue(e.value);
-        // dispatch(setCategoryError(null))
-        // updateType(e.value, formik)
-        
+  const updateType = (e, typeOfShoes) => {
+    setProductTypeVar(typeOfShoes);
+    if (e != null) {
+      let type = e !== 3 && e.types.single;
+      if (e.name === 'hypeShoes') {
+        typeOfShoes === 'sneakers' ? (type = e.types.sneakers) : (type = e.types.other);
+      } else if (e.name === 'luxuryShoes') {
+        typeOfShoes === 'sneakers' ? (type = e.types.sneakers) : (type = e.types.other);
+      }
+      e.value !== 3 && dispatch(updateTypePackage({ index: packageEditNumber, type }));
+      setProductType(type);
+      const data = {
+        productType: type,
+        volume,
+        answerTime,
+      };
+      dispatch(getPriceThunk(data));
     }
+  };
 
-    const handleChangeForNumeric = (e) => {
-        let temppackage = {package:cost.package,cart:cart.length,costsArrey:costsArrey.length}
-        dispatch(pushTotal(temppackage))//костыль
-        // console.log({temppackage:temppackage, cost:cost,e:e, formik:formik,productType:productType,checked:checked,packages:packages});
-        setVolume(e)
-        dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
-        const data = {productType: productType, volume: e, answerTime: answerTime}
-        props.getPrice(data)
-        // console.log(props.getPrice(data))
+  const handleChange = (e, formik) => {
+    const checked = packages.findIndex(
+      (item) => e.label === item.productType.publicName || item.productType.publicName === 'Sneakers: Hype',
+    );
+
+    if (checked < 0) {
+      setSelectedValue(e.value);
+      dispatch(setCategoryError(null));
+      updateType(e.value, formik);
+    } else {
+      dispatch(
+        updateVolumePackage({
+          index: checked,
+          volume: packages[checked].volume + 1,
+        }),
+      );
+
+      const data = {
+        productType: packages[checked].productType,
+        volume: packages[checked].volume,
+        answerTime: packages[checked].answerTime,
+      };
+      dispatch(getPriceThunk(data));
     }
+  };
 
-    const updateType = (e, typeOfShoes) => {
-        setProductTypeVar(typeOfShoes)
-        if (e != null){
-            let type = e !== 3 && e.types.single
-            if (e.name === 'hypeShoes') {
-                typeOfShoes === 'sneakers' ? type = e.types.sneakers : type = e.types.other
-            } else if (e.name === 'luxuryShoes') {
-                typeOfShoes === 'sneakers' ? type = e.types.sneakers : type = e.types.other
-            }
-            e.value !== 3 && dispatch(updateTypePackage({index: packageEditNumber, type: type}))
-            setProductType(type)
-            const data = {productType: type, volume: volume, answerTime: answerTime}
-            dispatch(getPriceThunk(data))
-        }
+  const handleChangeForNumeric = (e) => {
+    const temppackage = {
+      package: cost.package,
+      cart: cart.length,
+      costsArrey: costsArrey.length,
+    };
+    dispatch(pushTotal(temppackage)); // костыль
+    setVolume(e);
+    dispatch(updateVolumePackage({ index: packageEditNumber, volume: e }));
+    const data = {
+      productType,
+      volume: e,
+      answerTime,
+    };
+    props.getPrice(data);
+  };
 
+  const updateHours = (value, data) => {
+    const pack = {
+      productType,
+      volume,
+      answerTime: value,
+    };
+    setAnswerTime(value);
+    dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
+    dispatch(getPriceThunk(pack));
+    props.cartTotal(data);
+    setErrorForAnswerTime(null);
+  };
+
+  cart.length < 1 && dispatch(initPackage(userId));
+
+  // eslint-disable-next-line no-empty-function
+  useEffect(() => {}, [props.but]);
+
+  useEffect(() => {
+    dispatch(updateHoursPackage({ index: packageEditNumber, hours: 24 }));
+  }, [packageEditNumber, dispatch]);
+
+  useEffect(() => {
+    const data = {
+      userTariffPackages: cart,
+    };
+    props.cartTotal(data);
+  }, [cart]);
+
+  const { but } = props;
+
+  function handleClose() {
+    setProductType(null);
+    setSelectedValue('');
+    setProductTypeVar(null);
+    setVolume(1);
+    setAnswerTime(24);
+  }
+
+  const handlePost = (formik) => {
+    if (formik.values.hours !== '0') {
+      setPackageEdit(packageEditNumber + 1);
+      dispatch(initPackage(userId));
+      dispatch(pushTotal(cost.package));
+      setVolume(1);
     }
+    formik.values.hours = '0';
+    handleClose();
+  };
 
-    const updateHours = (value, data) =>{
-        const pack = {productType: productType, volume: volume, answerTime: value}
-        setAnswerTime(value)
-        dispatch(updateHoursPackage({index: packageEditNumber,hours: value}))
-        dispatch(getPriceThunk(pack))
-        console.log(data, 'check data')
-        props.cartTotal(data)
-        setErrorForAnswerTime(null)
-    }
+  return (
+    <Formik
+      initialValues={{
+        hours: answerTime.toString(),
+        typeOfShoes: '',
+        getUserCertificatePackage: certificatePackage,
+      }}
+      onSubmit={(values, { setSubmitting, resetForm }) => {
+        setTimeout(() => {
+          alert(values);
+          resetForm();
+          setSubmitting(false);
+        }, 1000);
+      }}
+    >
+      {(props2) => (
+        <Form className="payment__form" onSubmit={but && props2.handleSubmit}>
+          <div className="payment__form-block-container first">
+            <label htmlFor="category" className="payment__form-label">
+              Choose the category
+            </label>
+            <Select
+              key={packageEditNumber}
+              components={{ DropdownIndicator }}
+              classNamePrefix="custom-select"
+              placeholder="Please select the category"
+              options={productTypes.length > 0 ? options : []}
+              value={options[selectedValue]}
+              onChange={(e) => handleChange(e, props2.values.typeOfShoes)}
+            />
 
-    cart.length < 1 && dispatch(initPackage(userId))
+            {['hypeShoes', 'luxuryShoes'].indexOf(selectedValue.name) !== -1 && (
+              <div className="payment__form-elem shoes-vars">
+                <label htmlFor="types" className="payment__form-label">
+                  Choose the shoes type
+                </label>
 
-    useEffect(() => {
-
-    }, [props.but])
-
-
-    useEffect(() => {
-        // const index = cart.findIndex((i) => i.answerTime === '')
-        dispatch(updateHoursPackage({index: packageEditNumber, hours: 24}))
-    },[packageEditNumber, dispatch])
-
-    useEffect(() => {
-        const data = {
-            userTariffPackages: cart
-        }
-        props.cartTotal(data)
-    }, [cart])
-
-    let but = props.but
-
-    //for updating packages
-    const packages = useSelector(getUserTariffPackages)
-
-    const handlePost = (formik) => {
-        if (formik.values.hours !== '0'){
-            setPackageEdit(packageEditNumber+1)
-            dispatch(initPackage(userId))
-            dispatch(pushTotal(cost.package))
-            setVolume(1)
-        }
-        formik.values.hours = '0'
-        handleClose()
-    }
-
-    function handleClose(){
-        setProductType(null)
-        setSelectedValue('')
-        setProductTypeVar(null)
-        setVolume(1)
-        setAnswerTime(24)
-    }
-
-    return (<>
-        <Formik
-            initialValues={{ hours: answerTime.toString(), typeOfShoes: '', getUserCertificatePackage: certificatePackage }}
-            // validate={values => {
-
-            // }}
-            // change={() => {
-            // }}
-            onSubmit={(values, {setSubmitting, resetForm}) => {
-                setTimeout(() => {
-                    alert(values)
-                    resetForm();
-                    setSubmitting(false);
-                }, 1000)
-            }}
-            // enableReinitialize={true}
-
-        >
-            {(props2) => (<Form className="payment__form" onSubmit={but && props2.handleSubmit}>
-                <div className="payment__form-block-container first">
-                    {/* {productType !== null && <><div className="payment__form-current_package_state-wrapper"> //костыль
-                        <div onClick={handleClose}><SvgSelector id='xmark' /></div>
-                        <div className="payment__form-current_package_state" >
-                            <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName
-                            : productTypeVar ? productTypeVar === 'sneakers' ? selectedValue.types.sneakers.publicName : selectedValue.types.other.publicName : '' }</div>
-                            <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
-                        </div>
-                    </div>
-                    </>} */}
-                    <label htmlFor="category" className="payment__form-label">Choose the category</label>
-                    <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=> handleChange(e, props2.values.typeOfShoes)} />
-
-                    {(['hypeShoes','luxuryShoes'].indexOf(selectedValue.name)!==-1) && <div className="payment__form-elem shoes-vars">
-                        <label htmlFor="types" className="payment__form-label">Choose the shoes type</label>
-
-                        <div className="payment__form-radio_btn_types-container">
-                            <div className="payment__form-radio_btn_types" id="types">
-                                <Field type="radio" name="typeOfShoes" checked={productTypeVar === 'sneakers' ? true : false} value="sneakers" id="sneakers" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
-                                <label htmlFor="sneakers">Sneakers</label>
-                                {/*<div className="payment__form-radio_btn_types-label">Sneakers</div>*/}
-                            </div>
-                            <div className="payment__form-radio_btn_types">
-                                <Field type="radio" name="typeOfShoes" checked={productTypeVar === 'other' ? true : false} value="other" id="other" className='custom-radio' onChange={(e)=>{updateType(selectedValue, e.target.value)}}/>
-                                <label htmlFor="other" id="otherlabel">Other</label>
-                                {/*<label htmlFor="other" className="payment__form-radio_btn_types-label">Other</label>*/}
-                            </div>
-                        </div>
-                    </div>}
-                    {categoryError != null && <div className="payment__form-error">{categoryError}</div>}
-                    <div className="payment__form-second_block-wrapper">
-                        <div className="payment__form-elem__hours-wrapper">
-                    <label htmlFor="hours" className="payment__form-label">Choose answer time</label>
-                    <div className="payment__form-elem hours">
-                        <div className="payment__form-radio_btn">
-                            <Field type="radio" name="hours" value="2" id="2h" />
-                            <label htmlFor="2h" onClick={()=>updateHours(2, {
-                                userTariffPackages: cart,
-                                userCertificatePackage: certificatePackage
-                            })}>2 hours</label>
-                        </div>
-                        <div className="payment__form-radio_btn">
-                            <Field type="radio" name="hours" value="12" id="12h" />
-                            <label htmlFor="12h" onClick={()=>updateHours(12, {
-                                userTariffPackages: cart,
-                                userCertificatePackage: certificatePackage
-                            })}>12 hours</label>
-                        </div>
-                        <div className="payment__form-radio_btn">
-                            <Field type="radio" name="hours" value="24" id="24h"/>
-                            <label htmlFor="24h" onClick={()=>updateHours(24, {
-                                userTariffPackages: cart,
-                                userCertificatePackage: certificatePackage
-                            })} value="24">24 hours</label>
-                        </div>
-                        {errorsForAnswerTime != null && <div className="payment__form-errors">{errorsForAnswerTime}</div>}
-                    </div>
-                    </div>
-                    <div className="payment__form-elem__volume-wrapper">
-                    <label htmlFor="volume" className="payment__form-label">Authentication volume</label>
-                    <div className="payment__form-elem number-wrapper">
-                        <NumericInput onChange={handleChangeForNumeric} className="payment__form-elem number" id="volume" name="volume" min={1} value={volume} />
-                        {!cost != null && <div className="payment__form-elem info">${cost.package / 100}&nbsp;per authentication</div>}
-                    </div>
-                    <div className="payment__form-href" onClick={() => {}}>How does our pricing work?</div>
+                <div className="payment__form-radio_btn_types-container">
+                  <div className="payment__form-radio_btn_types" id="types">
+                    <Field
+                      type="radio"
+                      name="typeOfShoes"
+                      checked={productTypeVar === 'sneakers'}
+                      value="sneakers"
+                      id="sneakers"
+                      className="custom-radio"
+                      onChange={(e) => {
+                        updateType(selectedValue, e.target.value);
+                      }}
+                    />
+                    <label htmlFor="sneakers">Sneakers</label>
+                  </div>
+                  <div className="payment__form-radio_btn_types">
+                    <Field
+                      type="radio"
+                      name="typeOfShoes"
+                      checked={productTypeVar === 'other'}
+                      value="other"
+                      id="other"
+                      className="custom-radio"
+                      onChange={(e) => {
+                        updateType(selectedValue, e.target.value);
+                      }}
+                    />
+                    <label htmlFor="other" id="otherlabel">
+                      Other
+                    </label>
+                  </div>
                 </div>
+              </div>
+            )}
+            {categoryError != null && <div className="payment__form-error">{categoryError}</div>}
+            <div className="payment__form-second_block-wrapper">
+              <div className="payment__form-elem__hours-wrapper">
+                <label htmlFor="hours" className="payment__form-label">
+                  Choose answer time
+                </label>
+                <div className="payment__form-elem hours">
+                  <div className="payment__form-radio_btn">
+                    <Field type="radio" name="hours" value="2" id="2h" />
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-noninteractive-element-interactions */}
+                    <label
+                      htmlFor="2h"
+                      onClick={() =>
+                        updateHours(2, {
+                          userTariffPackages: cart,
+                          userCertificatePackage: certificatePackage,
+                        })
+                      }
+                    >
+                      2 hours
+                    </label>
+                  </div>
+                  <div className="payment__form-radio_btn">
+                    <Field type="radio" name="hours" value="12" id="12h" />
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-noninteractive-element-interactions */}
+                    <label
+                      htmlFor="12h"
+                      onClick={() =>
+                        updateHours(12, {
+                          userTariffPackages: cart,
+                          userCertificatePackage: certificatePackage,
+                        })
+                      }
+                    >
+                      12 hours
+                    </label>
+                  </div>
+                  <div className="payment__form-radio_btn">
+                    <Field type="radio" name="hours" value="24" id="24h" />
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-noninteractive-element-interactions */}
+                    <label
+                      htmlFor="24h"
+                      onClick={() =>
+                        updateHours(24, {
+                          userTariffPackages: cart,
+                          userCertificatePackage: certificatePackage,
+                        })
+                      }
+                      value="24"
+                    >
+                      24 hours
+                    </label>
+                  </div>
+                  {errorsForAnswerTime != null && <div className="payment__form-errors">{errorsForAnswerTime}</div>}
                 </div>
+              </div>
+              <div className="payment__form-elem__volume-wrapper">
+                <label htmlFor="volume" className="payment__form-label">
+                  Authentication volume
+                </label>
+                <div className="payment__form-elem number-wrapper">
+                  <NumericInput
+                    onChange={handleChangeForNumeric}
+                    className="payment__form-elem number"
+                    id="volume"
+                    name="volume"
+                    min={1}
+                    value={volume}
+                  />
+                  {!cost != null && (
+                    <div className="payment__form-elem info">${cost.package / 100}&nbsp;per authentication</div>
+                  )}
                 </div>
-                {but && handlePost(props2)}
-            </Form>)}
-        </Formik>
-    </>
-    )
-}
-
-export default React.memo(CategoryForm)
-
-
-
-
-
-
-
-
-// import { Formik, Field, Form } from "formik";
-// import React, { useState, useEffect } from "react";
-// import * as NumericInput from "react-numeric-input";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//  updateCurrentPackage, initPackage,
-//   pushTotal,
-//   setCategoryError,
-//   updateHoursPackage,
-//   updateTypePackage,
-//   updateVolumePackage,
-// } from "../../../redux/reducers/payment-reducer";
-// import { getUserId } from "../../../redux/selectors/auth-selectors";
-// import { getTypesOfProduct } from "../../../redux/selectors/product-selectors";
-// import Select from "react-select";
-// import DropdownIndicator from "../../../common/react-select/DropdownIndicator";
-// import { getPriceThunk } from "../../../redux/thunks/payment-thunk";
-// import {
-//   getCategoryError,
-//   getPrice,
-//   getUserTariffPackages,
-// } from "../../../redux/selectors/payment-selectors";
-// import SvgSelector from "../../../common/icons/SvgSelector";
-
-// const CategoryForm = (props) => {
-//   const [volume, setVolume] = useState(1);
-//   const [errorsForAnswerTime, setErrorForAnswerTime] = useState(null);
-//   const [packageEditNumber, setPackageEdit] = useState(0);
-
-//   const dispatch = useDispatch();
-//   const userId = useSelector(getUserId);
-//   const productTypes = useSelector(getTypesOfProduct);
-//   const cart = useSelector(getUserTariffPackages);
-//   const categoryError = useSelector(getCategoryError);
-//   const cost = useSelector(getPrice);
-//   const [answerTime, setAnswerTime] = useState(24); // answerTime - NUMBER!!!!
-//   const [productType, setProductType] = useState(null);
-//   const [productTypeVar, setProductTypeVar] = useState(null);
-//   const [checked, setChecked] = useState("24");
-
-//   //   const doubles = [
-//   //     {
-//   //       parent: "SNEAKERS_HYPE",
-//   //       childs: ["SNEAKERS_HYPE","OTHER_SHOES_HYPE"],
-//   //       publicName: "Hype shoes",
-//   //     },
-//   //     {
-//   //       parent: "SNEAKERS_LUXURY",
-//   //       childs: ["SNEAKERS_LUXURY","OTHER_SHOES_LUXURY"],
-//   //       publicName: "Luxury shoes",
-//   //     },
-//   //   ];
-
-//   //   const options2 = productTypes
-//   //     .filter((item, index) => {
-//   //       const doubleItem = doubles.find((item=>item.childs.indexOf(item.name))!=-1)
-//   //       doubleItem
-//   //     //   const doubleItem = doubles.find(
-//   //     //     (itemDoub) => itemDoub.name === item.name
-//   //     //   );
-//   //     //   console.log({ doubleItem, index });
-//   //     //   if (doubleItem && doubleItem.name != doubleItem.parent) return false;
-//   //       else return true;
-//   //     })
-//   //     .map((item, index) => {
-//   //       const doubleItem = doubles.find(
-//   //         (itemDoub) => itemDoub.name === item.name
-//   //       );
-//   //       const parentItem = productType.find(
-//   //         (itemProduct) => itemProduct.name == doubleItem.parent
-//   //       );
-//   //       const doubles = productType.filter
-//   //       return {
-//   //         value: {
-//   //           id: parentItem ? parentItem.id : item.id,
-//   //           doubles:
-//   //         },
-//   //         label: doubleItem ? doubleItem.publicName : item.publicName,
-//   //       };
-//   //     });
-//   //   console.log({ options });
-
-//   //   let single = {
-//   //     id: "ec10993d-8e1b-42a6-9e61-65a6e2c2e292",
-//   //     name: "SNEAKERS_HYPE",
-//   //     publicName: "Sneakers: Hype",
-//   //     __entity: "ProductType",
-//   //   };
-
-//   //   console.log({ productTypes });
-
-//   const options = [
-//     {
-//       value: { name: "bags", types: { single: productTypes[4] } },
-//       label: "Bags",
-//     },
-//     {
-//       value: { name: "wallets", types: { single: productTypes[5] } },
-//       label: "Wallets",
-//     },
-//     {
-//       value: {
-//         name: "hypeShoes",
-//         types: { sneakers: productTypes[0], other: productTypes[2] },
-//       },
-//       label: "Hype shoes",
-//     },
-//     {
-//       value: {
-//         name: "luxuryShoes",
-//         types: { sneakers: productTypes[1], other: productTypes[3] },
-//       },
-//       label: "Luxury shoes",
-//     },
-//     {
-//       value: { name: "jewellery", types: { single: productTypes[7] } },
-//       label: "Jewellery",
-//     },
-//     {
-//       value: { name: "watches", types: { single: productTypes[8] } },
-//       label: "Watches",
-//     },
-//   ];
-
-//   const [selectedValue, setSelectedValue] = useState("");
-
-//     const handleChange = (e, formik) => {
-
-//         // console.log(e.value)
-//         setSelectedValue(e.value);
-//         dispatch(setCategoryError(null))
-//         updateType(e.value, formik)
-//   };
-
-//   const handleChangeForNumeric = (e) => {
-//       setVolume(e)
-//       dispatch(updateVolumePackage({index: packageEditNumber, volume: e}))
-//       const data = {productType: productType, volume: e, answerTime: answerTime}
-//       props.getPrice(data)
-//   };
-
-//   const changeRadioInputHours = (e) => {
-//     // console.log("value - это номер? ", e.target.value === typeof number);
-//     setChecked(e.target.value);
-//     setAnswerTime(Number(e.target.value)); // используем Number т.к прилетает в e.target.value - STRING
-//   };
-
-//   const updateType = (e, typeOfShoes) => {
-//     setProductTypeVar(typeOfShoes)
-//     if (e != null){
-//         let type = e !== 3 && e.types.single
-//         if (e.name === 'hypeShoes') {
-//             typeOfShoes === 'sneakers' ? type = e.types.sneakers : type = e.types.other
-//         } else if (e.name === 'luxuryShoes') {
-//             typeOfShoes === 'sneakers' ? type = e.types.sneakers : type = e.types.other
-//         }
-//         e.value !== 3 && dispatch(updateTypePackage({index: packageEditNumber, type: type}))
-//         setProductType(type)
-//         const data = {productType: type, volume: volume, answerTime: answerTime}
-//         dispatch(getPriceThunk(data))
-//     }
-    
-//   }
-
-//   const updateHours = (value, data) =>{
-//     const pack = {productType: productType, volume: volume, answerTime: value}
-//     setAnswerTime(value)
-//     dispatch(updateHoursPackage({index: packageEditNumber,hours:value}))
-//     dispatch(getPriceThunk(pack))
-//     props.cartTotal(data)
-//     setErrorForAnswerTime(null)
-// }
-
-
-//   // const updateType = (e, typeOfShoes) => {
-//   //   setProductTypeVar(typeOfShoes);
-//   //   if (e != null) {
-//   //     let type = e !== 3 && e.types.single;
-//   //     if (e.name === "hypeShoes") {
-//   //       typeOfShoes === "sneakers" || !typeOfShoes
-//   //         ? (type = e.types.sneakers)
-//   //         : (type = e.types.other);
-//   //     } else if (e.name === "luxuryShoes") {
-//   //       typeOfShoes === "sneakers" || !typeOfShoes
-//   //         ? (type = e.types.sneakers)
-//   //         : (type = e.types.other);
-//   //       // console.log(type);
-//   //     }
-//   //     //   e.value !== 3 &&
-//   //     dispatch(updateTypePackage({ index: packageEditNumber, type: type }));
-//   //     setProductType(type);
-//   //     const data = {
-//   //       productType: type,
-//   //       volume: volume,
-//   //       answerTime: answerTime,
-//   //     };
-//   //     dispatch(getPriceThunk(data));
-//   //   }
-//   // };
-
-//   // const updateHours = () => {
-//   //   const pack = {
-//   //     productType: productType,
-//   //     volume: volume,
-//   //     answerTime: answerTime,
-//   //   };
-//   //   dispatch(
-//   //     updateHoursPackage({ index: packageEditNumber, hours: answerTime })
-//   //   );
-//   //   dispatch(getPriceThunk(pack));
-//   //   props.cartTotal(cart);
-//   //   setErrorForAnswerTime(null);
-//   // };
-
-//     let but = props.but
-
-//     //for updating packages
-//     const packages = useSelector(getUserTariffPackages)
-
-//     const handlePost = (formik) => {
-//         if (formik.values.hours !== '0'){
-
-//             const findInd = packages.findIndex(item => item.productType.name === selectedValue)
-            
-//             if(packages.find(item => item.productType.name !== selectedValue)) {
-//                 setPackageEdit(packageEditNumber+1)
-//                 dispatch(initPackage(userId))
-//                 dispatch(pushTotal(cost.package))
-//                 setVolume(1)
-//             }
-            
-//         }
-//         formik.values.hours = '0'
-//         handleClose()
-//     }
-
-//   cart.length < 1 && dispatch(initPackage(userId));
-
-//   useEffect(() => {
-//     // console.log("стработал эффект");
-//     updateHours();
-//   }, [answerTime]);
-
-//   useEffect(() => {
-//     const data = {
-//       userTariffPackages: cart,
-//     };
-//     cart.length > 0 && props.cartTotal(data);
-//   }, [cart]);
-  
-
-//   function handleClose() {
-//     setProductType(null);
-//     setSelectedValue("");
-//     setProductTypeVar(null);
-//     setVolume(1);
-//   }
-//     return (<>
-//         <Formik
-//             initialValues={{ hours: '0', typeOfShoes: '' }}
-//             validate={values => {
-
-//             }}
-//             change={() => {
-//             }}
-//             onSubmit={(values, { setSubmitting }) => {
-//                 setSubmitting(false);
-//             }}
-//         >
-//             {(props2) => (<Form className="payment__form" onSubmit={props2.handleSubmit} onChange={props2.change}>
-//                 <div className="payment__form-block-container first">
-//                 {productType !== null && <><div className="payment__form-current_package_state-wrapper">
-//                         <div onClick={handleClose}><SvgSelector id='xmark' /></div>
-//                         <div className="payment__form-current_package_state" >
-//                             <div className="payment__form-current_package_state-name">{selectedValue && selectedValue.types.single ? selectedValue.types.single.publicName
-//                             : productTypeVar ? productTypeVar === 'sneakers' ? selectedValue.types.sneakers.publicName : selectedValue.types.other.publicName : '' }</div>
-//                             <div className="payment__form-current_package_state-cost">${cost.package / 100}&nbsp;x&nbsp;{volume}</div>
-//                         </div>
-//                     </div>
-//                     </>}
-//                     <label htmlFor="category" className="payment__form-label">Choose the category</label>
-//                     <Select key={packageEditNumber} components={{ DropdownIndicator }} classNamePrefix='custom-select' placeholder='Please select the category' options={productTypes.length>0 ? options : []} value={options[selectedValue]} onChange={(e)=> handleChange(e, props2.values.typeOfShoes)} />
-
-//               {(selectedValue.name === "hypeShoes" ||
-//                 selectedValue.name === "luxuryShoes") && (
-//                 <div className="payment__form-elem shoes-vars">
-//                   <label htmlFor="types" className="payment__form-label">
-//                     Choose the shoes type
-//                   </label>
-
-//                   <div className="payment__form-radio_btn_types-container">
-//                     <div className="payment__form-radio_btn_types" id="types">
-//                       <Field
-//                         type="radio"
-//                         name="typeOfShoes"
-//                         checked={
-//                           productTypeVar === "sneakers" // || !productTypeVar
-//                             ? true
-//                             : false
-//                         }
-//                         value="sneakers"
-//                         id="sneakers"
-//                         className="custom-radio"
-//                         onChange={(e) => {
-//                           updateType(selectedValue, e.target.value);
-//                         }}
-//                       />
-//                       <label htmlFor="sneakers">Sneakers</label>
-//                       {/*<div className="payment__form-radio_btn_types-label">Sneakers</div>*/}
-//                     </div>
-//                     <div className="payment__form-radio_btn_types">
-//                       <Field
-//                         type="radio"
-//                         name="typeOfShoes"
-//                         checked={productTypeVar === "other" ? true : false}
-//                         value="other"
-//                         id="other"
-//                         className="custom-radio"
-//                         onChange={(e) => {
-//                           updateType(selectedValue, e.target.value);
-//                         }}
-//                       />
-//                       <label htmlFor="other" id="otherlabel">
-//                         Other
-//                       </label>
-//                       {/*<label htmlFor="other" className="payment__form-radio_btn_types-label">Other</label>*/}
-//                     </div>
-//                   </div>
-//                 </div>
-//               )}
-//               {categoryError != null && (
-//                 <div className="payment__form-error">{categoryError}</div>
-//               )}
-//               <div className="payment__form-second_block-wrapper">
-//                 <div className="payment__form-elem__hours-wrapper">
-//                   <label htmlFor="hours" className="payment__form-label">
-//                     Choose answer time
-//                   </label>
-//                   <div className="payment__form-elem hours">
-//                     <div className="payment__form-radio_btn">
-//                       <Field
-//                         type="radio"
-//                         name="hours"
-//                         value={12}
-//                         id="12h"
-//                         onChange={changeRadioInputHours}
-//                         checked={checked === "12"}
-//                       />
-//                       <label htmlFor="12h" value="12">
-//                         12 hours
-//                       </label>
-//                     </div>
-//                     <div className="payment__form-radio_btn">
-//                       <Field
-//                         type="radio"
-//                         name="hours"
-//                         value={24}
-//                         id="24h"
-//                         onChange={changeRadioInputHours}
-//                         checked={checked === "24"}
-//                       />
-//                       <label htmlFor="24h" value="24">
-//                         24 hours
-//                       </label>
-//                     </div>
-//                     {errorsForAnswerTime != null && (
-//                       <div className="payment__form-errors">
-//                         {errorsForAnswerTime}
-//                       </div>
-//                     )}
-//                   </div>
-//                 </div>
-//                 <div className="payment__form-elem__volume-wrapper">
-//                   <label htmlFor="volume" className="payment__form-label">
-//                     Authentication volume
-//                   </label>
-//                   <div className="payment__form-elem number-wrapper">
-//                     <NumericInput
-//                       onChange={handleChangeForNumeric}
-//                       className="payment__form-elem number"
-//                       id="volume"
-//                       name="volume"
-//                       min={1}
-//                       value={volume}
-//                     />
-//                     {!cost != null && (
-//                       <div className="payment__form-elem info">
-//                         ${cost.package / 100}&nbsp;per authentication
-//                       </div>
-//                     )}
-//                   </div>
-//                   <div className="payment__form-href" onClick={() => {}}>
-//                     How does our pricing work?
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//             {but && handlePost(props2)}
-//           </Form>
-//         )}
-//       </Formik>
-//     </>
-//   );
-// };
-
-// export default React.memo(CategoryForm);
+                <div className="payment__form-href">How does our pricing work?</div>
+              </div>
+            </div>
+          </div>
+          {but && handlePost(props2)}
+        </Form>
+      )}
+    </Formik>
+  );
+});

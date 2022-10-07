@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { confirmEmailThunk } from "../../../redux/thunks/auth-thunk";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { confirmEmailThunk } from '../../../redux/thunks/auth-thunk';
 
-const ConfirmEmail = () => {
+export const ConfirmEmail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
@@ -12,8 +12,6 @@ const ConfirmEmail = () => {
     if (params.hash) {
       dispatch(confirmEmailThunk({ hash: params.hash }));
     }
-    navigate("../auth/signin");
-  }, []);
+    navigate('../auth/signin');
+  }, [params.hash]);
 };
-
-export default ConfirmEmail;
