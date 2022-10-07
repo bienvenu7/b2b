@@ -124,7 +124,7 @@ export const Card = () => {
     }
   }
 
-  if (product === null) {
+  if (product == null) {
     return <Loader />;
   }
 

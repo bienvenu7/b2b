@@ -20,7 +20,7 @@ export const PhotoRequests = () => {
     const filter = {
       resultStatuses: resultStatuses !== null && resultStatuses.filter((el) => el.name === 'UPDATE_NEEDED'),
     };
-    resultStatuses !== null && products === null && dispatch(getProductsThunk(filter));
+    resultStatuses !== null && products == null && dispatch(getProductsThunk(filter));
   });
 
   function getReasons(reasons, version) {

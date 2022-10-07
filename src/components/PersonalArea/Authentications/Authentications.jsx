@@ -40,7 +40,7 @@ export const Authentications = ({ var: someVar }) => {
     dispatch(getProductsThunk(data));
   }
 
-  if (page === null) {
+  if (page == null) {
     return <div />;
   }
   return (

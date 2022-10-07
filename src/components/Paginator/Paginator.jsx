@@ -3,10 +3,8 @@ import classnames from 'classnames';
 import { DOTS, usePagination } from '../../hooks/usePagination';
 import './Paginator.scss';
 
-export const Paginator = (props) => {
+export const Paginator = ({ onPageChange, totalCount, siblingCount = 1, currentPage, pageSize = 8, className }) => {
   // TODO
-  const { onPageChange, totalCount, siblingCount = 1, currentPage, pageSize, className } = props;
-
   const paginationRange = usePagination({
     currentPage,
     totalCount,
