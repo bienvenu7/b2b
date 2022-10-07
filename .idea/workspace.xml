@@ -22,15 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="new branch development">
-      <change beforePath="$PROJECT_DIR$/codeStyle/codeStyle.md" beforeDir="false" afterPath="$PROJECT_DIR$/codeStyle/codeStyle.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Paginator/Paginator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Paginator/Paginator.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/PhotoRequests/PhotoRequests.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="new branch development" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +38,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -183,7 +176,7 @@
       <workItem from="1664971328232" duration="2073000" />
       <workItem from="1665051248593" duration="1076000" />
       <workItem from="1665052343979" duration="24657000" />
-      <workItem from="1665128052767" duration="8992000" />
+      <workItem from="1665128052767" duration="9328000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
@@ -206,7 +199,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665128687717</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="new branch development">
+      <created>1665140255799</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665140255799</updated>
+    </task>
+    <task id="LOCAL-00005" summary="new branch development">
+      <created>1665140300727</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665140300727</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
