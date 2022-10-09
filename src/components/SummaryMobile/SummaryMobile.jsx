@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCosts, getUserTariffPackages } from '../../redux/selectors/payment-selectors';
+import { getCosts, getPrice, getUserTariffPackages } from '../../redux/selectors/payment-selectors';
 
 import { pushTotal, removePreviewPackage } from '../../redux/reducers/payment-reducer';
 import './SummaryMobile.scss';
@@ -11,6 +11,7 @@ export const SummaryMobile = () => {
   const dispatch = useDispatch();
   const packages = useSelector(getUserTariffPackages);
   const cost = useSelector(getCosts);
+  const costs = useSelector(getPrice);
 
   function delhendler(index) {
     dispatch(removePreviewPackage(index));
@@ -39,9 +40,9 @@ export const SummaryMobile = () => {
                   </div>
                   <div className="summary__box-left">
                     {cost && (
-                      <p className="summary__elem-cost-mobile">
-                        {cost[index] && `$${cost[index] / 100} X ${el.volume}`}
-                      </p>
+                      <div className="summary__elem-cost">
+                        <p>{cost[index] && `$${costs.package / 100} X ${el.volume}`}</p>
+                      </div>
                     )}
                     <button className="summary__button" onClick={() => delhendler(index)}>
                       X
