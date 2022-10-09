@@ -26,9 +26,6 @@ export const Summary = () => {
     }
   }, [packages]);
 
-  // eslint-disable-next-line no-empty-function
-  useEffect(() => {});
-
   return (
     <>
       {packages.length > 0 && (
