@@ -52,6 +52,7 @@ const Header = (props) => {
   if(pathname ==='/success') path = "Success"
   if(pathname ==='/unsuccess') path = "Unsuccess"
   if(pathname ==='/success-order') path = "Success order"
+  if(pathname ==='/panel') path = "panel"
   if(pathname.split('/')[1] ==="request") path = "Request"
   // console.log({pathname:pathname.split('/')[1]}); //маленький костыль
 

@@ -16,6 +16,7 @@ import PhotoRequests from "../components/PersonalArea/PhotoRequests/PhotoRequest
 import TopUpBundle from "../pages/TopUpBundle/TopUpBundle";
 import Billing from "../components/PersonalArea/billing/Billing";
 import ConfirmEmail from "../components/Auth/ConfirmEmail/ConfirmEmail";
+import AdminPage from "../pages/AdminPage/AdminPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import AuthenticTableBlock from '../components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock';
 import PendingPay from '../components/Payment/SuccessPage/PendingPay';
@@ -56,7 +57,8 @@ export const privateRoutes = [
   { path: "authentication-request", component: <AuthenticationRequest /> },
   { path: "pay", component: <Payment /> },
   { path: "billing-history", component: <Billing /> },
-  { path: "album-private/:id", component: <Order /> }
+  { path: "album-private/:id", component: <Order /> },
+  { path: "panel", component: <AdminPage /> }
 
   //{path: 'payment-new', component: <TopUpBundle/>}
 ];
