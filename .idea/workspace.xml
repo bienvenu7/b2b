@@ -22,13 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="">
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/payment-thunk.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="blinov" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +61,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="development" />
-                    <option name="lastUsedInstant" value="1665409932" />
+                    <option name="lastUsedInstant" value="1665414848" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1665414807" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="Blinov" />
@@ -209,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665140300727</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix">
+      <created>1665414686755</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665414686755</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,11 +241,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merge" />
     <MESSAGE value="new branch development" />
-    <option name="LAST_COMMIT_MESSAGE" value="new branch development" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
