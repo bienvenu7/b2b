@@ -35,148 +35,156 @@ export const Dashboard = () => {
     <>
       {showNotif && <MobileNotif setShowNotif={setShowNotif} />}
       <div className="dashboard-container fixed">
-      <div className="dashboard-wrapper">
-        <div className="dashboard__elem">
-          <div className="dashboard__elem__top-wrapper">
-            <div className="dashboard__elem__top-img">
-              <img alt="" src={storeLogo} />
-            </div>
-            <div className="dashboard__elem__top-label">
-              {companyName} <SvgSelector id="arrow" />
-              <img onClick={() => navigate("../dashboard")} src={dashboardIcon} alt="" />
-            </div>
-            <div className="dashboard__elem__top__icon-wrapper">
-              <div className="dashboard__elem__top__icon-elem">
-                {/* <img src={dashboardIcon} alt="" /> */}
+        <div className="dashboard-wrapper">
+          <div className="dashboard__elem">
+            <div className="dashboard__elem__top-wrapper">
+              <div className="dashboard__elem__top-img">
+                <img alt="" src={storeLogo} />
               </div>
-              <div className="dashboard__elem__top__icon-elem">
-                <div onClick={() => setShowNotif(!showNotif)}><SvgSelector  id="bell" /></div>
-                <div onClick={() => dispatch(logoutThunk())} ><SvgSelector id="logout" /></div>
+              <div className="dashboard__elem__top-label">
+                {companyName} <SvgSelector id="arrow" />
+                <img onClick={() => navigate('../dashboard')} src={dashboardIcon} alt="" />
               </div>
-            </div>
-          </div>
-          <div onClick={() => navigate("../dashboard")} className="dashboard__elem__child-wrapper">
-            <div className="dashboard__elem__child-img">
-              <img src={dashboardIcon} alt="" />
-            </div>
-            <div className="dashboard__elem__child__label">Dashboard</div>
-          </div>
-        </div>
-        <div className="dashboard__elem__auth_balance-wrapper">
-          <div className="dashboard__elem__auth_balance-label">
-            Authentication balance <div onClick={() => setShow1(!show1)}><SvgSelector id={show1 ? "arrow" : "arrow-rotate"} /></div>
-          </div>
-          {show1 && <div className="dashboard__elem__auth_balance__balance-wrapper">
-            {istotalclear > 0 &&
-              balance.filter(item => item.volume > 0).map((el, index) => (
-                <div
-                  key={index}
-                  className="dashboard__elem__auth_balance__balance__elem"
-                >
-                  <div className="dashboard__elem__auth_balance__balance-category">
-                    {el.productType.publicName}
+              <div className="dashboard__elem__top__icon-wrapper">
+                <div className="dashboard__elem__top__icon-elem">{/* <img src={dashboardIcon} alt="" /> */}</div>
+                <div className="dashboard__elem__top__icon-elem">
+                  <div onClick={() => setShowNotif(!showNotif)}>
+                    <SvgSelector id="bell" />
                   </div>
-                  {el.answerTime !== "" && (
-                    <div className="dashboard__elem__auth_balance__balance-answer">
-                      {el.answerTime} h
-                    </div>
-                  )}
-                  <div className="dashboard__elem__auth_balance__balance-count">
-                    {el.volume}
+                  <div onClick={() => dispatch(logoutThunk())}>
+                    <SvgSelector id="logout" />
                   </div>
                 </div>
-              ))}
-            <div
-              className="dashboard__elem__auth_balance__balance-button"
-              onClick={() => navigate("../payment")}
-            >
-              Top up now
+              </div>
             </div>
-            {(timeoutforfetch || istotalclear > 0) ? <div
-              className="dashboard__elem__auth_balance__balance-button"
-              onClick={() => navigate("../authentication-request")}
+            <div onClick={() => navigate('../dashboard')} className="dashboard__elem__child-wrapper">
+              <div className="dashboard__elem__child-img">
+                <img src={dashboardIcon} alt="" />
+              </div>
+              <div className="dashboard__elem__child__label">Dashboard</div>
+            </div>
+          </div>
+          <div className="dashboard__elem__auth_balance-wrapper">
+            <div className="dashboard__elem__auth_balance-label">
+              Authentication balance{' '}
+              <div onClick={() => setShow1(!show1)}>
+                <SvgSelector id={show1 ? 'arrow' : 'arrow-rotate'} />
+              </div>
+            </div>
+            {show1 && (
+              <div className="dashboard__elem__auth_balance__balance-wrapper">
+                {istotalclear > 0 &&
+                  balance
+                    .filter((item) => item.volume > 0)
+                    .map((el, index) => (
+                      <div key={index} className="dashboard__elem__auth_balance__balance__elem">
+                        <div className="dashboard__elem__auth_balance__balance-category">
+                          {el.productType.publicName}
+                        </div>
+                        {el.answerTime !== '' && (
+                          <div className="dashboard__elem__auth_balance__balance-answer">{el.answerTime} h</div>
+                        )}
+                        <div className="dashboard__elem__auth_balance__balance-count">{el.volume}</div>
+                      </div>
+                    ))}
+                <div className="dashboard__elem__auth_balance__balance-button" onClick={() => navigate('../payment')}>
+                  Top up now
+                </div>
+                {timeoutforfetch || istotalclear > 0 ? (
+                  <div
+                    className="dashboard__elem__auth_balance__balance-button"
+                    onClick={() => navigate('../authentication-request')}
+                  >
+                    New authentication
+                  </div>
+                ) : (
+                  <div className="dashboard__elem__auth_balance__balance-button authenticationdisabled">
+                    New authentication
+                  </div>
+                )}
+              </div>
+            )}
+            {timeoutforfetch || istotalclear > 0 ? null : (
+              <div className="textdisabled">
+                <span>!</span>Top up to start authentication
+              </div>
+            )}
+          </div>
+          <div className="dashboard__elem__authentications-wrapper">
+            <div className="dashboard__elem__authentications-label">
+              Authentication{' '}
+              <div onClick={() => setShow(!show)}>
+                <SvgSelector id={show ? 'arrow' : 'arrow-rotate'} />
+              </div>
+            </div>
+            {show && (
+              <div className="dashboard__elem__authentications-control__elements">
+                <div
+                  className="dashboard__elem__authentications-control__elem-wrapper"
+                  onClick={() => navigate('../authentications/completed')}
+                >
+                  <SvgSelector id="check-icon" />
+                  All authentications
+                </div>
+                <div
+                  className="dashboard__elem__authentications-control__elem-wrapper"
+                  onClick={() => navigate('../photo-requests/all')}
+                >
+                  <SvgSelector id="camera-icon" />
+                  Photo requests
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="dashboard__elem__tools-wrapper">
+            <div className="dashboard__elem__tools-label">Tools</div>
+            <div className="dashboard__elem__tools-control__elements">
+              <div
+                onClick={() => navigate('../billing-history')}
+                className="dashboard__elem__tools-control__elem-wrapper"
+              >
+                <SvgSelector id="card-icon" />
+                Billing
+              </div>
+            </div>
+          </div>
+          <div className="dashboard__elem__tools-wrapper two">
+            <div className="dashboard__elem__tools-label">Tools</div>
+            <div className="dashboard__elem__tools-control__elements">
+              <div
+                onClick={() => navigate('../billing-history')}
+                className="dashboard__elem__tools-control__elem-wrapper"
+              >
+                <SvgSelector id="card-icon" />
+                Get help
+              </div>
+            </div>
+          </div>
+          {timeoutforfetch || istotalclear > 0 ? (
+            <div
+              className="dashboard__elem__auth_balance__balance-button mobile"
+              onClick={() => navigate('../authentication-request')}
             >
               New authentication
             </div>
-            :
+          ) : (
             <div
-              className="dashboard__elem__auth_balance__balance-button authenticationdisabled"
+              className="dashboard__elem__auth_balance__balance-button mobile authenticationdisabled"
+              onClick={() => navigate('../authentication-request')}
             >
               New authentication
             </div>
-            }
-
-          </div>}
-          {(timeoutforfetch || istotalclear > 0) ?null:<div className="textdisabled"><span>!</span>Top up to start authentication</div>}
-        </div>
-        <div className="dashboard__elem__authentications-wrapper">
-          <div className="dashboard__elem__authentications-label">
-            Authentication <div onClick={() => setShow(!show)}><SvgSelector id={show ? "arrow" : "arrow-rotate"} /></div>
-          </div>
-          {show && <div className="dashboard__elem__authentications-control__elements">
-            <div
-              className="dashboard__elem__authentications-control__elem-wrapper"
-              onClick={() => navigate("../authentications/completed")}
-            >
-              <SvgSelector id="check-icon" />
-              All authentications
-            </div>
-            <div
-              className="dashboard__elem__authentications-control__elem-wrapper"
-              onClick={() => navigate("../photo-requests/all")}
-            >
-              <SvgSelector id="camera-icon" />
-              Photo requests
-            </div>
-          </div>}
-        </div>
-        <div className="dashboard__elem__tools-wrapper">
-          <div className="dashboard__elem__tools-label">Tools</div>
-          <div className="dashboard__elem__tools-control__elements">
-            <div
-              onClick={() => navigate("../billing-history")}
-              className="dashboard__elem__tools-control__elem-wrapper"
-            >
-              <SvgSelector id="card-icon" />
-              Billing
+          )}
+          <div className="dashboard__elem__auth_balance__balance-image-placeholder">
+            <div className="fixed-image">
+              <img src={logoImg} alt="" />
             </div>
           </div>
         </div>
-        <div className="dashboard__elem__tools-wrapper two">
-          <div className="dashboard__elem__tools-label">Tools</div>
-          <div className="dashboard__elem__tools-control__elements">
-            <div
-              onClick={() => navigate("../billing-history")}
-              className="dashboard__elem__tools-control__elem-wrapper"
-            >
-              <SvgSelector id="card-icon" />
-              Get help
-            </div>
-          </div>
-        </div>
-        {(timeoutforfetch || istotalclear > 0) ? <div
-          className="dashboard__elem__auth_balance__balance-button mobile"
-          onClick={() => navigate("../authentication-request")}
-        >
-          New authentication
-        </div>
-        :
-        <div
-          className="dashboard__elem__auth_balance__balance-button mobile authenticationdisabled"
-          onClick={() => navigate("../authentication-request")}
-        >
-          New authentication
-        </div>}
-        <div className="dashboard__elem__auth_balance__balance-image-placeholder">
-          <div className="fixed-image">
-            <img src={logoImg} alt="" />
-          </div>
-        </div>
+        <label htmlFor="dashboard-open" className="dashboard__cross-container">
+          <SvgSelector id="cross-icon" />
+        </label>
       </div>
-      <label htmlFor="dashboard-open" className="dashboard__cross-container">
-        <SvgSelector id="cross-icon" />
-      </label>
-    </div>
     </>
   );
 };

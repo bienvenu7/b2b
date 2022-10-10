@@ -23,7 +23,7 @@ import {
   getUserTariffPackages,
 } from '../../../redux/selectors/payment-selectors';
 
-export const CategoryForm = React.memo(({but,getPrice,cartTotal}) => {
+export const CategoryForm = React.memo(({ but, getPrice, cartTotal }) => {
   const [volume, setVolume] = useState(1);
   const [errorsForAnswerTime, setErrorForAnswerTime] = useState(null);
   const [packageEditNumber, setPackageEdit] = useState(0);

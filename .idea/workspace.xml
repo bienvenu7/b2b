@@ -123,7 +123,7 @@
       <recent name="C:\projects\b2b\b2blgfront" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.lint">
     <configuration name="format" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -156,8 +156,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.lint" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.format" />
       </list>
     </recent_temporary>

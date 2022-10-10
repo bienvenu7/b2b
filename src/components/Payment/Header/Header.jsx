@@ -1,5 +1,5 @@
-import React from 'react'
-import logo from "../../../common/images/logo-for-mobile.png";
+import React from 'react';
+import logo from '../../../common/images/logo-for-mobile.png';
 
 export const Header = () => {
   return (

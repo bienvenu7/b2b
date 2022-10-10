@@ -26,7 +26,6 @@ export const Payment = () => {
     isAuth && dispatch(getProductTypesThunk(1, 1000));
   }, [isAuth]);
 
-
   // TODO исправить, смысла нет?
   const btnAddToogleClick = () => {
     setAddButState(true);

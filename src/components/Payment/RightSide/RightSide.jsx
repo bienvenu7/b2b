@@ -41,9 +41,7 @@ export const RigthSide = ({ toogle, cartTotal }) => {
         <button className="top_up_bundle__buttons-button" onClick={() => toogle.pay()} disabled={total === 'error'}>
           Proceed to payment
         </button>
-        <div className="top_up_bundle__buttons-sometext">
-        The credits you purchase will be available for one year.
-        </div>
+        <div className="top_up_bundle__buttons-sometext">The credits you purchase will be available for one year.</div>
       </div>
     </div>
   );

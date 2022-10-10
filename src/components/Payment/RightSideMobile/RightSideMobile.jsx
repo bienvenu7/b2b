@@ -101,7 +101,7 @@ export const RigthSideMobile = ({ toogle, cartTotal }) => {
         <button
           className="top_up_bundle__buttons-button"
           // disabled
-          disabled={total=='error'?true:false}
+          disabled={total == 'error'}
           onClick={() => {
             toogle.add !== null && toogle.add();
           }}
@@ -111,13 +111,11 @@ export const RigthSideMobile = ({ toogle, cartTotal }) => {
         <button
           className="top_up_bundle__buttons-button"
           onClick={postInvoice}
-          disabled={(total=='error'?true:false)||(method == undefined?true:false)}
+          disabled={total == 'error' || method == undefined}
         >
           Proceed to payment
         </button>
-        <div className="top_up_bundle__buttons-sometext">
-        The credits you purchase will be available for one year.
-        </div>
+        <div className="top_up_bundle__buttons-sometext">The credits you purchase will be available for one year.</div>
       </div>
     </div>
   );
