@@ -18,7 +18,6 @@ import { getPriceThunk } from '../../../redux/thunks/payment-thunk';
 import {
   getCategoryError,
   getCosts,
-  getPrice,
   getUserCertificatePackage,
   getUserTariffPackages,
 } from '../../../redux/selectors/payment-selectors';
