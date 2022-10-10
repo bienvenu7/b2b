@@ -32,8 +32,8 @@ export const AuthenticationRequest = () => {
   const [answerTime, setAnswerTime] = useState(24);
   const [productTypeValue, setProductTypeValue] = useState(null);
   const [brandValue, setBrandValue] = useState();
-  const [, setErrorMessage] = useState('');
-  const [checkValid, setCheckValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("")
+  const [checkValid, setCheckValid] = useState(false)
   const [brandSelectorKey, setBrandSelectorKey] = useState(0);
   const status = useSelector(getStatusCode);
   const [errors, setErrorsForm] = useState({
@@ -87,19 +87,19 @@ export const AuthenticationRequest = () => {
 
   useEffect(() => {
     setPhotoFiles(
-      angles.map(
-        (el, index) =>
-          photoFiles.length === 0 && {
-            key: index,
-            file: '',
-            imagePreviewUrl: '',
-            angleId: el.angle.id,
-            necessity: el.necessity,
-            error: false,
-            angleName: el.angle.publicName,
-            format: null,
-          },
-      ),
+        angles.map(
+            (el, index) =>
+                photoFiles.length === 0 && {
+                  key: index,
+                  file: '',
+                  imagePreviewUrl: '',
+                  angleId: el.angle.id,
+                  necessity: el.necessity,
+                  error: false,
+                  angleName: el.angle.publicName,
+                  format: null,
+                },
+        ),
     );
   }, [angles]);
 
@@ -224,35 +224,34 @@ export const AuthenticationRequest = () => {
 
     const response1 =
       response !== true // если ответ неудачный
-        ? await photoFiles // пробегаюсь по массиву
-            .filter((el) => el.file !== '') // фильтрую объекты, где в полях el.file !== "" - не пустые строки
-            .map(
-              // этот отфильрованный объект ...
-              (el, index) =>
-                el.file !== '' && // проверяю, что JS в предыдущей хуйне понял меня верно...
-                dispatch(
-                  // делаю диспатч и что-то записываю
-                  uploadPhotoForProductThunk(
-                    {
-                      productId: response.data.id,
-                      file: el.file,
-                      angleId: el.angleId,
-                      isAdditional: false,
-                    },
-                    photosCount,
-                    index,
-                  ),
-                ),
-            )
+        ? photoFiles // пробегаюсь по массиву
+              .filter((el) => el.file !== '') // фильтрую объекты, где в полях el.file !== "" - не пустые строки
+              .map(
+                  // этот отфильрованный объект ...
+                  (el, index) =>
+                      el.file !== '' && // проверяю, что JS в предыдущей хуйне понял меня верно...
+                      dispatch(
+                          // делаю диспатч и что-то записываю
+                          uploadPhotoForProductThunk(
+                              {
+                                productId: response.data.id,
+                                file: el.file,
+                                angleId: el.angleId,
+                                isAdditional: false,
+                              },
+                              photosCount,
+                              index,
+                          ),
+                      ),
+              )
         : setButtonState(true); // иначе кнопка отправки в исходном состоянии
-    // после всей хуйни проверю response1 === true и на всякий случай кнопку в исходное состояние
     response1 && setButtonState(true);
 
     if (status) {
       // проверяю статус кода какого-то запроса и выполняю следующие дейсвтия
       setAnswerTime(24);
-      setModelTypeValue('');
-      setSupplierTypeValue('');
+      setModelTypeValue("");
+      setSupplierTypeValue("");
       setCertCheck(false);
       setProductTypeValue(null);
       setProductEditNumber(productEditNumber + 1);
@@ -271,7 +270,7 @@ export const AuthenticationRequest = () => {
     const reader = new FileReader();
     const file = e.target.files[0];
 
-    const index = e.target.id.split('-')[1];
+    let index = e.target.id.split("-")[1];
 
     if (!file.name.match(/\.(gif|jpg|jpeg|png|heic|heif|JPG|JPEG|PNG|HEIC|HEIF)$/)) {
       setPhotoFiles(photoFiles.map((item) => (item.key === index ? { ...item, format: false } : item)));

@@ -233,85 +233,94 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
 
   params.page === 'photo-requests' && navigate('../luxury-store/authentications/photo-requests');
 
-  if (page == null) {
-    return <div />;
-  }
-  return (
-    <div className="authent-container">
-      <div className="authent-wrapper">
-        <div className="authent__nav-wrapper">
-          <div className="authent__nav-sort">
-            <SvgSelector id="sort-icon" />
-          </div>
-          {page === 'progress' ? (
-            <div className="authent__nav-label">In progress authentications</div>
-          ) : (
-            <div className="authent__nav-label">Completed authentications</div>
-          )}
-          <div className="authent__nav-search_icon">
-            <SvgSelector id="search-icon" onClick={handleSearch} />
-          </div>
-          <input
-            className="authent__nav-search"
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Search"
-            onBlur={handleSearch}
-          />
-          <div className="authent__nav__buttons-wrapper">
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-            jsx-a11y/no-static-element-interactions */}
-            <div className="authent__nav__buttons__elem-wrapper" onClick={handleFilter}>
-              <SvgSelector id="filter-icon" />
-            </div>
-          </div>
-        </div>
-        {filterMode && (
-          <div className="authent__filter-wrapper">
-            <div className="authent__filter__elems-wrapper">
-              {filterValues &&
-                filterValues.map((el, index) => (
-                  <div key={index} className="authent__filter__elem">
-                    <FilterSelect
-                      key={index}
-                      index={index}
-                      mainOptions={mainOptions}
-                      handleChange={handleChange}
-                      length={filterValues.length}
-                    />
-                    {selectedFilter &&
-                    selectedFilter[index] &&
-                    selectedFilter[index].value &&
-                    selectedFilter[index].value === 'MODEL' ? (
-                      <input
-                        type="text"
-                        placeholder="model"
-                        onChange={setModelNameValue}
-                        onBlur={(e) => subHandleChange({ value: e.target.value })}
-                      />
-                    ) : (
-                      selectedFilter && (
-                        <Select
-                          key={secondSelectIndex}
-                          onChange={subHandleChange}
-                          classNamePrefix="custom-select__dashboard"
-                          placeholder="Select filter"
-                          options={options && options}
-                        />
-                      )
-                    )}
+  if (page === null) {
+    return <div>Page not found</div>;
+  } else {
+    return (
+
+          <div className="authent-container">
+            <div className="authent-wrapper">
+              <div className="authent__nav-wrapper">
+                <div className="authent__nav-sort">
+                  <SvgSelector id="sort-icon" />
+                </div>
+                {page === "progress" ? (
+                  <div className="authent__nav-label">
+                    In progress authentications
                   </div>
-                ))}
-              <button
-                onClick={() => {
-                  setSelectedFilter(null);
-                  handleFilter();
-                }}
-              >
-                Clear
-              </button>
-            </div>
-          </div>
-        )}
+                ) : (
+                  <div className="authent__nav-label">
+                    Completed authentications
+                  </div>
+                )}
+                <div className="authent__nav-search_icon">
+                  <SvgSelector id="search-icon" onClick={handleSearch} />
+                </div>
+                <input
+                  className="authent__nav-search"
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder="Search"
+                  onBlur={handleSearch}
+                />
+                <div className="authent__nav__buttons-wrapper">
+                  <div
+                    className="authent__nav__buttons__elem-wrapper"
+                    onClick={handleFilter}
+                  >
+                    <SvgSelector id="filter-icon" />
+                  </div>
+                </div>
+              </div>
+              {filterMode && (
+                <div className="authent__filter-wrapper">
+                  <div className="authent__filter__elems-wrapper">
+                    {filterValues &&
+                      filterValues.map((el, index) => (
+                        <div key={index} className="authent__filter__elem">
+                          <FilterSelect
+                            key={index}
+                            index={index}
+                            mainOptions={mainOptions}
+                            handleChange={handleChange}
+                            length={filterValues.length}
+                          />
+                          {selectedFilter &&
+                          selectedFilter[index] &&
+                          selectedFilter[index].value &&
+                          selectedFilter[index].value === "MODEL" ? (
+                            <input
+                              type="text"
+                              placeholder="model"
+                              onChange={setModelNameValue}
+                              onBlur={(e) =>
+                                subHandleChange({ value: e.target.value })
+                              }
+                            />
+                          ) : (
+                            selectedFilter && (
+                              <Select
+                                key={secondSelectIndex}
+                                onChange={subHandleChange}
+                                classNamePrefix="custom-select__dashboard"
+                                placeholder="Select filter"
+                                options={options && options}
+                              />
+                            )
+                          )}
+                          {/*filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button>*/}
+                        </div>
+                      ))}
+                    <button
+                      onClick={() => {
+                        setSelectedFilter(null);
+                        handleFilter();
+                      }}
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </div>
+              )}
 
         <div className="authent__buttons-wrapper mobile">
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
@@ -416,80 +425,107 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
           </div>
         )}
 
-        {page !== 'complete' && (
-          <div className="authent__table">
-            <div className="authent__table__label-wrapper">
-              <div className="authent__table__label__elems-wrapper">
-                <div className="authent__table__label__elem-category">Item category</div>
-              </div>
-              <div className="authent__table__label__elems-wrapper">
-                <div className="authent__table__label__elems-brand">Brand</div>
-                <div className="authent__table__label__elems-model">Model name</div>
-                <div className="authent__table__label__elems-status">Status</div>
-                <div className="authent__table__label__elems-answer">Answer time</div>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */}
-                <div
-                  className={`authent__table__label__elems-date${!sortData ? ' arrow-up' : ''}`}
-                  onClick={() => handleSort(sortData)}
-                >
-                  Submission date <SvgSelector id="down-arrow-icon" />
-                </div>
-              </div>
-            </div>
-            {currentTableData ? (
-              currentTableData.map((el, index) => (
-                <div key={index} className="authent__table__elem">
-                  <div className="authent__table__elems-wrapper">
-                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                    jsx-a11y/no-static-element-interactions */}
-                    <div
-                      className="authent__table__elem__category"
-                      onClick={() =>
-                        navigate(`../request/${el.id}`, {
-                          state: { page: currentPage, var: page },
-                        })
-                      }
-                    >
+              {page !== "complete" && (
+                <div className="authent__table">
+                  <div className="authent__table__label-wrapper">
+                    <div className="authent__table__label__elems-wrapper">
+                      <div className="authent__table__label__elem-category">
+                        Item category
+                      </div>
+                    </div>
+                    <div className="authent__table__label__elems-wrapper">
+                      <div className="authent__table__label__elems-brand">
+                        Brand
+                      </div>
+                      <div className="authent__table__label__elems-model">
+                        Model name
+                      </div>
+                      <div className="authent__table__label__elems-status">
+                        Status
+                      </div>
+                      <div className="authent__table__label__elems-answer">
+                        Answer time
+                      </div>
                       <div
-                        className="authent__table__elem__category-image"
-                        style={{
-                          background: `url(${getPhotoUrl(el.files)})`,
-                        }}
-                      />
-                      <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
-                      <div className="authent__table__elem__category-number">#{el.publicId}</div>
-                      <div className="authent__table__elem__category-date">{getDate(el.createdAt, 'mobile')}</div>
+                        className={`authent__table__label__elems-date${
+                          !sortData ? " arrow-up" : ""
+                        }`}
+                        onClick={() => handleSort(sortData)}
+                      >
+                        Submission date <SvgSelector id="down-arrow-icon" />
+                      </div>
                     </div>
                   </div>
-                  <div className="authent__table__elems-wrapper">
-                    <div className="authent__table__elem-brand">{el.brand.publicName}</div>
-                    <div className="authent__table__elem-model">{el.modelName}</div>
-                    <div className="authent__table__elem-status">{el.resultStatus.publicName}</div>
-                    <div className="authent__table__elem-answer">{el.answerTime} hours</div>
-                    <div className="authent__table__elem-date">
-                      {`${new Date(el.createdAt).getDate()}/${Number(new Date(el.createdAt).getMonth()) + 1}/${new Date(
-                        el.createdAt,
-                      ).getFullYear()}`}
-                    </div>
-                  </div>
+                  {currentTableData ? (
+                    currentTableData.map((el, index) => (
+                      <div key={index} className="authent__table__elem">
+                        <div className="authent__table__elems-wrapper">
+                          <div
+                            className="authent__table__elem__category"
+                            onClick={() =>
+                              navigate(`../request/${el.id}`, {
+                                state: { page: currentPage, var: page },
+                              })
+                            }
+                          >
+                            <div
+                              className="authent__table__elem__category-image"
+                              style={{
+                                background: `url(${getPhotoUrl(el.files)})`,
+                              }}
+                            >
+                              {/*<img src={el.image} alt="" />*/}
+                            </div>
+                            <div className="authent__table__elem__category-label">
+                              {el.productType.publicName}
+                            </div>
+                            <div className="authent__table__elem__category-number">
+                              #{el.publicId}
+                            </div>
+                            <div className="authent__table__elem__category-date">
+                              {getDate(el.createdAt, "mobile")}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="authent__table__elems-wrapper">
+                          <div className="authent__table__elem-brand">
+                            {el.brand.publicName}
+                          </div>
+                          <div className="authent__table__elem-model">
+                            {el.modelName}
+                          </div>
+                          <div className="authent__table__elem-status">
+                            {el.resultStatus.publicName}
+                          </div>
+                          <div className="authent__table__elem-answer">
+                            {el.answerTime} hours
+                          </div>
+                          <div className="authent__table__elem-date">
+                            {new Date(el.createdAt).getDate() +
+                              "/" +
+                              (Number(new Date(el.createdAt).getMonth()) + 1) +
+                              "/" +
+                              new Date(el.createdAt).getFullYear()}
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <Loader />
+                  )}
                 </div>
-              ))
-            ) : (
-              <Loader />
-            )}
+              )}
+              {products && currentTableData && (
+                <Paginator
+                  className="pagination-bar"
+                  currentPage={currentPage}
+                  totalCount={products.length}
+                  pageSize={PageSize}
+                  onPageChange={(page) => setCurrentPage(page)}
+                />
+              )}
+            </div>
           </div>
-        )}
-        {products && currentTableData && (
-          <Paginator
-            className="pagination-bar"
-            currentPage={currentPage}
-            totalCount={products.length}
-            pageSize={PageSize}
-            onPageChange={(page) => setCurrentPage(page)}
-          />
-        )}
-      </div>
-    </div>
-  );
+    );
+  }
 };

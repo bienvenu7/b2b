@@ -185,31 +185,29 @@ export const SignUp = () => {
               <div className="auth__form-errorMessage">{formik.errors.password}</div>
             ) : null}
 
-            {isRegister && <div className="auth__success-text"> {message} </div>}
-            <div className="termscheckbox">
-              <input
-                type="checkbox"
-                className={formik.touched.conditions && formik.errors.conditions ? 'conditionserror' : ''}
-                id="conditions"
-                onChange={formik.handleChange}
-                checked={formik.values.conditions}
-              />
-              <label htmlFor="conditions">
-                I accept{' '}
-                <a
-                  href="/conditions"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    openInNewTab('/conditions');
-                  }}
-                >
-                  Terms and Conditions
-                </a>
-              </label>
-            </div>
-            <button className="auth__form-submit" type="submit" disabled={isLoading}>
-              Sign Up
-            </button>
+
+              <div className="termscheckbox">
+                <input type="checkbox" class={(formik.touched.conditions && formik.errors.conditions) ? 'conditionserror' : ''} id="conditions" onChange={formik.handleChange} checked={formik.values.conditions}/>
+                <label htmlFor="conditions">I accept <a href='/conditions' onClick={(e) => {
+                  e.preventDefault()
+                  openInNewTab('/conditions')
+                }}>Terms and Conditions
+                </a></label>
+              </div>
+              {isRegister && <div className='auth__success-text'> {message} </div>}
+              {formik.touched.conditions && formik.errors.conditions ? (
+              <div className="auth__form-errorMessage">
+                  Please confirm the form
+                </div>
+            ) : null}
+              <button
+                className="auth__form-submit"
+                type="submit"
+                disabled={isLoading}
+              >
+                Sign Up
+              </button>
+            
           </form>
           <div className="auth__form__bottom">
             <div className="auth__form__bottom-message">Already have an account?&nbsp;</div>

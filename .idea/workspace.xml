@@ -22,14 +22,34 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="new branch development">
-      <change afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequestLayout.jsx" afterDir="false" />
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="feat: small gitignore changes">
+      <change afterPath="$PROJECT_DIR$/src/common/images/old logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/images/logo-for-mobile.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/images/logo-for-mobile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Auth/Auth.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Auth.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Auth/Signup/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Signup/Signup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/Payment.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Payment.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Summary/Summary.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Summary/Summary.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SummaryMobile/SummaryMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SummaryMobile/SummaryMobile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequestLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequestLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableMobile/AuthenticTableMobile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CategoryForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CertificatesForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/PaymentForm/CertificatesForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/RightSide/RightSide.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/RightSide/RightSide.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/RightSideMobile/RightSideMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/RightSideMobile/RightSideMobile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/order/Order.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/Order.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/order/Order.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/Order.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Payment/Payment.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Payment/Payment.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopUpBundle/TopUpBundle.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,23 +113,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="format.on.save" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="optimize.imports.on.save" value="true" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="C:\projects\b2b\b2blgfront\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2022.1.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projects\b2b\b2blgfront" />
@@ -249,7 +257,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merge" />

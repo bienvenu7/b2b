@@ -5,6 +5,7 @@ import logo from '../../common/images/logo-for-mobile.png';
 import { PersonalAreaLayout } from '../PersonalArea/PersonalAreaLayout';
 import { DropdownIndicator } from '../../common/react-select/DropdownIndicator';
 import { Balance } from '../Balance/Balance';
+import './AuthenticationRequest.scss';
 
 export const AuthenticationRequestLayout = React.memo(
   ({

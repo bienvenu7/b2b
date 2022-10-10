@@ -199,7 +199,7 @@
 
     &-search {
       // width: 697px;
-      height: 32px;
+      height: 28px;
       border: 1px solid #7B809A;
       border-radius: 8px;
       padding-left: 27px;
@@ -291,7 +291,8 @@
         padding-right: 10px;
         padding-bottom: 9px;
         border-bottom: 1px solid $c_gray2;
-        justify-content: space-between;
+        // justify-content: space-between;
+        gap: 19px;
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 700;
@@ -616,7 +617,7 @@
     &__elems {
       &-wrapper {
         display: flex;
-        // gap: 19px;
+        gap: 19px;
         align-items: center;
       }
     }

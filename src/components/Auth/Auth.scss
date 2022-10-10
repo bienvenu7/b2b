@@ -198,6 +198,7 @@
                     @include for-phone-only {
                         display: block;
                         margin-bottom: 34px;
+                        width: 56px;
                     }
                 }
 
@@ -371,7 +372,11 @@
                         }
                     }
                 }
-
+                @media (max-height: 810px) {
+                    &-elem:not(:first-child) {
+                        margin-top: 10px;
+                    }
+                }
                 &-submit {
                     font-family: 'Roboto';
                     font-style: normal;
@@ -386,7 +391,7 @@
                     height: 40px;
                     margin-top: 42px;
                     cursor: pointer;
-
+                    
                     &:disabled {
                         background-color: #5D5F62;
                     }
@@ -394,6 +399,12 @@
                     @include for-phone-only {
                         font-size: 18px;
                         border-radius: 4px;
+                    }
+                }
+
+                @media (max-height: 810px) {
+                    &-submit {
+                        margin-top: 10px !important;
                     }
                 }
 
@@ -406,7 +417,7 @@
                     width: 100%;
 
                     input {
-                        height: 42px;
+                        height: 22px;
                         width: 361px;
                         border: 1px solid #C7CCD0
                     }
@@ -459,12 +470,18 @@
     }
 
     &__success-text {
-        margin-top: 15px;
+        margin-top: 20px;
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 16px;
         line-height: 140%;
         color: $c_g;
+        text-align: center;
+    }
+    @media (max-height: 810px) {
+        &__success-text {
+            margin-top: 5px !important;
+        }
     }
 }

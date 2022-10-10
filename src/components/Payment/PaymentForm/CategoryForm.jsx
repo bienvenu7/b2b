@@ -23,7 +23,7 @@ import {
   getUserTariffPackages,
 } from '../../../redux/selectors/payment-selectors';
 
-export const CategoryForm = React.memo((props) => {
+export const CategoryForm = React.memo(({but,getPrice,cartTotal}) => {
   const [volume, setVolume] = useState(1);
   const [errorsForAnswerTime, setErrorForAnswerTime] = useState(null);
   const [packageEditNumber, setPackageEdit] = useState(0);
@@ -142,7 +142,7 @@ export const CategoryForm = React.memo((props) => {
       volume: e,
       answerTime,
     };
-    props.getPrice(data);
+    getPrice(data);
   };
 
   const updateHours = (value, data) => {
@@ -154,14 +154,14 @@ export const CategoryForm = React.memo((props) => {
     setAnswerTime(value);
     dispatch(updateHoursPackage({ index: packageEditNumber, hours: value }));
     dispatch(getPriceThunk(pack));
-    props.cartTotal(data);
+    cartTotal(data);
     setErrorForAnswerTime(null);
   };
 
   cart.length < 1 && dispatch(initPackage(userId));
 
   // eslint-disable-next-line no-empty-function
-  useEffect(() => {}, [props.but]);
+  useEffect(() => {}, [but]);
 
   useEffect(() => {
     dispatch(updateHoursPackage({ index: packageEditNumber, hours: 24 }));
@@ -171,10 +171,8 @@ export const CategoryForm = React.memo((props) => {
     const data = {
       userTariffPackages: cart,
     };
-    props.cartTotal(data);
+    cartTotal(data);
   }, [cart]);
-
-  const { but } = props;
 
   function handleClose() {
     setProductType(null);
