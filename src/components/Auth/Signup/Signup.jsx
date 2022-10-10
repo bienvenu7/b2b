@@ -185,7 +185,6 @@ export const SignUp = () => {
               <div className="auth__form-errorMessage">{formik.errors.password}</div>
             ) : null}
 
-            {isRegister && <div className="auth__success-text"> {message} </div>}
             <div className="termscheckbox">
               <input
                 type="checkbox"
@@ -207,6 +206,10 @@ export const SignUp = () => {
                 </a>
               </label>
             </div>
+            {isRegister && <div className="auth__success-text"> {message} </div>}
+            {formik.touched.conditions && formik.errors.conditions ? (
+              <div className="auth__form-errorMessage">Please confirm the form</div>
+            ) : null}
             <button className="auth__form-submit" type="submit" disabled={isLoading}>
               Sign Up
             </button>

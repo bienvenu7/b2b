@@ -47,27 +47,27 @@
                     border: 0.5px solid #9A9A9A;
                     ;
                     border-radius: 10px;
-                    padding: 20px 0;
+                    // padding: 20px 0;
                 }
 
                 &__elem {
                     display: flex;
-                    padding-left: 20px;
+                    padding: 15px 0 15px 20px;
+                    border-bottom: 0.5px solid #9A9A9A;
+                    // &:not(:last-child) {
+                    //     // padding-bottom: 10px;
+                    //     border-bottom: 0.5px solid #9A9A9A;
+                    //     ;
+                    // }
 
-                    &:not(:last-child) {
-                        padding-bottom: 10px;
-                        border-bottom: 0.5px solid #9A9A9A;
-                        ;
-                    }
-
-                    &:not(:first-child) {
-                        padding-top: 10px;
+                    &:last-child{
+                        border-bottom:none;
                     }
 
                     &>div {
                         font-family: 'SF Pro Display Medium';
                         font-style: normal;
-                        font-weight: 400;
+                        font-weight: bold;
                         font-size: 18.4118px;
                         line-height: 20px;
 

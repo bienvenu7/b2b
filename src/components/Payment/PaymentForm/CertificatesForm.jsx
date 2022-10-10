@@ -173,7 +173,7 @@ export const CertificatesForm = ({ but, cartTotal }) => {
       }}
     >
       {({ props }) => (
-        <Form className="payment__form" onChange={props.handleChange} onSubmit={props.handleSubmit}>
+        <Form className="payment__form" onChange={handleChange} {...props}>
           <div className="payment__form-block-container second">
             <label htmlFor="certificates" className="payment__form-label">
               Authenticity Certificates
