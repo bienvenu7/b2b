@@ -4,1284 +4,750 @@
 
 
 .auth_request {
-    &__wrapper {
-        color: $c_o;
-        position: relative;
+  &__wrapper {
+    color: $c_o;
+    position: relative;
 
-        @include for-phone-only {
-            color: $c_b;
-            overflow-x: hidden;
-        }
-
-        .top {
-            max-width: 1021px;
-            margin: auto;
-            margin-top: 54px;
-
-            @include for-phone-only {
-                display: none;
-            }
-        }
-
-        .top-mobile {
-            display: none;
-
-            @include for-phone-only {
-                display: block;
-            }
-
-        }
+    @include for-phone-only {
+      color: $c_b;
+      overflow-x: hidden;
     }
 
-    &__nav {
-        width: calc(1170px - 148px);
-        margin: auto;
-        margin-top: 58px;
+    .top {
+      max-width: 1021px;
+      margin: auto;
+      margin-top: 54px;
+
+      @include for-phone-only {
+        display: none;
+      }
+    }
+
+    .top-mobile {
+      display: none;
+
+      @include for-phone-only {
+        display: block;
+      }
+
+    }
+  }
+
+  &__nav {
+    width: calc(1170px - 148px);
+    margin: auto;
+    margin-top: 58px;
+    display: flex;
+    justify-content: space-between;
+
+    @include for-phone-only {
+      display: none;
+    }
+
+    &-bell {
+      cursor: pointer;
+    }
+
+    &-label {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 140%;
+      color: $c_dis;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    top: 58px;
+    left: 50%;
+    img{
+      width: 56px;
+    }
+
+    @include for-phone-only {
+      display: none;
+    }
+  }
+
+  &__form {
+
+    &-wrapper {
+      margin-top: 107px;
+      display: flex;
+      flex-direction: column;
+
+      @include for-phone-only {
+        margin-top: 21px;
+      }
+    }
+
+    &-container {
+      max-width: 1022px;
+      margin: auto;
+
+      @include for-phone-only {
+        max-width: calc(100vw - 36px);
+        margin-left: 18px;
+      }
+
+      &.first {
+        width: 100%;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
+        padding-bottom: 42px;
+        border-bottom: 1px solid $c_lg;
+      }
 
-        @include for-phone-only {
+      &.second {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        justify-content: 32px;
+        width: 100%;
+        padding-top: 42px;
+        padding-bottom: 61px;
+      }
+
+      &-wrapper {
+        &.first {
+          width: 567.36px;
+        }
+
+        &.second {
+          min-width: 232px;
+          max-height: 260px;
+
+          @include for-phone-only {
             display: none;
-        }
+          }
 
-        &-bell {
-            cursor: pointer;
-        }
-
-        &-label {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 140%;
-            color: $c_dis;
-        }
-    }
-
-    &__logo {
-        position: absolute;
-        top: 58px;
-        left: 50%;
-        img{
-            width: 56px;
-        }
-
-        @include for-phone-only {
-            display: none;
-        }
-    }
-
-    &__form {
-
-        &-wrapper {
-            margin-top: 107px;
-            display: flex;
-            flex-direction: column;
-
-            @include for-phone-only {
-                margin-top: 21px;
-            }
-        }
-
-        &-container {
-            max-width: 1022px;
-            margin: auto;
-
-            @include for-phone-only {
-                max-width: calc(100vw - 36px);
-                margin-left: 18px;
-            }
-
-            &.first {
-                width: 100%;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                padding-bottom: 42px;
-                border-bottom: 1px solid $c_lg;
-            }
-
-            &.second {
-                display: flex;
-                flex-direction: column;
-                align-self: flex-start;
-                justify-content: 32px;
-                width: 100%;
-                padding-top: 42px;
-                padding-bottom: 61px;
-            }
-
+          .auth__balance {
             &-wrapper {
-                &.first {
-                    width: 567.36px;
-                }
-
-                &.second {
-                    min-width: 232px;
-                    max-height: 260px;
-
-                    @include for-phone-only {
-                        display: none;
-                    }
-
-                    .auth__balance {
-                        &-wrapper {
-                            padding-bottom: 0px;
-                            margin-top: 0px;
-                            min-width: 232px;
-                        }
-
-                        &__header {}
-
-                        &__elem {
-                            &-cat {
-                                font-family: 'Roboto';
-                                font-style: normal;
-                                font-weight: 400;
-                                font-size: 14px;
-                                line-height: 140%;
-                                color: $c_dis  !important;
-                            }
-
-                            &-count {
-                                display: flex;
-                                justify-content: flex-end;
-                                width: 100%;
-                            }
-
-                            &-hours {
-                                font-family: 'Roboto';
-                                font-style: normal;
-                                font-weight: 400;
-                                font-size: 12px;
-                                line-height: 140%;
-                                border-radius: 10px;
-                                background: #F0DDB9;
-                                color: $c_b;
-                                padding: 0 8px;
-                                height: 17px;
-                                width: 64px;
-                                display: flex;
-                                align-items: flex-start;
-                                white-space: nowrap;
-                            }
-
-                            &-button {
-                                border-radius: 4px;
-                                border: 1px solid $c_g;
-                                text-align: center;
-                                font-family: 'Roboto';
-                                font-style: normal;
-                                font-weight: 700;
-                                font-size: 14px;
-                                line-height: 140%;
-                                margin: 0 -13px;
-                                height: 42px;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                cursor: pointer;
-                                color: $c_g;
-                                background: transparent;
-                            }
-
-                            &:last-child {
-                                flex-direction: column;
-                                gap: 10px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        &__photo {
-            &-container {
-                display: grid;
-                grid-template-columns: repeat(8, 111px);
-                gap: 12px;
-
-                @include for-phone-only {
-                    display: grid;
-                    grid-template-columns: repeat(2, auto);
-                    gap: 25px;
-                }
+              padding-bottom: 0px;
+              margin-top: 0px;
+              min-width: 232px;
             }
 
-            &-name {
-                width: 110px;
-                height: auto;
-                text-align: center;
-                // font-family: 'SF Pro Text';
+            &__header {}
+
+            &__elem {
+              &-cat {
+                font-family: 'Roboto';
                 font-style: normal;
-                font-weight: 600;
+                font-weight: 400;
                 font-size: 14px;
-                line-height: 17px;
-                color: $c_b;
+                line-height: 140%;
+                color: $c_dis  !important;
+              }
 
-                @include for-phone-only {
-                    min-width: 105px;
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 18px;
-                    line-height: 21px;
-                    color: #000000;
-                }
-            }
-
-            &-elem {
-                width: 100%;
-                height: auto;
+              &-count {
                 display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                flex-direction: column;
-                gap: 12px;
-                position: relative;
-            }
+                justify-content: flex-end;
+                width: 100%;
+              }
 
-            &-photolabel {
-                width: 111px;
-                height: 100px;
-                border: 1px dashed $c_b;
-                box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
-                border-radius: 4px;
-
-                @include for-phone-only {
-                    min-width: 105px;
-                    min-height: 125px;
-                }
-
-                input[type=file] {
-                    width: 111px;
-                    min-height: 100px;
-                    border: 1px solid $c_w;
-                    box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
-                    border-radius: 4px;
-                    padding: 50px 0;
-                    color: #F6F6F7;
-                }
-
-                &>input {
-                    display: none;
-                    width: 111px;
-                    min-height: 100px;
-                    border: 1px solid $c_w;
-                    box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
-                    border-radius: 4px;
-                }
-
-
-
-                &.required {
-                    width: 111px;
-                    height: 100px;
-                    border: 1px solid $c_g;
-                    box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
-                    border-radius: 4px;
-                    display: flex;
-                    margin: 0px 0px 0px 0px;
-                    &>input {
-                        display: none;
-                        width: 111px;
-                        min-height: 100px;
-                        border-radius: 4px;
-                        padding: 0px 0px;
-                        font-size: 2px;
-                    }
-                }
-            }
-
-            &-button {
-                cursor: pointer;
-                width: 30px;
-                height: 30px;
-                border-radius: 4px;
-                border: 1px solid $c_b;
-                background-color: $c_g;
+              &-hours {
                 font-family: 'Roboto';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 12px;
-                line-height: 13px;
-                color: $c_w;
-                border: none;
-                position: absolute;
-                top: 0;
-                right: 0;
-                font-weight: 900;
-            }
-
-            &-previewImg {
+                line-height: 140%;
+                border-radius: 10px;
+                background: #F0DDB9;
+                color: $c_b;
+                padding: 0 8px;
+                height: 17px;
+                width: 64px;
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 13px;
-                width: 111px;
-                height: 100px;
-                overflow: hidden;
-                background-size: cover !important;
-                background-position: center !important;
-                border-radius: 4px;
+                align-items: flex-start;
+                white-space: nowrap;
+              }
 
-                input {
-                    max-width: 111px;
-                    min-height: 100px;
-                    border: 1px solid $c_w;
-                    box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
-                    border-radius: 5px;
-                    display: none;
-                }
+              &-button {
+                border-radius: 4px;
+                border: 1px solid $c_g;
+                text-align: center;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 140%;
+                margin: 0 -13px;
+                height: 42px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                color: $c_g;
+                background: transparent;
+              }
+
+              &:last-child {
+                flex-direction: column;
+                gap: 10px;
+              }
             }
+          }
+        }
+      }
+    }
+
+    &__photo {
+      &-container {
+        display: grid;
+        grid-template-columns: repeat(8, 111px);
+        gap: 12px;
+
+        @include for-phone-only {
+          display: grid;
+          grid-template-columns: repeat(2, auto);
+          gap: 25px;
+        }
+      }
+
+      &-name {
+        width: 110px;
+        height: auto;
+        text-align: center;
+        // font-family: 'SF Pro Text';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        color: $c_b;
+
+        @include for-phone-only {
+          min-width: 105px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 21px;
+          color: #000000;
+        }
+      }
+
+      &-elem {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+      }
+
+      &-photolabel {
+        width: 111px;
+        height: 100px;
+        border: 1px dashed $c_b;
+        box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
+        border-radius: 4px;
+
+        @include for-phone-only {
+          min-width: 105px;
+          min-height: 125px;
         }
 
-        &-desc {
+        input[type=file] {
+          width: 111px;
+          min-height: 100px;
+          border: 1px solid $c_w;
+          box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
+          border-radius: 4px;
+          padding: 50px 0;
+          color: #F6F6F7;
+        }
+
+        &>input {
+          display: none;
+          width: 111px;
+          min-height: 100px;
+          border: 1px solid $c_w;
+          box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
+          border-radius: 4px;
+        }
+
+
+
+        &.required {
+          width: 111px;
+          height: 100px;
+          border: 1px solid $c_g;
+          box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
+          border-radius: 4px;
+          display: flex;
+          margin: 0px 0px 0px 0px;
+          &>input {
+            display: none;
+            width: 111px;
+            min-height: 100px;
+            border-radius: 4px;
+            padding: 0px 0px;
+            font-size: 2px;
+          }
+        }
+      }
+
+      &-button {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        border: 1px solid $c_b;
+        background-color: $c_g;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 13px;
+        color: $c_w;
+        border: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-weight: 900;
+      }
+
+      &-previewImg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        width: 111px;
+        height: 100px;
+        overflow: hidden;
+        background-size: cover !important;
+        background-position: center !important;
+        border-radius: 4px;
+
+        input {
+          max-width: 111px;
+          min-height: 100px;
+          border: 1px solid $c_w;
+          box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
+          border-radius: 5px;
+          display: none;
+        }
+      }
+    }
+
+    &-desc {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15.6934px;
+      line-height: 140%;
+      color: rgba(0, 0, 0, 1);
+      padding-top: 14px;
+      padding-bottom: 14px;
+
+      @include for-phone-only {
+        // font-family: 'SF Pro Display';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #666666;
+      }
+    }
+
+    &-heading {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 140%;
+      color: $c_g;
+      padding-bottom: 58px;
+      text-transform: uppercase;
+
+      @include for-phone-only {
+        display: none;
+      }
+
+    }
+
+    &__elem {
+      width: 567px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      @include for-phone-only {
+        width: calc(100vw - 42px);
+      }
+
+      .btn {
+        margin-top: 6px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      &-label {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 30px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 140%;
+        color: #000000;
+
+        @include for-phone-only {
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 21px;
+        }
+
+        .btn {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 9px;
+
+          @include for-phone-only {
+            display: none;
+          }
+
+          button {
+            border: 1px solid $c_g;
+            border-radius: 5px;
+            background: none;
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
-            font-size: 15.6934px;
-            line-height: 140%;
-            color: rgba(0, 0, 0, 1);
-            padding-top: 14px;
-            padding-bottom: 14px;
-
-            @include for-phone-only {
-                // font-family: 'SF Pro Display';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 19px;
-                color: #666666;
-            }
-        }
-
-        &-heading {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 28px;
+            font-size: 14px;
             line-height: 140%;
             color: $c_g;
-            padding-bottom: 58px;
-            text-transform: uppercase;
+            width: 95px;
+
+            &.active {
+              background-color: $c_g;
+              color: $c_w;
+            }
+          }
+        }
+      }
+
+      &-input {
+        &-wrapper {
+          max-width: 567px;
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          flex-direction: column;
+
+          input {
+            width: calc(567px - 24px);
+            height: 38px;
+            padding-left: 24px;
+            border: solid 1px $c_b  !important;
+            border-radius: 8px;
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
 
             @include for-phone-only {
-                display: none;
+              max-width: calc(100vw - 42px - 24px);
+              box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+              border: solid 1px $c_w  !important;
             }
-
+          }
         }
-
-        &__elem {
-            width: 567px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-
-            @include for-phone-only {
-                width: calc(100vw - 42px);
-            }
-
-            .btn {
-                margin-top: 6px;
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
-                align-items: flex-start;
-            }
-
-            &-label {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                gap: 30px;
-                font-family: 'Roboto';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 19px;
-                line-height: 140%;
-                color: #000000;
-
-                @include for-phone-only {
-                    font-weight: 500;
-                    font-size: 18px;
-                    line-height: 21px;
-                }
-
-                .btn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    gap: 9px;
-
-                    @include for-phone-only {
-                        display: none;
-                    }
-
-                    button {
-                        border: 1px solid $c_g;
-                        border-radius: 5px;
-                        background: none;
-                        font-family: 'Roboto';
-                        font-style: normal;
-                        font-weight: 400;
-                        font-size: 14px;
-                        line-height: 140%;
-                        color: $c_g;
-                        width: 95px;
-
-                        &.active {
-                            background-color: $c_g;
-                            color: $c_w;
-                        }
-                    }
-                }
-            }
-
-            &-input {
-                &-wrapper {
-                    max-width: 567px;
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 14px;
-                    flex-direction: column;
-
-                    input {
-                        width: calc(567px - 24px);
-                        height: 38px;
-                        padding-left: 24px;
-                        border: solid 1px $c_b  !important;
-                        border-radius: 8px;
-                        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
-
-                        @include for-phone-only {
-                            max-width: calc(100vw - 42px - 24px);
-                            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
-                            border: solid 1px $c_w  !important;
-                        }
-                    }
-                }
-            }
-        }
-
-        &-radio_btn {
-
-            display: flex;
-            justify-content: center;
-            margin-right: 10px;
-
-            input[type=radio] {
-                display: none;
-            }
-
-            @include for-phone-only {
-                width: auto;
-            }
-
-            label {
-                font-family: 'Roboto';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 14.3237px;
-                line-height: 140%;
-                cursor: pointer;
-                color: $c_g;
-                border: 0.841829px solid $c_g;
-                border-radius: 6.40351px;
-                width: auto;
-                padding: 0 20px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 20px;
-                padding: 8px 22px;
-
-                @include for-phone-only {
-                    border-color: $c_g;
-                    border-radius: 4px;
-                    color: $c_g;
-                    width: 150px;
-                }
-            }
-
-            input[type=radio]:checked+label {
-                background: $c_g;
-                color: $c_w;
-                border: 0.841829px solid $c_g;
-
-                @include for-phone-only {
-                    background-color: $c_g;
-                    color: $c_w;
-                }
-            }
-
-            &_types {
-                font-family: 'SF Pro Display Medium';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 19px;
-                color: $c_b;
-                display: flex;
-
-                @include for-phone-only {
-                    font-family: 'SF Pro Display Medium';
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 19px;
-                }
-
-                //gap: 19px;
-
-                &-container {
-                    display: flex;
-                    gap: 50px;
-                }
-
-                input {
-                    transform: scale(2);
-                }
-            }
-        }
-
-        &-elem {
-            width: 567px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 25px;
-
-            @include for-phone-only {
-                max-width: calc(100vw - 42px);
-            }
-
-            &-label {
-                font-family: 'Roboto';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 19.9734px;
-                line-height: 140%;
-                color: $c_b;
-
-                @include for-phone-only {
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 18px;
-                    line-height: 21px;
-                }
-
-            }
-        }
-
-        &__footer {
-            width: 100vw;
-            height: 310px;
-            background-color: #F6F6F7;
-
-            @include for-phone-only {
-                border-top: 0.25px solid #656565;
-            }
-
-            &-wrapper {
-                width: calc(1170px - 148px);
-                margin: auto;
-                padding-top: 37px;
-                display: flex;
-                gap: 60px;
-
-                @include for-phone-only {
-                    width: calc(100vw - 42px);
-                    flex-direction: column;
-                    gap: 0;
-                    padding-top: 21px;
-                    
-                }
-            }
-
-            &__info {
-                width: 230px;
-                display: flex;
-                flex-direction: column;
-                gap: 18px;
-
-                @include for-phone-only {
-                    width: 300px;
-                }
-
-                &__h1 {
-                    font-family: 'Roboto';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 16px;
-                    line-height: 140%;
-                    color: $c_b;
-                    text-transform: uppercase;
-
-                    @include for-phone-only {
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 18px;
-                        line-height: 21px;
-                    }
-
-                }
-
-                &__h2 {
-                    width: 322px;
-                    font-family: 'Roboto';
-                    font-style: normal;
-                    font-size: 14px;
-                    line-height: 140%;
-
-
-                    @include for-phone-only {
-                        font-style: normal;
-                        font-size: 16px;
-                        line-height: 19px;
-
-                        display: flex;
-                        align-items: flex-start;
-                        justify-content: space-between;
-                    }
-
-                    &-label {
-                        font-weight: 700;
-                        color: $c_b;
-                        text-transform: capitalize;
-
-                        @include for-phone-only {
-                            font-weight: 400;
-                        }
-                    }
-
-                    &-value {
-                        font-weight: 400;
-                        color: $c_b;
-                        text-transform: capitalize;
-
-                        // @include for-phone-only {
-                        //     display: none;
-                        // }
-                    }
-                }
-            }
-
-            &__button {
-                &-wrapper {
-                    position: relative;
-                    cursor: pointer;
-                    
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    
-                    margin: auto;
-                    margin-left: 0;
-
-                    @include for-phone-only {
-                        margin-top: 32px;
-                        width: 322px;
-                        font-size: 18px;
-                        font-weight: 700;
-                    }
-                    &-button{
-                        width: 300px;
-                        height: 50px;
-                        border: 1px solid $c_g;
-                        border-radius: 4px;
-                        background-color: $c_g;
-                        font-family: 'Roboto';
-                        font-style: normal;
-                        font-weight: 400;
-                        font-size: 17px;
-                        line-height: 140%;
-                        color: $c_w;
-                    }
-                    &-text{
-                        // background-color: red;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100vh;
-                        transform: translateY(-130%);
-                    }
-                    @include for-phone-only {
-                        &-text{
-                            // background-color: red;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                        }
-                    }
-                    &-disabled {
-                        cursor: auto;
-                        width: 300px;
-                        height: 50px;
-                        border: 1px solid #cdcccb;
-                        border-radius: 4px;
-                        background-color: $c_w;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-
-                        font-family: 'Roboto';
-                        font-style: normal;
-                        font-weight: 400;
-                        font-size: 17px;
-                        line-height: 140%;
-                        color: #cdcccb;
-                        margin: auto;
-                        margin-left: 0;
-
-                        @include for-phone-only {
-                            margin-top: 32px;
-                            width: 322px;
-                            font-size: 18px;
-                            font-weight: 700;
-                        }
-                    }
-
-                }
-
-
-            }
-        }
+      }
     }
 
+    &-radio_btn {
+
+      display: flex;
+      justify-content: center;
+      margin-right: 10px;
+
+      input[type=radio] {
+        display: none;
+      }
+
+      @include for-phone-only {
+        width: auto;
+      }
+
+      label {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14.3237px;
+        line-height: 140%;
+        cursor: pointer;
+        color: $c_g;
+        border: 0.841829px solid $c_g;
+        border-radius: 6.40351px;
+        width: auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        padding: 8px 22px;
+
+        @include for-phone-only {
+          border-color: $c_g;
+          border-radius: 4px;
+          color: $c_g;
+          width: 150px;
+        }
+      }
+
+      input[type=radio]:checked+label {
+        background: $c_g;
+        color: $c_w;
+        border: 0.841829px solid $c_g;
+
+        @include for-phone-only {
+          background-color: $c_g;
+          color: $c_w;
+        }
+      }
+
+      &_types {
+        font-family: 'SF Pro Display Medium';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: $c_b;
+        display: flex;
+
+        @include for-phone-only {
+          font-family: 'SF Pro Display Medium';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 19px;
+        }
+
+        //gap: 19px;
+
+        &-container {
+          display: flex;
+          gap: 50px;
+        }
+
+        input {
+          transform: scale(2);
+        }
+      }
+    }
+
+    &-elem {
+      width: 567px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-top: 25px;
+
+      @include for-phone-only {
+        max-width: calc(100vw - 42px);
+      }
+
+      &-label {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 19.9734px;
+        line-height: 140%;
+        color: $c_b;
+
+        @include for-phone-only {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 21px;
+        }
+
+      }
+    }
+
+    &__footer {
+      width: 100vw;
+      height: 310px;
+      background-color: #F6F6F7;
+
+      @include for-phone-only {
+        border-top: 0.25px solid #656565;
+      }
+
+      &-wrapper {
+        width: calc(1170px - 148px);
+        margin: auto;
+        padding-top: 37px;
+        display: flex;
+        gap: 60px;
+
+        @include for-phone-only {
+          width: calc(100vw - 42px);
+          flex-direction: column;
+          gap: 0;
+          padding-top: 21px;
+
+        }
+      }
+
+      &__info {
+        width: 230px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        @include for-phone-only {
+          width: 300px;
+        }
+
+        &__h1 {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 140%;
+          color: $c_b;
+          text-transform: uppercase;
+
+          @include for-phone-only {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 21px;
+          }
+
+        }
+
+        &__h2 {
+          width: 322px;
+          font-family: 'Roboto';
+          font-style: normal;
+          font-size: 14px;
+          line-height: 140%;
+
+
+          @include for-phone-only {
+            font-style: normal;
+            font-size: 16px;
+            line-height: 19px;
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+          }
+
+          &-label {
+            font-weight: 700;
+            color: $c_b;
+            text-transform: capitalize;
+
+            @include for-phone-only {
+              font-weight: 400;
+            }
+          }
+
+          &-value {
+            font-weight: 400;
+            color: $c_b;
+            text-transform: capitalize;
+
+            // @include for-phone-only {
+            //     display: none;
+            // }
+          }
+        }
+      }
+
+      &__button {
+        &-wrapper {
+          position: relative;
+          cursor: pointer;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+
+          margin: auto;
+          margin-left: 0;
+
+          @include for-phone-only {
+            margin-top: 32px;
+            width: 322px;
+            font-size: 18px;
+            font-weight: 700;
+          }
+          &-button{
+            width: 300px;
+            height: 50px;
+            border: 1px solid $c_g;
+            border-radius: 4px;
+            background-color: $c_g;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 140%;
+            color: $c_w;
+          }
+          &-text{
+            // background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vh;
+            transform: translateY(-130%);
+          }
+          @include for-phone-only {
+            &-text{
+              // background-color: red;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+            }
+          }
+          &-disabled {
+            cursor: auto;
+            width: 300px;
+            height: 50px;
+            border: 1px solid #cdcccb;
+            border-radius: 4px;
+            background-color: $c_w;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 140%;
+            color: #cdcccb;
+            margin: auto;
+            margin-left: 0;
+
+            @include for-phone-only {
+              margin-top: 32px;
+              width: 322px;
+              font-size: 18px;
+              font-weight: 700;
+            }
+          }
+
+        }
+
+
+      }
+    }
+  }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// .auth_request {
-//     &__wrapper {
-//         color: $c_o;
-//         position: relative;
-
-//         @include for-phone-only {
-//             color: $c_b;
-//             margin-top: 73px;
-//         }
-//     }
-
-//     &__nav {
-//         width: calc(1170px - 148px);
-//         padding: $desktop_layout;
-//         margin-top: 58px;
-//         display: flex;
-//         justify-content: space-between;
-
-//         @include for-phone-only {
-//             display: none;
-//         }
-
-//         &-bell {
-//             cursor: pointer;
-//         }
-
-//         &-label {
-//             font-family: 'Roboto';
-//             font-style: normal;
-//             font-weight: 700;
-//             font-size: 16px;
-//             line-height: 140%;
-//             color: $c_dis;
-//         }
-//     }
-
-//     &__container {
-//     }
-
-//     &__logo {
-//         position: absolute;
-//         top: 58px;
-//         left: 50%;
-
-//         @include for-phone-only {
-//             display: none;
-//         }
-//     }
-
-//     &__form {
-//         width: 1170px;
-//         overflow: hidden;
-
-//         &__photo {
-//             &-container {
-//                 display: flex;
-//                 gap: 71px;
-//                 flex-wrap: wrap;
-//                 padding: 32px 0 43px 0;
-
-//                 @include for-phone-only {
-//                     padding: 15px 0 53px 0;
-//                     column-gap: 16px;
-//     row-gap: 25px;
-//                     justify-content: center;
-//                 }
-//             }
-
-//             &-elem {
-//                 max-width: 164px;
-//                 width: 100%;
-//             }
-
-//             &-name {
-//                 font-family: 'SF Pro Display Medium';
-//                 font-style: normal;
-//                 font-weight: 600;
-//                 font-size: 18px;
-//                 line-height: 21px;
-//                 text-align: center;
-//                 padding-top: 16px;
-//             }
-
-//             &-error{
-//                 font-family: "Roboto";
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 16px;
-//     line-height: 140%;
-//     text-align: center;
-//             }
-
-//             &-previewImg {
-//                 max-width: 164px;
-//                 /* max-height: 125px; */
-//                 height: 125px;
-//                 background-size: contain !important;
-//                 background-repeat: no-repeat !important;
-//                 background-position-x: center !important;
-//                 background-position-y: center !important;
-//                 display: block;
-//             }
-
-//             &-fileInput {
-//                 display: none;
-//             }
-
-//             &-photolabel {
-//                 max-width: 164px;
-//                 height: 125px;
-//                 background-color: $c_w;
-//                 display: block;
-//                 width: 100%;
-//                 box-shadow: 0px 8px 40px rgba(0, 0, 0, 0.04);
-//                 border-radius: 6px;
-//                 font-family: 'SF Pro Display Medium';
-//                 font-style: normal;
-//                 font-weight: 600;
-//                 font-size: 18px;
-//                 line-height: 21px;
-
-//                 &::before {
-//                     display: flex;
-//                     content: "*Icon*";
-//                     justify-content: center;
-//                     align-items: center;
-//                     height: 100%;
-//                 }
-
-//                 &.required {
-//                     border: 1px solid #CBAD73;
-//                 }
-
-//                 @include for-phone-only {
-//                     max-width: 153px;
-//                 }
-//             }
-//         }
-
-//         &-heading {
-//             font-family: 'Roboto';
-//             font-style: normal;
-//             font-weight: 700;
-//             font-size: 35px;
-//             line-height: 140%;
-//             color: $c_g;
-//             text-transform: uppercase;
-//             margin-top: 107px;
-
-//             @include for-phone-only {
-//                 display: none;
-//             }
-//         }
-
-//         &-wrapper {
-
-//             display: flex;
-//             flex-direction: column;
-//             align-items: center;
-
-
-//         }
-
-//         &-container {
-//             &.first {
-//                 display: flex;
-//                 max-width: 1136px;
-//                 gap: 62px;
-//                 padding: 0 32px 52px 32px;
-//                 border-bottom: 1px solid #E1E1E1;
-//                 width: 100%;
-
-//             }
-
-//             &.second {
-//                 max-width: 1136px;
-//                 width: 100%;
-//                 //margin-top: 42px;
-//             }
-
-//             &-wrapper {
-//                 &.first {
-//                     width: 100%;
-//                     max-width: 722px;
-
-//                     @include for-phone-only {
-//                         padding: 0 21px;
-//                     }
-//                 }
-
-//                 &.second {
-//                     margin-top: 174px;
-
-//                     @include for-phone-only {
-//                         display: none;
-//                     }
-//                 }
-//             }
-//         }
-
-//         &__elem {
-//             &-label {
-//                 font-family: 'Roboto';
-//                 font-style: normal;
-//                 font-weight: 700;
-//                 font-size: 32px;
-//                 line-height: 140%;
-//                 margin-bottom: 37px;
-//                 margin-top: 52px;
-
-//                 &#photo_block_label {
-//                     @include for-phone-only {
-//                         margin-left: 21px;
-//                     }
-//                 }
-
-//                 @include for-phone-only {
-//                     font-family: 'SF Pro Display Medium';
-//                     font-style: normal;
-//                     font-weight: 500;
-//                     font-size: 18px;
-//                     line-height: 21px;
-
-//                     &:first-child {
-//                         margin: 21px 0 7px 0;
-//                     }
-//                 }
-//             }
-
-//             &-error{
-//                 color: $c_r;
-//                 padding-left: 10px;
-//                 padding-top: 5px;
-//             }
-
-//             &-input {
-//                 border: 1.17544px solid #344767;
-//                 border-radius: 9.40351px;
-//                 font-family: 'Roboto';
-//                 font-style: normal;
-//                 font-weight: 400;
-//                 font-size: 20px;
-//                 line-height: 140%;
-//                 color: $c_o;
-//                 padding: 20px 0 20px 30px;
-
-//                 @include for-phone-only {
-//                     font-family: 'SF Pro Display Medium';
-//                     font-style: normal;
-//                     font-weight: 400;
-//                     font-size: 16px;
-//                     line-height: 19px;
-//                     background: #FFFFFF;
-//                     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
-//                     border-radius: 8px;
-//                     border: 0;
-//                 }
-
-//                 &-wrapper {
-//                     display: flex;
-//                     flex-direction: column;
-//                     gap: 31px;
-
-//                     @include for-phone-only {
-//                         gap: 11px;
-//                     }
-//                 }
-//             }
-//         }
-
-//         &__radio {
-//             &-group {
-//                 display: flex;
-//                 gap: 41px;
-//                 margin-top: 42px;
-//                 @include for-phone-only{
-//                     display: none;
-//                 }
-//             }
-
-//             &-button {
-//                 border: 1.17544px solid rgba(52, 71, 103, 0.6);
-//                 border-radius: 9.40351px;
-//                 font-family: 'Roboto';
-//                 font-style: normal;
-//                 font-weight: 700;
-//                 font-size: 20px;
-//                 line-height: 140%;
-//                 padding: 11px 0;
-//                 max-width: 227px;
-//                 width: 100%;
-//                 text-align: center;
-//                 cursor: pointer;
-//             }
-//         }
-
-//         &-desc {
-//             font-family: 'Roboto';
-//             font-style: normal;
-//             font-weight: 400;
-//             font-size: 20px;
-//             line-height: 140%;
-
-//             @include for-phone-only {
-//                 font-family: 'SF Pro Display Medium';
-//                 font-style: normal;
-//                 font-weight: 400;
-//                 font-size: 16px;
-//                 line-height: 19px;
-//                 color: #666666;
-//                 margin-left: 21px;
-//             }
-//         }
-
-//         &__footer {
-//             display: flex;
-//             align-items: center;
-//             background-color: #F6F6F7;
-//             padding: 62px 0 100px 0;
-//             flex-direction: column;
-//             min-width: 1170px;
-
-//             @include for-phone-only{
-//                 padding: 22px 21px 86px 21px;
-//             }
-
-//             &-error{
-//                 color: $c_r;
-//             }
-
-//             &-wrapper {
-//                 display: flex;
-//                 justify-content: space-between;
-//                 gap: 142px;
-//                 align-items: center;
-//                 padding: $desktop_layout;
-
-
-//                 @include for-phone-only {
-//                     flex-direction: column;
-//                 }
-//             }
-
-//             &__info {
-//                 max-width: 512px;
-//                 width: 100%;
-
-//                 &__h1 {
-//                     font-family: 'Roboto';
-//                     font-style: normal;
-//                     font-weight: 700;
-//                     font-size: 30px;
-//                     line-height: 140%;
-//                     text-transform: uppercase;
-//                     margin-bottom: 53px;
-//                     @include for-phone-only{
-//                         font-family: 'SF Pro Display Medium';
-// font-style: normal;
-// font-weight: 500;
-// font-size: 18px;
-// line-height: 21px;
-// text-transform: none;
-// margin-bottom: 11px;
-//                     }
-//                 }
-
-//                 &__h2 {
-//                     display: flex;
-//                     gap: 50px;
-//                     color: #666666;
-
-//                     &-label {
-//                         font-family: 'Roboto';
-//                         font-style: normal;
-//                         font-weight: 400;
-//                         font-size: 30px;
-//                         line-height: 140%;
-//                         max-width: 320px;
-//                         width: 100%;
-//                         white-space: nowrap;
-//                         @include for-phone-only{
-//                             font-family: 'SF Pro Display Medium';
-// font-style: normal;
-// font-weight: 400;
-// font-size: 16px;
-// line-height: 19px;
-// max-width: 168px;
-//                         }
-//                     }
-
-//                     &-value {
-//                         font-family: 'Roboto';
-//                         font-style: normal;
-//                         font-weight: 700;
-//                         font-size: 30px;
-//                         line-height: 140%;
-//                         @include for-phone-only{
-//                             font-family: 'SF Pro Display Medium';
-// font-style: normal;
-// font-weight: 400;
-// font-size: 16px;
-// line-height: 19px;
-//                         }
-//                     }
-//                 }
-//             }
-
-//             &__button {
-
-//                 &-wrapper {
-//                     display: flex;
-//                     flex-direction: column;
-//                     justify-content: flex-end;
-//                     width: 100%;
-//                     max-width: 449px;
-//                 }
-
-//                 &-elem {
-//                     padding: 23px 0;
-//                     text-align: center;
-//                     border-radius: 15.8px;
-//                     background: $c_g;
-//                     color: $c_w;
-//                     font-family: 'Roboto';
-//                     font-style: normal;
-//                     font-weight: 700;
-//                     font-size: 25px;
-//                     line-height: 140%;
-//                     cursor: pointer;
-//                     &.disabled{
-//                         cursor: default;
-//                                             background: $c_dis;
-//                     }
-//                     @include for-phone-only{
-//                         margin-top: 32px;
-//                         border-radius: 4px;
-// font-size: 18px;
-// padding: 12px 0;
-
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-// .auth__balance {
-//     &-wrapper {
-//         padding-bottom: 0px;
-//         margin-top: 0px;
-//         min-width: 232px;
-//     }
-
-//     &__header {}
-
-//     &__elem {
-//         &-cat {}
-
-//         &-count {
-//             display: flex;
-//             justify-content: flex-end;
-//             width: 100%;
-//         }
-
-//         &-hours {
-//             font-family: "Roboto";
-//     font-style: normal;
-//     font-weight: 700;
-//     font-size: 14px;
-//     line-height: 140%;
-//     border-radius: 4px;
-//     background: #CBAD73;
-//     color: #FFFFFF;
-//     padding: 0 8px;
-//     max-height: 19.58px;
-//     display: flex;
-//     white-space: nowrap;
-//         }
-
-//         &-button {
-//             border-radius: 4px;
-//             border: 1px solid $c_g;
-//             text-align: center;
-//             font-family: 'Roboto';
-//             font-style: normal;
-//             font-weight: 700;
-//             font-size: 14px;
-//             line-height: 140%;
-//             margin: 0 -13px;
-//             height: 42px;
-//             display: flex;
-//             justify-content: center;
-//             align-items: center;
-//             cursor: pointer;
-//             color: $c_w;
-//             background: $c_g;
-
-//             &:not(:last-child) {
-//                 color: $c_g;
-//                 background: $c_w;
-//             }
-//         }
-
-//         &:last-child {
-//             flex-direction: column;
-//             gap: 10px;
-//         }
-//     }
-// }

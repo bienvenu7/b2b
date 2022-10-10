@@ -1,10 +1,9 @@
-import { getCertificate } from "../../api/file/file-api";
-import { setCertificateLink } from "../reducers/files-reducer";
-
-export const getCertificateThunk = (productId) => async (dispatch) => {
+import { getCertificate } from '../../api/file/file-api';
+// TODO
+export const getCertificateThunk = (productId) => async () => {
   try {
-    const response = await getCertificate(productId);
-    // console.log(response);
-    //dispatch(setCertificateLink())
-  } catch (error) {}
+    await getCertificate(productId);
+  } catch (error) {
+    // console.log(error);
+  }
 };

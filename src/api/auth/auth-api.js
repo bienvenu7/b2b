@@ -1,46 +1,38 @@
-import Cookies from "js-cookie";
-import { instance } from "../axios-instance";
-
-/*const token = Cookies.get('jwt')
-
-const instance = axios.create(
-    {
-        baseURL: 'https://b2b-portal-dev.herokuapp.com/'
-    }
-)*/
+import Cookies from 'js-cookie';
+import { instance } from '../axios-instance';
 
 export const register = (data) => {
-  return instance.post("auth/email/register", data);
+  return instance.post('auth/email/register', data);
 };
 
 export const login = (data) => {
-  return instance.post("auth/email/login", data);
+  return instance.post('auth/email/login', data);
 };
 
 export const getAuth = (data) => {
-  return instance.get("auth/me", {
-    headers: { Authorization: "Bearer " + data },
+  return instance.get('auth/me', {
+    headers: { Authorization: `Bearer ${data}` },
   });
 };
 
 export const removeMe = () => {
-  return instance.delete("auth/me", {
-    headers: { Authorization: "Bearer " + Cookies.get("jwt") },
+  return instance.delete('auth/me', {
+    headers: { Authorization: `Bearer ${Cookies.get('jwt')}` },
   });
 };
 
 export const forgotEmail = (data) => {
-  return instance.post("auth/forgot/password", data, {
-    headers: { Authorization: "Bearer " + Cookies.get("jwt") },
+  return instance.post('auth/forgot/password', data, {
+    headers: { Authorization: `Bearer ${Cookies.get('jwt')}` },
   });
 };
 
 export const forgotPassword = (data) => {
-  return instance.post("auth/reset/password", data, {
-    headers: { Authorization: "Bearer " + Cookies.get("jwt") },
+  return instance.post('auth/reset/password', data, {
+    headers: { Authorization: `Bearer ${Cookies.get('jwt')}` },
   });
 };
 
 export const confirmEmail = (data) => {
-  return instance.post("auth/email/confirm", data);
+  return instance.post('auth/email/confirm', data);
 };

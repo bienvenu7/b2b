@@ -1,0 +1,76 @@
+{
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "plugins": ["import", "react", "react-hooks", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "requireConfigFile": false
+  },
+  "rules": {
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-restricted-syntax": "warn",
+    "no-shadow": "off",
+    "no-return-assign": "warn",
+    "react/no-array-index-key": "warn",
+    "react/prop-types": "off",
+    "no-useless-escape": "warn",
+    "label-has-associated-control": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/jsx-no-bind": "off",
+    "react/button-has-type": "off",
+    "no-param-reassign": "warn",
+    "no-plusplus": "off",
+    "react/jsx-props-no-spreading": "off",
+    "guard-for-in": "off",
+    "consistent-return": "off",
+    "no-fallthrough": "off",
+    "default-param-last": "off",
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+    "no-unused-expressions": "warn",
+    "no-empty-function": [
+      "error",
+      {
+        "allow": ["functions"]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "prefer-const": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ],
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "no-console": "warn",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
+  }
+}

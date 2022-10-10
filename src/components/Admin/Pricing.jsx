@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './Pricing.scss'
-import SvgSelector from "../../common/icons/SvgSelector";
+import {SvgSelector} from "../../common/icons/SvgSelector";
 
 export default function Pricing(){
     // const []

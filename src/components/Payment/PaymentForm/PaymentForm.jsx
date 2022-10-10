@@ -1,18 +1,13 @@
-import React from 'react'
-import CategoryForm from "./CategoryForm";
-import CertificatesForm from "./CertificatesForm";
+import React from 'react';
+import { CategoryForm } from './CategoryForm';
+import { CertificatesForm } from './CertificatesForm';
 
-const PaymentForm = (props) => {
-
-    return (
-        <div className="payment__form-wrapper">
-            <CategoryForm setAdd={props.setAdd} but={props.btnAdd} cartTotal={props.cartTotal} getPrice={props.getPrice}/>
-            <hr/>
-            <CertificatesForm but={props.btnPay} cartTotal={props.cartTotal}/>
-        </div>
-
-
-    )
-}
-
-export default PaymentForm
+export const PaymentForm = ({ btnAdd, btnPay, cartTotal, getPrice, setAdd }) => {
+  return (
+    <div className="payment__form-wrapper">
+      <CategoryForm setAdd={setAdd} but={btnAdd} cartTotal={cartTotal} getPrice={getPrice} />
+      <hr />
+      <CertificatesForm but={btnPay} cartTotal={cartTotal} />
+    </div>
+  );
+};

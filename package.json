@@ -25,7 +25,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "lint": "eslint . --fix --ext .jsx --ext .js",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run format"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -46,11 +53,19 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
     "@reduxjs/toolkit": "^1.8.2",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
     "formik": "^2.2.9",
+    "husky": "^8.0.1",
     "js-cookie": "^3.0.1",
+    "prettier": "^2.7.1",
     "react-modal": "^3.15.1",
     "react-numeric-input": "^2.2.3",
     "react-router-dom": "^6.3.0",

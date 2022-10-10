@@ -1,9 +1,7 @@
-import React from 'react'
-import AuthLayout from "../AuthLayout";
-import Loader from '../../Loader/Loader';
+import React from 'react';
+import { AuthLayout } from '../AuthLayout';
 
-const Conditions = () => {
-
+export const Conditions = () => {
   const message = `
 Thank you for selecting LegitGrails Business!
 These Terms of Service ("Terms") and the Privacy Policy (collectively, "Agreement") are binding and governs
@@ -416,17 +414,14 @@ Policy.
 invalidity, breach, or termination thereof, shall be resolved by arbitration in accordance with the Rules
 of International Arbitration.`;
   return (
-    <>
-      <AuthLayout>
- 
-        <div  className="auth__content-conditions">
-        <h3>TERMS OF SERVICE <br/>LegitGrails “BusinessPlatform”</h3>
+    <AuthLayout>
+      <div className="auth__content-conditions">
+        <h3>
+          TERMS OF SERVICE <br />
+          LegitGrails “BusinessPlatform”
+        </h3>
         <pre>{message}</pre>
-        </div>
-        {/* </div> */}
-      </AuthLayout>
-    </>
+      </div>
+    </AuthLayout>
   );
 };
-
-export default Conditions;

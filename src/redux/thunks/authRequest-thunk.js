@@ -5,14 +5,9 @@ import {
   getBrands,
   orderCreate,
   uploadPhotoForProduct,
-} from "../../api/authRequest/authRequest-api";
-import { setErrors, setStatusCode } from "../reducers/app-reducer";
-import {
-  initOrder,
-  setAngles,
-  setBalance,
-  setBrands,
-} from "../reducers/authRequest-reducer";
+} from '../../api/authRequest/authRequest-api';
+import { setErrors, setStatusCode } from '../reducers/app-reducer';
+import { initOrder, setAngles, setBalance, setBrands } from '../reducers/authRequest-reducer';
 
 export const getProductTypePropThunk = (id) => async (dispatch) => {
   const response = await getBrands(id);
@@ -35,15 +30,12 @@ export const createProductThunk = (data) => async (dispatch) => {
     const response = await createProduct(data);
     return response;
   } catch (error) {
-    // console.log(error);
     dispatch(
       setErrors({
-        page: "authrequest",
+        page: 'authrequest',
         error:
-          error.response && error.response.data && error.response.data.message
-            ? error.response.data.message
-            : null,
-      })
+          error.response && error.response.data && error.response.data.message ? error.response.data.message : null,
+      }),
     );
     return true;
   }
@@ -58,11 +50,11 @@ export const getBalanceThunk = () => async (dispatch) => {
         setBalance([
           ...response.data,
           {
-            productType: { publicName: "Certificates" },
-            answerTime: "",
+            productType: { publicName: 'Certificates' },
+            answerTime: '',
             volume: next.data,
           },
-        ])
+        ]),
       );
       return next.data;
     }
@@ -71,22 +63,20 @@ export const getBalanceThunk = () => async (dispatch) => {
   }
 };
 
-export const uploadPhotoForProductThunk =
-  (data, count, idx) => async (dispatch) => {
-    let formData = new FormData();
-    formData.append("productId", data.productId);
-    formData.append("angleId", data.angleId);
-    formData.append("photo", data.file);
-    formData.append("isAdditional", data.isAdditional);
-    const response = await uploadPhotoForProduct(formData)
-      .then((response) => {
-        if (idx + 1 === count) {
-          dispatch(setStatusCode(response.status));
-        }
-        // window.location.reload()
-      })
-      .catch(() => {
-        dispatch(setErrors({ page: "upload-photos", error: { index: idx } }));
-      })
-      
-  };
+export const uploadPhotoForProductThunk = (data, count, idx) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append('productId', data.productId);
+  formData.append('angleId', data.angleId);
+  formData.append('photo', data.file);
+  formData.append('isAdditional', data.isAdditional);
+  // TODO
+  await uploadPhotoForProduct(formData)
+    .then((response) => {
+      if (idx + 1 === count) {
+        dispatch(setStatusCode(response.status));
+      }
+    })
+    .catch(() => {
+      dispatch(setErrors({ page: 'upload-photos', error: { index: idx } }));
+    });
+};

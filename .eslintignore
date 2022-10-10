@@ -1,0 +1,11 @@
+/.git
+/.vscode
+.idea
+node_modules
+package.json
+package-lock.json
+.eslintrc.json
+public
+**/*.json
+**/*.d.ts
+/ .scss

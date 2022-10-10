@@ -1,24 +1,12 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import './BlockComponentLayout.scss'
+import React, { useEffect, useState } from 'react';
+import './BlockComponentLayout.scss';
 
+export const BlockComponentLayout = ({ children }) => {
+  const [, setSize] = useState(false);
 
-
-
-const BlockComponentLayout = ({children}) => {
-
-  const [size, setSize] = useState(false)
-
-  useEffect (() => {
+  useEffect(() => {
     window.innerWidth <= 520 && setSize(true);
-  }, [])
+  }, []);
 
-  console.log(size)
-
-  return <div 
-  // style={window.location.pathname !== "dashboard" && {width: '100vw'}}
-  className={window.location.pathname === "/dashboard" ? 'block' : 'block resize'}>{children}</div>
-}
-
-export default BlockComponentLayout
+  return <div className={window.location.pathname === '/dashboard' ? 'block' : 'block resize'}>{children}</div>;
+};

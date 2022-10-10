@@ -2,6 +2,7 @@ import React,{useState,useRef} from 'react'
 import './AdminPage.scss'
 import Header from "../../components/Header/Header";
 import Pricing from '../../components/Admin/Pricing';
+import PricingTable from '../../components/Admin/PricingTable';
 
 const AdminPage = () => {
 
@@ -27,7 +28,7 @@ const AdminPage = () => {
                 </ul>
             </div>
             <div className="admin__mainspace">
-                <Pricing></Pricing>
+                <PricingTable></PricingTable>
             </div>
         </div>
     </div>

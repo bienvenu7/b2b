@@ -1,17 +1,10 @@
-import React from "react";
-import classnames from "classnames";
-import { usePagination, DOTS } from "../../hooks/usePagination";
-import "./Paginator.scss";
-const Paginator = (props) => {
-  const {
-    onPageChange,
-    totalCount,
-    siblingCount = 1,
-    currentPage,
-    pageSize,
-    className,
-  } = props;
+import React from 'react';
+import classnames from 'classnames';
+import { DOTS, usePagination } from '../../hooks/usePagination';
+import './Paginator.scss';
 
+export const Paginator = ({ onPageChange, totalCount, siblingCount = 1, currentPage, pageSize = 8, className }) => {
+  // TODO
   const paginationRange = usePagination({
     currentPage,
     totalCount,
@@ -19,7 +12,6 @@ const Paginator = (props) => {
     pageSize,
   });
 
-  // If there are less than 2 times in pagination range we shall not render the component
   if (currentPage === 0 || paginationRange.length < 2) {
     return null;
   }
@@ -32,14 +24,13 @@ const Paginator = (props) => {
     onPageChange(currentPage - 1);
   };
 
-  let lastPage = paginationRange[paginationRange.length - 1];
+  const lastPage = paginationRange[paginationRange.length - 1];
   return (
-    <ul
-      className={classnames("pagination-container", { [className]: className })}
-    >
-      {/* Left navigation arrow */}
+    <ul className={classnames('pagination-container', { [className]: className })}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+      jsx-a11y/no-noninteractive-element-interactions */}
       <li
-        className={classnames("pagination-item", {
+        className={classnames('pagination-item', {
           disabled: currentPage === 1,
         })}
         onClick={onPrevious}
@@ -47,7 +38,6 @@ const Paginator = (props) => {
         <div className="arrow left" />
       </li>
       {paginationRange.map((pageNumber, index) => {
-        // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
           return (
             <li key={index} className="pagination-item dots">
@@ -56,11 +46,12 @@ const Paginator = (props) => {
           );
         }
 
-        // Render our Page Pills
         return (
+          /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+      jsx-a11y/no-noninteractive-element-interactions */
           <li
             key={index}
-            className={classnames("pagination-item", {
+            className={classnames('pagination-item', {
               selected: pageNumber === currentPage,
             })}
             onClick={() => onPageChange(pageNumber)}
@@ -69,9 +60,10 @@ const Paginator = (props) => {
           </li>
         );
       })}
-      {/*  Right Navigation arrow */}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+      jsx-a11y/no-noninteractive-element-interactions */}
       <li
-        className={classnames("pagination-item", {
+        className={classnames('pagination-item', {
           disabled: currentPage === lastPage,
         })}
         onClick={onNext}
@@ -81,5 +73,3 @@ const Paginator = (props) => {
     </ul>
   );
 };
-
-export default Paginator;
