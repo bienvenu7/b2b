@@ -233,8 +233,8 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
 
   params.page === 'photo-requests' && navigate('../luxury-store/authentications/photo-requests');
 
-  if (page == null) {
-    return <div />;
+  if (page === null) {
+    return <div>Page not found</div>;
   }
   return (
     <div className="authent-container">
@@ -258,8 +258,6 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
             onBlur={handleSearch}
           />
           <div className="authent__nav__buttons-wrapper">
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-            jsx-a11y/no-static-element-interactions */}
             <div className="authent__nav__buttons__elem-wrapper" onClick={handleFilter}>
               <SvgSelector id="filter-icon" />
             </div>
@@ -299,6 +297,7 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
                         />
                       )
                     )}
+                    {/* filterValues[index]&&filterValues[index].value !== '' &&<button className="authent__filter__elem-button" onClick={() => filterValues && setFilterValues([...filterValues, { value: '', secondValue: '' }])}>add</button> */}
                   </div>
                 ))}
               <button
@@ -427,8 +426,6 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
                 <div className="authent__table__label__elems-model">Model name</div>
                 <div className="authent__table__label__elems-status">Status</div>
                 <div className="authent__table__label__elems-answer">Answer time</div>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */}
                 <div
                   className={`authent__table__label__elems-date${!sortData ? ' arrow-up' : ''}`}
                   onClick={() => handleSort(sortData)}
@@ -441,8 +438,6 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
               currentTableData.map((el, index) => (
                 <div key={index} className="authent__table__elem">
                   <div className="authent__table__elems-wrapper">
-                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                    jsx-a11y/no-static-element-interactions */}
                     <div
                       className="authent__table__elem__category"
                       onClick={() =>
@@ -456,7 +451,9 @@ export const AuthenticTableMobile = ({ var: someVar }) => {
                         style={{
                           background: `url(${getPhotoUrl(el.files)})`,
                         }}
-                      />
+                      >
+                        {/* <img src={el.image} alt="" /> */}
+                      </div>
                       <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
                       <div className="authent__table__elem__category-number">#{el.publicId}</div>
                       <div className="authent__table__elem__category-date">{getDate(el.createdAt, 'mobile')}</div>

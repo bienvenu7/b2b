@@ -26,18 +26,13 @@ export const Payment = () => {
     isAuth && dispatch(getProductTypesThunk(1, 1000));
   }, [isAuth]);
 
+  // TODO исправить, смысла нет?
   const btnAddToogleClick = () => {
     setAddButState(true);
-    setTimeout(() => {
-      setAddButState(false);
-    }, 1);
   };
 
   const btnPayToogleClick = () => {
     setPayButState(true);
-    setTimeout(() => {
-      setPayButState(false);
-    }, 1);
   };
 
   const calcCartTotal = (data) => {

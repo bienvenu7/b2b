@@ -32,7 +32,7 @@ export const AuthenticationRequest = () => {
   const [answerTime, setAnswerTime] = useState(24);
   const [productTypeValue, setProductTypeValue] = useState(null);
   const [brandValue, setBrandValue] = useState();
-  const [, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [checkValid, setCheckValid] = useState(false);
   const [brandSelectorKey, setBrandSelectorKey] = useState(0);
   const status = useSelector(getStatusCode);
@@ -224,7 +224,7 @@ export const AuthenticationRequest = () => {
 
     const response1 =
       response !== true // если ответ неудачный
-        ? await photoFiles // пробегаюсь по массиву
+        ? photoFiles // пробегаюсь по массиву
             .filter((el) => el.file !== '') // фильтрую объекты, где в полях el.file !== "" - не пустые строки
             .map(
               // этот отфильрованный объект ...
@@ -245,7 +245,6 @@ export const AuthenticationRequest = () => {
                 ),
             )
         : setButtonState(true); // иначе кнопка отправки в исходном состоянии
-    // после всей хуйни проверю response1 === true и на всякий случай кнопку в исходное состояние
     response1 && setButtonState(true);
 
     if (status) {

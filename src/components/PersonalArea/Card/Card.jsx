@@ -11,26 +11,29 @@ import { PersonalAreaLayout } from '../PersonalAreaLayout';
 import { UploadPhotoModal } from '../UploadPhotoModal/UploadPhotoModal';
 import './Card.scss';
 
-export const Card = () => {
-  // TODO
+export const Card = (props) => {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
   const product = useSelector(takeProduct);
+
+  console.log(product);
+
   const anglesList = useSelector(takeAnglesList);
+
   const [editMode, setEditMode] = useState(false);
-  const [modelValue, setModelValue] = useState(product && product.modelName);
-  const [supplierValue, setSupplierValue] = useState('');
 
   useEffect(() => {
+    console.log(params);
     dispatch(getProductThunk(params.id));
     return () => {
       dispatch(setProduct(null));
     };
   }, []);
 
-  const [width] = useWindowSize();
+  const [width, height] = useWindowSize();
 
   function getPhotoUrl(file) {
     return file.path;
@@ -56,6 +59,7 @@ export const Card = () => {
       let hours = date.getHours();
       let minutes = date.getMinutes();
       const ampm = hours >= 12 ? 'pm' : 'am';
+      const month = date.getMonth();
       hours %= 12;
       hours = hours || 12;
       minutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -75,23 +79,28 @@ export const Card = () => {
     if (reasons !== null && anglesList !== null) {
       const arr = reasons.split(',').map((el) => anglesList.find((elem) => elem.clickupId === el));
       const total = arr.map((el, index) =>
-        // eslint-disable-next-line no-nested-ternary
-        el !== undefined ? (arr.length === index + 1 ? el.publicName : `${el.publicName}, `) : null,
+        el !== undefined ? (arr.length == index + 1 ? el.publicName : `${el.publicName}, `) : null,
       );
       return total;
     }
     return 'N/A';
   }
 
+  // for modal
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
   }
 
-  function openModal() {
+  function openModal(el) {
     setIsOpen(true);
   }
+  //
+
+  // edit
+  const [modelValue, setModelValue] = useState(product && product.modelName);
+  const [supplierValue, setSupplierValue] = useState('');
 
   function onEditClick() {
     setEditMode(!editMode);
@@ -103,10 +112,23 @@ export const Card = () => {
         }),
       );
   }
+  //
 
   function getCertificateLink(element) {
+    console.log({ element });
+    // let dates = product.files.map(el => el.createdAt)
+    // console.log({productdates1:dates});
+    // dates.sort(function(a,b){
+    //   return new Date(a) - new Date(b);
+    // });
+    // console.log({productdates2:dates});
     const file = element.files.find((el) => el.feature === 'certificate');
+    console.log({ element: file });
+    // if (process.env.NODE_ENV !== "production") {
+    // return "/app/files";
+    // } else {
     return file.path;
+    // }
   }
 
   function goBack() {
@@ -124,174 +146,166 @@ export const Card = () => {
     }
   }
 
-  if (product == null) {
-    return <Loader />;
-  }
-
   return (
     <>
       {isOpen && <UploadPhotoModal isOpen={isOpen} closeModal={closeModal} elem={product} />}
-      <div className="top">
-        <PersonalAreaLayout>
-          <div className="card-container">
-            <div className="card__info-wrapper">
-              <div className="card__info__header">
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */}
-                <div className="card__info__header-arrow" onClick={goBack}>
-                  <SvgSelector id="go-back-icon" />
-                </div>
-                <div className="card__info__header__label-wrapper">
-                  <div className="card__info__header__label-number">#{product.publicId}</div>
-                  <div className="card__info__header__label-status">
-                    {product.resultStatus.name !== 'COMPLETED' ? 'In progress' : 'Completed'}
-                  </div>
-                </div>
-                <div className="card__info__header-date">{getDate(product.createdAt, 'desktop')}</div>
-                <div className="card__info__header-date mobile">{getDate(product.createdAt, 'mobile')}</div>
-                <div className="card__info__header__bottom-wrapper">
-                  {product && product.resultStatus.name === 'UPDATE_NEEDED' ? (
-                    <div className="card__info__header-statuses">{product.resultStatus.publicName}</div>
-                  ) : (
-                    product.resultStatus.name === 'COMPLETED' && (
-                      <>
-                        <div className="card__info__header-statuses grey">{product.resultStatus.publicName}</div>
-                        <div className="card__info__header-statuses">{product.checkStatus}</div>
-                      </>
-                    )
-                  )}
-                </div>
-              </div>
-              <div className="card__info__content">
-                <div className="card__info__content-label">authentication summary</div>
-                <div className="card__info__content-wrapper">
-                  <div className="card__info__content-brand">
-                    {width > 599 ? product.brand.publicName : product.productType.publicName}
-                    &nbsp;
-                    <div className="normal">authentication</div>
-                  </div>
-                  <div className="card__info__content__photos-wrapper">
-                    <div className="card__info__content__photos-label">
-                      Uploaded images{' '}
-                      {product.resultStatus.name === 'UPDATE_NEEDED' && (
-                        /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */
-                        <div className="button" onClick={openModal}>
-                          Add photos
-                        </div>
+      {product !== null ? (
+        <div className="top">
+          <PersonalAreaLayout>
+            {product !== null && (
+              <div className="card-container">
+                <div className="card__info-wrapper">
+                  <div className="card__info__header">
+                    <div className="card__info__header-arrow" onClick={goBack}>
+                      <SvgSelector id="go-back-icon" />
+                    </div>
+                    <div className="card__info__header__label-wrapper">
+                      <div className="card__info__header__label-number">#{product.publicId}</div>
+                      <div className="card__info__header__label-status">
+                        {product.resultStatus.name !== 'COMPLETED' ? 'In progress' : 'Completed'}
+                      </div>
+                    </div>
+                    <div className="card__info__header-date">{getDate(product.createdAt, 'desktop')}</div>
+                    <div className="card__info__header-date mobile">{getDate(product.createdAt, 'mobile')}</div>
+                    <div className="card__info__header__bottom-wrapper">
+                      {product && product.resultStatus.name === 'UPDATE_NEEDED' ? (
+                        <div className="card__info__header-statuses">{product.resultStatus.publicName}</div>
+                      ) : (
+                        product.resultStatus.name === 'COMPLETED' && (
+                          <>
+                            <div className="card__info__header-statuses grey">{product.resultStatus.publicName}</div>
+                            <div className="card__info__header-statuses">{product.checkStatus}</div>
+                          </>
+                        )
                       )}
                     </div>
-                    <div className="card__info__content__photos__images">
-                      {(product.files.length < 1 ? [1, 2, 3, 4] : product.files).map((el, index) => (
+                  </div>
+                  <div className="card__info__content">
+                    <div className="card__info__content-label">authentication summary</div>
+                    <div className="card__info__content-wrapper">
+                      <div className="card__info__content-brand">
+                        {width > 599 ? product.brand.publicName : product.productType.publicName}
+                        &nbsp;<div className="normal">authentication</div>
+                      </div>
+                      <div className="card__info__content__photos-wrapper">
+                        <div className="card__info__content__photos-label">
+                          Uploaded images{' '}
+                          {product.resultStatus.name === 'UPDATE_NEEDED' && (
+                            <div className="button" onClick={openModal}>
+                              Add photos
+                            </div>
+                          )}
+                        </div>
+                        <div className="card__info__content__photos__images">
+                          {(product.files.length < 1 ? [1, 2, 3, 4] : product.files).map((el, index) => (
+                            <div
+                              key={index}
+                              className="card__info__content__photos__images-elem"
+                              style={{ background: `url(${getPhotoUrl(el)})` }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="card__info__content__elems-wrapper">
+                        <div className="card__info__content__elem-wrapper brand">
+                          <div className="card__info__content__elem-label">Brand</div>
+                          <div className="card__info__content__elem-value">{product.brand.publicName}</div>
+                        </div>
+                        <div className="card__info__content__elem-wrapper">
+                          <div className="card__info__content__elem-label">Status</div>
+                          <div
+                            className={`card__info__content__elem-value${
+                              product.resultStatus.name === 'UPDATE_NEEDED' && ' red'
+                            }`}
+                          >
+                            {product.resultStatus.publicName}
+                          </div>
+                        </div>
                         <div
-                          key={index}
-                          className="card__info__content__photos__images-elem"
-                          style={{ background: `url(${getPhotoUrl(el)})` }}
+                          className={`card__info__content__elem-wrapper${
+                            product.resultStatus.name !== 'COMPLETED' ? ' none' : ''
+                          }`}
+                        >
+                          <div className="card__info__content__elem-label">Outcome</div>
+                          <div className="card__info__content__elem-value">
+                            {product.checkStatus ? product.checkStatus : 'N/A'}
+                          </div>
+                        </div>
+                        <div className="card__info__content__elem-wrapper">
+                          <div className="card__info__content__elem-label">Reason</div>
+                          <div className="card__info__content__elem-value">{getReasons(product.reasons)}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mybtn">
+                    {product.certificateAvailable ? (
+                      <a className="card__info__content__button certificate" href={getCertificateLink(product)}>
+                        View certificate
+                      </a>
+                    ) : (
+                      <div className="card__info__content__button certificate">Get a certificate</div>
+                    )}
+                  </div>
+                </div>
+                <div className="card__details-wrapper">
+                  <div className="card__details__header">
+                    <div className="card__details__header-label">Additional details</div>
+                    <div className="card__details__header-button" onClick={onEditClick}>
+                      Edit
+                    </div>
+                  </div>
+                  <div className="card__details__content-wrapper">
+                    <div className="card__details__content__elem-wrapper">
+                      <div className="card__details__content__elem-label">Model name</div>
+                      {!editMode ? (
+                        <div className="card__details__content__elem-value">{product.modelName}</div>
+                      ) : (
+                        <input
+                          className="card__details__content__elem-input"
+                          dir={width > 599 && 'rtl'}
+                          type="text"
+                          value={modelValue}
+                          onChange={(e) => setModelValue(e.target.value)}
                         />
-                      ))}
+                      )}
                     </div>
-                  </div>
-                  <div className="card__info__content__elems-wrapper">
-                    <div className="card__info__content__elem-wrapper brand">
-                      <div className="card__info__content__elem-label">Brand</div>
-                      <div className="card__info__content__elem-value">{product.brand.publicName}</div>
-                    </div>
-                    <div className="card__info__content__elem-wrapper">
-                      <div className="card__info__content__elem-label">Status</div>
-                      <div
-                        className={`card__info__content__elem-value${
-                          product.resultStatus.name === 'UPDATE_NEEDED' && ' red'
-                        }`}
-                      >
-                        {product.resultStatus.publicName}
-                      </div>
-                    </div>
-                    <div
-                      className={`card__info__content__elem-wrapper${
-                        product.resultStatus.name !== 'COMPLETED' ? ' none' : ''
-                      }`}
-                    >
-                      <div className="card__info__content__elem-label">Outcome</div>
-                      <div className="card__info__content__elem-value">
-                        {product.checkStatus ? product.checkStatus : 'N/A'}
-                      </div>
-                    </div>
-                    <div className="card__info__content__elem-wrapper">
-                      <div className="card__info__content__elem-label">Reason</div>
-                      <div className="card__info__content__elem-value">{getReasons(product.reasons)}</div>
+                    <div className="card__details__content__elem-wrapper">
+                      <div className="card__details__content__elem-label">Supplier</div>
+                      {!editMode ? (
+                        <div className="card__details__content__elem-value">
+                          {product.supplier === '' ? '—' : product.supplier}
+                        </div>
+                      ) : (
+                        <input
+                          className="card__details__content__elem-input"
+                          dir={width > 599 && 'rtl'}
+                          type="text"
+                          value={supplierValue}
+                          onChange={(e) => setSupplierValue(e.target.value)}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="mybtn">
-                {product.certificateAvailable ? (
-                  <a className="card__info__content__button certificate" href={getCertificateLink(product)}>
-                    View certificate
-                  </a>
-                ) : (
-                  <div className="card__info__content__button certificate">Get a certificate</div>
+                {product.resultStatus.name === 'UPDATE_NEEDED' && (
+                  <div className="card__warning-wrapper">
+                    <div className="card__warning-label">Additional photos are needed</div>
+                    <div className="card__warning-message">
+                      Please upload the following photos to complete the authentication: inside stitching, size label
+                    </div>
+                    <div className="card__warning-button" onClick={openModal}>
+                      Add photos
+                    </div>
+                  </div>
                 )}
-                <div className="card__info__content__button">Request help</div>
-              </div>
-            </div>
-            <div className="card__details-wrapper">
-              <div className="card__details__header">
-                <div className="card__details__header-label">Additional details</div>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */}
-                <div className="card__details__header-button" onClick={onEditClick}>
-                  Edit
-                </div>
-              </div>
-              <div className="card__details__content-wrapper">
-                <div className="card__details__content__elem-wrapper">
-                  <div className="card__details__content__elem-label">Model name</div>
-                  {!editMode ? (
-                    <div className="card__details__content__elem-value">{product.modelName}</div>
-                  ) : (
-                    <input
-                      className="card__details__content__elem-input"
-                      dir={width > 599 && 'rtl'}
-                      type="text"
-                      value={modelValue}
-                      onChange={(e) => setModelValue(e.target.value)}
-                    />
-                  )}
-                </div>
-                <div className="card__details__content__elem-wrapper">
-                  <div className="card__details__content__elem-label">Supplier</div>
-                  {!editMode ? (
-                    <div className="card__details__content__elem-value">
-                      {product.supplier === '' ? '—' : product.supplier}
-                    </div>
-                  ) : (
-                    <input
-                      className="card__details__content__elem-input"
-                      dir={width > 599 && 'rtl'}
-                      type="text"
-                      value={supplierValue}
-                      onChange={(e) => setSupplierValue(e.target.value)}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-            {product.resultStatus.name === 'UPDATE_NEEDED' && (
-              <div className="card__warning-wrapper">
-                <div className="card__warning-label">Additional photos are needed</div>
-                <div className="card__warning-message">
-                  Please upload the following photos to complete the authentication: inside stitching, size label
-                </div>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */}
-                <div className="card__warning-button" onClick={openModal}>
-                  Add photos
-                </div>
               </div>
             )}
-          </div>
-        </PersonalAreaLayout>
-      </div>
+          </PersonalAreaLayout>
+        </div>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };

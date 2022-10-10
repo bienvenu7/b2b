@@ -56,10 +56,23 @@
     }
   }
 
+    &-label {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 140%;
+      color: $c_dis;
+    }
+  }
+
   &__logo {
     position: absolute;
     top: 58px;
     left: 50%;
+    img {
+      width: 56px;
+    }
 
     @include for-phone-only {
       display: none;
@@ -274,7 +287,6 @@
           border-radius: 4px;
           display: flex;
           margin: 0px 0px 0px 0px;
-
           & > input {
             display: none;
             width: 111px;
@@ -566,7 +578,7 @@
 
     &__footer {
       width: 100vw;
-      height: 300px;
+      height: 310px;
       background-color: #f6f6f7;
 
       @include for-phone-only {
@@ -656,24 +668,24 @@
 
       &__button {
         &-wrapper {
+          position: relative;
           cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: auto;
+          margin-left: 0;
           width: 300px;
           height: 50px;
           border: 1px solid $c_g;
           border-radius: 4px;
           background-color: $c_g;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
           font-family: 'Roboto';
           font-style: normal;
           font-weight: 400;
           font-size: 17px;
           line-height: 140%;
           color: $c_w;
-          margin: auto;
-          margin-left: 0;
 
           @include for-phone-only {
             margin-top: 32px;
@@ -681,7 +693,36 @@
             font-size: 18px;
             font-weight: 700;
           }
-
+          &-button {
+            width: 300px;
+            height: 50px;
+            border: 1px solid $c_g;
+            border-radius: 4px;
+            background-color: $c_g;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 140%;
+            color: $c_w;
+          }
+          &-text {
+            // background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vh;
+            transform: translateY(-130%);
+          }
+          @include for-phone-only {
+            &-text {
+              // background-color: red;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+            }
+          }
           &-disabled {
             cursor: auto;
             width: 300px;
@@ -692,7 +733,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
