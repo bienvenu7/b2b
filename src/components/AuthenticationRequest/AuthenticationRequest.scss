@@ -56,16 +56,6 @@
     }
   }
 
-    &-label {
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 140%;
-      color: $c_dis;
-    }
-  }
-
   &__logo {
     position: absolute;
     top: 58px;
@@ -503,7 +493,7 @@
           border-color: $c_g;
           border-radius: 4px;
           color: $c_g;
-          width: 67px;
+          width: 150px;
         }
       }
 
@@ -674,17 +664,6 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 300px;
-          height: 50px;
-          border: 1px solid $c_g;
-          border-radius: 4px;
-          background-color: $c_g;
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 400;
-          font-size: 17px;
-          line-height: 140%;
-          color: $c_w;
 
           margin: auto;
           margin-left: 0;
@@ -735,6 +714,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
