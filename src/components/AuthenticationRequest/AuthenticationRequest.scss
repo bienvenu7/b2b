@@ -56,6 +56,16 @@
     }
   }
 
+    &-label {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 140%;
+      color: $c_dis;
+    }
+  }
+
   &__logo {
     position: absolute;
     top: 58px;
@@ -725,7 +735,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
