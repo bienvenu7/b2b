@@ -22,7 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="fix" />
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="fix">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/order/Order.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/Order.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,16 +94,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="C:\projects\b2b\b2blgfront\node_modules\prettier" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "D:\\project\\b2blgfront\\node_modules\\prettier",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projects\b2b\b2blgfront" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="format" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -128,6 +153,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.lint" />
         <item itemvalue="npm.format" />
@@ -167,6 +193,7 @@
       <workItem from="1665128052767" duration="9328000" />
       <workItem from="1665335654319" duration="2800000" />
       <workItem from="1665338497318" duration="2262000" />
+      <workItem from="1665503528545" duration="2713000" />
     </task>
     <task id="LOCAL-00001" summary="merge">
       <created>1663682461026</created>
@@ -217,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665414915797</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix">
+      <created>1665501549826</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665501549826</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +277,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merge" />

@@ -20,7 +20,7 @@ import {
   getCosts,
   getUserCertificatePackage,
   getUserTariffPackages,
-    getPrice
+  getPrice,
 } from '../../../redux/selectors/payment-selectors';
 
 export const CategoryForm = React.memo(({ but, getPrice: getPriceProps, cartTotal }) => {
