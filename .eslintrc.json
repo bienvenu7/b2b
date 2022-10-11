@@ -14,7 +14,7 @@
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
-  "plugins": ["import", "react", "react-hooks", "prettier"],
+  "plugins": ["import", "react", "react-hooks"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -23,7 +23,15 @@
   },
   "rules": {
     "jsx-a11y/label-has-associated-control": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "no-restricted-syntax": "warn",
+    "no-nested-ternary": "warn",
+    "eqeqeq": "warn",
     "no-shadow": "off",
     "no-return-assign": "warn",
     "react/no-array-index-key": "warn",
@@ -41,32 +49,32 @@
     "no-fallthrough": "off",
     "default-param-last": "off",
     "import/prefer-default-export": "off",
-    "import/no-default-export": "error",
+    "import/no-default-export": "warn",
     "no-unused-expressions": "warn",
     "no-empty-function": [
-      "error",
+      "warn",
       {
         "allow": ["functions"]
       }
     ],
     "import/no-extraneous-dependencies": [
-      "error",
+      "warn",
       {
         "devDependencies": true
       }
     ],
-    "prefer-const": "error",
+    "prefer-const": "warn",
     "max-len": [
-      "error",
+      "warn",
       {
         "code": 120
       }
     ],
-    "quotes": ["error", "single"],
-    "jsx-quotes": ["error", "prefer-double"],
+    "quotes": ["warn", "single"],
+    "jsx-quotes": ["warn", "prefer-double"],
     "no-console": "warn",
     "react/function-component-definition": [
-      "error",
+      "warn",
       {
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"

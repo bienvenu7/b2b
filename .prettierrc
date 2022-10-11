@@ -4,11 +4,11 @@
   "trailingComma": "all",
   "printWidth": 120,
   "tabWidth": 2,
+  "endOfLine":"auto",
   "overrides": [
     {
-      "files": ["*.ts", "*.js", "*.tsx", "*.jsx"],
-      "options": { "trailingComma": "all" },
-      "parser": "babel-ts"
+      "files": ["*.js","*.jsx"],
+      "options": { "trailingComma": "all" }
     }
   ]
 }
