@@ -20,9 +20,10 @@ import {
   getCosts,
   getUserCertificatePackage,
   getUserTariffPackages,
+    getPrice
 } from '../../../redux/selectors/payment-selectors';
 
-export const CategoryForm = React.memo(({ but, getPrice, cartTotal }) => {
+export const CategoryForm = React.memo(({ but, getPrice: getPriceProps, cartTotal }) => {
   const [volume, setVolume] = useState(1);
   const [errorsForAnswerTime, setErrorForAnswerTime] = useState(null);
   const [packageEditNumber, setPackageEdit] = useState(0);
@@ -141,7 +142,7 @@ export const CategoryForm = React.memo(({ but, getPrice, cartTotal }) => {
       volume: e,
       answerTime,
     };
-    getPrice(data);
+    getPriceProps(data);
   };
 
   const updateHours = (value, data) => {
