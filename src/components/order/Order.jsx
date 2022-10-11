@@ -4,11 +4,11 @@ import './Order.scss';
 
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { LightgalleryProvider, LightgalleryItem } from 'react-lightgallery';
 import logo from '../../common/images/601.svg';
 import { getAlbum } from '../../api/album-photo/album';
 import { takeAnglesList } from '../../redux/selectors/product-selectors';
 import 'lightgallery.js/dist/css/lightgallery.css';
-import { LightgalleryProvider, LightgalleryItem } from 'react-lightgallery';
 
 export const Order = () => {
   const [album, setAlbum] = useState([]);

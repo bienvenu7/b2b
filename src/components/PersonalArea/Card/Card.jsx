@@ -11,7 +11,7 @@ import { PersonalAreaLayout } from '../PersonalAreaLayout';
 import { UploadPhotoModal } from '../UploadPhotoModal/UploadPhotoModal';
 import './Card.scss';
 
-export const Card = (props) => {
+export const Card = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export const Card = (props) => {
     };
   }, []);
 
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
 
   function getPhotoUrl(file) {
     return file.path;
@@ -59,7 +59,6 @@ export const Card = (props) => {
       let hours = date.getHours();
       let minutes = date.getMinutes();
       const ampm = hours >= 12 ? 'pm' : 'am';
-      const month = date.getMonth();
       hours %= 12;
       hours = hours || 12;
       minutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -93,7 +92,7 @@ export const Card = (props) => {
     setIsOpen(false);
   }
 
-  function openModal(el) {
+  function openModal() {
     setIsOpen(true);
   }
   //
@@ -156,6 +155,8 @@ export const Card = (props) => {
               <div className="card-container">
                 <div className="card__info-wrapper">
                   <div className="card__info__header">
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */}
                     <div className="card__info__header-arrow" onClick={goBack}>
                       <SvgSelector id="go-back-icon" />
                     </div>
@@ -191,6 +192,8 @@ export const Card = (props) => {
                         <div className="card__info__content__photos-label">
                           Uploaded images{' '}
                           {product.resultStatus.name === 'UPDATE_NEEDED' && (
+                            /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */
                             <div className="button" onClick={openModal}>
                               Add photos
                             </div>
@@ -250,7 +253,11 @@ export const Card = (props) => {
                 </div>
                 <div className="card__details-wrapper">
                   <div className="card__details__header">
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */}
                     <div className="card__details__header-label">Additional details</div>
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */}
                     <div className="card__details__header-button" onClick={onEditClick}>
                       Edit
                     </div>
@@ -294,6 +301,8 @@ export const Card = (props) => {
                     <div className="card__warning-message">
                       Please upload the following photos to complete the authentication: inside stitching, size label
                     </div>
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */}
                     <div className="card__warning-button" onClick={openModal}>
                       Add photos
                     </div>
