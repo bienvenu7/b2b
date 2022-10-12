@@ -48,7 +48,7 @@ export const Header = () => {
     '/panel' : 'panel'
   }
   
-  const path = pathNameMap[pathname];
+  let path = pathNameMap[pathname];
   if (pathname.split('/')[1] === 'request') path = 'Request'; //маленький костыль
 
   const titleMap = {
