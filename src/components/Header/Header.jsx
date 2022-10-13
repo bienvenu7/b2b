@@ -69,8 +69,6 @@ export const Header = () => {
         <div className="header-wrapper">
           <Navigation hrefs={[{ label: `${user.companyName}` }, { label: `${path}` }]} />
           <div className="right-nav">
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-            jsx-a11y/no-noninteractive-element-interactions */}
             <label
               style={{ cursor: 'pointer' }}
               onClick={() => (showNotif ? setShowNotif(false) : setShowNotif(true))}
@@ -79,8 +77,6 @@ export const Header = () => {
             >
               <SvgSelector id="bell" />
             </label>
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-            jsx-a11y/no-static-element-interactions */}
             <div style={{ cursor: 'pointer' }} onClick={() => dispatch(logoutThunk())}>
               <SvgSelector id="logout" />
             </div>
@@ -99,3 +95,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default Header;

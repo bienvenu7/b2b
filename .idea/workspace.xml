@@ -22,34 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/Admin.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/OrderDetails.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/OrderTable.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/Pricing.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/Pricing.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/PricingTable.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AuthenticTableBlockv2/AuthenticTableBlock.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AuthenticTableBlockv2/AuthenticTableBlockv2.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AuthenticTableBlockv2/AuthenticTableBlockv2.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.scss" afterDir="false" />
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="fix">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/product/product-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product/product-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppRouter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppRouter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Payment/RightSideMobile/RightSideMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/RightSideMobile/RightSideMobile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/order/Order.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/Order.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/thunks/product-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/product-thunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,23 +94,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;D:\\project\\b2blgfront\\node_modules\\prettier&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "D:\\project\\b2blgfront\\node_modules\\prettier",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projects\b2b\b2blgfront" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -173,8 +153,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.lint" />
         <item itemvalue="npm.format" />
       </list>

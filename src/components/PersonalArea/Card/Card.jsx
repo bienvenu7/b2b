@@ -138,6 +138,8 @@ export const Card = () => {
               <div className="card-container">
                 <div className="card__info-wrapper">
                   <div className="card__info__header">
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */}
                     <div className="card__info__header-arrow" onClick={goBack}>
                       <SvgSelector id="go-back-icon" />
                     </div>
@@ -173,6 +175,8 @@ export const Card = () => {
                         <div className="card__info__content__photos-label">
                           Uploaded images{' '}
                           {product.resultStatus.name === 'UPDATE_NEEDED' && (
+                            /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */
                             <div className="button" onClick={openModal}>
                               Add photos
                             </div>
@@ -232,7 +236,11 @@ export const Card = () => {
                 </div>
                 <div className="card__details-wrapper">
                   <div className="card__details__header">
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */}
                     <div className="card__details__header-label">Additional details</div>
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */}
                     <div className="card__details__header-button" onClick={onEditClick}>
                       Edit
                     </div>
@@ -276,6 +284,8 @@ export const Card = () => {
                     <div className="card__warning-message">
                       Please upload the following photos to complete the authentication: inside stitching, size label
                     </div>
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+               jsx-a11y/no-static-element-interactions */}
                     <div className="card__warning-button" onClick={openModal}>
                       Add photos
                     </div>

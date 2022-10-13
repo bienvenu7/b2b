@@ -43,28 +43,20 @@ export const Dashboard = () => {
               </div>
               <div className="dashboard__elem__top-label">
                 {companyName} <SvgSelector id="arrow" />
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-noninteractive-element-interactions */}
                 <img onClick={() => navigate('../dashboard')} src={dashboardIcon} alt="" />
               </div>
               <div className="dashboard__elem__top__icon-wrapper">
                 <div className="dashboard__elem__top__icon-elem" />
                 <div className="dashboard__elem__top__icon-elem">
-                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
                   <div onClick={() => setShowNotif(!showNotif)}>
                     <SvgSelector id="bell" />
                   </div>
-                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
                   <div onClick={() => dispatch(logoutThunk())}>
                     <SvgSelector id="logout" />
                   </div>
                 </div>
               </div>
             </div>
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
             <div onClick={() => navigate('../dashboard')} className="dashboard__elem__child-wrapper">
               <div className="dashboard__elem__child-img">
                 <img src={dashboardIcon} alt="" />
@@ -75,8 +67,6 @@ export const Dashboard = () => {
           <div className="dashboard__elem__auth_balance-wrapper">
             <div className="dashboard__elem__auth_balance-label">
               Authentication balance{' '}
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
               <div onClick={() => setShow1(!show1)}>
                 <SvgSelector id={show1 ? 'arrow' : 'arrow-rotate'} />
               </div>
@@ -97,14 +87,10 @@ export const Dashboard = () => {
                         <div className="dashboard__elem__auth_balance__balance-count">{el.volume}</div>
                       </div>
                     ))}
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
                 <div className="dashboard__elem__auth_balance__balance-button" onClick={() => navigate('../payment')}>
                   Top up now
                 </div>
                 {timeoutforfetch || istotalclear > 0 ? (
-                  /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */
                   <div
                     className="dashboard__elem__auth_balance__balance-button"
                     onClick={() => navigate('../authentication-request')}
@@ -127,16 +113,12 @@ export const Dashboard = () => {
           <div className="dashboard__elem__authentications-wrapper">
             <div className="dashboard__elem__authentications-label">
               Authentication{' '}
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
               <div onClick={() => setShow(!show)}>
                 <SvgSelector id={show ? 'arrow' : 'arrow-rotate'} />
               </div>
             </div>
             {show && (
               <div className="dashboard__elem__authentications-control__elements">
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
                 <div
                   className="dashboard__elem__authentications-control__elem-wrapper"
                   onClick={() => navigate('../authentications/completed')}
@@ -144,8 +126,6 @@ export const Dashboard = () => {
                   <SvgSelector id="check-icon" />
                   All authentications
                 </div>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
                 <div
                   className="dashboard__elem__authentications-control__elem-wrapper"
                   onClick={() => navigate('../photo-requests/all')}
@@ -159,8 +139,6 @@ export const Dashboard = () => {
           <div className="dashboard__elem__tools-wrapper">
             <div className="dashboard__elem__tools-label">Tools</div>
             <div className="dashboard__elem__tools-control__elements">
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
               <div
                 onClick={() => navigate('../billing-history')}
                 className="dashboard__elem__tools-control__elem-wrapper"
@@ -173,8 +151,6 @@ export const Dashboard = () => {
           <div className="dashboard__elem__tools-wrapper two">
             <div className="dashboard__elem__tools-label">Tools</div>
             <div className="dashboard__elem__tools-control__elements">
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */}
               <div
                 onClick={() => navigate('../billing-history')}
                 className="dashboard__elem__tools-control__elem-wrapper"
@@ -185,8 +161,6 @@ export const Dashboard = () => {
             </div>
           </div>
           {timeoutforfetch || istotalclear > 0 ? (
-            /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */
             <div
               className="dashboard__elem__auth_balance__balance-button mobile"
               onClick={() => navigate('../authentication-request')}
@@ -194,8 +168,6 @@ export const Dashboard = () => {
               New authentication
             </div>
           ) : (
-            /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */
             <div
               className="dashboard__elem__auth_balance__balance-button mobile authenticationdisabled"
               onClick={() => navigate('../authentication-request')}
