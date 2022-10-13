@@ -18,15 +18,11 @@ export const Card = () => {
   const location = useLocation();
 
   const product = useSelector(takeProduct);
-
-  console.log(product);
-
   const anglesList = useSelector(takeAnglesList);
 
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
-    console.log(params);
     dispatch(getProductThunk(params.id));
     return () => {
       dispatch(setProduct(null));
@@ -78,14 +74,14 @@ export const Card = () => {
     if (reasons !== null && anglesList !== null) {
       const arr = reasons.split(',').map((el) => anglesList.find((elem) => elem.clickupId === el));
       const total = arr.map((el, index) =>
-        el !== undefined ? (arr.length == index + 1 ? el.publicName : `${el.publicName}, `) : null,
+        // eslint-disable-next-line no-nested-ternary
+        el !== undefined ? (arr.length === index + 1 ? el.publicName : `${el.publicName}, `) : null,
       );
       return total;
     }
     return 'N/A';
   }
 
-  // for modal
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -111,23 +107,10 @@ export const Card = () => {
         }),
       );
   }
-  //
 
   function getCertificateLink(element) {
-    console.log({ element });
-    // let dates = product.files.map(el => el.createdAt)
-    // console.log({productdates1:dates});
-    // dates.sort(function(a,b){
-    //   return new Date(a) - new Date(b);
-    // });
-    // console.log({productdates2:dates});
     const file = element.files.find((el) => el.feature === 'certificate');
-    console.log({ element: file });
-    // if (process.env.NODE_ENV !== "production") {
-    // return "/app/files";
-    // } else {
     return file.path;
-    // }
   }
 
   function goBack() {
@@ -155,8 +138,6 @@ export const Card = () => {
               <div className="card-container">
                 <div className="card__info-wrapper">
                   <div className="card__info__header">
-                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-               jsx-a11y/no-static-element-interactions */}
                     <div className="card__info__header-arrow" onClick={goBack}>
                       <SvgSelector id="go-back-icon" />
                     </div>
@@ -192,8 +173,6 @@ export const Card = () => {
                         <div className="card__info__content__photos-label">
                           Uploaded images{' '}
                           {product.resultStatus.name === 'UPDATE_NEEDED' && (
-                            /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-               jsx-a11y/no-static-element-interactions */
                             <div className="button" onClick={openModal}>
                               Add photos
                             </div>
@@ -253,11 +232,7 @@ export const Card = () => {
                 </div>
                 <div className="card__details-wrapper">
                   <div className="card__details__header">
-                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-               jsx-a11y/no-static-element-interactions */}
                     <div className="card__details__header-label">Additional details</div>
-                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-               jsx-a11y/no-static-element-interactions */}
                     <div className="card__details__header-button" onClick={onEditClick}>
                       Edit
                     </div>
@@ -301,8 +276,6 @@ export const Card = () => {
                     <div className="card__warning-message">
                       Please upload the following photos to complete the authentication: inside stitching, size label
                     </div>
-                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-               jsx-a11y/no-static-element-interactions */}
                     <div className="card__warning-button" onClick={openModal}>
                       Add photos
                     </div>

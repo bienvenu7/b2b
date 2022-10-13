@@ -29,41 +29,28 @@ export const Header = () => {
     return () => document.addEventListener('mousedown', handle);
   });
 
+  // eslint-disable-next-line no-empty-function
   useEffect(() => {}, [params.page]);
 
-  // Хардкод путей для хлебных крошек
-  let path;
-  if (pathname === '/photo-requests/all') path = 'Photo requests';
-  if (pathname === '/dashboard') path = 'Dashboard';
-  if (pathname === '/authentication-request') path = 'Authentication request';
-  if (pathname === '/authentications/completed') path = 'Completed authentications';
-  if (pathname === '/authentications/in-progress') path = 'In progress authentications';
-  if (pathname === '/billing-history') path = 'Billing history';
-  if (pathname === '/pending-payment') path = 'Pending payment';
-  if (pathname === '/success') path = 'Success';
-  if (pathname === '/unsuccess') path = 'Unsuccess';
-  if (pathname === '/success-order') path = 'Success order';
-  if (pathname.split('/')[1] === 'request') path = 'Request';
-  // console.log({pathname:pathname.split('/')[1]}); //маленький костыль
 
   // TODO - интегрировать косыль
 
-  // const pathNameMap = {
-  //   '/photo-requests/all': 'Photo requests',
-  //   '/dashboard': 'Dashboard',
-  //   '/authentication-request': 'Authentication request',
-  //   '/authentications/completed': 'Completed authentications',
-  //   '/authentications/in-progress': 'In progress authentications',
-  //   '/billing-history': 'Billing history',
-  //   '/pending-payment': 'pending-payment',
-  //   '/success': 'success',
-  //   '/unsuccess': 'unsuccess',
-  //   '/request': 'Request',
-  //   if (pathname.split('/')[1] === 'request') path = 'Request';
-  // console.log({pathname:pathname.split('/')[1]}); //маленький костыль
-  // };
-  //
-  // const path = pathNameMap[pathname];
+  const pathNameMap = {
+    '/photo-requests/all': 'Photo requests',
+    '/dashboard': 'Dashboard',
+    '/authentication-request': 'Authentication request',
+    '/authentications/completed': 'Completed authentications',
+    '/authentications/in-progress': 'In progress authentications',
+    '/billing-history': 'Billing history',
+    '/pending-payment': 'pending-payment',
+    '/success': 'success',
+    '/unsuccess': 'unsuccess',
+    '/request': 'Request',
+    '/panel' : 'panel'
+  }
+
+  let path = pathNameMap[pathname];
+  if (pathname.split('/')[1] === 'request') path = 'Request'; //маленький костыль
 
   const titleMap = {
     '/photo-requests/all': 'Photo requests',
@@ -83,7 +70,7 @@ export const Header = () => {
           <Navigation hrefs={[{ label: `${user.companyName}` }, { label: `${path}` }]} />
           <div className="right-nav">
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                      jsx-a11y/no-noninteractive-element-interactions */}
+            jsx-a11y/no-noninteractive-element-interactions */}
             <label
               style={{ cursor: 'pointer' }}
               onClick={() => (showNotif ? setShowNotif(false) : setShowNotif(true))}
@@ -93,24 +80,22 @@ export const Header = () => {
               <SvgSelector id="bell" />
             </label>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-               jsx-a11y/no-static-element-interactions */}
+            jsx-a11y/no-static-element-interactions */}
             <div style={{ cursor: 'pointer' }} onClick={() => dispatch(logoutThunk())}>
               <SvgSelector id="logout" />
             </div>
           </div>
         </div>
-      </div>
-      <div className="header-wrapper mobile">
-        <div className="mobile_header-label">{titleName}</div>
-        <div className="hamburger-menu">
-          <label className="menu__btn" htmlFor="dashboard-open">
-            <span />
-          </label>
+        <div className="header-wrapper mobile">
+          <div className="mobile_header-label">{titleName}</div>
+          <div className="hamburger-menu">
+            <label className="menu__btn" htmlFor="dashboard-open">
+              <span />
+            </label>
+          </div>
+          <div ref={cardRef}>{showNotif && <Notification setShow={setShowNotif} />}</div>
         </div>
-        <div ref={cardRef}>{showNotif && <Notification setShow={setShowNotif} />}</div>
       </div>
     </>
   );
 };
-
-export default Header;

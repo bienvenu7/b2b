@@ -1,0 +1,36 @@
+.admin{
+    display: flex;
+    width: 100%;
+    margin: 60px 0 0 0;
+    &__nav{
+
+        width: 25%;
+        
+         ul{
+            margin: 0;
+            list-style: none;
+            padding: 0;
+            border-right: 1px solid #CBAD73;
+            
+            li a{
+                margin: 12px 0;
+                font-weight: 700;
+                font-size: 15px;
+                cursor: pointer;
+                color:#000;
+                text-decoration: none;
+            }
+            .admin__nav-header{
+                font-size: 20px;
+            }
+        }
+        .active{
+            color: #CBAD73;
+        }
+    }
+    &__mainspace{
+        width: 75%;
+        padding: 0 65px;
+        box-sizing: border-box;
+    }
+}

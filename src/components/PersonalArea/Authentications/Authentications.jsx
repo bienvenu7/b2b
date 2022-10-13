@@ -71,3 +71,4 @@ export const Authentications = ({ var: someVar }) => {
     </div>
   );
 };
+ 

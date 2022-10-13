@@ -2,6 +2,7 @@
 @import '../../scss/custom-select.scss';
 @import '../../scss/custom-checkbox.scss';
 
+
 .auth_request {
   &__wrapper {
     color: $c_o;
@@ -28,6 +29,7 @@
       @include for-phone-only {
         display: block;
       }
+
     }
   }
 
@@ -60,7 +62,7 @@
     position: absolute;
     top: 58px;
     left: 50%;
-    img {
+    img{
       width: 56px;
     }
 
@@ -70,6 +72,7 @@
   }
 
   &__form {
+
     &-wrapper {
       margin-top: 107px;
       display: flex;
@@ -128,8 +131,7 @@
               min-width: 232px;
             }
 
-            &__header {
-            }
+            &__header {}
 
             &__elem {
               &-cat {
@@ -138,7 +140,7 @@
                 font-weight: 400;
                 font-size: 14px;
                 line-height: 140%;
-                color: $c_dis !important;
+                color: $c_dis  !important;
               }
 
               &-count {
@@ -154,7 +156,7 @@
                 font-size: 12px;
                 line-height: 140%;
                 border-radius: 10px;
-                background: #f0ddb9;
+                background: #F0DDB9;
                 color: $c_b;
                 padding: 0 8px;
                 height: 17px;
@@ -250,17 +252,17 @@
           min-height: 125px;
         }
 
-        input[type='file'] {
+        input[type=file] {
           width: 111px;
           min-height: 100px;
           border: 1px solid $c_w;
           box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
           border-radius: 4px;
           padding: 50px 0;
-          color: #f6f6f7;
+          color: #F6F6F7;
         }
 
-        & > input {
+        &>input {
           display: none;
           width: 111px;
           min-height: 100px;
@@ -268,6 +270,8 @@
           box-shadow: 0px 6px 32px rgba(0, 0, 0, 0.04);
           border-radius: 4px;
         }
+
+
 
         &.required {
           width: 111px;
@@ -277,7 +281,7 @@
           border-radius: 4px;
           display: flex;
           margin: 0px 0px 0px 0px;
-          & > input {
+          &>input {
             display: none;
             width: 111px;
             min-height: 100px;
@@ -364,6 +368,7 @@
       @include for-phone-only {
         display: none;
       }
+
     }
 
     &__elem {
@@ -444,14 +449,14 @@
             width: calc(567px - 24px);
             height: 38px;
             padding-left: 24px;
-            border: solid 1px $c_b !important;
+            border: solid 1px $c_b  !important;
             border-radius: 8px;
             box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
 
             @include for-phone-only {
               max-width: calc(100vw - 42px - 24px);
               box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
-              border: solid 1px $c_w !important;
+              border: solid 1px $c_w  !important;
             }
           }
         }
@@ -459,11 +464,12 @@
     }
 
     &-radio_btn {
+
       display: flex;
       justify-content: center;
       margin-right: 10px;
 
-      input[type='radio'] {
+      input[type=radio] {
         display: none;
       }
 
@@ -493,11 +499,11 @@
           border-color: $c_g;
           border-radius: 4px;
           color: $c_g;
-          width: 67px;
+          width: 150px;
         }
       }
 
-      input[type='radio']:checked + label {
+      input[type=radio]:checked+label {
         background: $c_g;
         color: $c_w;
         border: 0.841829px solid $c_g;
@@ -563,13 +569,14 @@
           font-size: 18px;
           line-height: 21px;
         }
+
       }
     }
 
     &__footer {
       width: 100vw;
       height: 310px;
-      background-color: #f6f6f7;
+      background-color: #F6F6F7;
 
       @include for-phone-only {
         border-top: 0.25px solid #656565;
@@ -587,6 +594,7 @@
           flex-direction: column;
           gap: 0;
           padding-top: 21px;
+
         }
       }
 
@@ -615,6 +623,7 @@
             font-size: 18px;
             line-height: 21px;
           }
+
         }
 
         &__h2 {
@@ -623,6 +632,7 @@
           font-style: normal;
           font-size: 14px;
           line-height: 140%;
+
 
           @include for-phone-only {
             font-style: normal;
@@ -660,23 +670,11 @@
         &-wrapper {
           position: relative;
           cursor: pointer;
-          width: 300px;
-          height: 50px;
-          border: 1px solid $c_g;
-          border-radius: 4px;
-          background-color: $c_g;
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 400;
-          font-size: 17px;
-          line-height: 140%;
-          color: $c_w;
+
           display: flex;
           align-items: center;
           justify-content: center;
 
-          margin: auto;
-          margin-left: 0;
 
           margin: auto;
           margin-left: 0;
@@ -687,7 +685,7 @@
             font-size: 18px;
             font-weight: 700;
           }
-          &-button {
+          &-button{
             width: 300px;
             height: 50px;
             border: 1px solid $c_g;
@@ -700,7 +698,7 @@
             line-height: 140%;
             color: $c_w;
           }
-          &-text {
+          &-text{
             // background-color: red;
             position: absolute;
             top: 0;
@@ -709,7 +707,7 @@
             transform: translateY(-130%);
           }
           @include for-phone-only {
-            &-text {
+            &-text{
               // background-color: red;
               position: absolute;
               top: 0;
@@ -744,8 +742,12 @@
               font-weight: 700;
             }
           }
+
         }
+
+
       }
     }
   }
+
 }

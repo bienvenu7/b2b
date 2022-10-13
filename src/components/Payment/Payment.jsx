@@ -18,7 +18,7 @@ export const Payment = () => {
 
   const [addButState, setAddButState] = useState(false);
   const [payButState, setPayButState] = useState(false);
-
+ 
   // eslint-disable-next-line no-empty-function
   useEffect(() => {}, [total, packages.length]);
 

@@ -22,9 +22,34 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c7086ec-1a2e-4006-929e-cf2c9374497d" name="Changes" comment="">
+    <list default="true" id="c18ed369-402a-47d3-895c-77e957f994a1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/Admin.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/OrderDetails.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/OrderTable.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/Pricing.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/Pricing.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/PricingTable.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AuthenticTableBlockv2/AuthenticTableBlock.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AuthenticTableBlockv2/AuthenticTableBlockv2.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AuthenticTableBlockv2/AuthenticTableBlockv2.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPage.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/product/product-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product/product-api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppRouter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppRouter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthenticationRequest/AuthenticationRequest.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashbordComponents/AuthenticTableBlock/AuthenticTableBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/Payment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Payment/RightSideMobile/RightSideMobile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Payment/RightSideMobile/RightSideMobile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Authentications/Authentications.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Card/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonalArea/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/order/Order.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/Order.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/thunks/product-thunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/thunks/product-thunk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

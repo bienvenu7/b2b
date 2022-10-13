@@ -19,6 +19,12 @@ import { DashboardPage } from '../pages/DashboardPage/DashboardPage';
 import { PendingPay } from '../components/Payment/SuccessPage/PendingPay';
 import { Unsuccess } from '../components/Payment/SuccessPage/Unsuccess';
 import { Order } from '../components/order/Order';
+import AdminPage from "../pages/AdminPage/AdminPage";
+
+import Pricing from '../components/Admin/Pricing';
+import PricingTable from '../components/Admin/PricingTable';
+import OrderDetails from '../components/Admin/OrderDetails';
+import OrderTable from '../components/Admin/OrderTable';
 
 export const publicRoutes = [
   { path: '/signin', component: <SignIn /> },
@@ -55,4 +61,16 @@ export const privateRoutes = [
   { path: 'pay', component: <Payment /> },
   { path: 'billing-history', component: <Billing /> },
   { path: 'album-private/:id', component: <Order /> },
+  { 
+    path: "/panel", 
+    component: <AdminPage />,
+    children: [
+    // { path: "/authentication", element: <Home /> },
+    { path: "/panel/pricing", component: <PricingTable /> },
+    { path: "/panel/pricingitem", component: <Pricing /> },
+    { path: "/panel/orders", component: <OrderTable /> },
+    { path: "/panel/:id", component: <OrderDetails /> },
+    
+    ] 
+  },
 ];

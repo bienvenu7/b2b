@@ -16,7 +16,7 @@ import { SummaryMobile } from '../../SummaryMobile/SummaryMobile';
 export const RigthSideMobile = ({ toogle, cartTotal }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const packages = useSelector(getUserTariffPackages);
+  const packages = useSelector(getUserTariffPackages); 
   const totalPackage = useSelector(getTotalPackage);
   const total = useSelector(getCartTotal);
   const userTariffPackages = useSelector(getUserTariffPackages);
