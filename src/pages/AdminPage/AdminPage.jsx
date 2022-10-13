@@ -20,7 +20,7 @@ const AdminPage = () => {
                     <li><NavLink to='/panel/certificates'>Certificates of Authenticity</NavLink></li>
                     <li><NavLink className='admin__nav-header' to='/panel/pricing'>Pricing</NavLink></li> 
                     <li><NavLink to='/panel/pricingItem'>PricingItem</NavLink></li> {/* del */}
-                    <li><NavLink className='admin__nav-header' to='/panel/users'>Users</NavLink></li>
+                    <li><NavLink className='admin__nav-header' to='/panel/usercard'>Users</NavLink></li>
                     <li><NavLink to='/panel/allusers'>All Users</NavLink></li>
                     <li><NavLink to='/panel/credits'>Credits</NavLink></li>
                     <li><NavLink to='/panel/usercreate'>User Accounts: Create</NavLink></li>

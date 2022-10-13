@@ -25,6 +25,7 @@ import Pricing from '../components/Admin/Pricing';
 import PricingTable from '../components/Admin/PricingTable';
 import OrderDetails from '../components/Admin/OrderDetails';
 import OrderTable from '../components/Admin/OrderTable';
+import Usercard from '../components/Admin/usercard';
 
 export const publicRoutes = [
   { path: '/signin', component: <SignIn /> },
@@ -69,6 +70,7 @@ export const privateRoutes = [
     { path: "/panel/pricing", component: <PricingTable /> },
     { path: "/panel/pricingitem", component: <Pricing /> },
     { path: "/panel/orders", component: <OrderTable /> },
+    { path: "/panel/usercard", component: <Usercard /> },
     { path: "/panel/:id", component: <OrderDetails /> },
     
     ] 
