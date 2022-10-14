@@ -1,0 +1,189 @@
+
+
+.discount {
+    
+    &__block-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        h1 {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 19.9734px;
+            line-height: 140%;
+            color: #000000;
+        }
+    }
+
+    &__forms {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 42.51px;
+        margin-top: 10.35px;
+    }
+
+    &__input {
+        border: 0.838482px solid #CECECE;
+        border-radius: 6.70786px;
+        width: 271.07px;
+        padding: 11.41px 0 10.7px 25.39px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14.2667px;
+        line-height: 140%;
+        outline: none;
+    }
+
+    &__title {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15.6934px;
+        line-height: 140%;
+        margin-top: 23.84px;
+        color: #000000;
+    }
+
+    &__contents {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(1, auto);
+
+        .two {
+
+            p {
+                min-width: 386px;
+            }
+        }
+
+        .three {
+            
+            p {
+                width: max-content;
+            }
+
+            .email {
+                border: 0.838482px solid #CECECE;
+                border-radius: 4px;
+                width: 310px;
+                margin-left: 18px;
+                padding: 5.41px 0 4.7px 31px;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 300;
+                font-size: 14.2667px;
+                line-height: 140%;
+                color: #CECECE;
+                outline: none;
+            }
+
+            .round-box {
+                border: 0.838482px solid #CECECE;
+                border-radius: 50% !important;
+                width: 20px;
+                height: 20px;
+                margin-right: 12px;
+            }
+        }
+    }
+
+    &__number {
+        width: 73px;
+        height: 29px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0.838482px solid #CECECE;
+        border-radius: 4px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14.2667px;
+        line-height: 140%;
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 10.9px;
+
+        p {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14.2667px;
+            line-height: 140%;
+            color: #565656;
+            width: 140px;
+        }
+
+        .react-select-container {
+            width: 386px;
+
+            .react-select__control {
+                width: 100%;
+                border: 0.840711px solid #CECECE;
+                border-radius: 6.72569px;
+                overflow: hidden;
+
+                .react-select__value-container {
+                    
+                    .react-select__placeholder {
+                        font-family: 'Roboto';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14.3046px;
+                        line-height: 140%;
+                        color: #565656;
+                    }
+
+                    .react-select__multi-value {
+                        
+                    }
+                }
+                .react-select__indicators {
+                    
+                    span {
+                        display: none;
+                    }
+                }
+            }
+
+            .react-select__menu {
+                
+                .react-select__menu-list {
+                    border-bottom: 2px solid red;
+                }
+            }
+        }
+    }
+
+    &__checkbox-one {
+        width: 20px;
+        height: 20px;
+        border: 0.838482px solid #CECECE;
+        border-radius: 4px;
+        margin-right: 13px;
+    }
+
+    &__submit-btn {
+        background: #CBAD73;
+        border: none;
+        border-radius: 2.85334px;
+        width: 173.34px;
+        height: 38.52px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12.84px;
+        line-height: 140%;
+        color: #FFFFFF;
+        margin-top: 21px;
+    }
+}

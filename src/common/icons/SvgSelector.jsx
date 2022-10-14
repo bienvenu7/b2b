@@ -2,6 +2,12 @@ import React from 'react';
 
 export const SvgSelector = ({ id }) => {
   switch (id) {
+    case 'checked': 
+    return (
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.54092 12C4.84039 12 5.07719 11.8666 5.24434 11.6068L11.8259 1.15857C11.9512 0.954944 12 0.800468 12 0.63897C12 0.252779 11.7493 0 11.3662 0C11.0876 0 10.9344 0.0912815 10.7673 0.358104L4.51306 10.4061L1.26756 6.12288C1.09344 5.87712 0.919327 5.77882 0.668601 5.77882C0.271619 5.77882 0 6.05266 0 6.43885C0 6.60035 0.069646 6.78291 0.201973 6.95143L3.8166 11.5927C4.02554 11.8666 4.24144 12 4.54092 12Z" fill="#CBAD73"/>
+      </svg>
+    );
     case 'arrowsDown':
       return (
         <svg className={id} width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,6 +46,12 @@ export const SvgSelector = ({ id }) => {
           <path d="M1 0.485352L9.48528 8.97063L17.9706 0.485352" stroke="#344767" />
         </svg>
       );
+    case 'downArrow2':
+      return (
+        <svg className={id} width="6.33px" height="6.33px" viewBox="0 0 19 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0.485352L9.48528 8.97063L17.9706 0.485352" stroke="#344767" />
+        </svg>
+      );  
     case 'bell':
       return (
         <svg className={id} width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">

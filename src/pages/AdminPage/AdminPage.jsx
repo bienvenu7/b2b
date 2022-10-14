@@ -3,6 +3,8 @@ import './AdminPage.scss'
 import Header from "../../components/Header/Header";
 import Pricing from '../../components/Admin/Pricing';
 import PricingTable from '../../components/Admin/PricingTable';
+import Discount from '../../components/Admin/Discount';
+
 
 const AdminPage = () => {
 
@@ -28,7 +30,7 @@ const AdminPage = () => {
                 </ul>
             </div>
             <div className="admin__mainspace">
-                <PricingTable></PricingTable>
+                <Discount/>
             </div>
         </div>
     </div>
