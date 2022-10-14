@@ -19,6 +19,7 @@ export const cartTotal = (data) => {
 };
 
 export const getPrice = (data) => {
+  console.log({calcCartTotalApis:data});
   if (data == null) {
     return instance.get('tariff-packages/get-price', {
       headers: { Authorization: `Bearer ${Cookies.get('jwt')}` },

@@ -66,7 +66,6 @@ export const privateRoutes = [
     path: "/panel", 
     component: <AdminPage />,
     children: [
-    // { path: "/authentication", element: <Home /> },
     { path: "/panel/pricing", component: <PricingTable /> },
     { path: "/panel/pricingitem", component: <Pricing /> },
     { path: "/panel/orders", component: <OrderTable /> },

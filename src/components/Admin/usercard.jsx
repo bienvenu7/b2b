@@ -1,7 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import './usercars.scss'
 
 export function Usercard(){
+
+    let [accountStatus, setAccountStatus] = useState('Restrict')
+    const temarr = [
+        {category:'general',available:100,spent:100,adjustment:0,needsave:true},
+        {category:'test1',available:140,spent:88,adjustment:0,needsave:true},
+        {category:'fdsdf',available:5,spent:52,adjustment:0,needsave:true},
+        {category:'dfg',available:11,spent:1,adjustment:0,needsave:true},
+        {category:'genegdgfdral',available:41,spent:74,adjustment:0,needsave:true},
+    ]
+    function onRadioChange (e){
+        setAccountStatus(e.target.name)
+    }
+
     return <div className="usercard-contaiter">
         <div className="title">
             <div className="title__name">
@@ -23,19 +36,19 @@ export function Usercard(){
             <div className="accointstatus">
             <ul>
                 <li>
-                    <input type="radio" id="Restrict" name="amount" />
+                    <input type="radio" id="Restrict" name="Restrict" checked={accountStatus === "Restrict"} onChange={onRadioChange}/>
                     <label htmlFor="Restrict">Restrict</label>
                 </li>
                 <li>
-                    <input type="radio" id="Ban" name="amount" />
+                    <input type="radio" id="Ban" name="Ban" checked={accountStatus === "Ban"} onChange={onRadioChange}/>
                     <label htmlFor="Ban">Ban</label>
                 </li>
                 <li>
-                    <input type="radio" id="Delete" name="amount" defaultChecked/>
+                    <input type="radio" id="Delete" name="Delete" checked={accountStatus === "Delete"} onChange={onRadioChange}/>
                     <label htmlFor="Delete">Delete</label>
                 </li>
             </ul>
-            <div className="accointstatus__dates">
+            {accountStatus == 'Restrict' && <div className="accointstatus__dates">
                 <div className="accointstatus__dates__item">
                     <p>End date</p>
                     <input type="date" />
@@ -47,7 +60,24 @@ export function Usercard(){
                 <div className="accointstatus__savebtn">
                     <button>Save</button>
                 </div>
-            </div>
+            </div>}
+            {accountStatus == 'Ban' && <div className="accointstatus__dates">
+                <div className="accointstatus__dates__item">
+                    <p>End date</p>
+                    <input type="date" />
+                </div>
+                <div className="accointstatus__dates__item">
+                    <p>End time</p>
+                    <input type="time" />
+                </div>
+                <div className="accointstatus__dates__item">
+                    <p>End time</p>
+                    <input type="time" />
+                </div>
+                <div className="accointstatus__savebtn">
+                    <button>Save</button>
+                </div>
+            </div>}
             </div>
         </div>
         <h5>Credits</h5>
@@ -71,30 +101,16 @@ export function Usercard(){
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>General</td>
-                <td>$100</td>
-                <td>$100</td>
-                <td><input type="text" /></td>
+            {temarr.map((el,index)=>{
+            return <tr key={index}>
+                <td>{el.category}</td>
+                <td>${el.available}</td>
+                <td>${el.spent}</td>
+                <td><input type="number" value={el.adjustment}/></td>
                 <td><p className="save">save</p></td>
                 <td><p className="del">X</p></td>
             </tr>
-            <tr>
-                <td>General</td>
-                <td>$100</td>
-                <td>$100</td>
-                <td><input type="text" /></td>
-                <td><p className="save">save</p></td>
-                <td><p className="del">X</p></td>
-            </tr>
-            <tr>
-                <td>General</td>
-                <td>$100</td>
-                <td>$100</td>
-                <td><input type="text" /></td>
-                <td><p className="save">save</p></td>
-                <td><p className="del">X</p></td>
-            </tr>
+            })}
             </tbody>
             </table>
             <p className="warntext">Note: Use a negative sign (-) before credits to deduct from the customer`s balance</p>

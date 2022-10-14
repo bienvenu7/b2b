@@ -39,7 +39,6 @@ export const getProductThunk = (id) => async (dispatch) => {
 export const getProductsThunk = (data) => async (dispatch) => {
   try {
     const response = await getProducts(data);
-    console.log({getProductsThunk:response});
     dispatch(setProducts(response.data.entities));
   } catch (error) {
     // console.log(error);

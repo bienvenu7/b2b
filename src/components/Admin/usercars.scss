@@ -161,15 +161,22 @@
                         display: table-cell;
                         vertical-align:middle;
                         font-weight: 700;
+                        display: none;
                     }
                     .del{
                         cursor: pointer;
-                        color:red;
+                        color:gray;
                         // height: 100px;
                         display: table-cell;
                         vertical-align:middle;
-                        font-weight: 800;
+                        font-weight: 600;
+                        opacity: 0;
                     }
+                }
+                tr:hover{
+                    td .del{
+                    opacity: 1;
+                }
                 }
             }
         }

@@ -20,12 +20,15 @@ export const App = () => {
   const checkStatuses = useSelector(takeCheckStatuses);
 
   useEffect(() => {
+    document.title = "LegitGrails Business Platform";
+  });
+
+  useEffect(() => {
     !appInit && dispatch(initialApp());
     isAuth && dispatch(getProductTypesThunk(1, 1000));
     isAuth && dispatch(getBalanceThunk());
     isAuth && !resultStatuses && dispatch(getResultsStatusesThunk());
     isAuth && !checkStatuses && dispatch(getCheckStatusesThunk());
-    // document.title = "LegitGrails Business Platform";
   }, [isAuth]);
 
   if (!appInit) {

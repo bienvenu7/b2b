@@ -29,6 +29,7 @@ export const getCartTotalThunk = (data) => async (dispatch) => {
 };
 
 export const getPriceThunk = (data) => async (dispatch) => {
+  console.log({calcCartTotalThunk:data});
   if (data == null) {
     const response = await getPrice(data);
     response.status === 200 && dispatch(setPriceForCertificate(response.data.certificate));
