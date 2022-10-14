@@ -7,8 +7,10 @@
   "endOfLine":"auto",
   "overrides": [
     {
-      "files": ["*.js","*.jsx"],
-      "options": { "trailingComma": "all" }
+      "files": ["*.ts", "*.js", "*.tsx", "*.jsx"],
+      "options": { "trailingComma": "all" },
+      "parser": "babel-ts",
+      "endOfLine":"auto"
     }
   ]
 }
