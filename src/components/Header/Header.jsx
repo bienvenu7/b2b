@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
@@ -29,6 +31,7 @@ export const Header = () => {
     return () => document.addEventListener('mousedown', handle);
   });
 
+  // eslint-disable-next-line no-empty-function
   useEffect(() => {}, [params.page]);
 
 
@@ -47,9 +50,9 @@ export const Header = () => {
     '/request': 'Request',
     '/panel' : 'panel'
   }
-  
-  const path = pathNameMap[pathname];
-  if (pathname.split('/')[1] === 'request') path = 'Request'; //маленький костыль
+
+  let path = pathNameMap[pathname];
+  if (pathname.split('/')[1] === 'request') path = 'Request'; // маленький костыль
 
   const titleMap = {
     '/photo-requests/all': 'Photo requests',
@@ -81,15 +84,15 @@ export const Header = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="header-wrapper mobile">
-        <div className="mobile_header-label">{titleName}</div>
-        <div className="hamburger-menu">
-          <label className="menu__btn" htmlFor="dashboard-open">
-            <span />
-          </label>
+        <div className="header-wrapper mobile">
+          <div className="mobile_header-label">{titleName}</div>
+          <div className="hamburger-menu">
+            <label className="menu__btn" htmlFor="dashboard-open">
+              <span />
+            </label>
+          </div>
+          <div ref={cardRef}>{showNotif && <Notification setShow={setShowNotif} />}</div>
         </div>
-        <div ref={cardRef}>{showNotif && <Notification setShow={setShowNotif} />}</div>
       </div>
     </>
   );

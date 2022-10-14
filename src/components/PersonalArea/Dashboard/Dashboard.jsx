@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -46,7 +48,7 @@ export const Dashboard = () => {
                 <img onClick={() => navigate('../dashboard')} src={dashboardIcon} alt="" />
               </div>
               <div className="dashboard__elem__top__icon-wrapper">
-                <div className="dashboard__elem__top__icon-elem">{/* <img src={dashboardIcon} alt="" /> */}</div>
+                <div className="dashboard__elem__top__icon-elem" />
                 <div className="dashboard__elem__top__icon-elem">
                   <div onClick={() => setShowNotif(!showNotif)}>
                     <SvgSelector id="bell" />

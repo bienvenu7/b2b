@@ -1,9 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import './Pricing.scss'
 import {SvgSelector} from "../../common/icons/SvgSelector";
 
-export default function Pricing(){
-    // const []
+export function Pricing(){
     return <div className="Pricing-container">
         <div className="Pricing-head">
             <input className='title-input' type="text" disabled value='Pricing Name'/>
@@ -15,7 +14,7 @@ export default function Pricing(){
         </div>
         <div className="categories-container">
             <div className="categories__item categories__item-open"> 
-                <div className="categories__item__header">123 <SvgSelector class='categories-item-arrow' id={true ? "arrow" : "arrow-rotate"} /></div>
+                <div className="categories__item__header">123 <SvgSelector class='categories-item-arrow' id="arrow"  /></div>
                 <div className="categories__item__body">
                     <div className="Pricing-head">
                         <input className='title-input' type="text" disabled value='Category'/>
@@ -72,12 +71,12 @@ export default function Pricing(){
                 </div>
             </div>
             <div className="categories__item"> 
-                <div className="categories__item__header">123 <SvgSelector class='categories-item-arrow' id={false ? "arrow" : "arrowsDown"} /></div>
-                <div className="categories__item__body"></div>
+                <div className="categories__item__header">123 <SvgSelector class='categories-item-arrow' id="arrowsDown" /></div>
+                <div className="categories__item__body"/>
             </div>
             <div className="categories__item "> 
-                <div className="categories__item__header">123 <SvgSelector class='categories-item-arrow' id={false ? "arrow" : "arrowsDown"} /></div>
-                <div className="categories__item__body"></div>
+                <div className="categories__item__header">123 <SvgSelector class='categories-item-arrow' id="arrow"/></div>
+                <div className="categories__item__body"/>
             </div>
         </div>
     </div>

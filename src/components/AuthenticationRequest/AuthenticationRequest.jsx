@@ -32,7 +32,7 @@ export const AuthenticationRequest = () => {
   const [answerTime, setAnswerTime] = useState(24);
   const [productTypeValue, setProductTypeValue] = useState(null);
   const [brandValue, setBrandValue] = useState();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [, setErrorMessage] = useState('');
   const [checkValid, setCheckValid] = useState(false);
   const [brandSelectorKey, setBrandSelectorKey] = useState(0);
   const status = useSelector(getStatusCode);

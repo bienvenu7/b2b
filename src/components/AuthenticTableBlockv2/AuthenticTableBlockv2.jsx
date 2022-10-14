@@ -1,30 +1,29 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import moment from 'moment/moment';
-import { SvgSelector } from '../../../common/icons/SvgSelector';
+import { SvgSelector } from '../../common/icons/SvgSelector';
 import './AuthenticTableBlock.scss';
 import {
   getTypesOfProduct,
   takeBrandsList,
   takeCheckStatuses,
-  takeProducts,
   takeResultStatuses,
-} from '../../../redux/selectors/product-selectors';
-import { addCertificateThunk, getBrandsListThunk, getProductsThunk } from '../../../redux/thunks/product-thunk';
-import { setProducts } from '../../../redux/reducers/product-reducer';
-import { FilterSelect } from '../../PersonalArea/Authentications/FilterSelect';
-import { Loader } from '../../Loader/Loader';
-import { BlockComponentLayout } from '../../BlockComponentLayout/BlockComponentLayout';
-import { Paginator } from '../../Paginator/Paginator';
+} from '../../redux/selectors/product-selectors';
+import { getBrandsListThunk, getProductsThunk } from '../../redux/thunks/product-thunk';
+import { setProducts } from '../../redux/reducers/product-reducer';
+import { FilterSelect } from '../PersonalArea/Authentications/FilterSelect';
+import { Loader } from '../Loader/Loader';
+import { BlockComponentLayout } from '../BlockComponentLayout/BlockComponentLayout';
+import { Paginator } from '../Paginator/Paginator';
 
 const PageSize = 8;
 
-export const AuthenticTableBlock = ({ var: someVar }) => {
-  // TODO //там есть вторая версия этой таблицы, эту трогать не нужно.
+export const AuthenticTableBlock = ({ var: someVar,headers,myproducts,typeoftable }) => {
   const location = useLocation();
-  const products = useSelector(takeProducts);
+  const products =null;
   const [currentPage, setCurrentPage] = useState(1);
   const brandsList = useSelector(takeBrandsList);
   const productTypes = useSelector(getTypesOfProduct);
@@ -46,8 +45,8 @@ export const AuthenticTableBlock = ({ var: someVar }) => {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return products && products.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, products]);
+    return myproducts && myproducts.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, myproducts]);
 
   useEffect(() => {
     setPage(someVar === 'completed' ? 'complete' : 'progress');
@@ -85,6 +84,8 @@ export const AuthenticTableBlock = ({ var: someVar }) => {
     const data = {
       resultStatuses: [resultStatuses && resultStatuses.filter((el) => el.name === 'COMPLETED')[0]],
       sort: 'createdAt:DESC',
+      page: currentPage,
+      limit:PageSize
     };
     dispatch(setProducts(null));
     dispatch(getProductsThunk(data)); //
@@ -96,21 +97,13 @@ export const AuthenticTableBlock = ({ var: someVar }) => {
     const data = {
       sort: 'createdAt:DESC',
       resultStatuses: resultStatuses.filter((el) => el.name !== 'COMPLETED'),
+      page: currentPage,
+      limit:PageSize
     };
     dispatch(setProducts(null));
     dispatch(getProductsThunk(data));
     filterMode && handleFilter();
   }
-
-  const handleSort = (sort) => {
-    setSortData(!sortData);
-    dispatch(
-      getProductsThunk({
-        ...dataFilter,
-        sort: `createdAt:${!sort ? 'DESC' : 'ASC'}`,
-      }),
-    );
-  };
 
   function handleSearch() {
     dispatch(getProductsThunk(searchValue !== '' ? { ...dataFilter, search: searchValue } : dataFilter));
@@ -124,14 +117,6 @@ export const AuthenticTableBlock = ({ var: someVar }) => {
       return '';
     }
   }
-
-  async function addCertificate(el) {
-    const response = await dispatch(addCertificateThunk(el));
-    !response && navigate('../payment');
-  }
-
-  // eslint-disable-next-line no-empty-function
-  useEffect(() => {}, [currentTableData]);
 
   useEffect(() => {
     selectedFilter && selectedFilter[0].value === 'CATEGORY'
@@ -185,13 +170,6 @@ export const AuthenticTableBlock = ({ var: someVar }) => {
     { value: 'LAST_UPDATE', label: 'Last update' },
   ];
 
-  //
-
-  function getCertificateLink(product) {
-    const file = product.files.find((el) => el.feature === 'certificate');
-    return file.path;
-  }
-
   const dataFixed = () => moment().format('DD/MM/YYYY');
 
   useEffect(() => {
@@ -223,7 +201,7 @@ export const AuthenticTableBlock = ({ var: someVar }) => {
     });
   }, []);
 
-  params.page === 'photo-requests' && navigate('../luxury-store/authentications/photo-requests');
+  params.page === 'photo-requests' && navigate('luxury-store/authentications/photo-requests');
 
   if (page == null) {
     return <div />;
@@ -327,120 +305,27 @@ export const AuthenticTableBlock = ({ var: someVar }) => {
         </div>
       )}
 
-      {page === 'complete' && (
-        <div className="authent__table">
-          <div className="authent__table__label-wrapper">
-            <div className="authent__table__label__elems-wrapper">
-              <div className="authent__table__label__elem-checkbox">
-                <input type="checkbox" className="custom-checkbox__table" id="check" />
-                <label htmlFor="check" />
-              </div>
-              <div className="authent__table__label__elem-category">Item category</div>
-              <div className="authent__table__label__elems-brand">Brand</div>
-              <div className="authent__table__label__elems-model">Model name</div>
-              <div className="authent__table__label__elems-outcome">Outcome</div>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */}
-              <div
-                className={`authent__table__label__elems-date${!sortData ? ' arrow-up' : ''}`}
-                onClick={() => handleSort(sortData)}
-              >
-                Submission date <SvgSelector id="down-arrow-icon" />
-              </div>
-              <div className="authent__table__label__elems-pdf">Pdf certificate</div>
-            </div>
-          </div>
-          {/* eslint-disable-next-line no-nested-ternary */}
-          {currentTableData == null ? (
-            <Loader />
-          ) : currentTableData.length > 0 ? (
-            currentTableData.map((el, index) => (
-              <div key={index} className="authent__table__elem">
-                <div className="authent__table__elems-wrapper">
-                  <div className="authent__table__elem-checkbox">
-                    <input
-                      key={index}
-                      type="checkbox"
-                      className="custom-checkbox__table"
-                      id={`check-for-elem-${index}`}
-                    />
-                    <label htmlFor={`check-for-elem-${index}`} />
-                  </div>
-                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                    jsx-a11y/no-static-element-interactions */}
-                  <div
-                    className="authent__table__elem__category"
-                    onClick={() =>
-                      navigate(`/request/${el.id}`, {
-                        state: { page: currentPage, var: page },
-                      })
-                    }
-                  >
-                    <div
-                      className="authent__table__elem__category-image"
-                      style={{
-                        background: `url(${getPhotoUrl(el.files)})`,
-                      }}
-                    />
-                    <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
-                    <div className="authent__table__elem__category-number">#{el.publicId}</div>
-                    <div className="authent__table__elem__category-date">{dataFixed(el.createdAt, 'mobile')}</div>
-                  </div>
-                  <div className="authent__table__elem-brand">{el.brand.publicName}</div>
-                  <div className="authent__table__elem-model">{el.modelName}</div>
-                  <div className="authent__table__elem-outcome">{el.checkStatus}</div>
-                  <div className="authent__table__elem-date">{dataFixed(el.createdAt, 'desktop')}</div>
-                  {el.certificateAvailable ? (
-                    <a className="authent__table__elem-pdf" href={getCertificateLink(el)}>
-                      View
-                    </a>
-                  ) : (
-                    /* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                  jsx-a11y/no-static-element-interactions */
-                    <div className="authent__table__elem-pdf" onClick={() => addCertificate(el)}>
-                      Add
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))
-          ) : (
-            <span className="noorders">No authentications yet</span>
-          )}
-        </div>
-      )}
-
-      {page !== 'complete' && (
-        <div className="authent__table">
-          <div className="authent__table__label-wrapper">
-            <div className="authent__table__label__elems-wrapper">
-              <div className="authent__table__label__elem-category">Item category</div>
-            </div>
-            <div className="authent__table__label__elems-wrapper">
-              <div className="authent__table__label__elems-brand">Brand</div>
-              <div className="authent__table__label__elems-model">Model name</div>
-              <div className="authent__table__label__elems-status">Status</div>
-              <div className="authent__table__label__elems-answer">Answer time</div>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                jsx-a11y/no-static-element-interactions */}
-              <div
-                className={`authent__table__label__elems-date${!sortData ? ' arrow-up' : ''}`}
-                onClick={() => handleSort(sortData)}
-              >
-                Submission date <SvgSelector id="down-arrow-icon" />
-              </div>
-            </div>
-          </div>
+{page !== 'complete' && (
+    <>
+        <table className='authent__table'>
+          <thead>
+            <tr>
+                {headers.map((el)=>{
+                    return <th>{el}</th> 
+                })}
+            </tr>
+            </thead>
+            <tbody>
+            
+            
           {currentTableData ? (
-            currentTableData.map((el, index) => (
-              <div key={index} className="authent__table__elem">
-                <div className="authent__table__elems-wrapper">
-                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
-                    jsx-a11y/no-static-element-interactions */}
-                  <div
+            currentTableData.map((el) => (
+            <>
+              {typeoftable == 'orders' && <tr>
+                <td
                     className="authent__table__elem__category"
                     onClick={() =>
-                      navigate(`../request/${el.id}`, {
+                      navigate(`./${el.id}`, {
                         state: { page: currentPage, var: page },
                       })
                     }
@@ -449,34 +334,41 @@ export const AuthenticTableBlock = ({ var: someVar }) => {
                       className="authent__table__elem__category-image"
                       style={{
                         background: `url(${getPhotoUrl(el.files)})`,
+                        backgroundPosition: 'center'
                       }}
                     />
                     <div className="authent__table__elem__category-label">{el.productType.publicName}</div>
                     <div className="authent__table__elem__category-number">#{el.publicId}</div>
                     <div className="authent__table__elem__category-date">{dataFixed(el.createdAt, 'mobile')}</div>
-                  </div>
-                  <div className="authent__table__elem-brand">{el.brand.publicName}</div>
-                  <div className="authent__table__elem-model">{el.modelName}</div>
-                  <div className="authent__table__elem-status">{el.resultStatus.publicName}</div>
-                  <div className="authent__table__elem-answer">{el.answerTime} hours</div>
-                  <div className="authent__table__elem-date">
-                    {`${new Date(el.createdAt).getDate()}/${Number(new Date(el.createdAt).getMonth()) + 1}/${new Date(
+                  </td>
+                <td>{el.brand.publicName}</td>
+                <td>{el.modelName}</td>
+                <td>{el.resultStatus.publicName}</td>
+                <td>{el.answerTime} hours</td>
+                <td>{`${new Date(el.createdAt).getDate()}/${Number(new Date(el.createdAt).getMonth()) + 1}/${new Date(
                       el.createdAt,
-                    ).getFullYear()}`}
-                  </div>
-                </div>
-              </div>
+                     ).getFullYear()}`}</td>
+            </tr>}
+            {typeoftable == 'pricing' && <tr>
+              <td>{el.name}</td>
+              <td>{el.count}</td>
+              <td>{el.date}</td>
+              <td>Edit</td>
+              </tr>}
+            </>
             ))
           ) : (
             <Loader />
           )}
-        </div>
+          </tbody>
+        </table>
+        </>
       )}
-      {products && currentTableData && (
+      {myproducts && currentTableData && (
         <Paginator
           className="pagination-bar"
           currentPage={currentPage}
-          totalCount={products.length}
+          totalCount={myproducts.length}
           PageSize={PageSize}
           onPageChange={(page) => setCurrentPage(page)}
         />

@@ -41,7 +41,7 @@ export const SignIn = () => {
 
     if (!values.password) {
       errors.password = 'Please fill in your password';
-    } else if (values.password.length < 8) {
+    } else if (values.password.length < 1) { // сменить на 8 до пуша.
       errors.password = 'Must be 8 characters or more';
     }
 

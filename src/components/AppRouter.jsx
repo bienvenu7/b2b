@@ -15,6 +15,13 @@ export const AppRouter = () => {
         <div className="container">
           <Routes>
             {privateRoutes.map((el) => (
+              (el.children && el.children.length > 0) ?
+              <Route  key={el.path} element={el.component} path={el.path}>
+                {el.children.map(child=>{
+                  return <Route key={child.path} element={child.component} path={child.path}/>
+                })}
+              </Route>
+              :
               <Route key={el.path} element={el.component} path={el.path} />
             ))}
             <Route path="*" element={<NotFoundPage />} />
