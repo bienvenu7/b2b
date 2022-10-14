@@ -5,15 +5,16 @@
     box-shadow: 0px 1.81186px 5.43558px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     padding: 30px 80px;
+    margin-bottom: 20px;
+    h5{
+        margin: 0;
+        font-size: 18px;
+    }
     .title{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        &__name{
-            h5{
-                margin: 0;
-                font-size: 18px;
-            }
+        &__name{  
             &-date{
                 color: rgba(65, 65, 65, 0.4);
                 font-size: 12px;
@@ -33,5 +34,148 @@
             }
         }
 
+    }
+    .accountdata{
+        margin-top: 25px;
+        margin-bottom: 25px;
+        &__item{
+            display: flex;
+            justify-content: space-between;
+            margin: 15px;
+            p{
+                font-size: 16px;
+                color: rgba(65, 65, 65, 0.9);
+            }
+        }
+    }
+    .accointstatus{
+        ul{
+            display: flex;
+            justify-content: start;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            li{
+                label{
+                    text-align: center;
+                    line-height: 40px;
+                    display: block;
+                    width: 95px;
+                    height: 40px;
+                    border: 1px solid #CBAD73 ;
+                    border-radius: 3px;
+                }
+                input{
+                    display: none;
+                }
+                input:checked+label{
+                    background-color: #CBAD73;
+                    color:#000
+                }
+            }
+        }
+        &__dates{
+            display: flex;
+            gap:30px;
+            &__item{
+                p{
+                    margin-bottom: 10px;
+                    font-size: 16px;
+                }
+                input{
+                    padding: 5px;
+                    border-radius: 10px;
+                    width: 100px;
+                    height: 40px;
+                    font-size: 14px;
+                    color:#8D8D8D
+                }
+            }
+        }
+        &__savebtn{
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 20px;
+            button{
+                display: block;
+                box-sizing: border-box;
+                font-weight: 700;
+                color:#CBAD73;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+    .addcategory{
+        display: flex;
+        gap: 5%;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        select{
+            
+            width: 70%;
+            height: 40px;
+            color:#565656;
+            border-radius: 5px;
+            // padding: 0 110px;
+            border: 1px solid #CECECE;
+            &:focus{
+                // background-color: red;
+                border: 1px solid #CECECE;
+                outline: none;
+            }
+        }
+        button{
+            width: 25%;
+            background-color: #CBAD73;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    }
+    .tablecategory{
+
+        &-table{
+            width: 100%;
+            thead{
+                tr th{
+                    text-align: left;
+                }
+            }
+            tbody{
+                tr td{
+                    color:#414141;
+                    vertical-align:middle;
+                    input{
+                        border:1px solid #CECECE;
+                        width: 100px;
+                        text-align: center;
+                        border-radius: 5px;
+                    }
+                    .save{
+                        color:#CBAD73;
+                        font-size: 15px;
+                        cursor: pointer;
+                        display: table-cell;
+                        vertical-align:middle;
+                        font-weight: 700;
+                    }
+                    .del{
+                        cursor: pointer;
+                        color:red;
+                        // height: 100px;
+                        display: table-cell;
+                        vertical-align:middle;
+                        font-weight: 800;
+                    }
+                }
+            }
+        }
+        .warntext{
+            margin-top: 10px;
+            color:#7E7E7E;
+        }
     }
 }

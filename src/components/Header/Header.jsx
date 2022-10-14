@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
@@ -49,7 +51,7 @@ export const Header = () => {
   }
   
   let path = pathNameMap[pathname];
-  if (pathname.split('/')[1] === 'request') path = 'Request'; //маленький костыль
+  if (pathname.split('/')[1] === 'request') path = 'Request'; // маленький костыль
 
   const titleMap = {
     '/photo-requests/all': 'Photo requests',

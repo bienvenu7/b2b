@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -9,10 +10,9 @@ import {
   getTypesOfProduct,
   takeBrandsList,
   takeCheckStatuses,
-  takeProducts,
   takeResultStatuses,
 } from '../../redux/selectors/product-selectors';
-import { addCertificateThunk, getBrandsListThunk, getProductsThunk } from '../../redux/thunks/product-thunk';
+import { getBrandsListThunk, getProductsThunk } from '../../redux/thunks/product-thunk';
 import { setProducts } from '../../redux/reducers/product-reducer';
 import { FilterSelect } from '../PersonalArea/Authentications/FilterSelect';
 import { Loader } from '../Loader/Loader';
@@ -22,7 +22,6 @@ import { Paginator } from '../Paginator/Paginator';
 const PageSize = 8;
 
 export const AuthenticTableBlock = ({ var: someVar,headers,myproducts,typeoftable }) => {
-    console.log({products:myproducts});
   const location = useLocation();
   const products =null;
   const [currentPage, setCurrentPage] = useState(1);
@@ -106,16 +105,6 @@ export const AuthenticTableBlock = ({ var: someVar,headers,myproducts,typeoftabl
     filterMode && handleFilter();
   }
 
-  const handleSort = (sort) => {
-    setSortData(!sortData);
-    dispatch(
-      getProductsThunk({
-        ...dataFilter,
-        sort: `createdAt:${!sort ? 'DESC' : 'ASC'}`,
-      }),
-    );
-  };
-
   function handleSearch() {
     dispatch(getProductsThunk(searchValue !== '' ? { ...dataFilter, search: searchValue } : dataFilter));
   }
@@ -128,14 +117,6 @@ export const AuthenticTableBlock = ({ var: someVar,headers,myproducts,typeoftabl
       return '';
     }
   }
-
-  async function addCertificate(el) {
-    const response = await dispatch(addCertificateThunk(el));
-    !response && navigate('payment');
-  }
-
-  // eslint-disable-next-line no-empty-function
-  useEffect(() => {}, [currentTableData]);
 
   useEffect(() => {
     selectedFilter && selectedFilter[0].value === 'CATEGORY'
@@ -188,13 +169,6 @@ export const AuthenticTableBlock = ({ var: someVar,headers,myproducts,typeoftabl
     { value: 'OUTCOME', label: 'Outcome' },
     { value: 'LAST_UPDATE', label: 'Last update' },
   ];
-
-  //
-
-  function getCertificateLink(product) {
-    const file = product.files.find((el) => el.feature === 'certificate');
-    return file.path;
-  }
 
   const dataFixed = () => moment().format('DD/MM/YYYY');
 
@@ -336,7 +310,7 @@ export const AuthenticTableBlock = ({ var: someVar,headers,myproducts,typeoftabl
         <table className='authent__table'>
           <thead>
             <tr>
-                {headers.map((el,i)=>{
+                {headers.map((el)=>{
                     return <th>{el}</th> 
                 })}
             </tr>
@@ -345,13 +319,13 @@ export const AuthenticTableBlock = ({ var: someVar,headers,myproducts,typeoftabl
             
             
           {currentTableData ? (
-            currentTableData.map((el, index) => (
+            currentTableData.map((el) => (
             <>
               {typeoftable == 'orders' && <tr>
                 <td
                     className="authent__table__elem__category"
                     onClick={() =>
-                      navigate(`../request/${el.id}`, {
+                      navigate(`./${el.id}`, {
                         state: { page: currentPage, var: page },
                       })
                     }

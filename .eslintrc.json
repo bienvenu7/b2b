@@ -24,9 +24,9 @@
   "rules": {
     "jsx-a11y/label-has-associated-control": "off",
     "prettier/prettier": [
-      "error",
+      "warn",
       {
-        "endOfLine": "auto"
+        // "endOfLine": "auto"
       }
     ],
     "no-restricted-syntax": "warn",

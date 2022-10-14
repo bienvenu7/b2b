@@ -14,7 +14,6 @@ export const getProduct = (id) => {
 };
 
 export const getProducts = (data) => {
-  console.log({getProducts:data});
   return instance.post(
     'products/get-products',
     { ...data, page: 1, limit: 100 },

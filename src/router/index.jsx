@@ -19,13 +19,13 @@ import { DashboardPage } from '../pages/DashboardPage/DashboardPage';
 import { PendingPay } from '../components/Payment/SuccessPage/PendingPay';
 import { Unsuccess } from '../components/Payment/SuccessPage/Unsuccess';
 import { Order } from '../components/order/Order';
-import AdminPage from "../pages/AdminPage/AdminPage";
 
-import Pricing from '../components/Admin/Pricing';
-import PricingTable from '../components/Admin/PricingTable';
-import OrderDetails from '../components/Admin/OrderDetails';
-import OrderTable from '../components/Admin/OrderTable';
-import Usercard from '../components/Admin/usercard';
+import {AdminPage} from "../pages/AdminPage/AdminPage";
+import {Pricing} from '../components/Admin/Pricing';
+import {PricingTable} from '../components/Admin/PricingTable';
+import { CardComponent } from '../components/PersonalArea/Card/CardComponent';
+import {OrderTable} from '../components/Admin/OrderTable';
+import {Usercard} from '../components/Admin/usercard';
 
 export const publicRoutes = [
   { path: '/signin', component: <SignIn /> },
@@ -71,7 +71,7 @@ export const privateRoutes = [
     { path: "/panel/pricingitem", component: <Pricing /> },
     { path: "/panel/orders", component: <OrderTable /> },
     { path: "/panel/usercard", component: <Usercard /> },
-    { path: "/panel/:id", component: <OrderDetails /> },
+    { path: "/panel/orders/:id", component: <CardComponent /> },
     
     ] 
   },
