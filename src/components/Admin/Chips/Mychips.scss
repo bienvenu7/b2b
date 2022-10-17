@@ -1,0 +1,23 @@
+
+
+.chips {
+    &__container {
+        width: auto;
+        height: auto;
+        display: flex;
+        gap: 5px;
+        border: 0.838482px solid #CECECE;
+        border-radius: 4px;
+        padding: 2px 8px;
+    }
+
+    &__email {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14.2667px;
+        line-height: 140%;
+        color: #565656;
+        cursor: pointer;
+    }
+}

@@ -1,7 +1,10 @@
 import React from 'react'
-import {  Outlet,NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
+// import {  Outlet,NavLink } from "react-router-dom";
 import './AdminPage.scss'
 import {Header} from "../../components/Header/Header";
+
+import Discount from '../../components/Admin/Discount'
 
 
 export const AdminPage = () => {

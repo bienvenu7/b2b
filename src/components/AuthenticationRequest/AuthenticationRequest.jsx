@@ -103,6 +103,8 @@ export const AuthenticationRequest = () => {
     );
   }, [angles]);
 
+  console.log(brands)
+
   const balance = useSelector(takeBalance);
   brands.length > 0 &&
     brands[0].brand &&
