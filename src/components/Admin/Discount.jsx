@@ -23,7 +23,7 @@ const icon = <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="
 </svg>
 
 const customStyles = {
-    menu: (provided, state) => ({
+    menu: (provided) => ({
       ...provided,
       borderBottom: '1px solid pink',
       color: "black",
@@ -40,7 +40,7 @@ const customStyles = {
     })
 }
 
-const formatOptionLabel = ({ value, label, icon }) => (
+const formatOptionLabel = ({label, icon }) => (
     <div style={{ display: "flex", justifyContent: "space-between"}}>
       <span >{label}</span>
       <div>
@@ -66,7 +66,7 @@ const Discount = () => {
     const [tags, setTags] = useState([])
 
     const [name, setName] = useState('')
-    const [errorName, setErrorName] = useState(false)
+    // const [errorName, setErrorName] = useState(false)
     const [percentage, setPercentage] = useState(0)
     const [categoryValue, setCategoryValue] = useState([])
     const [brandValue, setBrandValue] = useState([])
@@ -165,7 +165,7 @@ const Discount = () => {
             setName('')
             setPercentage('')
             setTimeValue([])
-            setErrorName(false)
+            // setErrorName(false)
 
             alert('your discount has been added')
         // }
