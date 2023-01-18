@@ -16,6 +16,7 @@ import { getBrandsListThunk } from '../../redux/thunks/product-thunk';
 import { getTypesOfProduct, takeBrandsList } from '../../redux/selectors/product-selectors';
 
 import MyChips from './Chips/MyChips';
+import { postDiscount } from '../../api/discount/discount';
 
 
 const icon = <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,11 +56,12 @@ const Discount = () => {
     const dispatch = useDispatch()
 
     const [noCondition, setNoCondition] = useState(false)
-    const [enableCategory, setEnableCategory] = useState(true)
-    const [enableAnswerTime, setEnableAnswerTime] = useState(true)
-    const [enableBrand, setEnableBrand] = useState(true)
+    const [enableCategory, setEnableCategory] = useState(false)
+    const [enableAnswerTime, setEnableAnswerTime] = useState(false)
+    const [enableBrand, setEnableBrand] = useState(false)
     const [enableTotalUsed, setEnableTotalUsed] = useState(true)
-    const [limitCostomer, setLimitCostomer] = useState(true)
+    const [selectRadio, setSelectedRadio] = useState('radio1')
+    const [perUse, setPerUse] = useState(false)
 
     // const [email, setEmail] = useState('');
     const [error, setError] = useState(false);
@@ -67,12 +69,13 @@ const Discount = () => {
 
     const [name, setName] = useState('')
     // const [errorName, setErrorName] = useState(false)
-    const [percentage, setPercentage] = useState(0)
+    const [percentage, setPercentage] = useState(null)
     const [categoryValue, setCategoryValue] = useState([])
     const [brandValue, setBrandValue] = useState([])
     const [answerTimes, setAnswerTime] = useState([])
     const [timeValue, setTimeValue] = useState([])
     const [number, setNumber] = useState(null)
+    const [data, setData] = useState({})
 
     const productTypes = useSelector(getTypesOfProduct)
 
@@ -90,6 +93,8 @@ const Discount = () => {
         return {label: i.name, value: i, icon}
     })
 
+    // get answer time
+
     const getTime = async () => {
         try {
             const response = await getAnswerTime();
@@ -99,24 +104,33 @@ const Discount = () => {
         }
     }
 
+    // const postSubmit = async () => {
+    //     try {
+    //         const response = await postDiscount(data);
+    //         console.log(response)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
     useEffect(() => {
         !brands && dispatch(getBrandsListThunk(1, 10));
         getTime()
     }, [])
 
+    // useEffect(() =>{
+    //     postSubmit()
+    // }, [data])
+
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    // const handleEmail = (event) => {
-    //     if (!isValidEmail(event.target.value)) {
-    //       setError(true);
-    //     } else {
-    //       setError(false);
-    //     }
-    
-    //     setEmail(event.target.value);
-    // };
+    const isSelectedRadio = (btn) => selectRadio === btn ;
+
+    const handleRadio = (event) => {
+        setSelectedRadio(event.currentTarget.value)
+    }
 
     const handleDiscountName = (event) => {
         setName(event.target.value)
@@ -138,9 +152,18 @@ const Discount = () => {
         setTimeValue(event)
     }
 
+    const dataTime = timeValue?.map(i => i.value)
+    const dataProduct = categoryValue?.map(i => i.value)
+    // const dataBrand = brandValue?.map(i => i.value)
+
+    
+    // store emails tags
+
     const addTags = (event) => {
+
         event.preventDefault()
-        if(event.key === 'Enter' && isValidEmail(event.target.value)) {
+        
+        if(event.key === 'Enter' && isValidEmail(event.target.value)) {         
             setError(false)
             setTags([...tags, event.target.value])
             event.target.value = ''
@@ -149,26 +172,122 @@ const Discount = () => {
         }
     }
 
-    function handleSubmit (event) {
+    async function handleSubmit (event) {
         event.preventDefault();
         
-        // if(name === "") {
-        //     setErrorName(true)
-        // }else {
-            console.log({name, brand: brandValue, category: categoryValue, percentage, email: tags, time: timeValue, limitNumber: number})
+        if(percentage > 0 ) {
+            if (noCondition && selectRadio === 'radio1') {
+                setData({
+                            code: name, 
+                            discountPercentage: percentage, 
+                            limit: number, 
+                            onePerUser: perUse,
+                            isStopped: false
+                        })
 
-            // clear all of state after submitting
+                // clear all of state after submitting
 
-            setBrandValue([])
-            setCategoryValue([])
-            setTags('')
-            setName('')
-            setPercentage('')
-            setTimeValue([])
+                setBrandValue([])
+                setCategoryValue([])
+                setTags('')
+                setName('')
+                setPercentage('')
+                setTimeValue([])
+                alert('your discount has been added')
+
+            }else if(noCondition && selectRadio === 'radio2'){
+                setData({
+                            code: name, 
+                            discountPercentage: percentage, 
+                            limit: number, 
+                            onePerUser: perUse, 
+                            tags,
+                            isStopped: false
+                        })
+
+                // clear all of state after submitting
+
+                setBrandValue([])
+                setCategoryValue([])
+                setTags('')
+                setName('')
+                setPercentage('')
+                setTimeValue([])
+                alert('your discount has been added')
+
+            }else if(!noCondition && selectRadio === 'radio1') {
+
+                if (categoryValue.length >=1 || brandValue >= 1 || timeValue.length >= 1) {
+                    setData({
+                                code: name, 
+                                productTypes: dataProduct, 
+                                discountPercentage: percentage, 
+                                onePerUser: perUse, 
+                                answerTimes: dataTime, 
+                                limit: number,
+                                isStopped: false
+                            })
+
+                    // clear all of state after submitting
+
+                    setBrandValue([])
+                    setCategoryValue([])
+                    setTags('')
+                    setName('')
+                    setPercentage('')
+                    setTimeValue([])
+                    alert('your discount has been added')
+                }else {
+                    alert('at least one of these applies to categories has to be selected')
+                }
+
+            }else if(!noCondition && selectRadio === 'radio2') {
+                
+                if (categoryValue.length >=1 || brandValue >= 1 || timeValue.length >= 1) {
+                    setData({
+                                code: name, 
+                                onePerUser: perUse, 
+                                productTypes: dataProduct, 
+                                discountPercentage: percentage, 
+                                users: tags, 
+                                answerTimes: dataTime, 
+                                limit: number,
+                                isStopped: false
+                            })
+
+
+                    // clear all of state after submitting
+
+                    setBrandValue([])
+                    setCategoryValue([])
+                    setTags('')
+                    setName('')
+                    setPercentage('')
+                    setTimeValue([])
+                    alert('your discount has been added')
+                }else {
+                    alert('at least one of these applies to categories has to be selected')
+                }
+
+            }else {
+                alert('failed')
+            }
+
+            try {
+                const response = await postDiscount(data);
+                console.log(response)
+            } catch (error) {
+                console.log(error)
+            }
+
+            // setErrorName(true)
+        }else {
+
             // setErrorName(false)
-
-            alert('your discount has been added')
-        // }
+            alert('failed due to errors')
+            console.log(data)
+            setData({})
+        }
     }
 
 
@@ -177,6 +296,7 @@ const Discount = () => {
     console.log(brandValue)
     console.log(categoryValue)
     console.log(answerTimes)
+    console.log(timeValue)
     
 
     return (
@@ -189,6 +309,7 @@ const Discount = () => {
                     placeholder='Enter discount name'
                     value={name}
                     onChange={handleDiscountName}
+                    required
                 />
                 <input 
                     type="number" 
@@ -198,20 +319,35 @@ const Discount = () => {
                     max={100}
                     value={percentage}
                     onChange={handleDiscountPercentage}
+                    required
                 />
             </div>
             <div className="discount__title">Applies to</div>
             <div className="discount__contents">
                 <div className="discount__row">
-                    <input onChange={()=> setNoCondition(!noCondition)} type="checkbox" name="" id="noCondition" className='discount__checkbox-one'/>
+                    <input 
+                        onChange={()=> { 
+                                            setNoCondition(!noCondition); 
+                                            setEnableCategory(false); 
+                                            setEnableBrand(false); 
+                                            setEnableAnswerTime(false);
+                                            setTimeValue([])
+                                            setBrandValue([]);
+                                            setCategoryValue([])
+                                        }} 
+                        type="checkbox" 
+                        name="" 
+                        id="noCondition" 
+                        className='discount__checkbox-one'
+                    />
                     <label htmlFor="noCondition">No condition</label>
                 </div>
                 <div className="discount__row">
-                    <input onChange={() => setEnableCategory(!enableCategory)} disabled={noCondition} type="checkbox" name="" id="category" className='discount__checkbox-one'/>
+                    <input checked={enableCategory} onChange={() => setEnableCategory(!enableCategory)} disabled={noCondition} type="checkbox" name="" id="category" className='discount__checkbox-one'/>
                     <label htmlFor='category'>Specific categories</label>
                     {/* <MulproductTypesOptionstiSelect disable={enableCategory} options={productTypesOptions}/> */}
                     <Select
-                        isDisabled={enableCategory || noCondition}
+                        isDisabled={!enableCategory || noCondition}
                         isMulti
                         onChange={handleProductTypeSelect} 
                         options={productTypesOptions} 
@@ -227,10 +363,10 @@ const Discount = () => {
                     />
                 </div>
                 <div className="discount__row">
-                    <input onChange={() => setEnableBrand(!enableBrand)} disabled={noCondition} type="checkbox" name="" id="brand" className='discount__checkbox-one'/>
+                    <input checked={enableBrand} onChange={() => setEnableBrand(!enableBrand)} disabled={noCondition} type="checkbox" name="" id="brand" className='discount__checkbox-one'/>
                     <label htmlFor='brand'>Specific brands</label>
                     <Select
-                        isDisabled={enableBrand || noCondition}
+                        isDisabled={!enableBrand || noCondition}
                         isMulti
                         onChange={handleBrandSelect}
                         options={brandsOptions} 
@@ -246,10 +382,10 @@ const Discount = () => {
                     />
                 </div>
                 <div className="discount__row">
-                    <input onChange={() => setEnableAnswerTime(!enableAnswerTime)} disabled={noCondition} type="checkbox" name="" id="time" className='discount__checkbox-one'/>
+                    <input checked={enableAnswerTime} onChange={() => setEnableAnswerTime(!enableAnswerTime)} disabled={noCondition} type="checkbox" name="" id="time" className='discount__checkbox-one'/>
                     <label htmlFor='time'>Specific answer time</label>
                     <Select
-                        isDisabled={enableAnswerTime || noCondition}
+                        isDisabled={!enableAnswerTime || noCondition}
                         isMulti
                         options={answerTimesOptions}
                         onChange={handleAnswerTimes}
@@ -268,23 +404,58 @@ const Discount = () => {
             <div className="discount__title">Maximum discount uses</div>
             <div className="discount__contents">
                 <div className="discount__row two">
-                    <input onChange={() => setEnableTotalUsed(!enableTotalUsed)} type="checkbox" name="" id="limit time" className='discount__checkbox-one'/>
+                    <input 
+                        onChange={() => setEnableTotalUsed(!enableTotalUsed)} 
+                        type="checkbox" 
+                        name="" 
+                        id="limit time" 
+                        className='discount__checkbox-one'
+                    />
                     <label htmlFor='limit time'>Limit number of times this discount can be used in total</label>
-                    <input onChange={(event) => setNumber(event.target.value)} disabled={enableTotalUsed} type='number' min={0} placeholder='100' className='discount__number'/>
+                    <input 
+                        onChange={(event) => setNumber(event.target.value)} 
+                        disabled={enableTotalUsed} 
+                        type='number' 
+                        min={0} 
+                        placeholder='100' 
+                        className='discount__number'
+                    />
                 </div>
                 <div className="discount__row two">
-                    <input type="checkbox" name="" id="limit user" className='discount__checkbox-one'/>
+                    <input 
+                        onChange={()=> setPerUse(!perUse)} 
+                        type="checkbox" 
+                        name="" 
+                        id="limit user" 
+                        className='discount__checkbox-one'
+                    />
                     <label htmlFor='limit user'>Limit to one use per user</label>
                 </div>
             </div>
             <div className="discount__title">Customer eligibility</div>
             <div className="discount__contents">
                 <div className="discount__row three">
-                    <input type="checkbox" name="" id="all" className='discount__round-box'/>
+                    <input 
+                        checked={isSelectedRadio('radio1')}
+                        onChange={handleRadio}
+                        type="radio" 
+                        value='radio1' 
+                        name="" 
+                        id="all" 
+                        className='discount__round-box'
+                    />
                     <label htmlFor='all'>All customers</label>
                 </div>
                 <div className="discount__row three">
-                    <input onChange={() => setLimitCostomer(!limitCostomer)} type="checkbox" name="" id="limit customers" className='discount__round-box'/>
+                    <input 
+                        checked={isSelectedRadio('radio2')} 
+                        value='radio2' 
+                        onChange={handleRadio} 
+                        type="radio" 
+                        name="" 
+                        id="limit customers" 
+                        className='discount__round-box'
+                    />
                     <label htmlFor='limit customers'>Limit to specific customers</label>
                     <div className="discount__email">
                         <input
@@ -297,7 +468,7 @@ const Discount = () => {
                             className='email'
                             // onChange={handleEmail}
                             onKeyDown={addTags}
-                            disabled={limitCostomer}
+                            disabled={isSelectedRadio('radio1')}
                         />
                     </div>
                 </div>
